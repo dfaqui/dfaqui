@@ -21,6 +21,8 @@ gem 'rolify'
 
 gem 'rails_admin'
 
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
