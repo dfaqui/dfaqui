@@ -3,4 +3,7 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+
+  # properties
+  resources :properties, path: 'imoveis', only: [:index]
 end
