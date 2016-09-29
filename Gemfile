@@ -13,6 +13,9 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
+gem 'cancancan'
+gem 'rolify'
+
 gem 'rails_admin'
 
 group :development, :test do
