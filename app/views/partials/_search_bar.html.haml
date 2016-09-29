@@ -1,0 +1,27 @@
+.search-bar
+  .ui.centered.grid.borderless.menu
+    .horizontally.fitted.item
+      %select.ui.dropdown
+        %option Você procura por
+
+    .horizontally.fitted.item
+      %select.ui.dropdown
+        %option Tipo de imóvel
+
+    .horizontally.fitted.item
+      %select.ui.dropdown
+        %option Quantidade de quartos
+
+    .horizontally.fitted.item
+      %select.ui.dropdown
+        %option Quadras
+
+    .horizontally.fitted.item
+      %select.ui.dropdown
+        %option Quadra
+
+    .horizontally.fitted.item
+      .ui.primary.fluid.button Buscar
+
+:javascript
+  init_dropdown('.ui.dropdown');
