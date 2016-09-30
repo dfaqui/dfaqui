@@ -1,8 +1,13 @@
 .ui.borderless.fixed.top.large.menu
   .item
-    .image= image_tag 'imoveis_brand.svg', class: 'brand-icon'
-    .image= image_tag 'comercio_button.svg', class: 'channel-icon'
-    .image= image_tag 'delivery_button.svg', class: 'channel-icon'
+    = link_to '/imoveis' do
+      .image= image_tag 'imoveis_brand.svg', class: 'brand-icon'
+
+    = link_to '/comercio' do
+      .image= image_tag 'comercio_button.svg', class: 'channel-icon'
+
+    = link_to '/delivery' do
+      .image= image_tag 'delivery_button.svg', class: 'channel-icon'
 
   .right.item
     .image= image_tag 'favorite_button.svg', class: 'favorite-icon'

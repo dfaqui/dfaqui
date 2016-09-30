@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
-  # properties
+  resources :markets, path: 'comercio', only: [:index]
+  resources :markets, path: 'delivery', only: [:index]
   resources :properties, path: 'imoveis', only: [:index]
 end
