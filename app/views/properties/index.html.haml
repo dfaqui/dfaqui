@@ -1,2 +1,38 @@
-%h1 Properties#index
-%p Find me in app/views/properties/index.html.erb
+.ui.header.title BUSCA EXCLUSIVA
+
+.ui.vertical.stripe
+  .ui.middle.aligned.container
+    .ui.six.column.doubling.center.aligned.grid
+      .column= image_tag 'sponsors/beiramar.png'
+      .column= image_tag 'sponsors/rodolfo-imoveis.png'
+      .column= image_tag 'sponsors/exito.png'
+      .column= image_tag 'sponsors/61imoveis.png'
+      .column= image_tag 'sponsors/dall-oca.png'
+      .column= image_tag 'sponsors/moni.png'
+
+.ui.hidden.divider
+
+.ui.header.title IMÓVEIS DESTAQUES
+
+.ui.four.column.stackable.grid
+  - 8.times do
+    .column
+      .ui.fluid.card
+        .content
+          %i.right.floated.like.icon
+          %a.center.aligned.header CLWN 10/11 Bloco K
+        .image
+          .ui.orange.ribbon.label Aluguel
+          = image_tag 'http://demo.feelinart.com/module/beawesome/assets/img/blog-2.jpg', class: 'card-image'
+          %p R$ 2.500,00
+        .content
+          .ui.three.column.center.aligned.grid
+            .column
+              %p Área (m²)
+              %p.card-value 190
+            .column
+              %p Quartos
+              %p.card-value 3
+            .column
+              %p Banheiros
+              %p.card-value 2

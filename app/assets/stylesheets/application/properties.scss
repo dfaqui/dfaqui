@@ -1,0 +1,22 @@
+.ui.fluid.card > .image {
+  position: relative;
+
+  p {
+    bottom: 0;
+    color: white;
+    font-size: 20px;
+    left: 5px;
+    position: absolute;
+  }
+}
+
+.card-image {
+  width: 261px;
+  height: 174px;
+}
+
+.card-value {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2185D0;
+}

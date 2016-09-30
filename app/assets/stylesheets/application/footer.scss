@@ -24,7 +24,11 @@
 
 .copyright-text {
   color: #284762;
-  font-size: 15px;
+  font-size: 11px;
+
+  p:nth-child(2) {
+    margin-top: -12px;
+  }
 }
 
 .footer.segment { background-color: #004969 !important }
