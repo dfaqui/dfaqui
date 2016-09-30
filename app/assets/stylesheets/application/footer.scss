@@ -1,0 +1,32 @@
+@mixin footer-banner($image, $color) {
+  background-image: image-url($image);
+  background-color: $color;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 215px;
+}
+
+.comercio-footer-banner {
+  @include footer-banner('comercio_footer_banner.png', #869b90);
+}
+
+.delivery-footer-banner {
+  @include footer-banner('delivery_footer_banner.png', #BCAA67);
+}
+
+.imoveis-footer-banner {
+  @include footer-banner('imoveis_footer_banner.png', #18A3BE);
+}
+
+.footer-brand {
+  width: 150px;
+}
+
+.copyright-text {
+  color: #284762;
+  font-size: 15px;
+}
+
+.footer.segment { background-color: #004969 !important }
+
+.copyright-section { margin: 2em 0 2em 0 }

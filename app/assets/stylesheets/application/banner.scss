@@ -4,14 +4,14 @@
   min-height: 445px;
 }
 
-.imoveis-banner {
-  @include banner-section('imoveis_banner.png');
-}
-
 .comercio-banner {
   @include banner-section('comercio_banner.png');
 }
 
 .delivery-banner {
   @include banner-section('delivery_banner.png');
+}
+
+.imoveis-banner {
+  @include banner-section('imoveis_banner.png');
 }
