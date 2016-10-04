@@ -6,5 +6,8 @@ Rails.application.routes.draw do
 
   resources :markets, path: 'comercio', only: [:index]
   resources :markets, path: 'delivery', only: [:index]
-  resources :properties, path: 'imoveis', only: [:index]
+
+  resources :properties, path: 'imoveis', only: [:index] do
+    collection { get 'list', path: 'listagem' }
+  end
 end

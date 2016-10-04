@@ -21,7 +21,7 @@
         %option Quadra
 
     .horizontally.fitted.item
-      .ui.primary.fluid.button Buscar
+      = link_to 'Buscar', list_properties_path, class: 'ui primary fluid button'
 
 :javascript
   init_dropdown('.ui.dropdown');

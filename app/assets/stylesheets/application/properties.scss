@@ -1,3 +1,4 @@
+// index page
 .ui.fluid.card > .image {
   position: relative;
 
@@ -19,4 +20,52 @@
   font-size: 16px;
   font-weight: bold;
   color: #2185D0;
+}
+
+// list page
+.back-button {
+  float: left;
+}
+
+.result-section {
+  text-align: center;
+
+  .value {
+    font-size: 30px;
+    color: #0094B4;
+  }
+  .label { font-size: 16px }
+}
+
+.property-item-section {
+  .property-image {
+    float: left;
+
+    img {
+      width: 260px;
+      height: 174px;
+    }
+  }
+
+  .property-content {
+    overflow: auto;
+    padding-left: 1em;
+
+    .header { float: left }
+    .ui.heart.rating{ float: right }
+
+    .justified.container { float: left }
+
+    .statistic-section {
+      float: left;
+      margin-top: 1.2em;
+    }
+
+    .statistic > .value{ color: #2185D0 }
+
+    .action-section {
+      float: right;
+      margin-top: 1.5em;
+    }
+  }
 }

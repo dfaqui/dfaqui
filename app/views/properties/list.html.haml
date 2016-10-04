@@ -1,0 +1,49 @@
+= link_to 'Voltar', properties_path, class: 'ui primary button back-button'
+
+.result-section
+  %span.value 8
+  %span.label imóveis encontrados
+
+.ui.divider
+
+- 8.times do
+  .property-item-section
+    .ui.clearing.segment
+      .ui.rounded.image.property-image
+        .ui.orange.ribbon.label Aluguel
+        = image_tag 'https://resizedimgs.vivareal.com/z20_CIaue-RYOiLv-uUmfim7wwA=/fit-in/480x0/vr.images.sp/68728b86-ec5e-4a4a-b544-100c9aa34341.jpg'
+
+      .property-content
+        .ui.medium.header SQS 102 Bloco F
+        .ui.huge.heart.rating{ 'data-rating': 0, 'data-max-rating': 1 }
+
+        .ui.justified.container
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam feugiat,
+          turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum
+          odio risus sit amet ante. Aliquam erat volutpat. Nunc auctor. Mauris
+          pretium quam et urna. Fusce nibh. Duis risus. Curabitur sagittis hendrerit
+          ante. Aliquam erat volutpat. Vestibulum erat nulla, ullamcorper
+
+        .statistic-section
+          .ui.mini.statistic
+            .label Área (m²)
+            .value 190
+
+          .ui.mini.statistic
+            .label Quartos
+            .value 3
+
+          .ui.mini.statistic
+            .label Banheiros
+            .value 2
+
+        .action-section
+          .ui.small.primary.button VER DETALHES
+          .ui.small.green.button COMÉRCIO
+          .ui.small.yellow.button DELIVERY
+          .ui.small.primary.property-color.button TOUR 360
+
+  .ui.hidden.divider
+
+:javascript
+  $('.ui.heart.rating').rating();
