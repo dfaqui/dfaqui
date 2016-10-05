@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function init_gallery() {
   $('#image-gallery').lightSlider({
     item: 1,
     auto: true,
@@ -10,4 +10,4 @@ $(document).ready(function() {
       $('#image-gallery').removeClass('cS-hidden');
     }
   });
-});
+}

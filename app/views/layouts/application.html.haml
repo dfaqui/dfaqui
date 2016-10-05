@@ -13,8 +13,10 @@
     %p.alert= alert
 
     = render 'partials/navbar'
-    -# = render 'partials/banner'
-    -# = render 'partials/search_bar'
+
+    - if params[:action] != 'show'
+      = render 'partials/banner'
+      = render 'partials/search_bar'
 
     .ui.container.app-content
       = yield
