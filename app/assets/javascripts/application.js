@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require lightslider
 //= require turbolinks
 //= require_tree ./application
 //= require semantic-ui

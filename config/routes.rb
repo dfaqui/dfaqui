@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   resources :properties, path: 'imoveis', only: [:index] do
     collection { get 'list', path: 'listagem' }
+    collection { get 'show', path: 'detalhes' }
   end
 end

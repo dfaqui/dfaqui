@@ -23,6 +23,10 @@ gem 'rails_admin'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-lightslider'
+end
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'

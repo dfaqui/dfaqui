@@ -1,0 +1,6 @@
+.gallery-section
+  %ul#image-gallery.gallery.list-unstyled.cS-hidden
+    - 5.times do |i|
+      - i = i + 1
+      %li{ 'data-thumb': "https://s3-sa-east-1.amazonaws.com/dfaqui/property/demo-#{i}.jpg" }
+        = image_tag "https://s3-sa-east-1.amazonaws.com/dfaqui/property/demo-#{i}.jpg", class: 'property-image'
