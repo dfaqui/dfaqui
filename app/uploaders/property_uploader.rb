@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class CustomerCommonUploader < CarrierWave::Uploader::Base
+class PropertyUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :fog
@@ -9,5 +9,5 @@ class CustomerCommonUploader < CarrierWave::Uploader::Base
     "property/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process :resize_to_fill => [180, 120]
+  process :resize_to_fill => [730, 486]
 end

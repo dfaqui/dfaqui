@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006143815) do
+ActiveRecord::Schema.define(version: 20161006182112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,39 @@ ActiveRecord::Schema.define(version: 20161006143815) do
     t.datetime "updated_at",                           null: false
   end
 
+  create_table "properties", force: :cascade do |t|
+    t.integer  "customer_id",                     null: false
+    t.integer  "block_id",                        null: false
+    t.integer  "property_type",                   null: false
+    t.integer  "commercial_situation",            null: false
+    t.integer  "release_status",                  null: false
+    t.text     "description"
+    t.float    "price"
+    t.float    "tax"
+    t.integer  "area",                            null: false
+    t.float    "square_meter_price"
+    t.integer  "rooms",                           null: false
+    t.integer  "bathrooms",                       null: false
+    t.integer  "parking_spaces",                  null: false
+    t.integer  "floor"
+    t.string   "sun_position",         limit: 20
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["block_id"], name: "index_properties_on_block_id", using: :btree
+    t.index ["customer_id"], name: "index_properties_on_customer_id", using: :btree
+  end
+
+  create_table "property_images", force: :cascade do |t|
+    t.integer  "property_id",                            null: false
+    t.string   "image",       limit: 100,                null: false
+    t.string   "name",        limit: 100,                null: false
+    t.integer  "order",                                  null: false
+    t.boolean  "status",                  default: true, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.index ["property_id"], name: "index_property_images_on_property_id", using: :btree
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.string   "resource_type"
@@ -175,5 +208,8 @@ ActiveRecord::Schema.define(version: 20161006143815) do
   add_foreign_key "customers", "customer_commons"
   add_foreign_key "district_groups", "cities"
   add_foreign_key "districts", "district_groups"
+  add_foreign_key "properties", "blocks"
+  add_foreign_key "properties", "customers"
+  add_foreign_key "property_images", "properties"
   add_foreign_key "specialities", "categories"
 end

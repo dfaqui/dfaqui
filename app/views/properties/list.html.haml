@@ -1,12 +1,12 @@
 = link_to 'Voltar', properties_path, class: 'ui primary button back-button'
 
 .result-section
-  %span.value 8
+  %span.value= @properties.count
   %span.label imóveis encontrados
 
 .ui.divider
 
-- 8.times do
+- @properties.each do |property| do
   .property-item-section
     .ui.clearing.segment
       .ui.rounded.image.property-image
