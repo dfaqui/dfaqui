@@ -24,4 +24,8 @@ class Property < ApplicationRecord
   validates :parking_spaces, presence: true, numericality: { only_integer: true }
   validates :floor, numericality: { only_integer: true }, allow_nil: true
   validates :sun_position, length: { maximum: 20 }, allow_nil: true
+
+  def full_address
+    "#{self.block.district.name} #{self.block.name}"
+  end
 end

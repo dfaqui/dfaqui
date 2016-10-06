@@ -1,4 +1,6 @@
 class PropertyImage < ApplicationRecord
+  default_scope { order(:order) }
+
   mount_uploader :image, PropertyUploader
 
   belongs_to :property

@@ -1,4 +1,4 @@
-.ui.header.title SQS 102 Bloco F
+.ui.header.title= @property.full_address
 
 .ui.stackable.grid
   .eleven.wide.column
@@ -7,7 +7,8 @@
       %a.item Tour virtual
 
     .ui.segment.property-option
-      .ui.orange.ribbon.label Aluguel
+      %div{ class: "ui #{commercial_situation(@property.commercial_situation)} ribbon label" }
+        = @property.commercial_situation_text
       = render 'gallery'
 
     .ui.small.primary.button VER TELEFONE
@@ -18,22 +19,26 @@
   .five.wide.column
     .ui.clearing.segment.general-section
       %span.price-label Valor
-      %span.price-value R$ 319.000
+      %span.price-value
+        - if @property.price
+          = number_to_currency(@property.price)
+        - else
+          Sob consulta
 
       .ui.clearing.divider
 
       .statisct-secion
         .ui.mini.statistic
           .label Área (m²)
-          .value 190
+          .value= @property.area
 
         .ui.mini.statistic
           .label Quartos
-          .value 3
+          .value= @property.rooms
 
         .ui.mini.statistic
           .label Banheiros
-          .value 2
+          .value= @property.bathrooms
 
       .ui.favorite.divider
 
@@ -48,31 +53,31 @@
 
       .ui.two.column.grid
         .right.aligned.column Situação
-        .column Pronto
+        .column= @property.release_status_text
 
         .right.aligned.column Tipo
-        .column Residencial
+        .column= @property.property_type_text
 
         .right.aligned.column Vagas
-        .column 2
+        .column= @property.parking_spaces
 
         .right.aligned.column Unidade
         .column 201
 
         .right.aligned.column Andar
-        .column Térreo
+        .column= (@property.floor.nil?) ? '-' : @property.floor
 
         .right.aligned.column Valor (m²)
-        .column R$ 2.500,00
+        .column= (@property.square_meter_price.nil?) ? '-' : number_to_currency(@property.square_meter_price)
 
         .right.aligned.column Condomínio
         .column R$ 500,00
 
         .right.aligned.column IPTU
-        .column R$ 500,00
+        .column= (@property.tax.nil?) ? '-' : number_to_currency(@property.tax)
 
         .right.aligned.column Posição do sol
-        .column Nascente
+        .column= (@property.sun_position.nil?) ? '-' : @property.sun_position
 
         .right.aligned.column CRECI
         .column 12345
@@ -82,15 +87,7 @@
 %h2.ui.header Descrição
 
 .ui.justified.container
-  Maecenas ipsum velit, consectetuer eu, lobortis ut, dictum at, dui. In rutrum.
-  Sed ac dolor sit amet purus malesuada congue. In laoreet, magna id viverra
-  tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero.
-  Suspendisse sagittis ultrices augue. Mauris metus. Nunc dapibus tortor vel mi
-  dapibus sollicitudin. Etiam posuere lacus quis dolor. Praesent id justo in
-  neque elementum ultrices. Class aptent taciti sociosqu ad litora torquent per
-  conubia nostra, per inceptos hymenaeos. In convallis. Fusce suscipit libero
-  eget elit. Praesent vitae arcu tempor neque lacinia pretium. Morbi imperdiet,
-  mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin
+  = @property.description
 
 .ui.divider
 

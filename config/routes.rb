@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :markets, path: :delivery, only: [:index]
 
   resources :properties, path: :imoveis, only: [:index] do
+    get 'show', path: :detalhes
     collection { get 'list', path: :listagem }
-    collection { get 'show', path: :detalhes }
   end
 end
