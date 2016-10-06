@@ -1,0 +1,15 @@
+pt-BR:
+  enumerize:
+    property:
+      property_type:
+        residential: 'Residencial'
+        commercial: 'Comercial'
+      commercial_situation:
+        release: 'Lançamento'
+        sale: 'Venda'
+        rent: 'Aluguel'
+      release_status:
+        off_plan: 'Na planta'
+        under_construction: 'Em construção'
+        soon_launching: 'Breve lançamento'
+        ready: 'Pronto'

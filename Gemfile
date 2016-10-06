@@ -23,6 +23,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 
+gem 'enumerize'
 gem 'figaro'
 
 gem 'rails_admin'

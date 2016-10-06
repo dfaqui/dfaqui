@@ -75,6 +75,8 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    enumerize (2.0.0)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     excon (0.53.0)
     execjs (2.7.0)
@@ -405,6 +407,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.2)
   devise
+  enumerize
   factory_girl_rails
   figaro
   fog
@@ -432,4 +435,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.13.1
+   1.13.2

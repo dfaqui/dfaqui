@@ -1,4 +1,10 @@
 class Property < ApplicationRecord
+  extend Enumerize
+
+  enumerize :property_type, in: { residential: 0, commercial: 1 }
+  enumerize :commercial_situation, in: { release: 0, sale: 1, rent: 2 }
+  enumerize :release_status, in: { off_plan: 0, under_construction: 1, soon_launching: 2, ready: 3 }
+
   belongs_to :customer
   belongs_to :block
 

@@ -12,6 +12,9 @@ module DfaquiAdmin
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.time_zone = 'Brasilia'
+    config.i18n.default_locale = :'pt-BR'
+
     config.action_controller.include_all_helpers = false
 
     config.generators do |g|
