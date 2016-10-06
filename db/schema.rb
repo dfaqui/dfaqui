@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929140733) do
+ActiveRecord::Schema.define(version: 20161006143815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,36 @@ ActiveRecord::Schema.define(version: 20160929140733) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.index ["state_id"], name: "index_cities_on_state_id", using: :btree
+  end
+
+  create_table "customer_commons", force: :cascade do |t|
+    t.string   "fantasy_name",       limit: 120,                null: false
+    t.text     "description"
+    t.string   "logo",               limit: 100
+    t.string   "image_secure_token", limit: 255
+    t.string   "plugin",             limit: 20,                 null: false
+    t.boolean  "status",                         default: true, null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "name",               limit: 120
+    t.integer  "customer_common_id",                            null: false
+    t.integer  "block_id",                                      null: false
+    t.integer  "customer_type",                                 null: false
+    t.string   "document",           limit: 20,                 null: false
+    t.string   "address_complement", limit: 255
+    t.string   "owner_name",         limit: 120,                null: false
+    t.string   "owner_email",        limit: 100,                null: false
+    t.string   "owner_phone",        limit: 20
+    t.string   "contact_email",      limit: 100,                null: false
+    t.string   "contact_phone",                  default: [],                array: true
+    t.boolean  "status",                         default: true, null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.index ["block_id"], name: "index_customers_on_block_id", using: :btree
+    t.index ["customer_common_id"], name: "index_customers_on_customer_common_id", using: :btree
   end
 
   create_table "district_groups", force: :cascade do |t|
@@ -141,6 +171,8 @@ ActiveRecord::Schema.define(version: 20160929140733) do
   add_foreign_key "blocks", "districts"
   add_foreign_key "categories", "segments"
   add_foreign_key "cities", "states"
+  add_foreign_key "customers", "blocks"
+  add_foreign_key "customers", "customer_commons"
   add_foreign_key "district_groups", "cities"
   add_foreign_key "districts", "district_groups"
   add_foreign_key "specialities", "categories"

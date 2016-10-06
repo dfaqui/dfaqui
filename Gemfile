@@ -19,6 +19,12 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+
+gem 'figaro'
+
 gem 'rails_admin'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
