@@ -12,6 +12,7 @@ class CreateCustomers < ActiveRecord::Migration[5.0]
       t.string :owner_phone, limit: 20
       t.string :contact_email, null: false, limit: 100
       t.string :contact_phone, array: true, default: []
+      t.string :additional_info, limit: 255
       t.boolean :status, null: false, default: true
 
       t.timestamps

@@ -12,5 +12,6 @@ class Customer < ApplicationRecord
   validates :owner_email, presence: true, length: { maximum: 100 }
   validates :owner_phone, length: { maximum: 20 }
   validates :contact_email, presence: true, length: { maximum: 100 }
+  validates :additional_info, length: { maximum: 255 }
   validates :status, presence: true
 end

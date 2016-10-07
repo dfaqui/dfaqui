@@ -10,6 +10,9 @@ class Property < ApplicationRecord
 
   has_many :property_images
 
+  has_many :tags, through: :property_tags
+  has_many :property_tags
+
   validates :customer, presence: true
   validates :block, presence: true
   validates :property_type, presence: true, numericality: { only_integer: true }

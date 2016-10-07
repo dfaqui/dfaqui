@@ -78,7 +78,8 @@
         .column= (@property.sun_position.nil?) ? '-' : @property.sun_position
 
         .right.aligned.column CRECI
-        .column 12345
+        .column
+          = (@property.customer.additional_info.blank?) ? '-' : @property.customer.additional_info
 
 .ui.divider
 
@@ -87,30 +88,16 @@
 .ui.justified.container
   = @property.description
 
-.ui.divider
+- if @property.tags.any?
+  .ui.divider
 
-%h2.ui.header Características
+  %h2.ui.header Características
 
-.ui.list
-  .item
-    %i.check.green.icon
-    Brinquedoteca
-
-  .item
-    %i.check.green.icon
-    Churrasqueira
-
-  .item
-    %i.check.green.icon
-    Elevador
-
-  .item
-    %i.check.green.icon
-    Piscina
-
-  .item
-    %i.check.green.icon
-    Sauna
+  .ui.list
+    - @property.tags.each do |tag|
+      .item
+        %i.check.green.icon
+        = tag.name
 
 :javascript
   init_gallery();
