@@ -2,14 +2,12 @@
 
 .ui.stackable.grid
   .eleven.wide.column
-    .ui.two.item.pointing.menu
-      %a.active.item Ver fotos
-      %a.item Tour virtual
+    = render_tab_items(params[:tab], !@property.block.tour_link.blank?)
 
     .ui.segment.property-option
       %div{ class: "ui #{commercial_situation(@property.commercial_situation)} ribbon label" }
         = @property.commercial_situation_text
-      = render 'gallery'
+      = render_tab_content(params[:tab], !@property.block.tour_link.blank?)
 
     .ui.small.primary.button VER TELEFONE
     .ui.small.green.button ENVIAR MENSAGEM
@@ -62,7 +60,7 @@
         .column= @property.parking_spaces
 
         .right.aligned.column Unidade
-        .column 201
+        .column= (@property.unit.nil?) ? '-' : @property.unit
 
         .right.aligned.column Andar
         .column= (@property.floor.nil?) ? '-' : @property.floor
@@ -71,7 +69,7 @@
         .column= (@property.square_meter_price.nil?) ? '-' : number_to_currency(@property.square_meter_price)
 
         .right.aligned.column Condomínio
-        .column R$ 500,00
+        .column= (@property.maintenance_fee.nil?) ? '-' : number_to_currency(@property.maintenance_fee)
 
         .right.aligned.column IPTU
         .column= (@property.tax.nil?) ? '-' : number_to_currency(@property.tax)

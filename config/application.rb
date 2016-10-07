@@ -15,7 +15,7 @@ module DfaquiAdmin
     config.time_zone = 'Brasilia'
     config.i18n.default_locale = :'pt-BR'
 
-    config.action_controller.include_all_helpers = false
+    # config.action_controller.include_all_helpers = false
 
     config.generators do |g|
       g.test_framework :rspec

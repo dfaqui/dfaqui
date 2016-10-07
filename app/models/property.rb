@@ -23,6 +23,8 @@ class Property < ApplicationRecord
   validates :bathrooms, presence: true, numericality: { only_integer: true }
   validates :parking_spaces, presence: true, numericality: { only_integer: true }
   validates :floor, numericality: { only_integer: true }, allow_nil: true
+  validates :unit, numericality: { only_integer: true }, allow_nil: true
+  validates :maintenance_fee, numericality: { only_float: true }, allow_nil: true
   validates :sun_position, length: { maximum: 20 }, allow_nil: true
 
   def full_address

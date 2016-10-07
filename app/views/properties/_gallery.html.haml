@@ -2,4 +2,4 @@
   %ul#image-gallery.gallery.list-unstyled.cS-hidden
     - @property.property_images.each do |i|
       %li{ 'data-thumb': i.image }
-        = image_tag i.image, class: 'property-image'
+        = image_tag i.image, class: 'ui rounded image property-image'

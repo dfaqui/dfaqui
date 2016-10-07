@@ -12,7 +12,13 @@
       .ui.rounded.image.property-image
         %div{ class: "ui #{commercial_situation(property.commercial_situation)} ribbon label" }
           = property.commercial_situation_text
+
         = image_tag property.property_images.first.image
+        %p
+          - if property.price
+            = number_to_currency(property.price)
+          - else
+            Sob consulta
 
       .property-content
         = link_to property.full_address, property_show_path(property.id),
@@ -22,7 +28,7 @@
         = image_tag property.customer.customer_common.logo, class: 'customer-brand'
 
         .ui.justified.container
-          = truncate(property.description, length: 530)
+          = truncate(property.description, length: 400)
 
         .statistic-section
           .ui.mini.statistic
