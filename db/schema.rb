@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007155350) do
+ActiveRecord::Schema.define(version: 20161007174526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,19 +59,20 @@ ActiveRecord::Schema.define(version: 20161007155350) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",               limit: 120
-    t.integer  "customer_common_id",                            null: false
-    t.integer  "block_id",                                      null: false
-    t.integer  "customer_type",                                 null: false
-    t.string   "document",           limit: 20,                 null: false
+    t.integer  "customer_common_id",                             null: false
+    t.integer  "block_id",                                       null: false
+    t.integer  "customer_type",                                  null: false
+    t.string   "document",           limit: 20,                  null: false
     t.string   "address_complement", limit: 255
-    t.string   "owner_name",         limit: 120,                null: false
-    t.string   "owner_email",        limit: 100,                null: false
+    t.string   "owner_name",         limit: 120,                 null: false
+    t.string   "owner_email",        limit: 100,                 null: false
     t.string   "owner_phone",        limit: 20
-    t.string   "contact_email",      limit: 100,                null: false
-    t.string   "contact_phone",                  default: [],                array: true
-    t.boolean  "status",                         default: true, null: false
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.string   "contact_email",      limit: 100,                 null: false
+    t.string   "contact_phone",                   default: [],                array: true
+    t.boolean  "status",                          default: true, null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "additional_info",    limit: 2044
     t.index ["block_id"], name: "index_customers_on_block_id", using: :btree
     t.index ["customer_common_id"], name: "index_customers_on_customer_common_id", using: :btree
   end
@@ -180,6 +181,16 @@ ActiveRecord::Schema.define(version: 20161007155350) do
     t.index ["category_id"], name: "index_specialities_on_category_id", using: :btree
   end
 
+  create_table "sponsors", force: :cascade do |t|
+    t.integer  "customer_id",                null: false
+    t.string   "image",                      null: false
+    t.integer  "order",                      null: false
+    t.boolean  "status",      default: true, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["customer_id"], name: "index_sponsors_on_customer_id", using: :btree
+  end
+
   create_table "states", force: :cascade do |t|
     t.string   "name",         limit: 60,                null: false
     t.string   "abbreviation", limit: 20,                null: false
@@ -232,4 +243,5 @@ ActiveRecord::Schema.define(version: 20161007155350) do
   add_foreign_key "property_tags", "properties"
   add_foreign_key "property_tags", "tags"
   add_foreign_key "specialities", "categories"
+  add_foreign_key "sponsors", "customers"
 end

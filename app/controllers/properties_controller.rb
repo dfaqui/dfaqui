@@ -1,5 +1,6 @@
 class PropertiesController < ApplicationController
   def index
+    @sponsors = Sponsor.by_plugin(:property)
   end
 
   def show
