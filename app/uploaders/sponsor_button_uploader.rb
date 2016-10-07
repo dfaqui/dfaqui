@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class SponsorUploader < CarrierWave::Uploader::Base
+class SponsorButtonUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :fog

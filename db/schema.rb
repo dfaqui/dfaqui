@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007174526) do
+ActiveRecord::Schema.define(version: 20161007192625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(version: 20161007174526) do
     t.index ["category_id"], name: "index_specialities_on_category_id", using: :btree
   end
 
-  create_table "sponsors", force: :cascade do |t|
+  create_table "sponsor_buttons", id: :integer, default: -> { "nextval('sponsors_id_seq'::regclass)" }, force: :cascade do |t|
     t.integer  "customer_id",                null: false
     t.string   "image",                      null: false
     t.integer  "order",                      null: false
@@ -189,6 +189,16 @@ ActiveRecord::Schema.define(version: 20161007174526) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["customer_id"], name: "index_sponsors_on_customer_id", using: :btree
+  end
+
+  create_table "sponsor_items", force: :cascade do |t|
+    t.string   "sponsorable_type",                null: false
+    t.integer  "sponsorable_id",                  null: false
+    t.integer  "order",                           null: false
+    t.boolean  "status",           default: true, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["sponsorable_type", "sponsorable_id"], name: "index_sponsor_items_on_sponsorable_type_and_sponsorable_id", using: :btree
   end
 
   create_table "states", force: :cascade do |t|
@@ -243,5 +253,5 @@ ActiveRecord::Schema.define(version: 20161007174526) do
   add_foreign_key "property_tags", "properties"
   add_foreign_key "property_tags", "tags"
   add_foreign_key "specialities", "categories"
-  add_foreign_key "sponsors", "customers"
+  add_foreign_key "sponsor_buttons", "customers"
 end

@@ -1,6 +1,7 @@
 class PropertiesController < ApplicationController
   def index
-    @sponsors = Sponsor.by_plugin(:property)
+    @buttons    = SponsorButton.by_plugin(:property)
+    @properties = SponsorItem.where(sponsorable_type: 'Property')
   end
 
   def show

@@ -3,32 +3,35 @@
 .ui.vertical.stripe
   .ui.middle.aligned.container
     .ui.six.column.doubling.center.aligned.grid
-      - @sponsors.each do |sponsor|
-        .column= image_tag sponsor.image
+      - @buttons.each do |button|
+        .column= image_tag button.image
 
 .ui.hidden.divider
 
 .ui.header.title IMÓVEIS DESTAQUES
 
 .ui.four.column.stackable.grid
-  - 8.times do
+  - @properties.each do |item|
     .column
       .ui.fluid.card
         .content
           %i.right.floated.like.icon
-          %a.center.aligned.header CLWN 10/11 Bloco K
+          = link_to item.sponsorable.full_address, property_show_path(item.sponsorable.id),
+            class: 'center aligned header'
         .image
-          .ui.orange.ribbon.label Aluguel
-          = image_tag 'http://demo.feelinart.com/module/beawesome/assets/img/blog-2.jpg', class: 'card-image'
-          %p R$ 2.500,00
+          %div{ class: "ui #{commercial_situation(item.sponsorable.commercial_situation)} ribbon label" }
+            = item.sponsorable.commercial_situation_text
+          = link_to property_show_path(item.sponsorable.id) do
+            = image_tag item.sponsorable.property_images.first.image, class: 'card-image'
+            %p= (item.sponsorable.price.blank?) ? 'Sob consulta' : number_to_currency(item.sponsorable.price)
         .content
           .ui.three.column.center.aligned.grid
             .column
               %p Área (m²)
-              %p.card-value 190
+              %p.card-value= item.sponsorable.area
             .column
               %p Quartos
-              %p.card-value 3
+              %p.card-value= item.sponsorable.rooms
             .column
               %p Banheiros
-              %p.card-value 2
+              %p.card-value= item.sponsorable.bathrooms
