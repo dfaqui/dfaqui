@@ -17,7 +17,7 @@ class CreateProperties < ActiveRecord::Migration[5.0]
       t.integer :floor
       t.integer :unit
       t.float :maintenance_fee
-      t.string :sun_position, limit: 20
+      t.integer :sun_position
 
       t.timestamps
     end

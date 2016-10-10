@@ -1,0 +1,72 @@
+!!!
+%html
+  %head
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no' }
+
+    %title DFaqui | Gestão
+    = csrf_meta_tags
+    = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload'
+  %body
+    .ui.fixed.top.menu
+      %a#hideToggle.icon.active.item{ href: 'javascript:void(0)' }
+        %h3
+          %i.chevron.left.icon
+
+      %a#showToggle.icon.active.item{ href: 'javascript:void(0)' }
+        %h3
+          %i.chevron.right.icon
+
+      %a.item{ href: '#', 'data-toggle': 'slide' }
+        %h3 DFaqui
+
+      .menu.right
+        %a.icon.item.pointer{ 'data-toggle': 'popup', 'data-content': '#user', 'data-position': 'bottom right' }
+          %img.ui.avatar.image{ src: 'http://demo.feelinart.com/module/beawesomeadmin/assets/img/people_4.jpg' }
+
+        #user.ui.popup
+          .ui.secondary.vertical.menu
+            .header.item USER MENU
+            %a.item
+              Profile
+              %i.user.icon
+
+            %a.item
+              Settings
+              %i.user.icon
+
+            .ui.divider
+
+            %a.item
+              Logout
+              %i.sign.out.icon
+
+    .pusher
+      .ui.fluid.container
+        .ui.two.column.grid
+          #sideMenu.side.menu
+            .profile{ align: 'center' }
+              %br
+              %a{ href: '#' }
+                %img.ui.circular.image{ src: 'http://demo.feelinart.com/module/beawesomeadmin/assets/img/people_4.jpg', width: '150px' }
+
+              .ui.divider
+
+            #verticalMenu.ui.fluid.vertical.menu
+              %a.item{ href: '#' }
+              = link_to admin_properties_path, class: 'item' do
+                %i.building.icon
+                Imóveis
+
+              %a.item{ href: '#' }
+                %i.users.icon
+                Usuários
+
+              %a.item{ href: '#' }
+                %i.dashboard.icon
+                Dashboard
+
+          #content.sixteen.wide.column
+            = yield
+
+    = javascript_include_tag 'admin', 'data-turbolinks-track': 'reload'

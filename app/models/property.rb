@@ -4,16 +4,19 @@ class Property < ApplicationRecord
   enumerize :property_type, in: { residential: 0, commercial: 1 }
   enumerize :commercial_situation, in: { release: 0, sale: 1, rent: 2 }
   enumerize :release_status, in: { off_plan: 0, under_construction: 1, soon_launching: 2, ready: 3 }
+  enumerize :sun_position, in: { sunrise: 0, sunset: 1 }
 
   belongs_to :customer
   belongs_to :block
 
-  has_many :property_images
+  has_many :property_images, dependent: :destroy
 
   has_many :tags, through: :property_tags
-  has_many :property_tags
+  has_many :property_tags, dependent: :destroy
 
   has_one :sponsor, class_name: 'SponsorItem', as: :sponsorable
+
+  accepts_nested_attributes_for :tags
 
   validates :customer, presence: true
   validates :block, presence: true
@@ -30,7 +33,7 @@ class Property < ApplicationRecord
   validates :floor, numericality: { only_integer: true }, allow_nil: true
   validates :unit, numericality: { only_integer: true }, allow_nil: true
   validates :maintenance_fee, numericality: { only_float: true }, allow_nil: true
-  validates :sun_position, length: { maximum: 20 }, allow_nil: true
+  validates :sun_position, numericality: { only_integer: true }, allow_blank: true
 
   def full_address
     "#{self.block.district.name} #{self.block.name}"

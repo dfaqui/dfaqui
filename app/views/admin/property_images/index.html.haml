@@ -1,0 +1,17 @@
+%h2 Gestão de imagens
+
+.ui.divider
+
+= link_to new_admin_property_property_image_path, class: 'ui primary button' do
+  %i.plus.icon
+  Novo
+
+%table.ui.striped.table
+  %thead
+    %tr
+      %th Imagem
+      %th Ordem
+      %th Nome
+      %th Ação
+  %tbody
+    = render @images

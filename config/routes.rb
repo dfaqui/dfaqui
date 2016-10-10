@@ -11,4 +11,10 @@ Rails.application.routes.draw do
     get 'show', path: :detalhes
     collection { get 'list', path: :listagem }
   end
+
+  scope :gestao, module: :admin, as: :admin do
+    resources :properties, path: :imoveis do
+      resources :property_images, path: :imagens
+    end
+  end
 end

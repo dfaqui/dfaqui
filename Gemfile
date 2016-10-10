@@ -26,6 +26,7 @@ gem 'fog'
 gem 'enumerize'
 gem 'figaro'
 
+gem 'simple_form'
 gem 'rails_admin'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'

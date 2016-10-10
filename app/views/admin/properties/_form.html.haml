@@ -1,0 +1,76 @@
+= simple_form_for([:admin, @property], html: { class: 'ui form' }) do |f|
+  .four.fields
+    .required.field
+      = f.label :customer, 'Cliente'
+      = f.association :customer, label: false, include_blank: false,
+        input_html: { class: 'ui fluid search dropdown' }
+
+    .required.field
+      = f.label :property_type, 'Tipo'
+      = f.select :property_type, Property.property_type.options, {},
+        { class: 'ui dropdown' }
+
+    .required.field
+      = f.label :commercial_situation, 'Situação'
+      = f.select :commercial_situation, Property.commercial_situation.options, {},
+        { class: 'ui dropdown' }
+
+    .required.field
+      = f.label :release_status, 'Estado'
+      = f.select :release_status, Property.release_status.options, {},
+        { class: 'ui dropdown' }
+
+  .field
+    = f.label :description, 'Descrição'
+    = f.input :description, as: :text, label: false
+
+  .six.fields
+    .required.field
+      = f.label :rooms, 'Quartos'
+      = f.input :rooms, label: false
+
+    .required.field
+      = f.label :bathrooms, 'Banheiros'
+      = f.input :bathrooms, label: false
+
+    .required.field
+      = f.label :parking_spaces, 'Vagas de garagem'
+      = f.input :parking_spaces, label: false
+
+    .field
+      = f.label :floor, 'Andar'
+      = f.input :floor, label: false
+
+    .field
+      = f.label :unit, 'Unidade/Loja'
+      = f.input :unit, label: false
+
+    .field
+      = f.label :sun_position, 'Posição do sol'
+      = f.input_field :sun_position, as: :select, include_blank: 'Selecione',
+        collection: Property.sun_position.options, class: 'ui dropdown'
+
+  .four.fields
+    .required.field
+      = f.label :area, 'Área (m²)'
+      = f.input :area, label: false
+
+    .field
+      = f.label :price, 'Valor'
+      = f.input :price, label: false
+
+    .field
+      = f.label :tax, 'IPTU'
+      = f.input :tax, label: false
+
+    .field
+      = f.label :maintenance_fee, 'Condomínio'
+      = f.input :maintenance_fee, label: false
+
+  .field
+    = f.association :tags, as: :check_boxes, label: false, include_hidden: false
+
+  .field
+    = f.button :button, class: 'ui primary button' do
+      %i.save.icon
+      Salvar

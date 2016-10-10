@@ -1,0 +1,18 @@
+= simple_form_for([:admin, :property, @image], html: { class: 'ui form' }) do |f|
+  .required.field
+    = f.label :image, 'Imagem'
+    = f.file_field :image
+
+  .two.fields
+    .required.field
+      = f.label :name, 'Nome'
+      = f.input :name, label: false
+
+    .required.field
+      = f.label :order, 'Ordem'
+      = f.input :order, label: false
+
+  .field
+    = f.button :button, class: 'ui primary button' do
+      %i.save.icon
+      Salvar

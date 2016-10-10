@@ -13,3 +13,6 @@ pt-BR:
         under_construction: 'Em construção'
         soon_launching: 'Breve lançamento'
         ready: 'Pronto'
+      sun_position:
+        sunrise: 'Nascente'
+        sunset: 'Poente'

@@ -1,4 +1,6 @@
 class Customer < ApplicationRecord
+  default_scope { order(:name) }
+
   belongs_to :block
   belongs_to :customer_common
 
