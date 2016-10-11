@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :markets, path: :comercio, only: [:index]
-  resources :markets, path: :delivery, only: [:index]
+
+  resources :markets, path: :delivery, only: [:index] do
+    get 'show', path: :detalhes
+    collection { get 'list', path: :listagem }
+  end
 
   resources :properties, path: :imoveis, only: [:index] do
     get 'show', path: :detalhes

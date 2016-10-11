@@ -1,2 +1,7 @@
-%h1 Markets#index
-%p Find me in app/views/markets/index.html.haml
+.ui.header.title BUSCA EXCLUSIVA
+
+.ui.vertical.stripe
+  .ui.middle.aligned.container
+    .ui.six.column.doubling.center.aligned.grid
+      - @buttons.each do |button|
+        .column= image_tag button.image
