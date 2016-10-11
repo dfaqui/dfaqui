@@ -1,0 +1,38 @@
+@import 'variables/delivery';
+
+// list page
+.back-button { background-color: $primary-color !important }
+
+.result-section {
+  text-align: center;
+
+  .value {
+    font-size: 30px;
+    color: $primary-color;
+  }
+  .label { font-size: 16px }
+}
+
+.item-section {
+  img {
+    width: 260px;
+    height: 174px;
+  }
+
+  .image { float: left }
+
+  .item-content {
+    overflow: auto;
+    padding-left: 1em;
+
+    .ui.header { float: left }
+    .ui.heart.rating { float: right }
+
+    .justified.container { float: left }
+
+    .payment-section {
+      float: left;
+      margin-top: 10px;
+    }
+  }
+}
