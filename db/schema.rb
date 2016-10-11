@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007192625) do
+ActiveRecord::Schema.define(version: 20161011174518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,21 @@ ActiveRecord::Schema.define(version: 20161007192625) do
     t.index ["district_group_id"], name: "index_districts_on_district_group_id", using: :btree
   end
 
+  create_table "markets", force: :cascade do |t|
+    t.integer  "customer_id",                                      null: false
+    t.integer  "segment_id",                                       null: false
+    t.integer  "price_category"
+    t.boolean  "always_open",                      default: false, null: false
+    t.boolean  "delivery",                         default: false, null: false
+    t.boolean  "only_delivery",                    default: false, null: false
+    t.integer  "estimated_time"
+    t.string   "estimated_time_suffix", limit: 10
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.index ["customer_id"], name: "index_markets_on_customer_id", using: :btree
+    t.index ["segment_id"], name: "index_markets_on_segment_id", using: :btree
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string   "code",       limit: 50,                null: false
     t.text     "content"
@@ -113,25 +128,27 @@ ActiveRecord::Schema.define(version: 20161007192625) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.integer  "customer_id",                     null: false
-    t.integer  "block_id",                        null: false
-    t.integer  "property_type",                   null: false
-    t.integer  "commercial_situation",            null: false
-    t.integer  "release_status",                  null: false
+    t.integer  "customer_id",                                     null: false
+    t.integer  "block_id",                                        null: false
+    t.integer  "property_type",                                   null: false
+    t.integer  "commercial_situation",                            null: false
+    t.integer  "release_status",                                  null: false
     t.text     "description"
     t.float    "price"
     t.float    "tax"
-    t.integer  "area",                            null: false
+    t.integer  "area",                                            null: false
     t.float    "square_meter_price"
-    t.integer  "rooms",                           null: false
-    t.integer  "bathrooms",                       null: false
-    t.integer  "parking_spaces",                  null: false
+    t.integer  "rooms",                                           null: false
+    t.integer  "bathrooms",                                       null: false
+    t.integer  "parking_spaces",                                  null: false
     t.integer  "floor"
-    t.string   "sun_position",         limit: 20
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.integer  "sun_position"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.integer  "unit"
     t.float    "maintenance_fee"
+    t.boolean  "status",                           default: true, null: false
+    t.string   "address_complement",   limit: 255
     t.index ["block_id"], name: "index_properties_on_block_id", using: :btree
     t.index ["customer_id"], name: "index_properties_on_customer_id", using: :btree
   end
@@ -247,6 +264,8 @@ ActiveRecord::Schema.define(version: 20161007192625) do
   add_foreign_key "customers", "customer_commons"
   add_foreign_key "district_groups", "cities"
   add_foreign_key "districts", "district_groups"
+  add_foreign_key "markets", "customers"
+  add_foreign_key "markets", "segments"
   add_foreign_key "properties", "blocks"
   add_foreign_key "properties", "customers"
   add_foreign_key "property_images", "properties"
