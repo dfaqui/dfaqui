@@ -3,6 +3,7 @@ class CreateProperties < ActiveRecord::Migration[5.0]
     create_table :properties do |t|
       t.references :customer, foreign_key: true, null: false, index: true
       t.references :block, foreign_key: true, null: false, index: true
+      t.string :address_complement, limit: 255
       t.integer :property_type, null: false
       t.integer :commercial_situation, null: false
       t.integer :release_status, null: false

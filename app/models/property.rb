@@ -14,12 +14,13 @@ class Property < ApplicationRecord
   has_many :tags, through: :property_tags
   has_many :property_tags, dependent: :destroy
 
-  has_one :sponsor, class_name: 'SponsorItem', as: :sponsorable
+  has_one :sponsor, class_name: 'SponsorItem', as: :sponsorable, dependent: :destroy
 
   accepts_nested_attributes_for :tags
 
   validates :customer, presence: true
   validates :block, presence: true
+  validates :address_complement, length: { maximum: 255 }
   validates :property_type, presence: true, numericality: { only_integer: true }
   validates :commercial_situation, presence: true, numericality: { only_integer: true }
   validates :release_status, presence: true, numericality: { only_integer: true }
@@ -37,5 +38,13 @@ class Property < ApplicationRecord
 
   def full_address
     "#{self.block.district.name} #{self.block.name}"
+  end
+
+  def cover_image
+    if self.property_images.any?
+      self.property_images.first.image
+    else
+      'default_item.png'
+    end
   end
 end

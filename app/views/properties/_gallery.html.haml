@@ -1,5 +1,9 @@
 .gallery-section
   %ul#image-gallery.gallery.list-unstyled.cS-hidden
-    - @property.property_images.each do |i|
-      %li{ 'data-thumb': i.image }
-        = image_tag i.image, class: 'ui rounded image property-image'
+    - if @property.property_images.any?
+      - @property.property_images.each do |i|
+        %li{ 'data-thumb': i.image }
+          = image_tag i.image, class: 'ui rounded image property-image'
+    - else
+      %li{ 'data-thumb': "#{image_path 'default_item.png'}" }
+        = image_tag 'default_item.png', class: 'ui rounded image property-image'

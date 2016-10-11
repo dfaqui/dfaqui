@@ -17,9 +17,6 @@ class Admin::PropertiesController < Admin::BaseController
   def create
     @property = Property.new(allowed_params)
 
-    # TODO - Tornar dinâmico
-    @property.block_id = 4
-
     if @property.save
       flash[:notice] = 'Imóvel cadastrado com sucesso'
       redirect_to admin_properties_path
@@ -51,6 +48,7 @@ class Admin::PropertiesController < Admin::BaseController
     params.require(:property).permit(
       :customer_id,
       :block_id,
+      :address_complement,
       :property_type,
       :commercial_situation,
       :release_status,

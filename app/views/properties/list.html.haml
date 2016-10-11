@@ -13,7 +13,7 @@
         %div{ class: "ui #{commercial_situation(property.commercial_situation)} ribbon label" }
           = property.commercial_situation_text
 
-        = image_tag property.property_images.first.image
+        = image_tag property.cover_image
         %p
           - if property.price
             = number_to_currency(property.price)

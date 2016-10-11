@@ -1,10 +1,12 @@
 = simple_form_for([:admin, @property], html: { class: 'ui form' }) do |f|
-  .four.fields
-    .required.field
-      = f.label :customer, 'Cliente'
-      = f.association :customer, label: false, include_blank: false,
-        input_html: { class: 'ui fluid search dropdown' }
+  .required.field
+    = f.label :customer, 'Cliente'
+    = f.association :customer, label: false, include_blank: false,
+      input_html: { class: 'ui fluid search dropdown' }
 
+  .ui.dividing.header Informações gerais
+
+  .three.fields
     .required.field
       = f.label :property_type, 'Tipo'
       = f.select :property_type, Property.property_type.options, {},
@@ -24,7 +26,39 @@
     = f.label :description, 'Descrição'
     = f.input :description, as: :text, label: false
 
-  .six.fields
+  .ui.dividing.header Localização
+
+  .four.fields
+    .required.field
+      = label :region, :city_id, 'Bairro/Distrito'
+      = collection_select :region, :city_id, City.all, :id, :name,
+        { include_blank: 'Selecione' }, { class: 'ui dropdown', 'data-city': 'region_city_id' }
+
+    .required.field
+      = label :region, :district_group_id, 'Grupo de quadras'
+      = grouped_collection_select :region, :district_group_id, City.all,
+        :district_groups, :name, :id, :name, { include_blank: 'Selecione' },
+        { class: 'ui dropdown', 'data-district-group': 'region_district_group_id' }
+
+    .required.field
+      = label :region, :district_id, 'Quadra'
+      = grouped_collection_select :region, :district_id, DistrictGroup.all,
+        :districts, :name, :id, :name, { include_blank: 'Selecione' },
+        { class: 'ui dropdown', 'data-district': 'region_district_id' }
+
+    .required.field
+      = f.label :block_id, 'Bloco'
+      = f.grouped_collection_select :block_id, District.all,
+        :blocks, :name, :id, :name, { include_blank: 'Selecione' },
+        { class: 'ui dropdown', 'data-block': 'property_block_id' }
+
+  .field
+    = f.label :address_complement, 'Complemento'
+    = f.input :address_complement, label: false
+
+  .ui.dividing.header Detalhes
+
+  .five.fields
     .required.field
       = f.label :rooms, 'Quartos'
       = f.input :rooms, label: false
@@ -45,12 +79,7 @@
       = f.label :unit, 'Unidade/Loja'
       = f.input :unit, label: false
 
-    .field
-      = f.label :sun_position, 'Posição do sol'
-      = f.input_field :sun_position, as: :select, include_blank: 'Selecione',
-        collection: Property.sun_position.options, class: 'ui dropdown'
-
-  .four.fields
+  .five.fields
     .required.field
       = f.label :area, 'Área (m²)'
       = f.input :area, label: false
@@ -66,6 +95,13 @@
     .field
       = f.label :maintenance_fee, 'Condomínio'
       = f.input :maintenance_fee, label: false
+
+    .field
+      = f.label :sun_position, 'Posição do sol'
+      = f.input_field :sun_position, as: :select, include_blank: 'Selecione',
+        collection: Property.sun_position.options, class: 'ui dropdown'
+
+  .ui.dividing.header Características
 
   .field
     = f.association :tags, as: :check_boxes, label: false, include_hidden: false

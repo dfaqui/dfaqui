@@ -22,7 +22,7 @@
           %div{ class: "ui #{commercial_situation(item.sponsorable.commercial_situation)} ribbon label" }
             = item.sponsorable.commercial_situation_text
           = link_to property_show_path(item.sponsorable.id) do
-            = image_tag item.sponsorable.property_images.first.image, class: 'card-image'
+            = image_tag item.sponsorable.cover_image, class: 'card-image'
             %p= (item.sponsorable.price.blank?) ? 'Sob consulta' : number_to_currency(item.sponsorable.price)
         .content
           .ui.three.column.center.aligned.grid

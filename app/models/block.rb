@@ -1,4 +1,6 @@
 class Block < ApplicationRecord
+  default_scope { order(:name) }
+
   belongs_to :district
 
   validates :name, presence: true, length: { maximum: 20 }
