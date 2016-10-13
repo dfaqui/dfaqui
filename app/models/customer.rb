@@ -1,6 +1,14 @@
 class Customer < ApplicationRecord
   default_scope { order(:name) }
 
+  scope :properties, -> do
+    includes(:customer_common).where('customer_commons.plugin': 'property')
+  end
+
+  scope :markets, -> do
+    includes(:customer_common).where('customer_commons.plugin': ['delivery', 'market'])
+  end
+
   extend Enumerize
   enumerize :customer_type, in: { person: 1, company: 2 }
 

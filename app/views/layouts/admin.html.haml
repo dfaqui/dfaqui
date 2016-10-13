@@ -57,17 +57,13 @@
                 %i.building.icon
                 Clientes
 
+              = link_to admin_markets_path, class: 'item' do
+                %i.building.icon
+                Comércios
+
               = link_to admin_properties_path, class: 'item' do
                 %i.building.icon
                 Imóveis
-
-              %a.item{ href: '#' }
-                %i.users.icon
-                Usuários
-
-              %a.item{ href: '#' }
-                %i.dashboard.icon
-                Dashboard
 
           #content.sixteen.wide.column
             = yield

@@ -1,0 +1,17 @@
+%h2 Gestão de comércios
+
+.ui.divider
+
+= link_to new_admin_market_path, class: 'ui primary button' do
+  %i.plus.icon
+  Novo
+
+%table.ui.striped.table
+  %thead
+    %tr
+      %th Nome
+      %th Endereço
+      %th Delivery
+      %th Ação
+  %tbody
+    = render @markets

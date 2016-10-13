@@ -1,0 +1,36 @@
+%tr
+  %td= market.customer.name
+  %td= market.customer.full_address
+  %td= market.delivery
+  %td
+    .ui.icon.top.right.pointing.dropdown.primary.tiny.button
+      %i.setting.icon
+      .menu
+        = link_to admin_market_path(market.id), class: 'item' do
+          %i.search.icon
+          Detalhes
+
+        = link_to '', class: 'item' do
+          %i.shopping.bag.icon
+          Produtos
+
+        = link_to '', class: 'item' do
+          %i.tag.bag.icon
+          Tipos e Especialidades
+
+        = link_to '', class: 'item' do
+          %i.clock.icon
+          Expediente
+
+        = link_to '', class: 'item' do
+          %i.payment.icon
+          Formas de pagamento
+
+        = link_to edit_admin_market_path(market.id), class: 'item' do
+          %i.edit.icon
+          Editar
+
+        = link_to admin_market_path(market.id), method: :delete, class: 'item',
+            data: { confirm: 'Tem certeza de que deseja remover esse comércio?' } do
+          %i.remove.icon
+          Remover

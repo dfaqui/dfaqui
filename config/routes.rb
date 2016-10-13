@@ -23,6 +23,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :markets, path: :comercios
+
     resources :properties, path: :imoveis do
       resources :property_images, path: :imagens
     end
