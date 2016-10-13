@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
   scope :gestao, module: :admin, as: :admin do
     resources :customer_commons, path: :clientes do
-      resources :customer, path: :filiais
+      resources :customers, path: :filiais do
+        collection { get 'add_contact_phone' }
+      end
     end
 
     resources :properties, path: :imoveis do

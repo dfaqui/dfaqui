@@ -1,0 +1,62 @@
+%h2.ui.header
+  = @customer.name
+  .sub.header Detalhes da filial
+
+.ui.divider
+
+%table.ui.definition.table
+  %tbody
+    %tr
+      %td.four.wide.column Cliente
+      %td
+        = link_to @customer.customer_common.fantasy_name,
+          admin_customer_common_path(@customer.customer_common_id)
+    %tr
+      %td Nome
+      %td= @customer.name
+    %tr
+      %td Tipo
+      %td= @customer.customer_type
+    %tr
+      %td Documento
+      %td= @customer.document
+    - if @customer.customer_common.plugin.property?
+      %tr
+        %td CRECI
+        %td= @customer.additional_info
+    %tr
+      %td.four.wide.column Cidade
+      %td= @customer.block.district.district_group.city.name
+    %tr
+      %td.four.wide.column Quadra
+      %td= @customer.block.district.name
+    %tr
+      %td.four.wide.column Bloco
+      %td= @customer.block.name
+    %tr
+      %td.four.wide.column Complemento
+      %td= @customer.address_complement
+    %tr
+      %td.four.wide.column Nome do responsáve;
+      %td= @customer.owner_name
+    %tr
+      %td.four.wide.column E-mail do responsável
+      %td= @customer.owner_email
+    %tr
+      %td.four.wide.column Telefone do responsável
+      %td= @customer.owner_phone
+    %tr
+      %td.four.wide.column E-mail para contato
+      %td= @customer.contact_email
+    %tr
+      %td.four.wide.column Telefone para contato
+      %td= @customer.contact_phone
+    %tr
+      %td Ativo?
+      %td= @customer.status
+    %tr
+      %td Data de criação
+      %td= @customer.created_at
+    %tr
+      %td Última atualização
+      %td= @customer.updated_at

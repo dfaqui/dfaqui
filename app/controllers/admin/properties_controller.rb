@@ -33,7 +33,7 @@ class Admin::PropertiesController < Admin::BaseController
       redirect_to admin_properties_path
     else
       flash[:error] = 'Erro ao editar imóvel'
-      render :new
+      render :edit
     end
   end
 

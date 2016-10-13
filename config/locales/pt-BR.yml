@@ -5,6 +5,10 @@ pt-BR:
         delivery: 'Delivery'
         market: 'Comércio'
         property: 'Imóveis'
+    customer:
+      customer_type:
+        person: 'Pessoa física'
+        company: 'Pessoa jurídica'
     property:
       property_type:
         residential: 'Residencial'

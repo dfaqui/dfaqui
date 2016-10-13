@@ -6,6 +6,8 @@ class CustomerCommon < ApplicationRecord
 
   enumerize :plugin, in: [ :delivery, :market, :property ]
 
+  has_many :customers, dependent: :destroy
+
   validates :fantasy_name, presence: true, length: { maximum: 120 }
   validates :plugin, presence: true, length: { maximum: 20 }
   validates :status, presence: true

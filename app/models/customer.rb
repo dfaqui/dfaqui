@@ -1,6 +1,9 @@
 class Customer < ApplicationRecord
   default_scope { order(:name) }
 
+  extend Enumerize
+  enumerize :customer_type, in: { person: 1, company: 2 }
+
   belongs_to :block
   belongs_to :customer_common
 
@@ -16,4 +19,8 @@ class Customer < ApplicationRecord
   validates :contact_email, presence: true, length: { maximum: 100 }
   validates :additional_info, length: { maximum: 255 }
   validates :status, presence: true
+
+  def full_address
+    "#{self.block.district.name} #{self.block.name}"
+  end
 end

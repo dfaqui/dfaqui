@@ -33,7 +33,7 @@ class Admin::CustomerCommonsController < Admin::BaseController
       redirect_to admin_customer_commons_path
     else
       flash[:error] = 'Erro ao editar cliente'
-      render :new
+      render :edit
     end
   end
 

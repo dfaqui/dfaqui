@@ -1,0 +1,58 @@
+= simple_form_for([:admin, :customer_common, @customer],
+    html: { class: 'ui form' }) do |f|
+
+  .ui.dividing.header Dados gerais
+
+  .three.fields
+    .required.field
+      = f.label :name, 'Nome'
+      = f.input :name, label: false
+
+    .required.field
+      = f.label :customer_type, 'Tipo'
+      = f.select :customer_type, Customer.customer_type.options, {},
+        { class: 'ui dropdown' }
+
+    .required.field
+      = f.label :document, 'CPF'
+      = f.input :document, label: false
+
+  .ui.dividing.header Dados para contato
+
+  .three.fields
+    .required.field
+      = f.label :owner_name, 'Nome do responsável'
+      = f.input :owner_name, label: false
+
+    .required.field
+      = f.label :owner_email, 'E-mail do responsável'
+      = f.input :owner_email, label: false
+
+    .field
+      = f.label :owner_phone, 'Telefone do responsável'
+      = f.input :owner_phone, label: false
+
+  .field
+    = f.label :contact_email, 'E-mail para contato'
+    = f.input :contact_email, label: false
+
+  .field
+    = f.label :contact_phone, 'Telefone para contato'
+    = f.input_field :contact_phone, name: 'contact_phone[]'
+
+  - @customer.contact_phone.drop(1).each do |phone|
+    .field
+      = render partial: 'contact_phone', locals: { phone: phone }
+
+  #contact_phones
+
+  .field
+    = link_to 'Adicionar telefone', add_contact_phone_admin_customer_common_customers_path,
+      remote: true
+
+  .ui.dividing.header Dados de localização
+
+  .field
+    = f.button :button, class: 'ui primary button' do
+      %i.save.icon
+      Salvar

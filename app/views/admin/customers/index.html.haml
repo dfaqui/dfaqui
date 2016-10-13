@@ -1,0 +1,19 @@
+%h2.ui.header
+  = @customer_common.fantasy_name
+  .sub.header Gestão de filiais
+
+.ui.divider
+
+= link_to new_admin_customer_common_customer_path, class: 'ui primary button' do
+  %i.plus.icon
+  Novo
+
+%table.ui.striped.table
+  %thead
+    %tr
+      %th Nome
+      %th Endereço
+      %th Ativo?
+      %th Ação
+  %tbody
+    = render @customers
