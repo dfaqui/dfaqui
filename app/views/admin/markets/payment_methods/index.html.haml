@@ -1,0 +1,18 @@
+%h2.ui.header
+  = @market.customer.name
+  .sub.header Gestão de formas de pagamento
+
+.ui.divider
+
+= link_to new_admin_market_payment_method_path(@market.id),
+    class: 'ui primary button' do
+  %i.plus.icon
+  Novo
+
+%table.ui.striped.table
+  %thead
+    %tr
+      %th Nome
+      %th Ação
+  %tbody
+    = render @payment_methods

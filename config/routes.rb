@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
     resources :markets, path: :comercios do
       resources :products, path: :produtos, controller: 'markets/products'
+      resources :payment_methods, path: :formas_pagamento,
+        only: [:index, :new, :create, :destroy], controller: 'markets/payment_methods'
     end
 
     resources :properties, path: :imoveis do

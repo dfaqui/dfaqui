@@ -1,12 +1,11 @@
-# module Market
-#   def self.table_name_prefix
-#     'market_'
-#   end
-# end
 class Market < ApplicationRecord
   belongs_to :customer
   belongs_to :segment
+
   has_many :products
+
+  has_many :payment_methods, through: :market_payment_methods
+  has_many :market_payment_methods
 
   validates :customer, presence: true
   validates :segment, presence: true
