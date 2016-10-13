@@ -1,0 +1,18 @@
+%h2 Gestão de clientes
+
+.ui.divider
+
+= link_to new_admin_customer_common_path, class: 'ui primary button' do
+  %i.plus.icon
+  Novo
+
+%table.ui.striped.table
+  %thead
+    %tr
+      %th Logomarca
+      %th Nome fantasia
+      %th Canal
+      %th Ativo?
+      %th Ação
+  %tbody
+    = render @customers

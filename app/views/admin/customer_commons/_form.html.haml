@@ -1,0 +1,22 @@
+= simple_form_for([:admin, @customer], html: { class: 'ui form' }) do |f|
+  .three.fields
+    .required.field
+      = f.label :fantasy_name, 'Nome fantasia'
+      = f.input :fantasy_name, label: false
+
+    .required.field
+      = f.label :plugin, 'Canal'
+      = f.select :plugin, CustomerCommon.plugin.options, {}, { class: 'ui dropdown' }
+
+    .field
+      = f.label :logo, 'Logomarca'
+      = f.file_field :logo
+
+  .field
+    = f.label :description, 'Descrição'
+    = f.input :description, as: :text, label: false
+
+  .field
+    = f.button :button, class: 'ui primary button' do
+      %i.save.icon
+      Salvar

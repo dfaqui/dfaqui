@@ -1,5 +1,6 @@
 class Admin::PropertiesController < Admin::BaseController
   before_action :set_property, only: [:edit, :update, :destroy]
+
   def index
     @properties = Property.all
   end
@@ -68,7 +69,6 @@ class Admin::PropertiesController < Admin::BaseController
     )
   end
 
-  private
   def set_property
     @property = Property.find(params[:id])
   end

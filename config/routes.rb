@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   end
 
   scope :gestao, module: :admin, as: :admin do
+    resources :customer_commons, path: :clientes do
+      resources :customer, path: :filiais
+    end
+
     resources :properties, path: :imoveis do
       resources :property_images, path: :imagens
     end

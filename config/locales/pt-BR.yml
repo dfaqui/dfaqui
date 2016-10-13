@@ -1,5 +1,10 @@
 pt-BR:
   enumerize:
+    customer_common:
+      plugin:
+        delivery: 'Delivery'
+        market: 'Comércio'
+        property: 'Imóveis'
     property:
       property_type:
         residential: 'Residencial'
