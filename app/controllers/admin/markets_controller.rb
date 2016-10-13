@@ -1,5 +1,6 @@
 class Admin::MarketsController < Admin::BaseController
   before_action :set_market, only: [:edit, :update, :destroy]
+
   def index
     @markets = Market.all
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011174518) do
+ActiveRecord::Schema.define(version: 20161013204211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,19 @@ ActiveRecord::Schema.define(version: 20161011174518) do
     t.boolean  "status",                default: true, null: false
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name",               limit: 60,                null: false
+    t.text     "description"
+    t.integer  "market_id",                                    null: false
+    t.string   "photo"
+    t.string   "image_secure_token"
+    t.float    "price"
+    t.boolean  "status",                        default: true, null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.index ["market_id"], name: "index_products_on_market_id", using: :btree
   end
 
   create_table "properties", force: :cascade do |t|
@@ -266,6 +279,7 @@ ActiveRecord::Schema.define(version: 20161011174518) do
   add_foreign_key "districts", "district_groups"
   add_foreign_key "markets", "customers"
   add_foreign_key "markets", "segments"
+  add_foreign_key "products", "markets"
   add_foreign_key "properties", "blocks"
   add_foreign_key "properties", "customers"
   add_foreign_key "property_images", "properties"

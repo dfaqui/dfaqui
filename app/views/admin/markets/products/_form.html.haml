@@ -1,0 +1,22 @@
+= simple_form_for([:admin, @product.market, @product], html: { class: 'ui form' }) do |f|
+  .three.fields
+    .required.field
+      = f.label :name, 'Nome'
+      = f.input :name, label: false
+
+    .field
+      = f.label :price, 'Valor'
+      = f.input :price, label: false
+
+    .field
+      = f.label :photo, 'Imagem'
+      = f.file_field :photo
+
+  .field
+    = f.label :description, 'Descrição'
+    = f.input :description, as: :text, label: false
+
+  .field
+    = f.button :button, class: 'ui primary button' do
+      %i.save.icon
+      Salvar
