@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014020310) do
+ActiveRecord::Schema.define(version: 20161014123359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,9 @@ ActiveRecord::Schema.define(version: 20161014020310) do
     t.boolean  "status",                 default: true, null: false
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.string   "slug"
     t.index ["segment_id"], name: "index_categories_on_segment_id", using: :btree
+    t.index ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
   end
 
   create_table "category_markets", force: :cascade do |t|
@@ -53,6 +55,8 @@ ActiveRecord::Schema.define(version: 20161014020310) do
     t.boolean  "status",                default: true, null: false
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.string   "slug"
+    t.index ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
     t.index ["state_id"], name: "index_cities_on_state_id", using: :btree
   end
 
@@ -93,7 +97,9 @@ ActiveRecord::Schema.define(version: 20161014020310) do
     t.boolean  "status",                default: true, null: false
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.string   "slug"
     t.index ["city_id"], name: "index_district_groups_on_city_id", using: :btree
+    t.index ["slug"], name: "index_district_groups_on_slug", unique: true, using: :btree
   end
 
   create_table "districts", force: :cascade do |t|
@@ -102,7 +108,21 @@ ActiveRecord::Schema.define(version: 20161014020310) do
     t.boolean  "status",                        default: true, null: false
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.string   "slug"
     t.index ["district_group_id"], name: "index_districts_on_district_group_id", using: :btree
+    t.index ["slug"], name: "index_districts_on_slug", unique: true, using: :btree
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
   create_table "market_payment_methods", force: :cascade do |t|
@@ -229,6 +249,8 @@ ActiveRecord::Schema.define(version: 20161014020310) do
     t.boolean  "status",                 default: true, null: false
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.string   "slug"
+    t.index ["slug"], name: "index_segments_on_slug", unique: true, using: :btree
   end
 
   create_table "specialities", force: :cascade do |t|
@@ -237,7 +259,9 @@ ActiveRecord::Schema.define(version: 20161014020310) do
     t.boolean  "status",                  default: true, null: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.string   "slug"
     t.index ["category_id"], name: "index_specialities_on_category_id", using: :btree
+    t.index ["slug"], name: "index_specialities_on_slug", unique: true, using: :btree
   end
 
   create_table "sponsor_buttons", force: :cascade do |t|

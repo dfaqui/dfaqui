@@ -25,6 +25,7 @@ gem 'fog'
 
 gem 'enumerize'
 gem 'figaro'
+gem 'friendly_id'
 
 gem 'simple_form'
 gem 'rails_admin'

@@ -1,4 +1,5 @@
 class DistrictGroup < ApplicationRecord
+  extend FriendlyId
   default_scope { order(:name) }
 
   belongs_to :city
@@ -7,4 +8,6 @@ class DistrictGroup < ApplicationRecord
   validates :name, presence: true, length: { maximum: 60 }
   validates :city, presence: true
   validates :status, presence: true
+
+  friendly_id :name, use: :slugged
 end

@@ -1,5 +1,7 @@
 class Speciality < ApplicationRecord
+  extend FriendlyId
   default_scope { order(:name) }
+
   belongs_to :category
 
   has_many :markets, through: :market_specialities
@@ -8,4 +10,6 @@ class Speciality < ApplicationRecord
   validates :name, presence: true, length: { maximum: 100 }
   validates :category, presence: true
   validates :status, presence: true
+
+  friendly_id :name, use: :slugged
 end
