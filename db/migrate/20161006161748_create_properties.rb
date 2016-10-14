@@ -19,6 +19,7 @@ class CreateProperties < ActiveRecord::Migration[5.0]
       t.integer :unit
       t.float :maintenance_fee
       t.integer :sun_position
+      t.boolean :status, null: false, default: true
 
       t.timestamps
     end
