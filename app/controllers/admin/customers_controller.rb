@@ -18,6 +18,7 @@ class Admin::CustomersController < Admin::BaseController
 
   def create
     @customer = @customer_common.customers.new(allowed_params)
+    @customer.contact_phone = params[:contact_phone].select{ |v| !v.empty? }
     @customer.block_id = 3
 
     if @customer.save
@@ -30,6 +31,8 @@ class Admin::CustomersController < Admin::BaseController
   end
 
   def update
+    @customer.contact_phone = params[:contact_phone].select{ |v| !v.empty? }
+
     if @customer.update(allowed_params)
       flash[:notice] = 'Filial editada com sucesso'
       redirect_to admin_customer_common_customers_path(@customer.customer_common_id)

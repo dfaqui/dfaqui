@@ -47,7 +47,8 @@
   #contact_phones
 
   .field
-    = link_to 'Adicionar telefone', add_contact_phone_admin_customer_common_customers_path,
+    = link_to 'Adicionar telefone',
+      add_contact_phone_admin_customer_common_customers_path(@customer.customer_common_id),
       remote: true
 
   .ui.dividing.header Dados de localização
