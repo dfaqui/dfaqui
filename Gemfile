@@ -30,6 +30,8 @@ gem 'friendly_id'
 gem 'simple_form'
 gem 'rails_admin'
 
+gem 'dotiw'
+
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
 source 'https://rails-assets.org' do

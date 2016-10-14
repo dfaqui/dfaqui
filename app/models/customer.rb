@@ -29,6 +29,6 @@ class Customer < ApplicationRecord
   validates :status, presence: true
 
   def full_address
-    "#{self.block.district.name} #{self.block.name}"
+    "#{self.block.district.name} Bloco #{self.block.name} #{self.address_complement}"
   end
 end

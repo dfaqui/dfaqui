@@ -21,6 +21,6 @@ class Market < ApplicationRecord
   validates :always_open, inclusion: [true, false]
   validates :delivery, inclusion: [true, false]
   validates :only_delivery, inclusion: [true, false]
-  validates :estimated_time, numericality: { only_integer: true }
+  validates :estimated_time, numericality: { only_integer: true }, allow_nil: true
   validates :estimated_time_suffix, length: { maximum: 10 }
 end
