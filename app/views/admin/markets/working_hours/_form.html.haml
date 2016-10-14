@@ -1,0 +1,23 @@
+= simple_form_for([:admin, @working_hour.market, @working_hour],
+    html: { class: 'ui form' }) do |f|
+
+  .field
+    - days = I18n.t('date.day_names').each_with_index.to_a
+    = f.label :days, 'Período'
+    = f.input :days, label: false, include_hidden: false, collection: days,
+      input_html: { multiple: true, class: 'ui fluid dropdown' }
+
+  .two.fields
+    .field
+      = f.label :opening_time, 'Início do atendimento'
+      = f.time_select :opening_time, { minute_step: 5, time_separator: '' },
+        { class: 'ui dropdown six wide field' }
+    .field
+      = f.label :closing_time, 'Fim do atendimento'
+      = f.time_select :closing_time, { minute_step: 5, time_separator: '' },
+        { class: 'ui dropdown six wide field' }
+
+  .field
+    = f.button :button, class: 'ui primary button' do
+      %i.save.icon
+      Salvar

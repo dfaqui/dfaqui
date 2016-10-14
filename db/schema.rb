@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014010344) do
+ActiveRecord::Schema.define(version: 20161014020310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -300,6 +300,14 @@ ActiveRecord::Schema.define(version: 20161014010344) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
+  create_table "working_hours", force: :cascade do |t|
+    t.integer "market_id",                 null: false
+    t.string  "days",         default: [],              array: true
+    t.time    "opening_time",              null: false
+    t.time    "closing_time",              null: false
+    t.index ["market_id"], name: "index_working_hours_on_market_id", using: :btree
+  end
+
   add_foreign_key "blocks", "districts"
   add_foreign_key "categories", "segments"
   add_foreign_key "category_markets", "categories"
@@ -323,4 +331,5 @@ ActiveRecord::Schema.define(version: 20161014010344) do
   add_foreign_key "property_tags", "tags"
   add_foreign_key "specialities", "categories"
   add_foreign_key "sponsor_buttons", "customers"
+  add_foreign_key "working_hours", "markets"
 end

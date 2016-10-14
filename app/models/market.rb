@@ -13,6 +13,8 @@ class Market < ApplicationRecord
   has_many :specialities, through: :market_specialities
   has_many :market_specialities
 
+  has_many :working_hours
+
   validates :customer, presence: true
   validates :segment, presence: true
   validates :price_category, numericality: { only_integer: true }, allow_nil: true

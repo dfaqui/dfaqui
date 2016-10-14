@@ -1,0 +1,20 @@
+%h2.ui.header
+  = @market.customer.name
+  .sub.header Gerenciar expediente
+
+.ui.divider
+
+= link_to new_admin_market_working_hour_path(@market.id),
+    class: 'ui primary button' do
+  %i.plus.icon
+  Novo
+
+%table.ui.striped.table
+  %thead
+    %tr
+      %th Dia
+      %th Início
+      %th Fim
+      %th Ação
+  %tbody
+    = render @working_hours

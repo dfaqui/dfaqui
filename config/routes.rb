@@ -36,7 +36,12 @@ Rails.application.routes.draw do
         end
 
       resources :payment_methods, path: :formas_pagamento,
-        only: [:index, :new, :create, :destroy], controller: 'markets/payment_methods'
+        only: [:index, :new, :create, :destroy],
+        controller: 'markets/payment_methods'
+
+      resources :working_hours, path: :expediente,
+        only: [:index, :new, :edit, :create, :update, :destroy],
+        controller: 'markets/working_hours'
     end
 
     resources :properties, path: :imoveis do
