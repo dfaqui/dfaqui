@@ -1,4 +1,23 @@
 pt-BR:
+  activerecord:
+    models:
+      block: 'Bloco'
+      category: 'Categoria'
+      city: 'Cidade'
+      customer: 'Filial'
+      customer_common: 'Cliente'
+      district: 'Quadra'
+      district_group: 'Grupo de quadras'
+      market: 'Comércio'
+      payment_method: 'Forma de pagamento'
+      product: 'Produto'
+      property: 'Imóvel'
+      segment: 'Segmento'
+      speciality: 'Especialidade'
+      state: 'Estado'
+      tag: 'Atributo'
+      user: 'Usuário'
+      working_hour: 'Expediente'
   enumerize:
     customer_common:
       plugin:
