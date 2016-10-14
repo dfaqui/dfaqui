@@ -1,0 +1,58 @@
+- path = list_deliveries_path if current_channel == 'delivery'
+- path = list_markets_path    if current_channel == 'comercio'
+
+= form_tag(path, method: :get) do
+  .search-bar
+    .ui.centered.grid.borderless.menu
+      .horizontally.fitted.item
+        = select_tag :cidade, options_from_collection_for_select(City.all, :friendly_id, :name),
+        { include_blank: 'Cidade', 'data-city': 'cidade', class: 'ui dropdown' }
+
+      .horizontally.fitted.item
+        = grouped_collection_select :quadras, :quadras, City.all, :district_groups, :name,
+          :friendly_id, :name, { include_blank: 'Quadras' },
+          { name: 'quadras', 'data-district-group': 'quadras_quadras', class: 'ui dropdown' }
+
+      .horizontally.fitted.item
+        = grouped_collection_select :quadra, :quadra, DistrictGroup.all, :districts, :name,
+          :friendly_id, :name, { include_blank: 'Quadra' },
+          { name: 'quadra', 'data-district': 'quadra_quadra', class: 'ui dropdown' }
+
+      .horizontally.fitted.item
+        = select_tag :segmento, options_from_collection_for_select(Segment.all, :friendly_id, :name),
+          { include_blank: 'Segmento', 'data-segment': 'segmento', class: 'ui dropdown' }
+
+      .horizontally.fitted.item
+        = grouped_collection_select :categoria, :categoria, Segment.all, :categories, :name,
+          :friendly_id, :name, { include_blank: 'Categoria' },
+          { name: 'categoria', 'data-category': 'categoria_categoria', class: 'ui dropdown' }
+
+      .horizontally.fitted.item
+        = grouped_collection_select :especialidade, :especialidade, Category.all, :specialities,
+          :name, :friendly_id, :name, { include_blank: 'Especialidade' },
+          { name: 'especialidade', 'data-speciality': 'especialidade_especialidade', class: 'ui dropdown' }
+
+      .horizontally.fitted.item
+        = submit_tag 'Buscar', name: nil, class: 'ui primary fluid button'
+
+= javascript_include_tag 'region-filter'
+= javascript_include_tag 'market-filter'
+
+:javascript
+  $(function() {
+    city      = "#{params[:cidade]}"
+    group     = "#{params[:quadras]}"
+    district  = "#{params[:quadra]}"
+
+    $(city_element).val(city).change();
+    $(group_element).val(group).change();
+    $(district_element).val(district).change();
+
+    segment     = "#{params[:segmento]}"
+    category    = "#{params[:categoria]}"
+    speciality  = "#{params[:especialidade]}"
+
+    $(segment_element).val(segment).change();
+    $(category_element).val(category).change();
+    $(speciality_element).val(speciality).change();
+  });

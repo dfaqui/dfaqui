@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
-  resources :markets, path: :comercio, only: [:index]
+  resources :markets, path: :comercio, only: [:index], controller: 'markets' do
+    get 'show', path: :detalhes
+    collection { get 'list', path: :listagem }
+  end
 
-  resources :markets, path: :delivery, only: [:index] do
+  resources :deliveries, path: :delivery, only: [:index], controller: 'markets' do
     get 'show', path: :detalhes
     collection { get 'list', path: :listagem }
   end

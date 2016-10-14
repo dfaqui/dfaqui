@@ -1,4 +1,41 @@
 class Market < ApplicationRecord
+  scope :by_channel, -> channel do
+    if channel == 'comercio'
+      where(only_delivery: false)
+    elsif channel == 'delivery'
+      where(delivery: true)
+    end
+  end
+
+  scope :cidade, -> slug do
+    city = City.select(:id).friendly.find(slug)
+
+    includes(customer: [block: [district: [:district_group]]]).
+    where('district_groups.city_id': city)
+  end
+
+  scope :quadras, -> slug do
+    group = DistrictGroup.select(:id).friendly.find(slug)
+    includes(customer: [block: [:district]]).where('districts.district_group_id': group)
+  end
+
+  scope :quadra, -> slug do
+    district =  District.select(:id).friendly.find(slug)
+    includes(customer: [:block]).where('blocks.district_id': district)
+  end
+
+  scope :segmento, -> slug { where(segment: Segment.select(:id).friendly.find(slug)) }
+
+  scope :categoria, -> slug do
+    category = Category.select(:id).friendly.find(slug)
+    includes(:category_markets).where('category_markets.category_id': category)
+  end
+
+  scope :especialidade, -> slug do
+    speciality = Speciality.select(:id).friendly.find(slug)
+    includes(:market_specialities).where('market_specialities.speciality_id': speciality)
+  end
+
   belongs_to :customer
   belongs_to :segment
 

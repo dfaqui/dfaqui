@@ -7,20 +7,20 @@
     %title DFaqui
     = csrf_meta_tags
 
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    - channel = 'comercio' if current_channel.in?(['delivery', 'comercio'])
+    - channel = 'imoveis' if current_channel == 'imoveis'
 
-    - channel_style = 'comercio' if current_channel.in?(['delivery', 'comercio'])
-    - channel_style = 'imoveis' if current_channel == 'imoveis'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "application/#{channel}", media: 'all', 'data-turbolinks-track': 'reload'
 
-    = stylesheet_link_tag    "application/#{channel_style}", media: 'all', 'data-turbolinks-track': 'reload'
-
+    = javascript_include_tag 'core', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render 'partials/navbar'
 
     - if params[:action] != 'show'
       = render 'partials/banner'
-      = render 'partials/search_bar'
+      = render "partials/#{channel}_search_bar"
 
     = yield :banner
 
