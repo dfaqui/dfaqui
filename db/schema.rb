@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161013215945) do
+ActiveRecord::Schema.define(version: 20161014003646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20161013215945) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.index ["segment_id"], name: "index_categories_on_segment_id", using: :btree
+  end
+
+  create_table "category_markets", force: :cascade do |t|
+    t.integer  "category_id", null: false
+    t.integer  "market_id",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id", "market_id"], name: "index_category_markets_on_category_id_and_market_id", unique: true, using: :btree
+    t.index ["category_id"], name: "index_category_markets_on_category_id", using: :btree
+    t.index ["market_id"], name: "index_category_markets_on_market_id", using: :btree
   end
 
   create_table "cities", force: :cascade do |t|
@@ -282,6 +292,8 @@ ActiveRecord::Schema.define(version: 20161013215945) do
 
   add_foreign_key "blocks", "districts"
   add_foreign_key "categories", "segments"
+  add_foreign_key "category_markets", "categories"
+  add_foreign_key "category_markets", "markets"
   add_foreign_key "cities", "states"
   add_foreign_key "customers", "blocks"
   add_foreign_key "customers", "customer_commons"

@@ -4,6 +4,9 @@ class Market < ApplicationRecord
 
   has_many :products
 
+  has_many :categories, through: :category_markets
+  has_many :category_markets
+
   has_many :payment_methods, through: :market_payment_methods
   has_many :market_payment_methods
 

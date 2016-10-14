@@ -1,9 +1,9 @@
-= simple_form_for([:admin, @market, @market.payment_methods.build],
+= simple_form_for([:admin, @market, @market.categories.build],
     html: { class: 'ui form' }) do |f|
 
   .required.field
-    = f.label :id, 'Forma de pagamento'
-    = f.input_field :id, collection: PaymentMethod.all,
+    = f.label :id, 'Categoria'
+    = f.input_field :id, collection: @categories_dropdown,
       include_blank: false, class: 'ui search dropdown'
 
   .field
