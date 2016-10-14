@@ -8,7 +8,11 @@
     = csrf_meta_tags
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = stylesheet_link_tag    "application/#{current_channel}", media: 'all', 'data-turbolinks-track': 'reload'
+
+    - channel_style = 'comercio' if current_channel.in?(['delivery', 'comercio'])
+    - channel_style = 'imoveis' if current_channel == 'imoveis'
+
+    = stylesheet_link_tag    "application/#{channel_style}", media: 'all', 'data-turbolinks-track': 'reload'
 
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
