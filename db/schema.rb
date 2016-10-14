@@ -69,20 +69,20 @@ ActiveRecord::Schema.define(version: 20161014020310) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",               limit: 120
-    t.integer  "customer_common_id",                             null: false
-    t.integer  "block_id",                                       null: false
-    t.integer  "customer_type",                                  null: false
-    t.string   "document",           limit: 20,                  null: false
+    t.integer  "customer_common_id",                            null: false
+    t.integer  "block_id",                                      null: false
+    t.integer  "customer_type",                                 null: false
+    t.string   "document",           limit: 20,                 null: false
     t.string   "address_complement", limit: 255
-    t.string   "owner_name",         limit: 120,                 null: false
-    t.string   "owner_email",        limit: 100,                 null: false
+    t.string   "owner_name",         limit: 120,                null: false
+    t.string   "owner_email",        limit: 100,                null: false
     t.string   "owner_phone",        limit: 20
-    t.string   "contact_email",      limit: 100,                 null: false
-    t.string   "contact_phone",                   default: [],                array: true
-    t.boolean  "status",                          default: true, null: false
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
-    t.string   "additional_info",    limit: 2044
+    t.string   "contact_email",      limit: 100,                null: false
+    t.string   "contact_phone",                  default: [],                array: true
+    t.string   "additional_info",    limit: 255
+    t.boolean  "status",                         default: true, null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.index ["block_id"], name: "index_customers_on_block_id", using: :btree
     t.index ["customer_common_id"], name: "index_customers_on_customer_common_id", using: :btree
   end
@@ -171,39 +171,38 @@ ActiveRecord::Schema.define(version: 20161014020310) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.integer  "customer_id",                                     null: false
-    t.integer  "block_id",                                        null: false
-    t.integer  "property_type",                                   null: false
-    t.integer  "commercial_situation",                            null: false
-    t.integer  "release_status",                                  null: false
+    t.integer  "customer_id",                      null: false
+    t.integer  "block_id",                         null: false
+    t.string   "address_complement",   limit: 255
+    t.integer  "property_type",                    null: false
+    t.integer  "commercial_situation",             null: false
+    t.integer  "release_status",                   null: false
     t.text     "description"
     t.float    "price"
     t.float    "tax"
-    t.integer  "area",                                            null: false
+    t.integer  "area",                             null: false
     t.float    "square_meter_price"
-    t.integer  "rooms",                                           null: false
-    t.integer  "bathrooms",                                       null: false
-    t.integer  "parking_spaces",                                  null: false
+    t.integer  "rooms",                            null: false
+    t.integer  "bathrooms",                        null: false
+    t.integer  "parking_spaces",                   null: false
     t.integer  "floor"
-    t.integer  "sun_position"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
     t.integer  "unit"
     t.float    "maintenance_fee"
-    t.boolean  "status",                           default: true, null: false
-    t.string   "address_complement",   limit: 255
+    t.integer  "sun_position"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.index ["block_id"], name: "index_properties_on_block_id", using: :btree
     t.index ["customer_id"], name: "index_properties_on_customer_id", using: :btree
   end
 
   create_table "property_images", force: :cascade do |t|
-    t.integer  "property_id",                             null: false
-    t.string   "image",       limit: 2044,                null: false
-    t.string   "name",        limit: 100,                 null: false
-    t.integer  "order",                                   null: false
-    t.boolean  "status",                   default: true, null: false
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.integer  "property_id",                            null: false
+    t.string   "image",                                  null: false
+    t.string   "name",        limit: 100,                null: false
+    t.integer  "order",                                  null: false
+    t.boolean  "status",                  default: true, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.index ["property_id"], name: "index_property_images_on_property_id", using: :btree
   end
 
@@ -241,14 +240,14 @@ ActiveRecord::Schema.define(version: 20161014020310) do
     t.index ["category_id"], name: "index_specialities_on_category_id", using: :btree
   end
 
-  create_table "sponsor_buttons", id: :integer, default: -> { "nextval('sponsors_id_seq'::regclass)" }, force: :cascade do |t|
+  create_table "sponsor_buttons", force: :cascade do |t|
     t.integer  "customer_id",                null: false
     t.string   "image",                      null: false
     t.integer  "order",                      null: false
     t.boolean  "status",      default: true, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["customer_id"], name: "index_sponsors_on_customer_id", using: :btree
+    t.index ["customer_id"], name: "index_sponsor_buttons_on_customer_id", using: :btree
   end
 
   create_table "sponsor_items", force: :cascade do |t|

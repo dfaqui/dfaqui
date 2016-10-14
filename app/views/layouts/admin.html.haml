@@ -6,6 +6,7 @@
 
     %title DFaqui | Gestão
     = csrf_meta_tags
+    = javascript_include_tag 'core', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag    'admin', media: 'all', 'data-turbolinks-track': 'reload'
   %body
     .ui.fixed.top.menu
@@ -68,4 +69,4 @@
           #content.sixteen.wide.column
             = yield
 
-    = javascript_include_tag 'admin', 'data-turbolinks-track': 'reload'
+  = javascript_include_tag 'admin', 'data-turbolinks-track': 'reload'

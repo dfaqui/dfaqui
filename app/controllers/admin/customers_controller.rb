@@ -19,7 +19,6 @@ class Admin::CustomersController < Admin::BaseController
   def create
     @customer = @customer_common.customers.new(allowed_params)
     @customer.contact_phone = params[:contact_phone].select{ |v| !v.empty? }
-    @customer.block_id = 3
 
     if @customer.save
       flash[:notice] = 'Filial cadastrada com sucesso'
@@ -63,7 +62,9 @@ class Admin::CustomersController < Admin::BaseController
       :owner_email,
       :owner_phone,
       :contact_email,
-      :contact_phone
+      :contact_phone,
+      :block_id,
+      :address_complement
     )
   end
 

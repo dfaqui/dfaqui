@@ -2,7 +2,7 @@ get_element_id = (data_name) ->
   result = $("[data-#{data_name}]").data("#{data_name}")
   "##{result}"
 
-selected_item = (element) ->
+@selected_item = (element) ->
   $("#{element} :selected")
 
 default_option = (label) ->
@@ -18,24 +18,30 @@ set_options = (optiongroup, options, target, label) ->
 
 clear_options = (target, label) ->
   $(target).html(default_option(label))
+  $(target).dropdown({ placeholder: false });
   $(target).dropdown('clear')
   $(target).dropdown('set selected', '')
 
-city_element      = get_element_id('city')
-group_element     = get_element_id('district-group')
-district_element  = get_element_id('district')
-block_element     = get_element_id('block')
+@city_element      = get_element_id('city')
+@group_element     = get_element_id('district-group')
+@district_element  = get_element_id('district')
+@block_element     = get_element_id('block')
 
 groups            = $(group_element).html()
 districts         = $(district_element).html()
 blocks            = $(block_element).html()
 
-city_change_listener = (selected_value) ->
+# clear dropdowns on page load
+clear_options(group_element, 'Selecione')
+clear_options(district_element, 'Selecione')
+clear_options(block_element, 'Selecione')
+
+@city_change_listener = (selected_value) ->
   set_options(selected_value, groups, group_element, 'Selecione')
   clear_options(district_element, 'Selecione')
   clear_options(block_element, 'Selecione')
 
-group_change_listener = (selected_value) ->
+@group_change_listener = (selected_value) ->
   set_options(selected_value, districts, district_element, 'Selecione')
   clear_options(block_element, 'Selecione')
 
