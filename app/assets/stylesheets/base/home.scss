@@ -1,0 +1,75 @@
+.section {
+  padding: 50px 10px;
+}
+
+.dfaqui-light {
+  width: 300px;
+}
+
+.section.one {
+  min-height: 100%;
+  background: image_url('home/background.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.arrow-slide {
+  width: 120px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0;
+}
+
+.section.one .header.title {
+  font-size: 50px;
+  color: #FFFFFF;
+}
+
+.section.two .header.title {
+  font-size: 50px;
+  color: #284762;
+}
+
+.section.two .header.sub {
+  font-size: 16px;
+}
+
+.section.two .stackable.grid {
+  padding-top: 50px;
+}
+
+.section.three .header.title {
+  font-size: 50px;
+  color: #284762;
+}
+
+.section.three .header.sub {
+  font-size: 16px;
+}
+
+.pin-servico {
+  padding-top: 50px;
+}
+
+// Footer Area
+.footer-brand {
+  width: 158px;
+  height: 51px;
+}
+
+.container.footer {
+  background-color: #5C9FBC;
+  margin-top: 20px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.container.footer a {
+  color: #f7fdff;
+  font-size: 15px;
+}
