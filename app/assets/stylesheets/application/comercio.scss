@@ -41,3 +41,29 @@
     }
   }
 }
+
+// show page
+.market-banner {
+  background-image: image-url('alimentacao_market_banner.jpg');
+  background-position: center center;
+  min-height: 300px;
+
+  .header {
+    margin-top: 0.2em !important;
+    font-size: 2em !important;
+    font-weight: 100 !important;
+    color: #fff !important;
+  }
+
+  .ui.heart.rating {
+    float: right;
+
+    .icon {
+      margin-left: 0.5em;
+      color: white;
+      opacity: 0.6;
+    }
+  }
+
+  .meta, .description { color: #fff !important }
+}

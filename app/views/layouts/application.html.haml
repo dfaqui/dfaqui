@@ -22,6 +22,8 @@
       = render 'partials/banner'
       = render 'partials/search_bar'
 
+    = yield :banner
+
     .ui.container.app-content
       = yield
 

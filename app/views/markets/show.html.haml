@@ -1,0 +1,36 @@
+- content_for :banner do
+  .market-banner.ui.bottom.aligned.column.grid
+    .column
+      .ui.container
+        .ui.items
+          .item
+            = image_tag @market.customer.customer_common.logo, class: 'ui rounded image'
+            .content
+              .header
+                = @market.customer.customer_common.fantasy_name
+                .ui.massive.heart.rating{ 'data-max-rating': 1, 'data-rating': 0 }
+              .meta
+                %div{ class: 'ui red empty circular label' }
+                Fechado
+                |
+                = @market.customer.full_address
+              .description
+                .ui.middle.aligned.grid
+                  .ui.eight.wide.left.floated.column
+                    - if @market.delivery? && !@market.estimated_time.nil?
+                      %i.fitted.clock.icon
+                      = distance_of_time(@market.estimated_time * 60)
+                      |
+                    - if !@market.price_category.nil?
+                      - 5.times do |i|
+                        - color = (@market.price_category > i) ? 'yellow' : 'white'
+                        %i{ class: "#{color} dollar fitted icon" }
+
+.ui.section.hidden.divider
+
+.ui.container
+  .ui.relaxed.divided.items
+    = render partial: 'markets/product', collection: @market.products, as: :product
+
+:javascript
+  $('.ui.heart.rating').rating();

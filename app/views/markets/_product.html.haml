@@ -1,0 +1,7 @@
+.item
+  = image_tag product.photo, class: 'ui rounded image'
+  .middle.aligned.content
+    .header= product.name
+    .meta= product.description
+    .extra
+      .ui.right.floated.header= number_to_currency(product.price)

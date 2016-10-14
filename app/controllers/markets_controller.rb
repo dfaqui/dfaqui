@@ -9,4 +9,8 @@ class MarketsController < ApplicationController
   def list
     @markets = Market.all
   end
+
+  def show
+    @market = Market.find(params[:market_id])
+  end
 end

@@ -35,15 +35,15 @@
             .item
               %i.fitted.clock.icon
               = distance_of_time(market.estimated_time * 60)
-          .item
-            %i.yellow.dollar.fitted.icon
-            %i.yellow.dollar.fitted.icon
-            %i.yellow.dollar.fitted.icon
-            %i.grey.dollar.fitted.icon
-            %i.grey.dollar.fitted.icon
+          - unless market.price_category.nil?
+            .item
+              - 5.times do |i|
+                - color = (market.price_category > i) ? 'yellow' : 'grey'
+                %i{ class: "#{color} dollar fitted icon" }
 
         .action-section
-          .ui.small.primary.button DETALHES
+          = link_to 'DETALHES', market_show_path(market.id),
+            class: 'ui small primary button'
           .ui.small.green.button CONTATO
           .ui.small.yellow.button IMÓVEIS
           .ui.small.primary.property-color.button DELIVERY
