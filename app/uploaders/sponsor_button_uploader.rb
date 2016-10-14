@@ -7,7 +7,8 @@ class SponsorButtonUploader < CarrierWave::Uploader::Base
 
   def store_dir
     if Rails.env.production?
-      "production/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      # "production/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      "property/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     else
       "development/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end

@@ -7,7 +7,8 @@ class ProductUploader < CarrierWave::Uploader::Base
 
   def store_dir
     if Rails.env.production?
-      "production/market/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      # "production/market/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      "market/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     else
       "development/market/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
