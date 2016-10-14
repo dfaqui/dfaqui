@@ -1,10 +1,12 @@
 %tr
-  %td= category.name
+  %td
+    = link_to category.name, admin_market_category_specialities_path(@market.id, category.id)
   %td
     .ui.icon.top.right.pointing.dropdown.primary.tiny.button
       %i.setting.icon
       .menu
-        = link_to '', class: 'item' do
+        = link_to admin_market_category_specialities_path(@market.id, category.id),
+            class: 'item' do
           %i.external.icon
           Especialidades
 

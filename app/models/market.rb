@@ -10,6 +10,9 @@ class Market < ApplicationRecord
   has_many :payment_methods, through: :market_payment_methods
   has_many :market_payment_methods
 
+  has_many :specialities, through: :market_specialities
+  has_many :market_specialities
+
   validates :customer, presence: true
   validates :segment, presence: true
   validates :price_category, numericality: { only_integer: true }

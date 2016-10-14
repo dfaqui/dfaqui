@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014003646) do
+ActiveRecord::Schema.define(version: 20161014010344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,16 @@ ActiveRecord::Schema.define(version: 20161014003646) do
     t.index ["market_id", "payment_method_id"], name: "index_market_payment_methods_on_market_id_and_payment_method_id", unique: true, using: :btree
     t.index ["market_id"], name: "index_market_payment_methods_on_market_id", using: :btree
     t.index ["payment_method_id"], name: "index_market_payment_methods_on_payment_method_id", using: :btree
+  end
+
+  create_table "market_specialities", force: :cascade do |t|
+    t.integer  "market_id",     null: false
+    t.integer  "speciality_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["market_id", "speciality_id"], name: "index_market_specialities_on_market_id_and_speciality_id", unique: true, using: :btree
+    t.index ["market_id"], name: "index_market_specialities_on_market_id", using: :btree
+    t.index ["speciality_id"], name: "index_market_specialities_on_speciality_id", using: :btree
   end
 
   create_table "markets", force: :cascade do |t|
@@ -301,6 +311,8 @@ ActiveRecord::Schema.define(version: 20161014003646) do
   add_foreign_key "districts", "district_groups"
   add_foreign_key "market_payment_methods", "markets"
   add_foreign_key "market_payment_methods", "payment_methods"
+  add_foreign_key "market_specialities", "markets"
+  add_foreign_key "market_specialities", "specialities"
   add_foreign_key "markets", "customers"
   add_foreign_key "markets", "segments"
   add_foreign_key "products", "markets"
