@@ -11,10 +11,11 @@ districts         = $(district_element).html()
 
 # event handlers
 city_change_handler = (selected_value) ->
-  set_options(selected_value, groups, group_element, 'Selecione')
+  set_options(selected_value, groups, group_element, 'Quadras')
+  clear_options(district_element, 'Quadra')
 
 group_change_handler = (selected_value) ->
-  set_options(selected_value, districts, district_element, 'Selecione')
+  set_options(selected_value, districts, district_element, 'Quadra')
 
 # change listeners
 $(city_element).change ->

@@ -14,6 +14,9 @@
 
   $(target).html(result)
 
+@clear_options = (target, label) ->
+  $(target).html(default_option(label))
+
 # get_element_id = (data_name) ->
 #   result = $("[data-#{data_name}]").data("#{data_name}")
 #   "##{result}"

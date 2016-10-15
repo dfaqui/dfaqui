@@ -1,10 +1,30 @@
 class Property < ApplicationRecord
   extend Enumerize
 
-  enumerize :property_type, in: { residential: 0, commercial: 1 }
-  enumerize :commercial_situation, in: { release: 0, sale: 1, rent: 2 }
+  enumerize :property_type, in: { residential: 0, commercial: 1 }, scope: true
+  enumerize :commercial_situation, in: { release: 0, sale: 1, rent: 2 }, scope: true
   enumerize :release_status, in: { off_plan: 0, under_construction: 1, soon_launching: 2, ready: 3 }
   enumerize :sun_position, in: { sunrise: 0, sunset: 1 }
+
+  scope :tipo, -> tipo { with_property_type(tipo) }
+  scope :situacao, -> situacao { with_commercial_situation(situacao) }
+
+  scope :cidade, -> slug do
+    city = City.select(:id).friendly.find(slug)
+
+    includes(block: [district: [:district_group]]).
+    where('district_groups.city_id': city)
+  end
+
+  scope :quadras, -> slug do
+    group = DistrictGroup.select(:id).friendly.find(slug)
+    includes(block: [:district]).where('districts.district_group_id': group)
+  end
+
+  scope :quadra, -> slug do
+    district =  District.select(:id).friendly.find(slug)
+    includes(:block).where('blocks.district_id': district)
+  end
 
   belongs_to :customer
   belongs_to :block

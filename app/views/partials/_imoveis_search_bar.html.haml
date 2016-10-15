@@ -1,27 +1,54 @@
-.search-bar
-  .ui.centered.grid.borderless.menu
-    .horizontally.fitted.item
-      %select.ui.dropdown
-        %option Você procura por
+= form_tag(list_properties_path, method: :get) do
+  .search-bar
+    .ui.centered.grid.borderless.menu
+      .horizontally.fitted.item
+        = select_tag :situacao, options_from_collection_for_select(Property.commercial_situation.options, :last, :first),
+          include_blank: 'Você procura por', 'data-situation': 'situacao'
 
-    .horizontally.fitted.item
-      %select.ui.dropdown
-        %option Tipo de imóvel
+      .horizontally.fitted.item
+        = select_tag :tipo, options_from_collection_for_select(Property.property_type.options, :last, :first),
+          include_blank: 'Tipo de imóvel', 'data-type': 'tipo'
 
-    .horizontally.fitted.item
-      %select.ui.dropdown
-        %option Quantidade de quartos
+      .horizontally.fitted.item
+        = select_tag :cidade, options_from_collection_for_select(City.all, :friendly_id, :name),
+        { include_blank: 'Cidade', 'data-city': 'cidade' }
 
-    .horizontally.fitted.item
-      %select.ui.dropdown
-        %option Quadras
+      .horizontally.fitted.item
+        = grouped_collection_select :quadras, :quadras, City.all, :district_groups, :name,
+          :friendly_id, :name, { include_blank: 'Quadras' },
+          { name: 'quadras', 'data-district-group': 'quadras_quadras' }
 
-    .horizontally.fitted.item
-      %select.ui.dropdown
-        %option Quadra
+      .horizontally.fitted.item
+        = grouped_collection_select :quadra, :quadra, DistrictGroup.all, :districts, :name,
+          :friendly_id, :name, { include_blank: 'Quadra' },
+          { name: 'quadra', 'data-district': 'quadra_quadra' }
 
-    .horizontally.fitted.item
-      = link_to 'Buscar', list_properties_path, class: 'ui primary fluid button'
+      .horizontally.fitted.item
+        = submit_tag 'Buscar', name: nil, class: 'ui primary fluid button'
+
+= javascript_include_tag 'region-filter'
+= javascript_include_tag 'property-filter'
 
 :javascript
-  init_dropdown('.ui.dropdown');
+  $(function() {
+    situation = "#{params[:situacao]}"
+    type      = "#{params[:tipo]}"
+
+    $(situation_element).val(situation).change();
+    $(type_element).val(type).change();
+
+    $(situation_element).dropdown({ placeholder: false });
+    $(type_element).dropdown({ placeholder: false });
+
+    city      = "#{params[:cidade]}"
+    group     = "#{params[:quadras]}"
+    district  = "#{params[:quadra]}"
+
+    $(city_element).val(city).change();
+    $(group_element).val(group).change();
+    $(district_element).val(district).change();
+
+    $(city_element).dropdown({ placeholder: false });
+    $(group_element).dropdown({ placeholder: false });
+    $(district_element).dropdown({ placeholder: false });
+  });

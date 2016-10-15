@@ -24,7 +24,7 @@
 
       .horizontally.fitted.item
         = grouped_collection_select :categoria, :categoria, Segment.all, :categories, :name,
-          :friendly_id, :name, { include_blank: 'Categoria' },
+          :friendly_id, :name, { include_blank: 'Tipo' },
           { name: 'categoria', 'data-category': 'categoria_categoria', class: 'ui dropdown' }
 
       .horizontally.fitted.item
@@ -48,6 +48,10 @@
     $(group_element).val(group).change();
     $(district_element).val(district).change();
 
+    $(city_element).dropdown({ placeholder: false });
+    $(group_element).dropdown({ placeholder: false });
+    $(district_element).dropdown({ placeholder: false });
+
     segment     = "#{params[:segmento]}"
     category    = "#{params[:categoria]}"
     speciality  = "#{params[:especialidade]}"
@@ -55,4 +59,8 @@
     $(segment_element).val(segment).change();
     $(category_element).val(category).change();
     $(speciality_element).val(speciality).change();
+
+    $(segment_element).dropdown({ placeholder: false });
+    $(category_element).dropdown({ placeholder: false });
+    $(speciality_element).dropdown({ placeholder: false });
   });

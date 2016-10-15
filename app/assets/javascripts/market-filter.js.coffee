@@ -11,7 +11,8 @@ specialities        = $(speciality_element).html()
 
 # event handlers
 segment_change_handler = (selected_value) ->
-  set_options(selected_value, categories, category_element, 'Categoria')
+  set_options(selected_value, categories, category_element, 'Tipo')
+  clear_options(speciality_element, 'Especialidade')
 
 category_change_handler = (selected_value) ->
   set_options(selected_value, specialities, speciality_element, 'Especialidade')
