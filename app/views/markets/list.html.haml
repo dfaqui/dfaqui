@@ -23,7 +23,7 @@
 
           .item= market.customer.full_address
 
-          - if market.delivery?
+          - if market.delivery? && current_channel != 'delivery'
             .item
               .ui.yellow.label Delivery
 
