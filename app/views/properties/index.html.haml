@@ -30,7 +30,10 @@
               %p Área (m²)
               %p.card-value= item.sponsorable.area
             .column
-              %p Quartos
+              - if item.sponsorable.property_type.residential?
+                %p Quartos
+              - elsif item.sponsorable.property_type.commercial?
+                %p Salas
               %p.card-value= item.sponsorable.rooms
             .column
               %p Banheiros

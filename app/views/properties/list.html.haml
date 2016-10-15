@@ -38,7 +38,11 @@
             .value= property.area
 
           .ui.mini.statistic
-            .label Quartos
+            - if property.property_type.residential?
+              .label Quartos
+            - elsif property.property_type.commercial?
+              .label Salas
+
             .value= property.rooms
 
           .ui.mini.statistic
