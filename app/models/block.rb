@@ -1,5 +1,9 @@
 class Block < ApplicationRecord
+  acts_as_mappable
   default_scope { order(:name) }
+
+  geocoded_by :zipcode
+  # after_validation :geocode, if: ->(obj){ obj.zipcode.present? and obj.zipcode_changed? }
 
   belongs_to :district
 

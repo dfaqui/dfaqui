@@ -31,6 +31,9 @@ gem 'has_scope'
 gem 'simple_form'
 gem 'rails_admin'
 
+gem 'geocoder'
+gem 'geokit-rails'
+
 gem 'dotiw'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'

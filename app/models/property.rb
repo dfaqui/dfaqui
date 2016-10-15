@@ -48,6 +48,12 @@ class Property < ApplicationRecord
     includes(:block).where('blocks.district_id': district)
   end
 
+  scope :cep, -> (zipcode) do
+    range = 1
+    near_blocks = Block.near(zipcode, range).to_a
+    where(block_id: near_blocks)
+  end
+
   belongs_to :customer
   belongs_to :block
 

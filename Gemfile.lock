@@ -223,6 +223,11 @@ GEM
     formatador (0.2.5)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
+    geocoder (1.4.0)
+    geokit (1.10.0)
+    geokit-rails (2.2.0)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -424,6 +429,8 @@ DEPENDENCIES
   figaro
   fog
   friendly_id
+  geocoder
+  geokit-rails
   hamlit
   hamlit-rails
   has_scope

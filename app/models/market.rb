@@ -36,6 +36,12 @@ class Market < ApplicationRecord
     includes(:market_specialities).where('market_specialities.speciality_id': speciality)
   end
 
+  scope :cep, -> (zipcode) do
+    range = 1
+    near_blocks = Block.near(zipcode, range).to_a
+    includes(:customer).where('customers.block_id': near_blocks)
+  end
+
   belongs_to :customer
   belongs_to :segment
 

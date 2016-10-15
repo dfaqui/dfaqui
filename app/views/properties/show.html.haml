@@ -9,10 +9,14 @@
         = @property.commercial_situation_text
       = render_tab_content(params[:tab], !@property.block.tour_link.blank?)
 
-    .ui.small.primary.button VER TELEFONE
-    .ui.small.green.button ENVIAR MENSAGEM
-    .ui.small.yellow.button COMÉRCIO
-    .ui.small.primary.property-color.button DELIVERY
+    .ui.small.blue-color.button CONTATO
+    .ui.small.primary.button ENVIAR MENSAGEM
+
+    = link_to 'COMÉRCIO', list_markets_path(cep: @property.block.zipcode),
+      class: 'ui small market-color button'
+
+    = link_to 'DELIVERY', list_deliveries_path(cep: @property.block.zipcode),
+      class: 'ui small delivery-color button'
 
   .five.wide.column
     .ui.clearing.segment.general-section

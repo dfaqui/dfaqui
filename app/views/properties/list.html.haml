@@ -9,7 +9,9 @@
 - @properties.each do |property|
   .property-item-section
     .ui.clearing.segment
-      .ui.rounded.image.property-image
+      = link_to property_show_path(property.id),
+          class: 'ui rounded image property-image' do
+
         %div{ class: "ui #{commercial_situation(property.commercial_situation)} ribbon label" }
           = property.commercial_situation_text
 
@@ -46,9 +48,16 @@
         .action-section
           = link_to 'VER DETALHES', property_show_path(property.id),
             class: 'ui small blue-color button'
-          .ui.small.market-color.button COMÉRCIO
-          .ui.small.delivery-color.button DELIVERY
-          .ui.small.primary.property-color.button TOUR 360
+
+          = link_to 'COMÉRCIO', list_markets_path(cep: property.block.zipcode),
+            class: 'ui small market-color button'
+
+          = link_to 'DELIVERY', list_deliveries_path(cep: property.block.zipcode),
+            class: 'ui small delivery-color button'
+
+          - if property.block.tour_link
+            = link_to 'TOUR 360', property.block.tour_link, target: :blank,
+              class: 'ui small primary property-color button'
 
   .ui.hidden.divider
 

@@ -7,6 +7,7 @@ class MarketsController < ApplicationController
   has_scope :segmento
   has_scope :categoria
   has_scope :especialidade
+  has_scope :cep
 
   def index
     channel = (current_channel == 'comercio') ? 'market' : current_channel

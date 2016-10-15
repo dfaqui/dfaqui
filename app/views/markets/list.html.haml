@@ -9,9 +9,13 @@
 - @markets.each do |market|
   .item-section
     .ui.clearing.segment
-      .ui.rounded.bordered.image= image_tag market.customer.customer_common.logo
+      = link_to market_show_path(market.id), class: 'ui rounded bordered image' do
+        = image_tag market.customer.customer_common.logo
+
       .item-content
-        .ui.medium.header= market.customer.customer_common.fantasy_name
+        = link_to market.customer.customer_common.fantasy_name,
+          market_show_path(market.id), class: 'ui medium header'
+
         .ui.huge.heart.rating{ 'data-rating': 0, 'data-max-rating': 1 }
 
         .ui.fitted.hidden.clearing.divider
@@ -45,8 +49,11 @@
           = link_to 'VER DETALHES', market_show_path(market.id),
             class: 'ui small blue-color button'
           .ui.small.primary.button CONTATO
-          .ui.small.property-color.button IMÓVEIS
-          .ui.small.delivery-color.button DELIVERY
+
+          = link_to 'IMÓVEIS', list_properties_path(cep: market.customer.block.zipcode),
+            class: 'ui small property-color button'
+
+          = link_button(market.customer.block.zipcode)
 
   .ui.hidden.divider
 
