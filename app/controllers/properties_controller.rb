@@ -1,6 +1,8 @@
 class PropertiesController < ApplicationController
   has_scope :tipo
   has_scope :situacao
+  has_scope :quartos
+  has_scope :area
   has_scope :cidade
   has_scope :quadras
   has_scope :quadra

@@ -9,6 +9,28 @@ class Property < ApplicationRecord
   scope :tipo, -> tipo { with_property_type(tipo) }
   scope :situacao, -> situacao { with_commercial_situation(situacao) }
 
+  scope :quartos, -> quartos do
+    init_value = quartos.split('_')[0]
+    limit_value = quartos.split('_')[1]
+
+    if limit_value
+      where(rooms: init_value..limit_value)
+    else
+      where(rooms: init_value)
+    end
+  end
+
+  scope :area, -> area do
+    init_value = area.split('_')[0]
+    limit_value = area.split('_')[1]
+
+    if limit_value
+      where(area: init_value..limit_value)
+    else
+      where(area: init_value)
+    end
+  end
+
   scope :cidade, -> slug do
     city = City.select(:id).friendly.find(slug)
 

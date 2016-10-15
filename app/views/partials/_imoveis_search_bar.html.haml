@@ -10,6 +10,9 @@
           include_blank: 'Tipo de imóvel', 'data-type': 'tipo'
 
       .horizontally.fitted.item
+        = select_tag '', options_for_select({ 'Selecione': '' }), id: 'size-filter'
+
+      .horizontally.fitted.item
         = select_tag :cidade, options_from_collection_for_select(City.all, :friendly_id, :name),
         { include_blank: 'Cidade', 'data-city': 'cidade' }
 
@@ -38,7 +41,12 @@
     $(type_element).val(type).change();
 
     $(situation_element).dropdown({ placeholder: false });
-    $(type_element).dropdown({ placeholder: false });
+    $(type_element).dropdown({
+      placeholder: false,
+      onChange: function(value, text, $selectedItem) {
+        $(size_element).dropdown('set text', 'Selecione');
+      }
+    });
 
     city      = "#{params[:cidade]}"
     group     = "#{params[:quadras]}"
@@ -51,4 +59,8 @@
     $(city_element).dropdown({ placeholder: false });
     $(group_element).dropdown({ placeholder: false });
     $(district_element).dropdown({ placeholder: false });
+
+    size = "#{params[:quartos] || params[:area]}"
+    $(size_element).val(size).change();
+    $(size_element).dropdown({ placeholder: false });
   });
