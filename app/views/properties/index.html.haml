@@ -15,7 +15,12 @@
     .column
       .ui.fluid.card
         .content
-          %i.right.floated.like.icon
+          = link_to favorites_path(id: item.sponsorable.id, type: :Property), method: :post,
+              remote: true do
+
+            - favorited = Favorite.is_favorited?(current_user, item.sponsorable.id, :Property) ? 1 : 0
+            .ui.right.floated.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1 }
+
           = link_to item.sponsorable.full_address, property_show_path(item.sponsorable.id),
             class: 'center aligned header'
         .image
@@ -38,3 +43,6 @@
             .column
               %p Banheiros
               %p.card-value= item.sponsorable.bathrooms
+
+:javascript
+  $('.ui.heart.rating').rating();
