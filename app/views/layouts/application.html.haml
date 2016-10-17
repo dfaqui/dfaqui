@@ -20,7 +20,7 @@
 
     - if params[:action] != 'show'
       = render 'partials/banner'
-      = render "partials/#{channel}_search_bar"
+      = render "partials/#{channel}_search_bar" if channel
 
     = yield :banner
 

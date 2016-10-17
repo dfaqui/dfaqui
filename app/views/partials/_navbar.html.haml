@@ -11,4 +11,8 @@
         .image= image_tag 'delivery_button.svg', class: 'channel-icon'
 
     .right.item
-      .image= image_tag 'favorite_button.svg', class: 'favorite-icon'
+      = link_to favorites_path, class: 'image' do
+        = image_tag 'favorite_button.svg', class: 'favorite-icon'
+
+      - if user_signed_in?
+        .item= link_to 'Sair', destroy_user_session_path, method: :delete

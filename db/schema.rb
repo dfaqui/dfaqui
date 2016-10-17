@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014123359) do
+ActiveRecord::Schema.define(version: 20161017130737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 20161014123359) do
     t.datetime "updated_at",                           null: false
     t.string   "slug"
     t.index ["city_id"], name: "index_district_groups_on_city_id", using: :btree
-    t.index ["slug"], name: "index_district_groups_on_slug", unique: true, using: :btree
   end
 
   create_table "districts", force: :cascade do |t|
@@ -110,7 +109,6 @@ ActiveRecord::Schema.define(version: 20161014123359) do
     t.datetime "updated_at",                                   null: false
     t.string   "slug"
     t.index ["district_group_id"], name: "index_districts_on_district_group_id", using: :btree
-    t.index ["slug"], name: "index_districts_on_slug", unique: true, using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -191,26 +189,27 @@ ActiveRecord::Schema.define(version: 20161014123359) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.integer  "customer_id",                      null: false
-    t.integer  "block_id",                         null: false
+    t.integer  "customer_id",                                     null: false
+    t.integer  "block_id",                                        null: false
     t.string   "address_complement",   limit: 255
-    t.integer  "property_type",                    null: false
-    t.integer  "commercial_situation",             null: false
-    t.integer  "release_status",                   null: false
+    t.integer  "property_type",                                   null: false
+    t.integer  "commercial_situation",                            null: false
+    t.integer  "release_status",                                  null: false
     t.text     "description"
     t.float    "price"
     t.float    "tax"
-    t.integer  "area",                             null: false
+    t.integer  "area",                                            null: false
     t.float    "square_meter_price"
-    t.integer  "rooms",                            null: false
-    t.integer  "bathrooms",                        null: false
-    t.integer  "parking_spaces",                   null: false
+    t.integer  "rooms",                                           null: false
+    t.integer  "bathrooms",                                       null: false
+    t.integer  "parking_spaces",                                  null: false
     t.integer  "floor"
     t.integer  "unit"
     t.float    "maintenance_fee"
     t.integer  "sun_position"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.boolean  "status",                           default: true, null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.index ["block_id"], name: "index_properties_on_block_id", using: :btree
     t.index ["customer_id"], name: "index_properties_on_customer_id", using: :btree
   end
@@ -301,18 +300,21 @@ ActiveRecord::Schema.define(version: 20161014123359) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                               default: "", null: false
+    t.string   "encrypted_password",                  default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                       default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.string   "name",                   limit: 2044,              null: false
+    t.string   "provider"
+    t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

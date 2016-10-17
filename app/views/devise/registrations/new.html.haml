@@ -1,0 +1,51 @@
+.ui.middle.aligned.center.aligned.grid
+  .column{ style: 'max-width: 480px' }
+    %h2.ui.header
+      .content Crie sua conta
+
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name),
+        html: { class: 'ui large form'} ) do |f|
+
+      - if resource.errors.full_messages.any?
+        .ui.negative.message
+          .content
+            .header Favor corrigir os seguintes problemas
+            %ul.list
+              - resource.errors.full_messages.each do |message|
+                %li= message
+
+      .ui.stacked.segment
+        .field
+          .ui.left.icon.input
+            %i.user.icon
+            = f.input_field :name, autofocus: true, placeholder: 'Nome e sobrenome'
+        .field
+          .ui.left.icon.input
+            %i.at.icon
+            = f.input_field :email, placeholder: 'E-mail'
+        .field
+          .ui.left.icon.input
+            %i.lock.icon
+            = f.input_field :password, placeholder: 'Senha'
+        .field
+          .ui.left.icon.input
+            %i.lock.icon
+            = f.input_field :password_confirmation, placeholder: 'Confirme a senha'
+
+        = f.button :button, class: ' ui fluid large primary submit button' do
+          Criar conta
+
+        .ui.horizontal.divider Ou
+
+        .field
+          = link_to user_facebook_omniauth_authorize_path,
+              class: 'ui facebook button' do
+
+            %i.facebook.icon
+            Entrar com o Facebook
+
+          = link_to user_google_oauth2_omniauth_authorize_path,
+              class: 'ui google plus button' do
+
+            %i.google.icon
+            Entrar com o Google

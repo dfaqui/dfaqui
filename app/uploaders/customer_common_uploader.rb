@@ -6,12 +6,12 @@ class CustomerCommonUploader < CarrierWave::Uploader::Base
   storage :fog
 
   def store_dir
-    if Rails.env.production?
+    # if Rails.env.production?
       # "production/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
       "property/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-    else
-      "development/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-    end
+    # else
+      # "development/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    # end
   end
 
   process :resize_to_fill => [180, 120]

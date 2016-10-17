@@ -2,14 +2,16 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
-  resources :markets, path: :comercio, only: [:index], controller: 'markets' do
+  resources :deliveries, path: :delivery, only: [:index], controller: 'markets' do
     get 'show', path: :detalhes
     collection { get 'list', path: :listagem }
   end
 
-  resources :deliveries, path: :delivery, only: [:index], controller: 'markets' do
+  resources :favorites, path: :favoritos, only: [:index]
+
+  resources :markets, path: :comercio, only: [:index], controller: 'markets' do
     get 'show', path: :detalhes
     collection { get 'list', path: :listagem }
   end
