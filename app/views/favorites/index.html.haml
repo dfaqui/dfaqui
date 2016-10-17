@@ -3,8 +3,19 @@
 %h2.ui.header Seus favoritos
 .ui.divider
 
-- current_user.favorites.each do |favorite|
-  = render favorite.favoritable
+- if current_user.favorites.properties.exists?
+  %h2.ui.header Imóveis
+  .ui.divider
+
+  - current_user.favorites.properties.each do |favorite|
+    = render favorite.favoritable
+
+- if current_user.favorites.markets.exists?
+  %h2.ui.header Comércios / Delivery
+  .ui.divider
+
+  - current_user.favorites.markets.each do |favorite|
+    = render favorite.favoritable
 
 :javascript
   $('.ui.heart.rating').rating();

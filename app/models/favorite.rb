@@ -1,4 +1,14 @@
 class Favorite < ApplicationRecord
+  default_scope { order(created_at: :desc) }
+
+  scope :properties, -> do
+    where(favoritable_type: :Property)
+  end
+
+  scope :markets, -> do
+    where(favoritable_type: :Market)
+  end
+
   belongs_to :favoritable, polymorphic: true
   belongs_to :user
 
