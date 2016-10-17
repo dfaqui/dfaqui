@@ -8,7 +8,13 @@
             .content
               .header
                 = @market.customer.customer_common.fantasy_name
-                .ui.massive.heart.rating{ 'data-max-rating': 1, 'data-rating': 0 }
+
+                = link_to favorites_path(id: @market.id, type: :Market), method: :post,
+                    remote: true do
+
+                  - favorited = Favorite.is_favorited?(current_user, @market.id, :Market) ? 1 : 0
+                  .ui.massive.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1 }
+
               .meta
                 %div{ class: 'ui red empty circular label' }
                 Fechado

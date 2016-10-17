@@ -7,55 +7,7 @@
 .ui.divider
 
 - @markets.each do |market|
-  .item-section
-    .ui.clearing.segment
-      = link_to market_show_path(market.id), class: 'ui rounded bordered image' do
-        = image_tag market.customer.customer_common.logo
-
-      .item-content
-        = link_to market.customer.customer_common.fantasy_name,
-          market_show_path(market.id), class: 'ui medium header'
-
-        .ui.huge.heart.rating{ 'data-rating': 0, 'data-max-rating': 1 }
-
-        .ui.fitted.hidden.clearing.divider
-
-        .ui.horizontal.divided.list
-          .item
-            .ui.red.empty.circular.label
-            Fechado
-
-          .item= market.customer.full_address
-
-          - if market.delivery? && current_channel != 'delivery'
-            .item
-              .ui.yellow.label Delivery
-
-        .ui.justified.container
-          = truncate(market.customer.customer_common.description, length: 250)
-
-        .ui.horizontal.divided.list.payment-section
-          - unless market.estimated_time.nil?
-            .item
-              %i.fitted.clock.icon
-              = distance_of_time(market.estimated_time * 60)
-          - unless market.price_category.nil?
-            .item
-              - 5.times do |i|
-                - color = (market.price_category > i) ? 'yellow' : 'grey'
-                %i{ class: "#{color} dollar fitted icon" }
-
-        .action-section
-          = link_to 'VER DETALHES', market_show_path(market.id),
-            class: 'ui small blue-color button'
-          .ui.small.primary.button CONTATO
-
-          = link_to 'IMÓVEIS', list_properties_path(cep: market.customer.block.zipcode),
-            class: 'ui small property-color button'
-
-          = link_button(market.customer.block.zipcode)
-
-  .ui.hidden.divider
+  = render market
 
 :javascript
   $('.ui.heart.rating').rating();

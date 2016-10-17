@@ -10,6 +10,6 @@ module MarketHelper
       color = 'market-color'
     end
 
-    link_to label, path, class: "ui small #{color} button"
+    link_to(label, path, class: "ui small #{color} button")
   end
 end
