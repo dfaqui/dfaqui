@@ -12,6 +12,8 @@ class FavoritesController < ApplicationController
     )
 
     favorite.favorite
+
+    @created = favorite.persisted?
   end
 
   def destroy

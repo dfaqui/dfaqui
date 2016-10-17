@@ -48,9 +48,16 @@
 
       .ui.favorite.divider
 
-      .ui.primary.basic.fluid.button
+      = link_to favorites_path(id: @property.id, type: :Property,
+          path: property_show_path(@property.id)), method: :post,
+          id: 'favorite-button', class: 'ui primary basic fluid button',
+          remote: true do
+
         %i.heart.icon
-        Adicionar aos favoritos
+        - if Favorite.is_favorited?(current_user, @property.id, :Property)
+          Remover dos favoritos
+        - else
+          Adicionar aos favoritos
 
     .ui.clearing.segment.detail-section
       .ui.center.aligned.header Detalhes
