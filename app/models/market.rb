@@ -45,6 +45,8 @@ class Market < ApplicationRecord
   belongs_to :customer
   belongs_to :segment
 
+  has_many :favorites, as: :favoritable
+
   has_many :products
 
   has_many :categories, through: :category_markets

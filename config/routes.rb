@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     collection { get 'list', path: :listagem }
   end
 
-  resources :favorites, path: :favoritos, only: [:index]
+  resources :favorites, path: :favoritos, only: [:index, :create, :destroy]
 
   resources :markets, path: :comercio, only: [:index], controller: 'markets' do
     get 'show', path: :detalhes

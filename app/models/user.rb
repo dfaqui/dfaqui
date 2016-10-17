@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :favorites
+
   validates :name, presence: true, length: { maximum: 100 }
 
   # Include default devise modules. Others available are:

@@ -57,6 +57,8 @@ class Property < ApplicationRecord
   belongs_to :customer
   belongs_to :block
 
+  has_many :favorites, as: :favoritable
+
   has_many :property_images, dependent: :destroy
 
   has_many :tags, through: :property_tags

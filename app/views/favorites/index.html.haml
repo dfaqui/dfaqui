@@ -1,1 +1,10 @@
-%h1 FAVORITOS
+= stylesheet_link_tag 'favorites'
+
+%h2.ui.header Seus favoritos
+.ui.divider
+
+- current_user.favorites.each do |favorite|
+  = render favorite.favoritable
+
+:javascript
+  $('.ui.heart.rating').rating();

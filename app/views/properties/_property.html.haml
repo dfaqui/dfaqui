@@ -1,0 +1,62 @@
+.property-item-section
+  .ui.clearing.segment
+    = link_to property_show_path(property.id),
+        class: 'ui rounded image property-image' do
+
+      %div{ class: "ui #{commercial_situation(property.commercial_situation)} ribbon label" }
+        = property.commercial_situation_text
+
+      = image_tag property.cover_image
+      %p
+        - if property.price
+          = number_to_currency(property.price)
+        - else
+          Sob consulta
+
+    .property-content
+      = link_to property.full_address, property_show_path(property.id),
+        class: 'ui medium header'
+
+      = link_to favorites_path(id: property.id, type: :Property), method: :post,
+          remote: true do
+
+        - favorited = Favorite.is_favorited?(current_user, property.id, :Property) ? 1 : 0
+        .ui.huge.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1 }
+
+      = image_tag property.customer.customer_common.logo, class: 'customer-brand'
+
+      .ui.justified.container
+        = truncate(property.description, length: 400)
+
+      .statistic-section
+        .ui.mini.statistic
+          .label Área (m²)
+          .value= property.area
+
+        .ui.mini.statistic
+          - if property.property_type.residential?
+            .label Quartos
+          - elsif property.property_type.commercial?
+            .label Salas
+
+          .value= property.rooms
+
+        .ui.mini.statistic
+          .label Banheiros
+          .value= property.bathrooms
+
+      .action-section
+        = link_to 'VER DETALHES', property_show_path(property.id),
+          class: 'ui small blue-color button'
+
+        = link_to 'COMÉRCIO', list_markets_path(cep: property.block.zipcode),
+          class: 'ui small market-color button'
+
+        = link_to 'DELIVERY', list_deliveries_path(cep: property.block.zipcode),
+          class: 'ui small delivery-color button'
+
+        - if property.block.tour_link
+          = link_to 'TOUR 360', property.block.tour_link, target: :blank,
+            class: 'ui small primary property-color button'
+
+.ui.hidden.divider

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017130737) do
+ActiveRecord::Schema.define(version: 20161017134736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,16 @@ ActiveRecord::Schema.define(version: 20161017130737) do
     t.datetime "updated_at",                                   null: false
     t.string   "slug"
     t.index ["district_group_id"], name: "index_districts_on_district_group_id", using: :btree
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "user_id",          null: false
+    t.string   "favoritable_type"
+    t.integer  "favoritable_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["favoritable_type", "favoritable_id"], name: "index_favorites_on_favoritable_type_and_favoritable_id", using: :btree
+    t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -342,6 +352,7 @@ ActiveRecord::Schema.define(version: 20161017130737) do
   add_foreign_key "customers", "customer_commons"
   add_foreign_key "district_groups", "cities"
   add_foreign_key "districts", "district_groups"
+  add_foreign_key "favorites", "users"
   add_foreign_key "market_payment_methods", "markets"
   add_foreign_key "market_payment_methods", "payment_methods"
   add_foreign_key "market_specialities", "markets"
