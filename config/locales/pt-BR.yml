@@ -46,3 +46,8 @@ pt-BR:
       sun_position:
         sunrise: 'Nascente'
         sunset: 'Poente'
+    sponsor_button:
+      channel:
+        delivery: 'Delivery'
+        market: 'Comércio'
+        property: 'Imóveis'

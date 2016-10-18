@@ -3,6 +3,7 @@ class CreateSponsorButtons < ActiveRecord::Migration[5.0]
     create_table :sponsor_buttons do |t|
       t.references :customer, foreign_key: true, null: false, index: true
       t.references :city, foreign_key: true, null: false, index: true
+      t.string :channel, limit: 10, null: false
       t.string :image, null: false
       t.integer :order, null: false
       t.boolean :status, null: false, default: true
