@@ -10,7 +10,7 @@ class PropertiesController < ApplicationController
 
   def index
     @buttons    = SponsorButton.by_plugin(:property).by_city(params[:cidade])
-    @properties = SponsorItem.where(sponsorable_type: 'Property')
+    @properties = SponsorItem.where(sponsorable_type: 'Property').by_city(params[:cidade])
   end
 
   def show
