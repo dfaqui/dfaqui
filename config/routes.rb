@@ -24,17 +24,15 @@ Rails.application.routes.draw do
   scope :gestao, module: :admin, as: :admin do
     get '', to: 'dashboards#index'
 
-    resources :dashboards, only: [:index]
-
     resources :customer_commons, path: :clientes do
       resources :customers, path: :filiais do
         collection { get 'add_contact_phone' }
       end
     end
 
-    resources :markets, path: :comercios do
-      resources :products, path: :produtos, controller: 'markets/products'
+    resources :dashboards, only: [:index]
 
+    resources :markets, path: :comercios do
       resources :categories, path: :tipos, only: [:index, :new, :create, :destroy],
         controller: 'markets/categories' do
 
@@ -48,6 +46,8 @@ Rails.application.routes.draw do
         only: [:index, :new, :create, :destroy],
         controller: 'markets/payment_methods'
 
+      resources :products, path: :produtos, controller: 'markets/products'
+
       resources :working_hours, path: :expediente,
         only: [:index, :new, :edit, :create, :update, :destroy],
         controller: 'markets/working_hours'
@@ -56,5 +56,7 @@ Rails.application.routes.draw do
     resources :properties, path: :imoveis do
       resources :property_images, path: :imagens
     end
+
+    resources :users, path: :usuarios
   end
 end

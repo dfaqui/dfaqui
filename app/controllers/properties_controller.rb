@@ -9,7 +9,7 @@ class PropertiesController < ApplicationController
   has_scope :cep
 
   def index
-    @buttons    = SponsorButton.by_plugin(:property)
+    @buttons    = SponsorButton.by_plugin(:property).by_city(params[:cidade])
     @properties = SponsorItem.where(sponsorable_type: 'Property')
   end
 
