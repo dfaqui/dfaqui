@@ -1,9 +1,14 @@
 .section.one#section-one
-  .ui.centered.stackable.grid
-    .row= image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
+  .ui.vertical.center.aligned.segment
+    = image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
 
-  %a{ href: '#section-two', 'data-toggle': 'slide' }
-    = image_tag 'home/arrow.svg', class: 'arrow-slide'
+    .ui.text.container
+      %h1.ui.inverted.header Onde você está?
+      = select_tag :cidade, options_from_collection_for_select(City.all, :friendly_id, :name),
+        include_blank: 'Selecione', class: 'ui dropdown'
+
+    -# %a{ href: '#section-two', 'data-toggle': 'slide' }
+      = image_tag 'home/arrow.svg', class: 'arrow-slide'
 
 .section.two#section-two
   .ui.centered.grid
@@ -17,14 +22,14 @@
 
       .ui.three.column.stackable.grid
         .column
-          = link_to properties_path do
+          %a.channel-link{ onclick: "go_to_channel('#{properties_path}')" }
             = image_tag 'home/imovel.png'
         .column
-          = link_to deliveries_path do
-            = image_tag 'home/delivery.png'
-        .column
-          = link_to markets_path do
+          %a.channel-link{ onclick: "go_to_channel('#{markets_path}')" }
             = image_tag 'home/comercio.png'
+        .column
+          %a.channel-link{ onclick: "go_to_channel('#{deliveries_path}')" }
+            = image_tag 'home/delivery.png'
 
 .section.three#section-three
   .ui.centered.grid
@@ -42,10 +47,24 @@
   = image_tag 'home/dfaqui_blue.svg', class: 'footer-brand'
   %p DFaqui © 2016 - Todos os direitos reservados.
 
-.container.footer
-  .ui.container
-    .ui.four.column.stackable.doubling.center.aligned.grid
-      .column= link_to 'Política de uso'
-      .column= link_to 'Quem somos'
-      .column= link_to 'Contato'
-      .column= link_to 'Anuncie'
+.ui.inverted.vertical.footer.segment
+  .ui.center.aligned.container
+    .ui.horizontal.inverted.small.divided.link.list
+      %a.item Política de uso
+      %a.item Quem somos
+      %a.item Contato
+      %a.item Anuncie
+
+
+:javascript
+  $('.ui.dropdown').dropdown({ placeholder: false });
+
+  function go_to_channel(path) {
+    city = $('#cidade').val();
+
+    if(city) {
+      path = path + '?cidade=' + city;
+    }
+
+    window.location = path;
+  }
