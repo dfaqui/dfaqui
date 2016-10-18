@@ -18,28 +18,25 @@
         %h3
           %i.chevron.right.icon
 
-      %a.item{ href: '#', 'data-toggle': 'slide' }
+      -# %a.item{ href: '#', 'data-toggle': 'slide' }
+      = link_to admin_path, class: 'item' do
         %h3 DFaqui
 
       .menu.right
         %a.icon.item.pointer{ 'data-toggle': 'popup', 'data-content': '#user', 'data-position': 'bottom right' }
-          %img.ui.avatar.image{ src: 'http://demo.feelinart.com/module/beawesomeadmin/assets/img/people_4.jpg' }
+          = image_tag 'dfaqui_profile_logo.jpg', class: 'ui avatar image'
 
         #user.ui.popup
           .ui.secondary.vertical.menu
-            .header.item USER MENU
+            .header.item MENU
             %a.item
-              Profile
-              %i.user.icon
-
-            %a.item
-              Settings
+              Configurações
               %i.user.icon
 
             .ui.divider
 
-            %a.item
-              Logout
+            = link_to destroy_user_session_path, method: :delete, class: 'item' do
+              Sair
               %i.sign.out.icon
 
     .pusher
@@ -48,23 +45,29 @@
           #sideMenu.side.menu
             .profile{ align: 'center' }
               %br
-              %a{ href: '#' }
-                %img.ui.circular.image{ src: 'http://demo.feelinart.com/module/beawesomeadmin/assets/img/people_4.jpg', width: '150px' }
+              = link_to admin_path do
+                = image_tag 'dfaqui_profile_logo.jpg', class: 'ui circular image',
+                  width: '150px'
 
+              .ui.white.header= current_user.name
               .ui.divider
 
             #verticalMenu.ui.fluid.vertical.menu
-              = link_to admin_customer_commons_path, class: 'item' do
-                %i.angle.right.icon
-                Clientes
+              - if current_user.has_role? :admin
+                = link_to admin_customer_commons_path, class: 'item' do
+                  %i.angle.right.icon
+                  Clientes
 
-              = link_to admin_markets_path, class: 'item' do
-                %i.angle.right.icon
-                Comércios
+              - if current_user.has_role? :admin
+                = link_to admin_markets_path, class: 'item' do
+                  %i.angle.right.icon
+                  Comércios
 
-              = link_to admin_properties_path, class: 'item' do
-                %i.angle.right.icon
-                Imóveis
+              - if (current_user.has_role? :admin) || (current_user.has_role? :property, :any)
+
+                = link_to admin_properties_path, class: 'item' do
+                  %i.angle.right.icon
+                  Imóveis
 
           #content.sixteen.wide.column
             = yield

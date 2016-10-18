@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 100 }
 
+  after_commit :assign_default_role, on: :create
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
@@ -18,5 +20,11 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
     end
+  end
+
+  private
+
+  def assign_default_role
+    self.add_role(:regular)
   end
 end

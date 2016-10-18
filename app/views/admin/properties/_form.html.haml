@@ -1,7 +1,7 @@
 = simple_form_for([:admin, @property], html: { class: 'ui form' }) do |f|
   .required.field
     = f.label :customer, 'Cliente'
-    = f.input_field :customer_id, collection: Customer.properties,
+    = f.input_field :customer_id, collection: Customer.properties(current_user),
       include_blank: false, class: 'ui fluid search dropdown'
 
   .ui.dividing.header Dados gerais

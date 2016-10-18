@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   end
 
   scope :gestao, module: :admin, as: :admin do
+    get '', to: 'dashboards#index'
+
+    resources :dashboards, only: [:index]
+
     resources :customer_commons, path: :clientes do
       resources :customers, path: :filiais do
         collection { get 'add_contact_phone' }

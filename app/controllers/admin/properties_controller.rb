@@ -2,7 +2,12 @@ class Admin::PropertiesController < Admin::BaseController
   before_action :set_property, only: [:edit, :update, :destroy]
 
   def index
-    @properties = Property.all
+    if current_user.has_role? :admin
+      @properties = Property.all
+    else
+      allowed_customers = Customer.with_role(:property, current_user).pluck(:id)
+      @properties = Property.where(customer: allowed_customers)
+    end
   end
 
   def show

@@ -4,11 +4,11 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
 
-    if user.has_role? :admin
-      can :manage, :all
-    else
-      can :read, :all
-    end
+    # if user.has_role? :admin
+    #   can :manage, :all
+    # elsif user.has_role? :property, :any
+    #   can :manage, Property, :id => Property.where(customer: Customer.with_role(:property, user).pluck(:id)).pluck(:id)
+    # end
 
     # Define abilities for the passed in user here. For example:
     #
