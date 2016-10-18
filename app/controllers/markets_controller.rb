@@ -11,7 +11,7 @@ class MarketsController < ApplicationController
 
   def index
     channel = (current_channel == 'comercio') ? 'market' : current_channel
-    @buttons = SponsorButton.by_plugin(channel.to_sym)
+    @buttons = SponsorButton.by_plugin(channel.to_sym).by_city(params[:cidade])
   end
 
   def list

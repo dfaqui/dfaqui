@@ -6,7 +6,7 @@
     .ui.centered.grid.borderless.menu
       .horizontally.fitted.item
         = select_tag :cidade, options_from_collection_for_select(City.all, :friendly_id, :name),
-        { include_blank: 'Cidade', 'data-city': 'cidade', class: 'ui dropdown' }
+        { 'data-city': 'cidade', class: 'ui dropdown' }
 
       .horizontally.fitted.item
         = grouped_collection_select :quadras, :quadras, City.all, :district_groups, :name,
@@ -43,6 +43,10 @@
     city      = "#{params[:cidade]}"
     group     = "#{params[:quadras]}"
     district  = "#{params[:quadra]}"
+
+    if(!city) {
+      city = selected_item(city_element).val();
+    }
 
     $(city_element).val(city).change();
     $(group_element).val(group).change();

@@ -6,12 +6,6 @@ class SponsorItem < ApplicationRecord
     where(city: city)
   end
 
-  # scope :by_plugin, -> (plugin) do
-  #   includes(customer: [:customer_common]).
-  #   where('customer_commons.plugin': plugin).
-  #   where('sponsor_items.status')
-  # end
-
   belongs_to :city
   belongs_to :sponsorable, polymorphic: true
 
