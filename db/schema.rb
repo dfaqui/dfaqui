@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017134736) do
+ActiveRecord::Schema.define(version: 20161018183641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,16 @@ ActiveRecord::Schema.define(version: 20161017134736) do
     t.string   "slug"
     t.index ["slug"], name: "index_cities_on_slug", unique: true, using: :btree
     t.index ["state_id"], name: "index_cities_on_state_id", using: :btree
+  end
+
+  create_table "city_markets", force: :cascade do |t|
+    t.integer  "city_id",    null: false
+    t.integer  "market_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id", "market_id"], name: "index_city_markets_on_city_id_and_market_id", unique: true, using: :btree
+    t.index ["city_id"], name: "index_city_markets_on_city_id", using: :btree
+    t.index ["market_id"], name: "index_city_markets_on_market_id", using: :btree
   end
 
   create_table "customer_commons", force: :cascade do |t|
@@ -274,12 +284,15 @@ ActiveRecord::Schema.define(version: 20161017134736) do
   end
 
   create_table "sponsor_buttons", force: :cascade do |t|
-    t.integer  "customer_id",                null: false
-    t.string   "image",                      null: false
-    t.integer  "order",                      null: false
-    t.boolean  "status",      default: true, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "customer_id",                                 null: false
+    t.string   "image",                                       null: false
+    t.integer  "order",                                       null: false
+    t.boolean  "status",                 default: true,       null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "city_id",                default: 1
+    t.string   "channel",     limit: 10, default: "property", null: false
+    t.index ["city_id"], name: "index_sponsor_buttons_on_city_id", using: :btree
     t.index ["customer_id"], name: "index_sponsor_buttons_on_customer_id", using: :btree
   end
 
@@ -290,6 +303,8 @@ ActiveRecord::Schema.define(version: 20161017134736) do
     t.boolean  "status",           default: true, null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.integer  "city_id",          default: 1,    null: false
+    t.index ["city_id"], name: "index_sponsor_items_on_city_id", using: :btree
     t.index ["sponsorable_type", "sponsorable_id"], name: "index_sponsor_items_on_sponsorable_type_and_sponsorable_id", using: :btree
   end
 
@@ -348,6 +363,8 @@ ActiveRecord::Schema.define(version: 20161017134736) do
   add_foreign_key "category_markets", "categories"
   add_foreign_key "category_markets", "markets"
   add_foreign_key "cities", "states"
+  add_foreign_key "city_markets", "cities"
+  add_foreign_key "city_markets", "markets"
   add_foreign_key "customers", "blocks"
   add_foreign_key "customers", "customer_commons"
   add_foreign_key "district_groups", "cities"

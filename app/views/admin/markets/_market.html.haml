@@ -11,7 +11,7 @@
           Detalhes
 
         = link_to admin_market_products_path(market.id), class: 'item' do
-          %i.shopping.bag.icon
+          %i.shopping.basket.icon
           Produtos
 
         = link_to admin_market_categories_path(market.id), class: 'item' do
@@ -21,6 +21,11 @@
         = link_to admin_market_working_hours_path(market.id), class: 'item' do
           %i.clock.icon
           Expediente
+
+        - if market.delivery?
+          = link_to admin_market_cities_path(market.id), class: 'item' do
+            %i.shipping.icon
+            Locais de entrega
 
         = link_to admin_market_payment_methods_path(market.id), class: 'item' do
           %i.payment.icon

@@ -42,6 +42,10 @@ Rails.application.routes.draw do
 
         end
 
+      resources :cities, path: :locais_entrega,
+        only: [:index, :new, :create, :destroy],
+        controller: 'markets/cities'
+
       resources :payment_methods, path: :formas_pagamento,
         only: [:index, :new, :create, :destroy],
         controller: 'markets/payment_methods'

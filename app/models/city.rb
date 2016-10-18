@@ -4,6 +4,9 @@ class City < ApplicationRecord
 
   belongs_to :state
 
+  has_many :markets, through: :city_markets
+  has_many :city_markets
+
   has_many :district_groups
   has_many :sponsor_buttons
   has_many :sponsor_items
