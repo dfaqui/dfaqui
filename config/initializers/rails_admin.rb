@@ -1,5 +1,19 @@
 RailsAdmin.config do |config|
 
+  config.model 'City' do
+    create do
+      field :name
+      field :state
+      field :status
+    end
+
+    edit do
+      field :name
+      field :state
+      field :status
+    end
+  end
+
   ### Popular gems integration
 
   ## == Devise ==

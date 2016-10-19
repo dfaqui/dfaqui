@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20161018183641) do
     t.datetime "updated_at",                           null: false
     t.string   "slug"
     t.index ["city_id"], name: "index_district_groups_on_city_id", using: :btree
+    t.index ["slug"], name: "index_district_groups_on_slug", unique: true, using: :btree
   end
 
   create_table "districts", force: :cascade do |t|
@@ -119,6 +120,7 @@ ActiveRecord::Schema.define(version: 20161018183641) do
     t.datetime "updated_at",                                   null: false
     t.string   "slug"
     t.index ["district_group_id"], name: "index_districts_on_district_group_id", using: :btree
+    t.index ["slug"], name: "index_districts_on_slug", unique: true, using: :btree
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -284,26 +286,26 @@ ActiveRecord::Schema.define(version: 20161018183641) do
   end
 
   create_table "sponsor_buttons", force: :cascade do |t|
-    t.integer  "customer_id",                                 null: false
-    t.string   "image",                                       null: false
-    t.integer  "order",                                       null: false
-    t.boolean  "status",                 default: true,       null: false
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.integer  "city_id",                default: 1
-    t.string   "channel",     limit: 10, default: "property", null: false
+    t.integer  "customer_id",                           null: false
+    t.integer  "city_id",                               null: false
+    t.string   "channel",     limit: 10,                null: false
+    t.string   "image",                                 null: false
+    t.integer  "order",                                 null: false
+    t.boolean  "status",                 default: true, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["city_id"], name: "index_sponsor_buttons_on_city_id", using: :btree
     t.index ["customer_id"], name: "index_sponsor_buttons_on_customer_id", using: :btree
   end
 
   create_table "sponsor_items", force: :cascade do |t|
+    t.integer  "city_id",                         null: false
     t.string   "sponsorable_type",                null: false
     t.integer  "sponsorable_id",                  null: false
     t.integer  "order",                           null: false
     t.boolean  "status",           default: true, null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.integer  "city_id",          default: 1,    null: false
     t.index ["city_id"], name: "index_sponsor_items_on_city_id", using: :btree
     t.index ["sponsorable_type", "sponsorable_id"], name: "index_sponsor_items_on_sponsorable_type_and_sponsorable_id", using: :btree
   end
@@ -325,19 +327,19 @@ ActiveRecord::Schema.define(version: 20161018183641) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                               default: "", null: false
-    t.string   "encrypted_password",                  default: "", null: false
+    t.string   "name",                   limit: 100,              null: false
+    t.string   "email",                              default: "", null: false
+    t.string   "encrypted_password",                 default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-    t.string   "name",                   limit: 2044,              null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "provider"
     t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -383,6 +385,8 @@ ActiveRecord::Schema.define(version: 20161018183641) do
   add_foreign_key "property_tags", "properties"
   add_foreign_key "property_tags", "tags"
   add_foreign_key "specialities", "categories"
+  add_foreign_key "sponsor_buttons", "cities"
   add_foreign_key "sponsor_buttons", "customers"
+  add_foreign_key "sponsor_items", "cities"
   add_foreign_key "working_hours", "markets"
 end
