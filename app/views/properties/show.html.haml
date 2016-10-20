@@ -65,36 +65,45 @@
       .ui.clearing.divider
 
       .ui.two.column.grid
-        .right.aligned.column Situação
-        .column= @property.release_status_text
+        - if @property.release_status.present?
+          .right.aligned.column Situação
+          .column= @property.release_status_text
 
-        .right.aligned.column Tipo
-        .column= @property.property_type_text
+        - if @property.property_type.present?
+          .right.aligned.column Tipo
+          .column= @property.property_type_text
 
-        .right.aligned.column Vagas
-        .column= @property.parking_spaces
+        - if @property.parking_spaces.present?
+          .right.aligned.column Vagas
+          .column= @property.parking_spaces
 
-        .right.aligned.column Unidade
-        .column= (@property.unit.nil?) ? '-' : @property.unit
+        - if @property.unit.present?
+          .right.aligned.column Unidade
+          .column= @property.unit
 
-        .right.aligned.column Andar
-        .column= (@property.floor.nil?) ? '-' : @property.floor
+        - if @property.floor.present?
+          .right.aligned.column Andar
+          .column= @property.floor
 
-        .right.aligned.column Valor (m²)
-        .column= (@property.square_meter_price.nil?) ? '-' : number_to_currency(@property.square_meter_price)
+        - if @property.square_meter_price.present?
+          .right.aligned.column Valor (m²)
+          .column= number_to_currency(@property.square_meter_price)
 
-        .right.aligned.column Condomínio
-        .column= (@property.maintenance_fee.nil?) ? '-' : number_to_currency(@property.maintenance_fee)
+        - if @property.maintenance_fee.present?
+          .right.aligned.column Condomínio
+          .column= number_to_currency(@property.maintenance_fee)
 
-        .right.aligned.column IPTU
-        .column= (@property.tax.nil?) ? '-' : number_to_currency(@property.tax)
+        - if @property.tax.present?
+          .right.aligned.column IPTU
+          .column= number_to_currency(@property.tax)
 
-        .right.aligned.column Posição do sol
-        .column= (@property.sun_position.nil?) ? '-' : @property.sun_position
+        - if @property.sun_position.present?
+          .right.aligned.column Posição do sol
+          .column= @property.sun_position_text
 
-        .right.aligned.column CRECI
-        .column
-          = (@property.customer.additional_info.blank?) ? '-' : @property.customer.additional_info
+        - if @property.customer.additional_info.present?
+          .right.aligned.column CRECI
+          .column= @property.customer.additional_info
 
 .ui.divider
 
