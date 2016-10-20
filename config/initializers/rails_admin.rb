@@ -14,6 +14,20 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'DistrictGroup' do
+    create do
+      field :name
+      field :city
+      field :status
+    end
+
+    edit do
+      field :name
+      field :city
+      field :status
+    end
+  end
+
   ### Popular gems integration
 
   ## == Devise ==
