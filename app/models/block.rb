@@ -3,6 +3,7 @@ class Block < ApplicationRecord
   default_scope { order(:name) }
 
   geocoded_by :zipcode
+  after_validation :geocode
   # after_validation :geocode, if: ->(obj){ obj.zipcode.present? and obj.zipcode_changed? }
 
   belongs_to :district
