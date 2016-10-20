@@ -31,19 +31,19 @@
   .four.fields
     .required.field
       = label :region, :city_id, 'Bairro/Distrito'
-      = collection_select :region, :city_id, City.all, :id, :name,
+      = collection_select :region, :city_id, City.all, :friendly_id, :name,
         { include_blank: 'Selecione' }, { class: 'ui dropdown', 'data-city': 'region_city_id' }
 
     .required.field
       = label :region, :district_group_id, 'Grupo de quadras'
       = grouped_collection_select :region, :district_group_id, City.all,
-        :district_groups, :name, :id, :name, { include_blank: 'Selecione' },
+        :district_groups, :name, :friendly_id, :name, { include_blank: 'Selecione' },
         { class: 'ui dropdown', 'data-district-group': 'region_district_group_id' }
 
     .required.field
       = label :region, :district_id, 'Quadra'
       = grouped_collection_select :region, :district_id, DistrictGroup.all,
-        :districts, :name, :id, :name, { include_blank: 'Selecione' },
+        :districts, :name, :friendly_id, :name, { include_blank: 'Selecione' },
         { class: 'ui dropdown', 'data-district': 'region_district_id' }
 
     .required.field
@@ -110,3 +110,16 @@
     = f.button :button, class: 'ui primary button' do
       %i.save.icon
       Salvar
+
+= javascript_include_tag 'region-filter'
+
+:javascript
+  $(function() {
+    city        = "#{@property.block.district.district_group.city.slug rescue ''}"
+    group       = "#{@property.block.district.district_group.slug rescue ''}"
+    district    = "#{@property.block.district.slug rescue ''}"
+
+    $(city_element).val(city).change();
+    $(group_element).val(group).change();
+    $(district_element).val(district).change();
+  });
