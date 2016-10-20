@@ -56,15 +56,16 @@ class Admin::CustomersController < Admin::BaseController
   def allowed_params
     params.require(:customer).permit(
       :name,
+      :block_id,
       :customer_type,
       :document,
+      :address_complement,
       :owner_name,
       :owner_email,
       :owner_phone,
       :contact_email,
       :contact_phone,
-      :block_id,
-      :address_complement
+      :additional_info
     )
   end
 

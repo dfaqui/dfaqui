@@ -3,7 +3,9 @@
 
   .ui.dividing.header Dados gerais
 
-  .three.fields
+  - column_count = (@customer.customer_common.plugin.property?) ? 'four' : 'three'
+
+  %div{ class: "#{column_count} fields" }
     .required.field
       = f.label :name, 'Nome'
       = f.input :name, label: false
@@ -16,6 +18,11 @@
     .required.field
       = f.label :document, 'CPF'
       = f.input :document, label: false
+
+    - if @customer.customer_common.plugin.property?
+      .required.field
+        = f.label :additional_info, 'CRECI'
+        = f.input :additional_info, label: false
 
   .ui.dividing.header Dados para contato
 
