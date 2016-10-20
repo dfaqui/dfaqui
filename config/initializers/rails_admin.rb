@@ -28,6 +28,12 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model SponsorButton do
+    configure :customer do
+      associated_collection_cache_all true
+    end
+  end
+
   ### Popular gems integration
 
   ## == Devise ==
