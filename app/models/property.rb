@@ -80,7 +80,7 @@ class Property < ApplicationRecord
   validates :square_meter_price, numericality: { only_float: true }, allow_nil: true
   validates :rooms, presence: true, numericality: { only_integer: true }
   validates :bathrooms, presence: true, numericality: { only_integer: true }
-  validates :parking_spaces, presence: true, numericality: { only_integer: true }
+  validates :parking_spaces, numericality: { only_integer: true }, allow_nil: true
   validates :floor, numericality: { only_integer: true }, allow_nil: true
   validates :unit, numericality: { only_integer: true }, allow_nil: true
   validates :maintenance_fee, numericality: { only_float: true }, allow_nil: true
