@@ -81,7 +81,7 @@ class Property < ApplicationRecord
   validates :rooms, presence: true, numericality: { only_integer: true }
   validates :bathrooms, presence: true, numericality: { only_integer: true }
   validates :parking_spaces, numericality: { only_integer: true }, allow_nil: true
-  validates :floor, numericality: { only_integer: true }, allow_nil: true
+  validates :floor, length: { maximum: 45 }
   validates :unit, numericality: { only_integer: true }, allow_nil: true
   validates :maintenance_fee, numericality: { only_float: true }, allow_nil: true
   validates :sun_position, numericality: { only_integer: true }, allow_blank: true
