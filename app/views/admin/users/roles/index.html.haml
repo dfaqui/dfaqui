@@ -1,0 +1,18 @@
+%h2.ui.header
+  = @user.name
+  .sub.header Gestão de acesso
+
+.ui.divider
+
+= link_to new_admin_user_role_path(@user.id), class: 'ui primary button' do
+  %i.plus.icon
+  Novo
+
+%table.ui.striped.table
+  %thead
+    %tr
+      %th Perfil
+      %th Cliente
+      %th Ação
+  %tbody
+    = render @user.roles

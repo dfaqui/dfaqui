@@ -1,0 +1,22 @@
+%tr
+  %td= user.name
+  %td= user.email
+  %td= user.sign_in_count
+  %td= user.last_sign_in_at
+  %td
+    .ui.icon.top.right.pointing.dropdown.primary.tiny.button
+      %i.setting.icon
+      .menu
+        = link_to admin_user_roles_path(user.id), class: 'item' do
+          %i.user.icon
+          Perfil
+
+        = link_to edit_admin_user_path(user.id), class: 'item' do
+          %i.edit.icon
+          Editar
+
+        = link_to admin_user_path(user.id), method: :delete,
+            data: { confirm: 'Tem certeza de que deseja remover esse usuário?' },
+            class: 'item' do
+          %i.remove.icon
+          Remover

@@ -1,0 +1,18 @@
+%h2 Gestão de usuários
+
+.ui.divider
+
+= link_to new_admin_user_path, class: 'ui primary button' do
+  %i.plus.icon
+  Novo
+
+%table.ui.striped.table
+  %thead
+    %tr
+      %th Nome
+      %th E-mail
+      %th Quantidade de acessos
+      %th Último acesso
+      %th Ação
+  %tbody
+    = render @users

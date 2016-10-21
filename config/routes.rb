@@ -61,6 +61,10 @@ Rails.application.routes.draw do
       resources :property_images, path: :imagens
     end
 
-    resources :users, path: :usuarios
+    resources :users, path: :usuarios do
+      resources :roles, path: :permissoes,
+        only: [:index, :new, :create, :destroy],
+        controller: 'users/roles'
+    end
   end
 end

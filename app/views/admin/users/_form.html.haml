@@ -1,0 +1,23 @@
+= simple_form_for([:admin, @user], html: { class: 'ui form' }) do |f|
+  .two.fields
+    .required.field
+      = f.label :name, 'Nome'
+      = f.input :name, label: false
+
+    .required.field
+      = f.label :email, 'E-mail'
+      = f.input :email, label: false
+
+  .two.fields
+    .required.field
+      = f.label :password, 'Senha'
+      = f.input :password, label: false
+
+    .required.field
+      = f.label :password_confirmation, 'Confirme a senha'
+      = f.input :password_confirmation, label: false
+
+  .field
+    = f.button :button, class: 'ui primary button' do
+      %i.save.icon
+      Salvar

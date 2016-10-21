@@ -1,0 +1,8 @@
+%tr
+  %td= role.name
+  %td= role.resource.name
+  %td
+    = link_to admin_user_role_path(@user.id, role.id),
+        data: { confirm: 'Tem certeza de que deseja remover esse perfil de acesso?' },
+        method: :delete, class: 'ui red icon button' do
+      %i.remove.icon

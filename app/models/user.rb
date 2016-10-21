@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  extend Enumerize
+  default_scope { order(:name) }
+
+  enumerize :role, in: { admin: :admin, regular: :regular, property: :property }
+
   has_many :favorites
 
   validates :name, presence: true, length: { maximum: 100 }
