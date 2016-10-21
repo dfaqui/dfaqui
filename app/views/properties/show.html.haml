@@ -9,7 +9,7 @@
         = @property.commercial_situation_text
       = render_tab_content(params[:tab], !@property.block.tour_link.blank?)
 
-    .ui.small.blue-color.button CONTATO
+    .ui.small.blue-color.contact.button CONTATO
     .ui.small.primary.button ENVIAR MENSAGEM
 
     = link_to 'COMÉRCIO', list_markets_path(cep: @property.block.zipcode),
@@ -122,6 +122,9 @@
       .item
         %i.check.green.icon
         = tag.name
+
+= render partial: 'partials/contact_popup',
+  locals: { phones: @property.customer.contact_phone }
 
 :javascript
   init_gallery();

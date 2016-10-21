@@ -1,0 +1,15 @@
+.ui.contact.popup
+  .header Contato
+  .ui.list
+  - if phones.any?
+    - phones.each do |phone|
+      .item= phone
+  - else
+    %item Nenhum telefone cadastrado
+
+
+:javascript
+  $('.contact.button').popup({
+    popup: $('.ui.contact.popup'),
+    on: 'click'
+  });
