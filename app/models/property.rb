@@ -1,6 +1,8 @@
 class Property < ApplicationRecord
   extend Enumerize
 
+  before_save :square_meter_price_calculate
+
   enumerize :property_type, in: { residential: 0, commercial: 1 }, scope: true
   enumerize :commercial_situation, in: { release: 0, sale: 1, rent: 2 }, scope: true
   enumerize :release_status, in: { off_plan: 0, under_construction: 1, soon_launching: 2, ready: 3 }
@@ -71,9 +73,9 @@ class Property < ApplicationRecord
   validates :customer, presence: true
   validates :block, presence: true
   validates :address_complement, length: { maximum: 255 }
-  validates :property_type, presence: true, numericality: { only_integer: true }
-  validates :commercial_situation, presence: true, numericality: { only_integer: true }
-  validates :release_status, presence: true, numericality: { only_integer: true }
+  # validates :property_type, presence: true, numericality: { only_integer: true }
+  # validates :commercial_situation, presence: true, numericality: { only_integer: true }
+  # validates :release_status, presence: true, numericality: { only_integer: true }
   validates :price, numericality: { only_float: true }, allow_nil: true
   validates :tax, numericality: { only_float: true }, allow_nil: true
   validates :area, presence: true, numericality: { only_integer: true }
@@ -96,5 +98,20 @@ class Property < ApplicationRecord
     else
       'default_item.png'
     end
+  end
+
+  private
+
+  def square_meter_price_calculate
+    is_area_present   = !(self.area.nil? || self.area.zero?)
+    is_price_present  = !(self.price.nil? || self.price.zero?)
+
+    if self.commercial_situation.rent? || !is_area_present || !is_price_present
+      self.square_meter_price = nil
+    else
+      self.square_meter_price = self.price / self.area
+    end
+
+    self.square_meter_price
   end
 end
