@@ -43,7 +43,7 @@
       .action-section
         = link_to 'VER DETALHES', market_show_path(market.id),
           class: 'ui small blue-color button'
-        .ui.small.primary.button CONTATO
+        .ui.small.primary.button{ onclick: "show_contact_info(#{market.id})" } CONTATO
 
         = link_to 'IMÓVEIS', list_properties_path(cep: market.customer.block.zipcode),
           class: 'ui small property-color button'
@@ -55,3 +55,6 @@
             class: "ui small market-color button")
 
 .ui.hidden.divider
+
+= render partial: 'partials/contact_modal',
+  locals: { item_id: market.id, phones: market.customer.contact_phone }
