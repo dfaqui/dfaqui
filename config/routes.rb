@@ -1,6 +1,21 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
+  # solucao paleativa até os links do tour serem atualizados
+  get '/imoveis/:region/site/lista', to: redirect { |params, request|
+    type                = [:residential, :commercial]
+    situation           = [:release, :sale, :rent]
+
+    request_query       = Rack::Utils.parse_query(request.query_string)
+
+    selected_type       = type[request_query['by_type'].to_i]
+    selected_situation  = situation[request_query['by_commercial'].to_i]
+
+    response_query      = "situacao=#{selected_situation}&tipo=#{selected_type}&frame=true"
+
+    "imoveis/listagem?#{response_query}"
+  }
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 

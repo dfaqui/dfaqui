@@ -18,7 +18,7 @@
   %body
     = render 'partials/navbar'
 
-    - if params[:action] != 'show'
+    - if params[:action] != 'show' && !params[:frame].present?
       = render 'partials/banner'
       = render "partials/#{channel}_search_bar" if channel
 
