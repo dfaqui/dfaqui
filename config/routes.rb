@@ -10,8 +10,12 @@ Rails.application.routes.draw do
 
     selected_type       = type[request_query['by_type'].to_i]
     selected_situation  = situation[request_query['by_commercial'].to_i]
+    selected_block      = request_query['by_block'].to_i
 
-    response_query      = "situacao=#{selected_situation}&tipo=#{selected_type}&frame=true"
+    response_query      = "situacao=#{selected_situation}" \
+                          "&tipo=#{selected_type}" \
+                          "&bloco=#{selected_block}" \
+                          "&frame=true"
 
     "imoveis/listagem?#{response_query}"
   }

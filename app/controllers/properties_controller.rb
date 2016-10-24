@@ -6,6 +6,7 @@ class PropertiesController < ApplicationController
   has_scope :cidade
   has_scope :quadras
   has_scope :quadra
+  has_scope :bloco
   has_scope :cep
 
   def index
