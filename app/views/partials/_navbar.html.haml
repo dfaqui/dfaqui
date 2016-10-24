@@ -1,15 +1,6 @@
 .ui.borderless.fixed.top.large.menu
   .ui.container
-    .item
-      = navbar_channel_buttons
-      -# = link_to '/imoveis' do
-      -#   .image= image_tag 'imoveis_brand.svg', class: 'brand-icon'
-      -#
-      -# = link_to '/comercio' do
-      -#   .image= image_tag 'comercio_button.svg', class: 'channel-icon'
-      -#
-      -# = link_to '/delivery' do
-      -#   .image= image_tag 'delivery_button.svg', class: 'channel-icon'
+    .item= navbar_channel_buttons
 
     .right.item
       = link_to favorites_path, class: 'image' do
