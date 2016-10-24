@@ -1,0 +1,11 @@
+%div{ class: "ui small modal item-#{item_id}" }
+  .header Informações para contato
+  .content
+    .ui.list
+      - phones.each do |phone|
+        .item
+          %i.phone.icon
+          .content=  phone
+      - if phones.empty?
+        .item
+          .content Nenhum telefone de contato cadastrado
