@@ -54,6 +54,11 @@
 
             #verticalMenu.ui.fluid.vertical.menu
               - if current_user.has_role? :admin
+                = link_to rails_admin_path, class: 'item' do
+                  %i.angle.right.icon
+                  Administração
+
+              - if current_user.has_role? :admin
                 = link_to admin_customer_commons_path, class: 'item' do
                   %i.angle.right.icon
                   Clientes
