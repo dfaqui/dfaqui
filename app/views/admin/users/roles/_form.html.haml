@@ -1,0 +1,15 @@
+= simple_form_for([:admin, @user, @user.roles.build], html: { class: 'ui form' }) do |f|
+  .two.fields
+    .required.field
+      = f.label :name, 'Papel'
+      = f.select :name, Role.role.options, {}, { class: 'ui dropdown' }
+
+    .required.field
+      = f.label :resource_id, 'Cliente'
+      = f.collection_select :resource_id, Customer.all, :id, :name,
+        {}, { class: 'ui search dropdown' }
+
+  .field
+    = f.button :button, class: 'ui primary button' do
+      %i.save.icon
+      Salvar

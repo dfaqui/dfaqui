@@ -46,6 +46,12 @@ pt-BR:
       sun_position:
         sunrise: 'Nascente'
         sunset: 'Poente'
+    role:
+      role:
+        admin: 'Administrador'
+        market: 'Comércio'
+        property: 'Imóveis'
+        regular: 'Regular'
     sponsor_button:
       channel:
         delivery: 'Delivery'

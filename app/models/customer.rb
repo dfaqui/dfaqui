@@ -10,8 +10,16 @@ class Customer < ApplicationRecord
     end
   end
 
-  scope :markets, -> do
-    includes(:customer_common).where('customer_commons.plugin': ['delivery', 'market'])
+  scope :markets, -> (user) do
+    result = select(:id, :name).
+    includes(:customer_common).
+    where('customer_commons.plugin': ['delivery', 'market'])
+
+    if user.has_role? :market, :any
+      result = result.with_role(:market, user)
+    end
+
+    result
   end
 
   extend Enumerize
