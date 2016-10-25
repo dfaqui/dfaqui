@@ -1,5 +1,11 @@
 .section.one#section-one
-  .ui.vertical.center.aligned.segment
+  - if touch_device?
+    = image_tag 'home/background.jpg', class: 'background-video'
+  - else
+    = video_tag 'https://s3-sa-east-1.amazonaws.com/dfaqui/videos/background.mp4',
+    class: 'background-video', autoplay: true, loop: true
+
+  .ui.vertical.center.aligned.segment#form-section
     = image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
 
     .ui.text.container
