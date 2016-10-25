@@ -64,6 +64,7 @@ class Property < ApplicationRecord
   belongs_to :block
 
   has_many :favorites, as: :favoritable
+  has_many :messages, as: :messageable
 
   has_many :property_images, dependent: :destroy
 

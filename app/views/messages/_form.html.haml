@@ -1,0 +1,30 @@
+#message-form
+  .ui.small.message.modal
+    .header Enviar mensagem
+    .content
+      = simple_form_for @message, remote: true, html: { class: 'ui form' } do |f|
+        #message-section.ui.negative.message{ style: 'display: none' }
+          Favor preencher todos os campos obrigatórios(*).
+
+        .field.required
+          = f.label :name, 'Nome'
+          = f.text_field :name, placeholder: 'Digite seu nome completo'
+
+        .field.required
+          = f.label :email, 'E-mail'
+          = f.email_field :email, placeholder: 'Digite seu email'
+
+        .field
+          = f.label :phone, 'Telefone'
+          = f.text_field :phone, placeholder: 'Digite seu telefone de contato'
+
+        .field.required
+          = f.label :content, 'Mensagem'
+          = f.text_area :content
+
+        = f.input :messageable_id, as: :hidden, input_html: { value: item_id }
+        = f.input :messageable_type, as: :hidden, input_html: { value: item_type }
+
+        .actions
+          = f.submit 'Enviar', class: 'ui primary button'
+          .ui.cancel.button Cancelar

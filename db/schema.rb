@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018183641) do
+ActiveRecord::Schema.define(version: 20161025122045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,6 +180,18 @@ ActiveRecord::Schema.define(version: 20161018183641) do
     t.index ["segment_id"], name: "index_markets_on_segment_id", using: :btree
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string   "name",             limit: 100, null: false
+    t.string   "email",            limit: 100, null: false
+    t.string   "phone",            limit: 20
+    t.string   "content",                      null: false
+    t.string   "messageable_type"
+    t.integer  "messageable_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["messageable_type", "messageable_id"], name: "index_messages_on_messageable_type_and_messageable_id", using: :btree
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string   "code",       limit: 50,                null: false
     t.text     "content"
@@ -211,27 +223,27 @@ ActiveRecord::Schema.define(version: 20161018183641) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.integer  "customer_id",                                     null: false
-    t.integer  "block_id",                                        null: false
+    t.integer  "customer_id",                                      null: false
+    t.integer  "block_id",                                         null: false
     t.string   "address_complement",   limit: 255
-    t.integer  "property_type",                                   null: false
-    t.integer  "commercial_situation",                            null: false
-    t.integer  "release_status",                                  null: false
+    t.integer  "property_type",                                    null: false
+    t.integer  "commercial_situation",                             null: false
+    t.integer  "release_status",                                   null: false
     t.text     "description"
     t.float    "price"
     t.float    "tax"
-    t.integer  "area",                                            null: false
+    t.integer  "area",                                             null: false
     t.float    "square_meter_price"
-    t.integer  "rooms",                                           null: false
-    t.integer  "bathrooms",                                       null: false
-    t.integer  "parking_spaces",                                  null: false
-    t.integer  "floor"
+    t.integer  "rooms",                                            null: false
+    t.integer  "bathrooms",                                        null: false
+    t.integer  "parking_spaces"
+    t.string   "floor",                limit: 2044
     t.integer  "unit"
     t.float    "maintenance_fee"
     t.integer  "sun_position"
-    t.boolean  "status",                           default: true, null: false
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.boolean  "status",                            default: true, null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.index ["block_id"], name: "index_properties_on_block_id", using: :btree
     t.index ["customer_id"], name: "index_properties_on_customer_id", using: :btree
   end

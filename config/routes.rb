@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  # solucao paleativa até os links do tour serem atualizados
+  # solucao paliativa até os links do tour serem atualizados
   get '/imoveis/:region/site/lista', to: redirect { |params, request|
     type                = [:residential, :commercial]
     situation           = [:release, :sale, :rent]
@@ -35,11 +35,14 @@ Rails.application.routes.draw do
     collection { get 'list', path: :listagem }
   end
 
+  resources :messages, path: :mensagens, only: [:index, :new, :create]
+
   resources :properties, path: :imoveis, only: [:index] do
     get 'show', path: :detalhes
     collection { get 'list', path: :listagem }
   end
 
+  # Admin resources
   scope :gestao, module: :admin, as: :admin do
     get '', to: 'dashboards#index'
 
@@ -85,5 +88,5 @@ Rails.application.routes.draw do
         only: [:index, :new, :create, :destroy],
         controller: 'users/roles'
     end
-  end
+  end # End admin resources
 end

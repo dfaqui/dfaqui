@@ -1,0 +1,33 @@
+Olá!
+
+%br
+
+O portal DFaqui informa que você acaba de receber uma mensagem de um usuário
+interessado em um de seus imóveis. Seguem os dados do contato:
+
+%br
+%br
+
+= link_to 'Clique aqui para visualizar o imóvel',
+  property_show_url(@message.messageable_id), target: '_blank'
+
+%br
+
+%br
+%b Nome:
+= @message.name
+
+%br
+%b E-mail:
+= @message.email
+
+%br
+%b Telefone:
+= @message.phone
+
+%br
+
+%br
+%b Mensagem
+%br
+= @message.content

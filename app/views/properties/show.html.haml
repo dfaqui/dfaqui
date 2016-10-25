@@ -10,7 +10,9 @@
       = render_tab_content(params[:tab], !@property.block.tour_link.blank?)
 
     .ui.small.blue-color.contact.button{ onclick: "show_contact_info(#{@property.id})" } CONTATO
-    .ui.small.primary.button ENVIAR MENSAGEM
+
+    = link_to 'ENVIAR MENSAGEM', new_message_path(item_id: @property.id, item_type: 'Property'),
+      remote: true, class: 'ui small primary button'
 
     = link_to 'COMÉRCIO', list_markets_path(cep: @property.block.zipcode),
       class: 'ui small market-color button'
