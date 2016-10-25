@@ -45,7 +45,8 @@
 
   .field
     = f.label :contact_phone, 'Telefone para contato'
-    = f.input_field :contact_phone, name: 'contact_phone[]'
+    = f.input_field :contact_phone, name: 'contact_phone[]',
+      value: @customer.contact_phone.first
 
   - @customer.contact_phone.drop(1).each do |phone|
     .field
