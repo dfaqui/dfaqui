@@ -8,6 +8,11 @@ class Property < ApplicationRecord
   enumerize :release_status, in: { off_plan: 0, under_construction: 1, soon_launching: 2, ready: 3 }
   enumerize :sun_position, in: { sunrise: 0, sunset: 1 }
 
+  scope :cliente, -> cliente do
+    customers = Customer.where(customer_common_id: cliente).pluck(:id)
+    where(customer_id: customers)
+  end
+
   scope :tipo, -> tipo { with_property_type(tipo) }
   scope :situacao, -> situacao { with_commercial_situation(situacao) }
 

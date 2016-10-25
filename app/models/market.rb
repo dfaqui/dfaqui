@@ -7,6 +7,11 @@ class Market < ApplicationRecord
     end
   end
 
+  scope :cliente, -> cliente do
+    customers = Customer.where(customer_common_id: cliente).pluck(:id)
+    where(customer_id: customers)
+  end
+
   scope :cidade, -> slug do
     city = City.select(:id).friendly.find(slug)
 

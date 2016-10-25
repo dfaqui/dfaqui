@@ -1,6 +1,7 @@
 class MarketsController < ApplicationController
   include ApplicationHelper
 
+  has_scope :cliente
   has_scope :cidade
   has_scope :quadras
   has_scope :quadra

@@ -4,7 +4,9 @@
   .ui.middle.aligned.container
     .ui.six.column.doubling.center.aligned.grid
       - @buttons.each do |button|
-        .column= image_tag button.image
+        .column
+          = link_to list_properties_path(cliente: button.customer.customer_common_id) do
+            = image_tag button.image
 
 .ui.hidden.divider
 
