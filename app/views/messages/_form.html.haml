@@ -8,7 +8,7 @@
 
         .field.required
           = f.label :name, 'Nome'
-          = f.text_field :name, placeholder: 'Digite seu nome completo'
+          = f.input_field :name, placeholder: 'Digite seu nome completo'
 
         .field.required
           = f.label :email, 'E-mail'
@@ -16,7 +16,7 @@
 
         .field
           = f.label :phone, 'Telefone'
-          = f.text_field :phone, placeholder: 'Digite seu telefone de contato'
+          = f.input_field :phone, class: 'phone', placeholder: 'Digite seu telefone de contato'
 
         .field.required
           = f.label :content, 'Mensagem'

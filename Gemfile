@@ -43,6 +43,7 @@ gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-lightslider'
+  gem 'rails-assets-jquery-mask-plugin'
 end
 
 group :development, :test do

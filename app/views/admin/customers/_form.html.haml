@@ -8,7 +8,7 @@
   %div{ class: "#{column_count} fields" }
     .required.field
       = f.label :name, 'Nome'
-      = f.input :name, label: false
+      = f.input_field :name
 
     .required.field
       = f.label :customer_type, 'Tipo'
@@ -17,35 +17,35 @@
 
     .required.field
       = f.label :document, 'CPF'
-      = f.input :document, label: false
+      = f.input_field :document, class: 'person_document'
 
     - if @customer.customer_common.plugin.property?
       .required.field
         = f.label :additional_info, 'CRECI'
-        = f.input :additional_info, label: false
+        = f.input_field :additional_info
 
   .ui.dividing.header Dados para contato
 
   .three.fields
     .required.field
       = f.label :owner_name, 'Nome do responsável'
-      = f.input :owner_name, label: false
+      = f.input_field :owner_name
 
     .required.field
       = f.label :owner_email, 'E-mail do responsável'
-      = f.input :owner_email, label: false
+      = f.input_field :owner_email
 
     .field
       = f.label :owner_phone, 'Telefone do responsável'
-      = f.input :owner_phone, label: false
+      = f.input_field :owner_phone, class: 'phone'
 
   .field
     = f.label :contact_email, 'E-mail para contato'
-    = f.input :contact_email, label: false
+    = f.input_field :contact_email
 
   .field
     = f.label :contact_phone, 'Telefone para contato'
-    = f.input_field :contact_phone, name: 'contact_phone[]',
+    = f.input_field :contact_phone, name: 'contact_phone[]', class: 'phone',
       value: @customer.contact_phone.first
 
   - @customer.contact_phone.drop(1).each do |phone|
@@ -87,7 +87,7 @@
 
   .field
     = f.label :address_complement, 'Complemento'
-    = f.input :address_complement, label: false
+    = f.input_field :address_complement
 
   .field
     = f.button :button, class: 'ui primary button' do

@@ -4,11 +4,11 @@
   .three.fields
     .required.field
       = f.label :name, 'Nome'
-      = f.input :name, label: false
+      = f.input_field :name
 
     .field
       = f.label :price, 'Valor'
-      = f.input :price, label: false
+      = f.input_field :price
 
     .field
       = f.label :photo, 'Imagem'
@@ -16,7 +16,7 @@
 
   .field
     = f.label :description, 'Descrição'
-    = f.input :description, as: :text, label: false
+    = f.input_field :description, as: :text
 
   .field
     = f.button :button, class: 'ui primary button' do

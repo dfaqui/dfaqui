@@ -6,11 +6,11 @@
   .two.fields
     .required.field
       = f.label :name, 'Nome'
-      = f.input :name, label: false
+      = f.input_field :name
 
     .required.field
       = f.label :order, 'Ordem'
-      = f.input :order, label: false
+      = f.input_field :order, as: :string, class: 'only_number'
 
   .field
     = f.button :button, class: 'ui primary button' do

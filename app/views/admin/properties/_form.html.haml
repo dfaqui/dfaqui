@@ -24,7 +24,7 @@
 
   .field
     = f.label :description, 'Descrição'
-    = f.input :description, as: :text, label: false
+    = f.input_field :description, as: :text
 
   .ui.dividing.header Localização
 
@@ -54,47 +54,47 @@
 
   .field
     = f.label :address_complement, 'Complemento'
-    = f.input :address_complement, label: false
+    = f.input_field :address_complement
 
   .ui.dividing.header Detalhes
 
   .five.fields
     .required.field
       = f.label :rooms, 'Quartos'
-      = f.input :rooms, label: false
+      = f.input_field :rooms, as: :string, class: 'only_number'
 
     .required.field
       = f.label :bathrooms, 'Banheiros'
-      = f.input :bathrooms, label: false
+      = f.input_field :bathrooms, as: :string, class: 'only_number'
 
     .field
       = f.label :parking_spaces, 'Vagas de garagem'
-      = f.input :parking_spaces, label: false
+      = f.input_field :parking_spaces, as: :string, class: 'only_number'
 
     .field
       = f.label :floor, 'Andar'
-      = f.input :floor, label: false
+      = f.input_field :floor
 
     .field
       = f.label :unit, 'Unidade/Loja'
-      = f.input :unit, label: false
+      = f.input_field :unit
 
   .five.fields
     .required.field
       = f.label :area, 'Área (m²)'
-      = f.input :area, label: false
+      = f.input_field :area, as: :string, class: 'only_number'
 
     .field
       = f.label :price, 'Valor'
-      = f.input :price, label: false
+      = f.input_field :price
 
     .field
       = f.label :tax, 'IPTU'
-      = f.input :tax, label: false
+      = f.input_field :tax
 
     .field
       = f.label :maintenance_fee, 'Condomínio'
-      = f.input :maintenance_fee, label: false
+      = f.input_field :maintenance_fee
 
     .field
       = f.label :sun_position, 'Posição do sol'
