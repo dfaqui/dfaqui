@@ -10,12 +10,15 @@ module ApplicationHelper
 
       case current_channel
       when 'imoveis'
+        navbar += channel_icon('imoveis')
         navbar += channel_icon('comercio')
         navbar += channel_icon('delivery')
       when 'comercio'
+        navbar += channel_icon('comercio')
         navbar += channel_icon('delivery')
         navbar += channel_icon('imoveis')
       when 'delivery'
+        navbar += channel_icon('delivery')
         navbar += channel_icon('imoveis')
         navbar += channel_icon('comercio')
       end
@@ -29,9 +32,7 @@ module ApplicationHelper
   private
 
   def brand_icon(channel)
-    path = (channel == 'dfaqui') ? root_path : "/#{channel}"
-
-    link_to path do
+    link_to root_path do
       content_tag(:div, class: 'image') do
         image_tag("#{channel}_brand.svg", class: 'brand-icon')
       end
