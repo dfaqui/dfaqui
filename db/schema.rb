@@ -193,12 +193,14 @@ ActiveRecord::Schema.define(version: 20161025122045) do
   end
 
   create_table "pages", force: :cascade do |t|
-    t.string   "code",       limit: 50,                null: false
-    t.text     "content"
-    t.string   "plugin",     limit: 20,                null: false
-    t.boolean  "status",                default: true, null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.string   "code",       limit: 50,                 null: false
+    t.text     "value",                                 null: false
+    t.string   "condition",  limit: 100
+    t.boolean  "status",                 default: true, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.index ["code"], name: "index_pages_on_code", using: :btree
+    t.index ["condition"], name: "index_pages_on_condition", using: :btree
   end
 
   create_table "payment_methods", force: :cascade do |t|

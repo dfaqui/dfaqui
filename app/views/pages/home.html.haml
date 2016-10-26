@@ -9,9 +9,13 @@
     = image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
 
     .ui.text.container
-      %h1.ui.inverted.header Onde você está?
-      = select_tag :cidade, options_from_collection_for_select(City.all, :friendly_id, :name),
-        include_blank: 'Selecione', class: 'ui dropdown'
+      = simple_form_for :pages, url: pages_dynamic_content_path, remote: true,
+          format: :js do
+
+        %h1.ui.inverted.header Onde você está?
+        = select_tag :cidade, options_from_collection_for_select(City.all, :friendly_id, :name),
+          include_blank: 'Selecione', class: 'ui dropdown',
+          onchange: '$(this.form).submit();'
 
     -# %a{ href: '#section-two', 'data-toggle': 'slide' }
       = image_tag 'home/arrow.svg', class: 'arrow-slide'
@@ -20,7 +24,7 @@
   .ui.centered.grid
     .ui.container
       .ui.horizontal.divider
-        .ui.header.title O DF todo aqui
+        .ui.header.title#home-title O DF todo aqui
       .ui.text.container
         .header.sub
           Se você procura por imóveis, estabelecimentos nas proximidades ou tudo
@@ -49,7 +53,10 @@
           %br
           Desde uma casa para alugar, um saboroso sushi ou uma lavanderia.
 
-      = image_tag 'home/pin_servicos.png', class: 'pin-servico'
+      = link_to 'http://tour.dfaqui.com/as/aereas/8/index.html?s=pano11&h=-108.6257&v=0.0000&f=56.2283&skipintro&norotation',
+        id: 'home-pin-link' do
+
+        = image_tag 'home/pin_servicos.png', class: 'pin-servico'
 
 %div{ align: 'center' }
   = image_tag 'home/dfaqui_blue.svg', class: 'footer-brand'
