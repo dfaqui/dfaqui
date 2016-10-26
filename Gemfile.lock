@@ -288,6 +288,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nested_form (0.3.2)
+    newrelic_rpm (3.17.0.325)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
@@ -471,6 +472,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.0.5)
   mini_magick
+  newrelic_rpm
   omniauth-facebook
   omniauth-google-oauth2
   pg (~> 0.18)

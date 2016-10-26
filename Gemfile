@@ -37,6 +37,8 @@ gem 'rails_admin'
 gem 'geocoder'
 gem 'geokit-rails'
 
+gem 'newrelic_rpm'
+
 gem 'dotiw'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
