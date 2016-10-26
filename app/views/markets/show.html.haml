@@ -16,8 +16,7 @@
                   .ui.massive.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1 }
 
               .meta
-                %div{ class: 'ui red empty circular label' }
-                Fechado
+                = open_label(@market)
                 |
                 = @market.customer.full_address
               .description

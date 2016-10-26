@@ -12,4 +12,12 @@ module MarketHelper
 
     link_to(label, path, class: "ui small #{color} button")
   end
+
+  def open_label(market)
+    is_open       = market.is_open?
+    color, label  = is_open ? ['green', 'Aberto'] : ['red', 'Fechado']
+
+    content = content_tag(:div, nil, class: ['ui', "#{color}", 'empty', 'circular', 'label'])
+    content << " #{label}"
+  end
 end

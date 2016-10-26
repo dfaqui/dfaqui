@@ -76,4 +76,24 @@ class Market < ApplicationRecord
   validates :only_delivery, inclusion: [true, false]
   validates :estimated_time, numericality: { only_integer: true }, allow_nil: true
   validates :estimated_time_suffix, length: { maximum: 10 }
+
+  def is_open?
+    return true if self.always_open?
+
+    now = Time.zone.now
+    now_time = now.strftime('%H:%M')
+
+     working_hours  = self.
+                      working_hours.
+                      where("'#{now.wday}' = ANY(days)").
+                      where("'#{now_time}' BETWEEN opening_time AND closing_time").
+                       pluck(:opening_time, :closing_time).first
+
+     if working_hours
+       {
+         opening_time: working_hours[0].strftime('%H:%M'),
+         closing_time: working_hours[1].strftime('%H:%M')
+       }
+     end
+  end
 end
