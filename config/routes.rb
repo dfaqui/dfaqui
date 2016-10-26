@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post 'pages/dynamic_content'
 
   # solucao paliativa até os links do tour serem atualizados
-  get '/imoveis/:region/site/lista', to: redirect { |params, request|
+  get '/site/lista', to: redirect { |params, request|
     type                = [:residential, :commercial]
     situation           = [:release, :sale, :rent]
 
