@@ -30,6 +30,7 @@ gem 'enumerize'
 gem 'figaro'
 gem 'friendly_id'
 gem 'has_scope'
+gem 'skylight'
 
 gem 'simple_form'
 gem 'rails_admin'
