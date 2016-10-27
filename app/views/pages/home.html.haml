@@ -6,6 +6,9 @@
     class: 'background-video', autoplay: true, loop: true
 
   .ui.vertical.center.aligned.segment#form-section
+    = link_to 'ANUNCIE', new_advertisement_path, remote: true,
+      class: 'ui primary advertise button'
+
     = image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
 
     .ui.text.container

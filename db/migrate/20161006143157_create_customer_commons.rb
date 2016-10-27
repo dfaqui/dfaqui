@@ -6,7 +6,6 @@ class CreateCustomerCommons < ActiveRecord::Migration[5.0]
       t.string :logo, limit: 100
       t.string :image_secure_token, limit: 255
       t.string :plugin, null: false, limit: 20
-      t.boolean :status, null: false, default: true
 
       t.timestamps
     end

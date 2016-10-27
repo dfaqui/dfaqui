@@ -20,10 +20,20 @@ pt-BR:
       tag: 'Atributo'
       user: 'Usuário'
       working_hour: 'Expediente'
+    attributes:
+      customers:
+        name: 'Razão social'
+        customer_type: 'Tipo'
+        document: 'CPF/CNPJ'
+        address_complement: 'Complemento'
+        owner_name: 'Nome do responsável'
+        owner_email: 'E-mail do responsável'
+        owner_phone: 'Telefone do responsável'
+        contact_email: 'E-mail para contato'
+        contact_phone: 'Telefone para contato'
   enumerize:
     customer_common:
       plugin:
-        delivery: 'Delivery'
         market: 'Comércio'
         property: 'Imóveis'
     customer:

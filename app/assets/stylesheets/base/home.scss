@@ -23,6 +23,18 @@ $font-color: #284762;
     left: 0;
     right: 0;
 
+    .advertise.button {
+      position: absolute;
+      top: 0.6em;
+      right: 2em;
+      font-family: $futura-font;
+      font-size: 30px;
+      font-weight: 100;
+
+      margin: 0em 0em 0em 0em;
+      padding: 0.2em 0.6em 0.2em;
+    }
+
     .dropdown.icon {
       color: #69a1be;
       opacity: 1;

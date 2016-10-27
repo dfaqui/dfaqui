@@ -1,0 +1,71 @@
+#advertisement-form
+  .ui.small.long.advertisement.modal
+    .content
+      .ui.center.aligned.container
+        %h1.ui.header
+          Olá!
+          .sub.header
+            Utilize esse espaço para tratar conosco sobre anúncios
+            %br
+            em nosso site ou assuntos relacionados. Por favor,
+            %br
+            preencha o formulário abaixo que entraremos
+            %br
+            em contato em breve.
+
+        .ui.divider
+
+      = simple_form_for @customer_common, url: advertisements_path, remote: true,
+          html: { class: 'ui form' } do |f|
+
+        #error-messages
+
+        = f.simple_fields_for :customers do |c|
+          .ui.center.aligned.container
+            .sub.header Em qual canal deseja anunciar?
+
+          .field
+            = f.select :plugin, CustomerCommon.plugin.options, {},
+              { class: 'ui dropdown' }
+
+          .ui.divider
+
+          .two.fields
+            .field
+              = c.label :customer_type, 'Tipo'
+              = c.select :customer_type, Customer.customer_type.options, {},
+                { id: 'customer_customer_type', class: 'ui dropdown' }
+
+            .field
+              = c.label :document, 'CPF'
+              = c.input_field :document, class: 'person_document'
+
+          .field
+            = c.label :name, 'Razão Social'
+            = c.input_field :name,
+              placeholder: 'Digite a razão social ou seu nome'
+
+          .field
+            = c.label :owner_name, 'Responsável'
+            = c.input_field :owner_name, placeholder: 'Nome do responsável'
+
+          .two.fields
+            .field
+              = c.label :owner_phone, 'Telefone do responsável'
+              = c.input_field :owner_phone, class: 'phone',
+                placeholder: 'Tefone para uso interno'
+
+            .field
+              = c.label :owner_email, 'E-mail do responsável'
+              = c.input_field :owner_email,
+                placeholder: 'Digite o e-mail do responsável'
+
+          .ui.divider
+
+          .field
+            = f.button :button, class: 'ui primary button' do
+              %i.send.icon
+              Enviar
+
+:javascript
+  $('.ui.dropdown').dropdown({ placeholder: false });

@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
+  resources :advertisements, only: [:new, :create]
+
   resources :deliveries, path: :delivery, only: [:index], controller: 'markets' do
     get 'show', path: :detalhes
     collection { get 'list', path: :listagem }

@@ -1,14 +1,14 @@
 class CustomerCommon < ApplicationRecord
+  extend Enumerize
   default_scope { order(:fantasy_name) }
 
-  extend Enumerize
   mount_uploader :logo, CustomerCommonUploader
 
-  enumerize :plugin, in: [ :delivery, :market, :property ]
+  enumerize :plugin, in: [ :market, :property ]
 
   has_many :customers, dependent: :destroy
+  accepts_nested_attributes_for :customers
 
   validates :fantasy_name, presence: true, length: { maximum: 120 }
   validates :plugin, presence: true, length: { maximum: 20 }
-  validates :status, presence: true
 end
