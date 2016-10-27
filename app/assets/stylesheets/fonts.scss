@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'futura_condensedmedium';
+    src: asset-url('futura-condensed-webfont.woff2') format('woff2'),
+         asset-url('futura-condensed-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'futura_condensed_lightregular';
+    src: asset-url('futura-condensedlight-webfont.woff2') format('woff2'),
+         asset-url('futura-condensedlight-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

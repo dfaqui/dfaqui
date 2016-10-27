@@ -1,3 +1,7 @@
+$futura-font: 'futura_condensedmedium';
+$futura-light-font: 'futura_condensed_lightregular';
+$font-color: #284762;
+
 .dfaqui-light {
   margin-top: 10em;
   width: 300px;
@@ -29,8 +33,9 @@
     padding-top: 5em;
 
     .ui.header {
-      font-weight: 200;
-      font-size: 35px;
+      font-family: $futura-font;
+      font-weight: 100;
+      font-size: 45px;
     }
   }
 
@@ -47,11 +52,17 @@
   margin-top: 50px;
 
   .header.title {
-    font-size: 50px;
-    color: #284762;
+    font-family: $futura-font;
+    font-size: 60px;
+    color: $font-color;
   }
 
-  .header.sub { font-size: 16px }
+  .header.sub {
+    font-family: $futura-light-font;
+    color: $font-color;
+    font-size: 20px;
+  }
+
   .stackable.grid { padding-top: 50px }
   .channel-link { cursor: pointer }
 }
@@ -60,11 +71,17 @@
   margin-top: 50px;
 
   .header.title {
-    font-size: 50px;
-    color: #284762;
+    font-family: $futura-font;
+    font-size: 60px;
+    color: $font-color;
   }
 
-  .header.sub { font-size: 16px }
+  .header.sub {
+    font-family: $futura-light-font;
+    color: $font-color;
+    font-size: 20px;
+  }
+
   .pin-servico { padding-top: 3em }
 }
 
@@ -72,6 +89,12 @@
 .footer-brand {
   margin-top: 50px;
   width: 150px;
+}
+
+.copyright {
+  font-family: $futura-light-font;
+  color: $font-color;
+  font-size: 12px;
 }
 
 .footer.segment {
