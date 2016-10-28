@@ -71,32 +71,31 @@ ActiveRecord::Schema.define(version: 20161025122045) do
   end
 
   create_table "customer_commons", force: :cascade do |t|
-    t.string   "fantasy_name",       limit: 120,                null: false
+    t.string   "fantasy_name",       limit: 120, null: false
     t.text     "description"
     t.string   "logo",               limit: 100
     t.string   "image_secure_token", limit: 255
-    t.string   "plugin",             limit: 20,                 null: false
-    t.boolean  "status",                         default: true, null: false
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.string   "plugin",             limit: 20,  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string   "name",               limit: 120
-    t.integer  "customer_common_id",                            null: false
-    t.integer  "block_id",                                      null: false
-    t.integer  "customer_type",                                 null: false
-    t.string   "document",           limit: 20,                 null: false
+    t.string   "name",               limit: 120,              null: false
+    t.integer  "customer_common_id",                          null: false
+    t.integer  "block_id"
+    t.integer  "customer_type",                               null: false
+    t.string   "document",           limit: 20,               null: false
     t.string   "address_complement", limit: 255
-    t.string   "owner_name",         limit: 120,                null: false
-    t.string   "owner_email",        limit: 100,                null: false
+    t.string   "owner_name",         limit: 120,              null: false
+    t.string   "owner_email",        limit: 100,              null: false
     t.string   "owner_phone",        limit: 20
-    t.string   "contact_email",      limit: 100,                null: false
-    t.string   "contact_phone",                  default: [],                array: true
+    t.string   "contact_email",      limit: 100
+    t.string   "contact_phone",                  default: [],              array: true
     t.string   "additional_info",    limit: 255
-    t.boolean  "status",                         default: true, null: false
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.integer  "status",                         default: 1,  null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.index ["block_id"], name: "index_customers_on_block_id", using: :btree
     t.index ["customer_common_id"], name: "index_customers_on_customer_common_id", using: :btree
   end
@@ -225,27 +224,27 @@ ActiveRecord::Schema.define(version: 20161025122045) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.integer  "customer_id",                                      null: false
-    t.integer  "block_id",                                         null: false
+    t.integer  "customer_id",                                     null: false
+    t.integer  "block_id",                                        null: false
     t.string   "address_complement",   limit: 255
-    t.integer  "property_type",                                    null: false
-    t.integer  "commercial_situation",                             null: false
-    t.integer  "release_status",                                   null: false
+    t.integer  "property_type",                                   null: false
+    t.integer  "commercial_situation",                            null: false
+    t.integer  "release_status",                                  null: false
     t.text     "description"
     t.float    "price"
     t.float    "tax"
-    t.integer  "area",                                             null: false
+    t.integer  "area",                                            null: false
     t.float    "square_meter_price"
-    t.integer  "rooms",                                            null: false
-    t.integer  "bathrooms",                                        null: false
+    t.integer  "rooms",                                           null: false
+    t.integer  "bathrooms",                                       null: false
     t.integer  "parking_spaces"
-    t.string   "floor",                limit: 2044
+    t.string   "floor",                limit: 45
     t.integer  "unit"
     t.float    "maintenance_fee"
     t.integer  "sun_position"
-    t.boolean  "status",                            default: true, null: false
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.boolean  "status",                           default: true, null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.index ["block_id"], name: "index_properties_on_block_id", using: :btree
     t.index ["customer_id"], name: "index_properties_on_customer_id", using: :btree
   end

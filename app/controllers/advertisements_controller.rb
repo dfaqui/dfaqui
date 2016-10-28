@@ -7,10 +7,11 @@ class AdvertisementsController < ApplicationController
   end
 
   def create
-    @customer_common = CustomerCommon.new(allowed_params)
-    @customer_common.fantasy_name = @customer_common.customers.first.name
+    @customer_common      = CustomerCommon.new(allowed_params)
+    generated_password    = Devise.friendly_token.first(10)
 
-    if @customer_common.save
+    if @customer_common.create_advertisement_customer(generated_password)
+      AdvertisementMailer.new_customer(@customer_common.customers.first, generated_password).deliver
       partial = 'create'
     else
       @customer_common.errors.delete(:fantasy_name)

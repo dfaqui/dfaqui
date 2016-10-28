@@ -11,4 +11,24 @@ class CustomerCommon < ApplicationRecord
 
   validates :fantasy_name, presence: true, length: { maximum: 120 }
   validates :plugin, presence: true, length: { maximum: 20 }
+
+  def create_advertisement_customer(generated_password)
+    customer          = self.customers.first
+    customer.status   = Customer.status.pending_approval.value
+    self.fantasy_name = customer.name
+
+    user              = User.new
+    user.name         = customer.owner_name
+    user.email        = customer.owner_email
+    user.password     = generated_password
+
+    ActiveRecord::Base.transaction do
+      self.save!
+      user.save!
+
+      user.add_role self.plugin, customer
+    end
+
+  rescue ActiveRecord::RecordInvalid => exception
+  end
 end
