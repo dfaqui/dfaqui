@@ -1,5 +1,5 @@
 %tr
-  %td= role.resource.name
+  %td= role.resource.name rescue '-'
   %td= t("enumerize.role.role.#{role.name}")
   %td
     = link_to admin_user_role_path(@user.id, role.id),
