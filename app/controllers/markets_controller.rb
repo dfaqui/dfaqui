@@ -16,7 +16,7 @@ class MarketsController < ApplicationController
   end
 
   def list
-    @markets = apply_scopes(Market).by_channel(current_channel)
+    @markets = apply_scopes(Market).by_channel(current_channel).active
   end
 
   def show

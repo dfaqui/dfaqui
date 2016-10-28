@@ -40,6 +40,10 @@ pt-BR:
       customer_type:
         person: 'Pessoa física'
         company: 'Pessoa jurídica'
+      status:
+        inactive: 'Desabilitado'
+        active: 'Ativo'
+        pending_approval: 'Aguardando aprovação'
     property:
       property_type:
         residential: 'Residencial'

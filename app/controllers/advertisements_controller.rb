@@ -33,7 +33,8 @@ class AdvertisementsController < ApplicationController
         :document,
         :owner_name,
         :owner_phone,
-        :owner_email
+        :owner_email,
+        :status
       ]
     )
   end

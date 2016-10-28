@@ -71,13 +71,14 @@ ActiveRecord::Schema.define(version: 20161025122045) do
   end
 
   create_table "customer_commons", force: :cascade do |t|
-    t.string   "fantasy_name",       limit: 120, null: false
+    t.string   "fantasy_name",       limit: 120,                null: false
     t.text     "description"
     t.string   "logo",               limit: 100
     t.string   "image_secure_token", limit: 255
-    t.string   "plugin",             limit: 20,  null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "plugin",             limit: 20,                 null: false
+    t.boolean  "status",                         default: true, null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
   end
 
   create_table "customers", force: :cascade do |t|

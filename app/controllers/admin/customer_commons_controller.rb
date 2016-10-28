@@ -2,7 +2,8 @@ class Admin::CustomerCommonsController < Admin::BaseController
   before_action :set_customer_common, only: [:show, :edit, :update, :destroy]
 
   def index
-    @customers = CustomerCommon.all
+    allowed_customers = Customer.by_user_role(current_user)
+    @customers = CustomerCommon.joins(:customers).where('customers.id': allowed_customers)
   end
 
   def show

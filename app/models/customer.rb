@@ -2,6 +2,14 @@ class Customer < ApplicationRecord
   extend Enumerize
   default_scope { order(:name) }
 
+  scope :by_user_role, -> (user) do
+    if user.has_role? :admin
+      pluck(:id)
+    else
+      with_roles([:market, :property], user).pluck(:id)
+    end
+  end
+
   scope :properties, -> (user) do
     if user.has_role? :admin
       includes(:customer_common).where('customer_commons.plugin': 'property')
@@ -40,11 +48,29 @@ class Customer < ApplicationRecord
   validates :owner_phone, length: { maximum: 20 }
   validates :contact_email, length: { maximum: 100 }
   validates :additional_info, length: { maximum: 255 }
-  validates :status, presence: true, numericality: { only_integer: true }
+  # validates :status, inclusion: { in: [0, 1, 2] }
 
   resourcify
 
   def full_address
-    "#{self.block.district.name} Bloco #{self.block.name} #{self.address_complement}"
+    template = ''
+
+    if self.block
+      template = "%{district} %{block} %{complement} %{city}"
+
+      district    = self.block.district.name
+      block       = self.block.name
+      complement  = self.address_complement
+      city        = self.block.district.district_group.city.name
+
+      template = template % {
+        district: district,
+        block: "Bloco #{block}",
+        complement: complement,
+        city: "(#{city})"
+      }
+    end
+
+    template
   end
 end

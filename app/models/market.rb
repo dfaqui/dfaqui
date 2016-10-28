@@ -1,4 +1,8 @@
 class Market < ApplicationRecord
+  scope :active, -> do
+    where(customer: Customer.with_status(:active).pluck(:id))
+  end
+
   scope :by_channel, -> channel do
     if channel == 'comercio'
       where(only_delivery: false)

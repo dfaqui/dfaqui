@@ -58,10 +58,9 @@
                   %i.angle.right.icon
                   Administração
 
-              - if current_user.has_role? :admin
-                = link_to admin_customer_commons_path, class: 'item' do
-                  %i.angle.right.icon
-                  Clientes
+              = link_to admin_customer_commons_path, class: 'item' do
+                %i.angle.right.icon
+                Clientes
 
               - if (current_user.has_role? :admin) || (current_user.has_role? :market, :any)
                 = link_to admin_markets_path, class: 'item' do

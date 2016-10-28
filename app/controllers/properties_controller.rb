@@ -16,10 +16,10 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = Property.find(params[:property_id])
+    @property   = Property.find(params[:property_id])
   end
 
   def list
-    @properties = apply_scopes(Property).all
+    @properties = apply_scopes(Property).active
   end
 end

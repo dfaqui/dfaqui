@@ -16,7 +16,7 @@
       %td= @customer.name
     %tr
       %td Tipo
-      %td= @customer.customer_type
+      %td= @customer.customer_type_text
     %tr
       %td Documento
       %td= @customer.document
@@ -26,13 +26,13 @@
         %td= @customer.additional_info
     %tr
       %td.four.wide.column Cidade
-      %td= @customer.block.district.district_group.city.name
+      %td= @customer.block.district.district_group.city.name rescue '-'
     %tr
       %td.four.wide.column Quadra
-      %td= @customer.block.district.name
+      %td= @customer.block.district.name rescue '-'
     %tr
       %td.four.wide.column Bloco
-      %td= @customer.block.name
+      %td= @customer.block.name rescue '-'
     %tr
       %td.four.wide.column Complemento
       %td= @customer.address_complement
@@ -53,7 +53,7 @@
       %td= @customer.contact_phone
     %tr
       %td Ativo?
-      %td= @customer.status
+      %td= @customer.status_text
     %tr
       %td Data de criação
       %td= @customer.created_at

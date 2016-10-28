@@ -65,7 +65,8 @@ class Admin::CustomersController < Admin::BaseController
       :owner_phone,
       :contact_email,
       :contact_phone,
-      :additional_info
+      :additional_info,
+      :status
     )
   end
 
