@@ -1,2 +1,3 @@
-$('#home-title').html("#{@title}");
-$('#home-pin-link').attr('href', "#{@link}");
+- if @link.present?
+  $('#home-title').html("#{@title}");
+  $('#home-pin-link').attr('href', "#{@link}");

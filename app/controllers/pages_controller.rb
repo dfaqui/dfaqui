@@ -8,6 +8,8 @@ class PagesController < ApplicationController
     condition = (params[:cidade].present?) ? params[:cidade] : 'default'
 
     @title = Page.where(code: 'home-title', condition: condition).pluck(:value).first
-    @link = Page.where(code: 'home-pin-link', condition: condition).pluck(:value).first.html_safe
+    @link = Page.where(code: 'home-pin-link', condition: condition).pluck(:value).first
+
+    @link = @link.html_safe if @link
   end
 end
