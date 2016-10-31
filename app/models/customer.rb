@@ -52,6 +52,25 @@ class Customer < ApplicationRecord
 
   resourcify
 
+  def create_advertisement_customer(generated_password)
+    self.status       = Customer.status.pending_approval
+    self.fantasy_name = self.name
+
+    user              = User.new
+    user.name         = self.owner_name
+    user.email        = self.owner_email
+    user.password     = generated_password
+
+    ActiveRecord::Base.transaction do
+      self.save!
+      user.save!
+
+      user.add_role self.plugin, self
+    end
+
+    rescue ActiveRecord::RecordInvalid => exception
+  end
+
   def full_address
     template = ''
 
