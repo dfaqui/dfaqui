@@ -4,10 +4,10 @@
       .ui.container
         .ui.items
           .item
-            = image_tag @market.customer.customer_common.logo, class: 'ui rounded image'
+            = image_tag @market.customer.logo, class: 'ui rounded image'
             .content
               .header
-                = @market.customer.customer_common.fantasy_name
+                = @market.customer.fantasy_name
 
                 = link_to favorites_path(id: @market.id, type: :Market), method: :post,
                     remote: true do

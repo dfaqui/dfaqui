@@ -1,4 +1,9 @@
 class Market < ApplicationRecord
+  scope :by_role, -> (user) do
+    allowed_customers = Customer.markets(user).pluck(:id)
+    Market.where(customer: allowed_customers)
+  end
+
   scope :active, -> do
     where(customer: Customer.with_status(:active).pluck(:id))
   end
@@ -54,23 +59,23 @@ class Market < ApplicationRecord
   belongs_to :customer
   belongs_to :segment
 
-  has_many :cities, through: :city_markets
+  has_many :cities, through: :city_markets, dependent: :destroy
   has_many :city_markets
 
   has_many :favorites, as: :favoritable
 
-  has_many :products
+  has_many :products, dependent: :destroy
 
-  has_many :categories, through: :category_markets
+  has_many :categories, through: :category_markets, dependent: :destroy
   has_many :category_markets
 
-  has_many :payment_methods, through: :market_payment_methods
+  has_many :payment_methods, through: :market_payment_methods, dependent: :destroy
   has_many :market_payment_methods
 
-  has_many :specialities, through: :market_specialities
+  has_many :specialities, through: :market_specialities, dependent: :destroy
   has_many :market_specialities
 
-  has_many :working_hours
+  has_many :working_hours, dependent: :destroy
 
   validates :customer, presence: true
   validates :segment, presence: true

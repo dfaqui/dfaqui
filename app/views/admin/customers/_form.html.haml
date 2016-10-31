@@ -1,15 +1,16 @@
-= simple_form_for([:admin, :customer_common, @customer],
-    html: { class: 'ui form' }) do |f|
-
+= simple_form_for([:admin, @customer], html: { class: 'ui form' }) do |f|
   .ui.dividing.header Dados gerais
 
-  - column_count = (@customer.customer_common.plugin.property?) ? 'four' : 'three'
-
-  %div{ class: "#{column_count} fields" }
+  .two.fields
     .required.field
-      = f.label :name, 'Nome'
+      = f.label :fantasy_name, 'Nome fantasia'
+      = f.input_field :fantasy_name
+
+    .required.field
+      = f.label :name, 'Razão social'
       = f.input_field :name
 
+  .two.fields
     .required.field
       = f.label :customer_type, 'Tipo'
       = f.select :customer_type, Customer.customer_type.options, {},
@@ -19,10 +20,23 @@
       = f.label :document, 'CPF'
       = f.input_field :document, class: 'person_document'
 
-    - if @customer.customer_common.plugin.property?
-      .required.field
-        = f.label :additional_info, 'CRECI'
-        = f.input_field :additional_info
+  .two.fields
+    .required.field
+      = f.label :plugin, 'Canal'
+      = f.select :plugin, Customer.plugin.options, {}, { class: 'ui dropdown' }
+
+    .field
+      = f.label :logo, 'Logomarca'
+      = f.file_field :logo
+
+  .field
+    = f.label :description, 'Descrição'
+    = f.input :description, as: :text, label: false
+
+  -# - if @customer.plugin.property?
+    .required.field
+      = f.label :additional_info, 'CRECI'
+      = f.input_field :additional_info
 
   .ui.dividing.header Dados para contato
 
@@ -56,8 +70,7 @@
 
   .field
     = link_to 'Adicionar telefone',
-      add_contact_phone_admin_customer_common_customers_path(@customer.customer_common_id),
-      remote: true
+      add_contact_phone_admin_customers_path, remote: true
 
   .ui.dividing.header Dados de localização
 

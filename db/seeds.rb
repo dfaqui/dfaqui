@@ -9,7 +9,7 @@
 admin = User.create(
   name: 'Administrador',
   email: 'admin@dfaqui.com',
-  password: 'admin'
+  password: 'admin123'
 )
 
 admin.add_role :admin

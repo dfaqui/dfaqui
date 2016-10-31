@@ -1,4 +1,5 @@
 %tr
+  %td= customer.fantasy_name
   %td= customer.name
   %td= customer.full_address
   %td= customer.status_text
@@ -6,18 +7,15 @@
     .ui.icon.top.right.pointing.dropdown.primary.tiny.button
       %i.setting.icon
       .menu
-        = link_to admin_customer_common_customer_path(customer.customer_common_id, customer.id),
-            class: 'item' do
+        = link_to admin_customer_path(customer.id), class: 'item' do
           %i.search.icon
           Detalhes
 
-        = link_to edit_admin_customer_common_customer_path(customer.customer_common_id, customer.id),
-            class: 'item' do
+        = link_to edit_admin_customer_path(customer.id), class: 'item' do
           %i.edit.icon
           Editar
 
-        = link_to admin_customer_common_customer_path(customer.customer_common_id, customer.id),
-            method: :delete, class: 'item',
-            data: { confirm: 'Tem certeza de que deseja remover essa filial?' } do
+        = link_to admin_customer_path(customer.id), method: :delete, class: 'item',
+            data: { confirm: 'Tem certeza de que deseja remover esse cliente?' } do
           %i.remove.icon
           Remover

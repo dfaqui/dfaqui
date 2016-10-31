@@ -2,8 +2,7 @@ class Admin::MarketsController < Admin::BaseController
   before_action :set_market, only: [:edit, :update, :destroy]
 
   def index
-    allowed_customers = Customer.markets(current_user).to_a
-    @markets = Market.where(customer: allowed_customers)
+    @markets = Market.by_role(current_user)
   end
 
   def show

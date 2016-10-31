@@ -1,30 +1,30 @@
 class Admin::CustomersController < Admin::BaseController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  before_action :set_customer_common, only: [:index, :new, :create, :destroy]
 
   def index
-    @customers = @customer_common.customers
+    @customers = Customer.all
   end
 
   def show
   end
 
   def new
-    @customer = @customer_common.customers.build
+    @customer = Customer.new
+    @customer.plugin = 'market' # Tornar dinâmico
   end
 
   def edit
   end
 
   def create
-    @customer = @customer_common.customers.new(allowed_params)
+    @customer = Customer.new(allowed_params)
     @customer.contact_phone = params[:contact_phone].select{ |v| !v.empty? }
 
     if @customer.save
-      flash[:notice] = 'Filial cadastrada com sucesso'
-      redirect_to admin_customer_common_customers_path(@customer_common.id)
+      flash[:notice] = 'Cliente cadastrado com sucesso'
+      redirect_to admin_customers_path
     else
-      flash[:error] = 'Erro ao cadastrar filial'
+      flash[:error] = 'Erro ao cadastrar cliente'
       render :new
     end
   end
@@ -33,19 +33,18 @@ class Admin::CustomersController < Admin::BaseController
     @customer.contact_phone = params[:contact_phone].select{ |v| !v.empty? }
 
     if @customer.update(allowed_params)
-      flash[:notice] = 'Filial editada com sucesso'
-      redirect_to admin_customer_common_customers_path(@customer.customer_common_id)
+      flash[:notice] = 'Cliente editada com sucesso'
+      redirect_to admin_customers_path
     else
-      flash[:error] = 'Erro ao editar filial'
+      flash[:error] = 'Erro ao editar cliente'
       render :edit
     end
   end
 
   def destroy
-    @customer_common.customers.destroy(params[:id])
-
-    flash[:notice] = 'Filial removida com sucesso'
-    redirect_to admin_customer_common_customers_path(@customer_common.id)
+    @customer.destroy
+    flash[:notice] = 'Cliente removido com sucesso'
+    redirect_to admin_customers_path
   end
 
   def add_contact_phone
@@ -56,6 +55,9 @@ class Admin::CustomersController < Admin::BaseController
   def allowed_params
     params.require(:customer).permit(
       :name,
+      :fantasy_name,
+      :description,
+      :logo,
       :block_id,
       :customer_type,
       :document,
@@ -66,15 +68,11 @@ class Admin::CustomersController < Admin::BaseController
       :contact_email,
       :contact_phone,
       :additional_info,
-      :status
+      :plugin
     )
   end
 
   def set_customer
     @customer = Customer.find(params[:id])
-  end
-
-  def set_customer_common
-    @customer_common = CustomerCommon.find(params[:customer_common_id])
   end
 end

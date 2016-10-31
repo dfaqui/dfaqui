@@ -50,10 +50,8 @@ Rails.application.routes.draw do
   scope :gestao, module: :admin, as: :admin do
     get '', to: 'dashboards#index'
 
-    resources :customer_commons, path: :clientes do
-      resources :customers, path: :filiais do
-        collection { get 'add_contact_phone' }
-      end
+    resources :customers, path: :clientes do
+      collection { get 'add_contact_phone' }
     end
 
     resources :dashboards, only: [:index]

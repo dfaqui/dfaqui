@@ -7,7 +7,8 @@ class ProductUploader < CarrierWave::Uploader::Base
   process :resize_to_fill => [180, 120]
 
   def store_dir
-    "comercio/#{model.market_id}/produto"
+    path = "comercio/#{model.market_id}/produto"
+    path = "development/#{path}" if Rails.env.development?
   end
 
   def default_url
