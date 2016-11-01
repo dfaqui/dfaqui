@@ -64,6 +64,9 @@ Rails.application.routes.draw do
           controller: 'markets/payment_methods',
           only: [:index, :new, :create, :destroy]
 
+        resources :products, path: :produtos, controller: 'markets/products',
+          except: [:show]
+
         resources :specialities, path: :especialidades,
           controller: 'markets/specialities', only: [:new, :create, :destroy]
 

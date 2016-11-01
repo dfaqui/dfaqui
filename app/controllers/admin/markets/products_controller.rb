@@ -1,5 +1,5 @@
 class Admin::Markets::ProductsController < Admin::BaseController
-  before_action :set_market, only: [:index, :new, :create]
+  before_action :set_market, only: [:index, :new, :create, :edit]
   before_action :set_product, only: [:edit, :update, :destroy]
 
   def index

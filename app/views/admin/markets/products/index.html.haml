@@ -1,8 +1,4 @@
-%h2.ui.header
-  = @market.customer.name
-  .sub.header Gestão de produtos
-
-.ui.divider
+= render 'admin/markets/market_menu'
 
 = link_to new_admin_market_product_path(@market.id), class: 'ui primary button' do
   %i.plus.icon

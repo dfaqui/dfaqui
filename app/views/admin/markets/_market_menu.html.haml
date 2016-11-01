@@ -23,7 +23,7 @@
     %i.payment.icon
     .content
       .title Forma de pagamento
-  %a.step
+  = link_to admin_market_products_path(@market.id), class: 'step' do
     %i.shopping.basket.icon
     .content
       .title Produtos
