@@ -1,18 +1,9 @@
-%h2.ui.header
-  = @market.customer.name
-  .sub.header Gestão de tipos
+= render 'admin/markets/market_menu'
 
-.ui.divider
+.ui.text.container
+  - if @market.categories.any?
+    .ui.segments
+      = render @market.categories
 
-= link_to new_admin_market_category_path(@market.id),
-    class: 'ui primary button' do
-  %i.plus.icon
-  Novo
-
-%table.ui.striped.table
-  %thead
-    %tr
-      %th Nome
-      %th Ação
-  %tbody
-    = render @categories
+  = link_to 'Adicionar tipo', new_admin_market_category_path(@market.id),
+    id: 'category-btn', remote: true

@@ -1,0 +1,59 @@
+= render 'market_menu'
+
+%h2.ui.header= @market.customer.fantasy_name
+.ui.divider
+
+%table.ui.definition.table
+  %tbody
+    %tr
+      %td.four.wide.column Nome fantasia
+      %td= @market.customer.fantasy_name
+    %tr
+      %td.four.wide.column Razão social
+      %td= @market.customer.name
+    %tr
+      %td Tipo
+      %td= @market.customer.customer_type_text
+    %tr
+      %td Documento
+      %td= @market.customer.document
+    - if @market.customer.plugin.property?
+      %tr
+        %td CRECI
+        %td= @market.customer.additional_info
+    %tr
+      %td.four.wide.column Cidade
+      %td= @market.customer.block.district.district_group.city.name rescue '-'
+    %tr
+      %td.four.wide.column Quadra
+      %td= @market.customer.block.district.name rescue '-'
+    %tr
+      %td.four.wide.column Bloco
+      %td= @market.customer.block.name rescue '-'
+    %tr
+      %td.four.wide.column Complemento
+      %td= @market.customer.address_complement
+    %tr
+      %td.four.wide.column Nome do responsável
+      %td= @market.customer.owner_name
+    %tr
+      %td.four.wide.column E-mail do responsável
+      %td= @market.customer.owner_email
+    %tr
+      %td.four.wide.column Telefone do responsável
+      %td= @market.customer.owner_phone
+    %tr
+      %td.four.wide.column E-mail para contato
+      %td= @market.customer.contact_email
+    %tr
+      %td.four.wide.column Telefone para contato
+      %td= @market.customer.contact_phone
+    %tr
+      %td Ativo?
+      %td= @market.customer.status_text
+    %tr
+      %td Data de criação
+      %td= @market.customer.created_at
+    %tr
+      %td Última atualização
+      %td= @market.customer.updated_at

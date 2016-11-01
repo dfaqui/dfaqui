@@ -50,36 +50,19 @@ Rails.application.routes.draw do
   scope :gestao, module: :admin, as: :admin do
     get '', to: 'dashboards#index'
 
-    resources :customers, path: :clientes do
+    resources :customers, path: :clientes, shallow: true do
       collection { get 'add_contact_phone' }
+
+      resources :markets, path: :comercio do
+        resources :categories, path: :tipos, controller: 'markets/categories',
+          only: [:index, :new, :create, :destroy]
+
+        resources :specialities, path: :especialidades,
+          controller: 'markets/specialities', only: [:new, :create, :destroy]
+      end
     end
 
     resources :dashboards, only: [:index]
-
-    resources :markets, path: :comercios do
-      resources :categories, path: :tipos, only: [:index, :new, :create, :destroy],
-        controller: 'markets/categories' do
-
-          resources :specialities, path: :especialidades,
-            only: [:index, :new, :create, :destroy],
-            controller: 'markets/specialities'
-
-        end
-
-      resources :cities, path: :locais_entrega,
-        only: [:index, :new, :create, :destroy],
-        controller: 'markets/cities'
-
-      resources :payment_methods, path: :formas_pagamento,
-        only: [:index, :new, :create, :destroy],
-        controller: 'markets/payment_methods'
-
-      resources :products, path: :produtos, controller: 'markets/products'
-
-      resources :working_hours, path: :expediente,
-        only: [:index, :new, :edit, :create, :update, :destroy],
-        controller: 'markets/working_hours'
-    end
 
     resources :properties, path: :imoveis do
       resources :property_images, path: :imagens

@@ -1,5 +1,5 @@
 class Admin::MarketsController < Admin::BaseController
-  before_action :set_market, only: [:edit, :update, :destroy]
+  before_action :set_market, only: [:show, :edit, :update, :destroy]
 
   def index
     @markets = Market.by_role(current_user)
@@ -17,10 +17,11 @@ class Admin::MarketsController < Admin::BaseController
 
   def create
     @market = Market.new(allowed_params)
+    @market.customer_id = params[:customer_id]
 
     if @market.save
       flash[:notice] = 'Comércio cadastrado com sucesso'
-      redirect_to admin_markets_path
+      redirect_to [:admin, @market]
     else
       flash[:error] = 'Erro ao cadastrar comércio'
       render :new
@@ -30,7 +31,7 @@ class Admin::MarketsController < Admin::BaseController
   def update
     if @market.update(allowed_params)
       flash[:notice] = 'Comércio editado com sucesso'
-      redirect_to admin_markets_path
+      redirect_to [:admin, @market]
     else
       flash[:error] = 'Erro ao editar comércio'
       render :edit

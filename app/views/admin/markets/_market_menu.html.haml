@@ -1,0 +1,31 @@
+.ui.seven.mini.steps
+  = link_to admin_market_path(@market.id), class: 'step' do
+    %i.file.text.outline.icon
+    .content
+      .title Informações
+  = link_to edit_admin_market_path(@market.id), class: 'step' do
+    %i.sticky.note.icon
+    .content
+      .title Detalhes
+  = link_to admin_market_categories_path(@market.id), class: 'step' do
+    %i.tags.icon
+    .content
+      .title Tipos e Especialidades
+  %a.step
+    %i.clock.icon
+    .content
+      .title Horário de funcionamento
+  %a.step
+    %i.truck.icon
+    .content
+      .title Locais de entrega
+  %a.step
+    %i.payment.icon
+    .content
+      .title Forma de pagamento
+  %a.step
+    %i.shopping.basket.icon
+    .content
+      .title Produtos
+
+.ui.hidden.divider

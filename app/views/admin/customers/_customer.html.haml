@@ -4,18 +4,18 @@
   %td= customer.full_address
   %td= customer.status_text
   %td
-    .ui.icon.top.right.pointing.dropdown.primary.tiny.button
-      %i.setting.icon
-      .menu
-        = link_to admin_customer_path(customer.id), class: 'item' do
-          %i.search.icon
-          Detalhes
+    .ui.primary.buttons
+      = link_to 'Detalhes', admin_market_path(3), class: 'ui button'
+      .ui.floating.dropdown.icon.button
+        %i.dropdown.icon
+        .menu
+          = link_to edit_admin_customer_path(customer.id), class: 'item' do
+            %i.edit.icon
+            Editar
 
-        = link_to edit_admin_customer_path(customer.id), class: 'item' do
-          %i.edit.icon
-          Editar
+          = link_to admin_customer_path(customer.id), method: :delete,
+              data: { confirm: 'Tem certeza de que deseja remover esse cliente?' },
+              class: 'item' do
 
-        = link_to admin_customer_path(customer.id), method: :delete, class: 'item',
-            data: { confirm: 'Tem certeza de que deseja remover esse cliente?' } do
-          %i.remove.icon
-          Remover
+            %i.delete.icon
+            Remover

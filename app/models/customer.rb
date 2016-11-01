@@ -4,8 +4,6 @@ class Customer < ApplicationRecord
 
   mount_uploader :logo, CustomerUploader
 
-  enumerize :plugin, in: [ :market, :property ]
-
   scope :by_user_role, -> (user) do
     if user.has_role? :admin
       pluck(:id)
@@ -31,6 +29,7 @@ class Customer < ApplicationRecord
     end
   end
 
+  enumerize :plugin, in: [ :market, :property ]
   enumerize :customer_type, in: { person: 1, company: 2 }
   enumerize :status, in: { inactive: 0, active: 1, pending_approval: 2 },
     scope: true, predicates: { prefix: true }
