@@ -1,0 +1,24 @@
+#payment-method-form
+  = simple_form_for [:admin, @market, @market.payment_methods.build],
+      html: { class: 'ui form' } do |f|
+
+    .fields
+      .twelve.wide.field
+        = f.input_field :id, collection: @payment_methods, include_blank: false,
+          class: 'ui search dropdown'
+
+      .four.wide.field
+        = f.button :button, class: 'ui primary button' do
+          %i.save.icon
+          Salvar
+
+        .ui.red.icon.button{ onclick: 'cancel()', 'data-tooltip': 'Cancelar' }
+          %i.remove.icon
+
+:javascript
+  $('.ui.dropdown').dropdown();
+
+  function cancel() {
+    $('#payment-method-form').remove();
+    $('#payment-method-btn').show();
+  }

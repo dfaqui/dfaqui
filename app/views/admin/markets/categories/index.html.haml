@@ -5,5 +5,6 @@
     .ui.segments
       = render @market.categories
 
-  = link_to 'Adicionar tipo', new_admin_market_category_path(@market.id),
-    id: 'category-btn', remote: true
+  .ui.center.aligned.container
+    = link_to 'Adicionar tipo', new_admin_market_category_path(@market.id),
+      id: 'category-btn', remote: true

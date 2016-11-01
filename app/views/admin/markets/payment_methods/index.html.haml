@@ -1,0 +1,11 @@
+= render 'admin/markets/market_menu'
+
+.ui.text.container
+  - if @market.payment_methods.any?
+    .ui.segments
+      = render @market.payment_methods
+
+  .ui.center.aligned.container
+    = link_to 'Adicionar forma de pagamento',
+      new_admin_market_payment_method_path(@market.id),
+      id: 'payment-method-btn', remote: true

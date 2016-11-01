@@ -57,6 +57,10 @@ Rails.application.routes.draw do
         resources :categories, path: :tipos, controller: 'markets/categories',
           only: [:index, :new, :create, :destroy]
 
+        resources :payment_methods, path: :formas_pagamento,
+          controller: 'markets/payment_methods',
+          only: [:index, :new, :create, :destroy]
+
         resources :specialities, path: :especialidades,
           controller: 'markets/specialities', only: [:new, :create, :destroy]
       end

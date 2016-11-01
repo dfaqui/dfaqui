@@ -19,7 +19,7 @@
     %i.truck.icon
     .content
       .title Locais de entrega
-  %a.step
+  = link_to admin_market_payment_methods_path(@market.id), class: 'step' do
     %i.payment.icon
     .content
       .title Forma de pagamento
