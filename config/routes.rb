@@ -66,6 +66,9 @@ Rails.application.routes.draw do
 
         resources :specialities, path: :especialidades,
           controller: 'markets/specialities', only: [:new, :create, :destroy]
+
+        resources :working_hours, path: :horario_funcionamento,
+          controller: 'markets/working_hours', except: [:show]
       end
     end
 

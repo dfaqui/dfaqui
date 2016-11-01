@@ -1,5 +1,5 @@
 class Admin::Markets::WorkingHoursController < Admin::BaseController
-  before_action :set_market, only: [:index, :new, :create]
+  before_action :set_market, only: [:index, :new, :create, :edit]
   before_action :set_working_hour, only: [:edit, :update, :destroy]
 
   def index
@@ -11,6 +11,7 @@ class Admin::Markets::WorkingHoursController < Admin::BaseController
   end
 
   def edit
+    
   end
 
   def create

@@ -11,7 +11,7 @@
     %i.tags.icon
     .content
       .title Tipos e Especialidades
-  %a.step
+  = link_to admin_market_working_hours_path(@market.id), class: 'step' do
     %i.clock.icon
     .content
       .title Horário de funcionamento
