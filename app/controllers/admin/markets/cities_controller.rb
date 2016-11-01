@@ -2,35 +2,26 @@ class Admin::Markets::CitiesController < Admin::BaseController
   before_action :set_market, only: [:index, :new, :create, :destroy]
 
   def index
-    @cities = @market.cities
   end
 
   def new
+    @cities = City.where.not(id: @market.cities)
   end
 
   def create
-    city = City.find(allowed_params[:id])
-
-    if @market.cities.append(city)
-      flash[:notice] = 'Local de entrega adicionado com sucesso'
-      redirect_to admin_market_cities_path(@market.id)
-    else
-      flash[:error] = 'Erro ao adicionar local de entrega'
-      render :new
-    end
+    @market.cities.push(City.find(allowed_params))
+    redirect_to admin_market_cities_path(@market.id)
   end
 
   def destroy
     @market.cities.destroy(params[:id])
-
-    flash[:notice] = 'Local de entrega removido com sucesso'
     redirect_to admin_market_cities_path(@market.id)
   end
 
   private
 
   def allowed_params
-    params.require(:city).permit(:id)
+    params.require(:city).permit(:id)[:id]
   end
 
   def set_market

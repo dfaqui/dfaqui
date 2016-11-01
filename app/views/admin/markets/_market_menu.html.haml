@@ -15,7 +15,7 @@
     %i.clock.icon
     .content
       .title Horário de funcionamento
-  %a.step
+  = link_to admin_market_cities_path(@market.id), class: 'step' do
     %i.truck.icon
     .content
       .title Locais de entrega

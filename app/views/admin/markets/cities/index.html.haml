@@ -1,0 +1,10 @@
+= render 'admin/markets/market_menu'
+
+.ui.text.container
+  - if @market.cities.any?
+    .ui.segments
+      = render @market.cities
+
+  .ui.center.aligned.container
+    = link_to 'Adicionar local de entrega', new_admin_market_city_path(@market.id),
+      id: 'city-btn', remote: true
