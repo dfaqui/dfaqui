@@ -12,7 +12,7 @@ class ProductUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    # TODO
+    'default.png'
   end
 
   def extension_white_list

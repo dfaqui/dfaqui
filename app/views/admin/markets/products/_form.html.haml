@@ -1,6 +1,4 @@
-- path = (@product.new_record?) ? :market : nil
-
-= simple_form_for([:admin, path, @product],
+= simple_form_for([:admin, @market.customer, @market, @product],
     html: { class: 'ui form' }) do |f|
 
   .three.fields

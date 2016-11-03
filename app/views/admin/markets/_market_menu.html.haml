@@ -34,4 +34,10 @@
     .content
       .title Forma de pagamento
 
+  - products_path = (market_id.present?) ? admin_customer_market_products_path(customer_id, market_id) : nil
+  = link_to products_path, class: "step #{ 'disabled' if market_id.nil? }" do
+    %i.shopping.basket.icon
+    .content
+      .title Produtos
+
 .ui.hidden.divider
