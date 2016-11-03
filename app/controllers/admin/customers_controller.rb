@@ -10,7 +10,6 @@ class Admin::CustomersController < Admin::BaseController
 
   def new
     @customer = Customer.new
-    @customer.plugin = 'market' # Tornar dinâmico
   end
 
   def edit

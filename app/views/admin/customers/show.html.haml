@@ -1,5 +1,9 @@
-= render partial: 'admin/markets/market_menu',
-  locals: { customer_id: @customer.id, market_id: Market.where(customer: @customer.id).pluck(:id).first }
+- if @customer.plugin.market?
+  = render partial: 'admin/markets/market_menu',
+    locals: { customer_id: @customer.id, market_id: Market.where(customer: @customer.id).pluck(:id).first }
+- else
+  %h1.ui.header Detalhes
+  .ui.divider
 
 %table.ui.definition.table
   %tbody
@@ -48,7 +52,7 @@
       %td= @customer.contact_email
     %tr
       %td.four.wide.column Telefone para contato
-      %td= @customer.contact_phone
+      %td= @customer.contact_phone_as_string
     %tr
       %td Ativo?
       %td= @customer.status_text

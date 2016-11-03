@@ -52,6 +52,7 @@ class Customer < ApplicationRecord
   resourcify
 
   before_destroy :destroy_market, if: -> (obj) { obj.plugin.market? }
+  before_destroy :destroy_properties, if: -> (obj) { obj.plugin.property? }
 
   def create_advertisement_customer(generated_password)
     self.status       = Customer.status.pending_approval
@@ -94,9 +95,17 @@ class Customer < ApplicationRecord
     template
   end
 
+  def contact_phone_as_string
+    self.contact_phone.join(', ')
+  end
+
   private
 
   def destroy_market
     Market.destroy_all(customer: self)
+  end
+
+  def destroy_properties
+    Property.destroy_all(customer: self)
   end
 end
