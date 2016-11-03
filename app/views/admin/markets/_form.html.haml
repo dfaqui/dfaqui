@@ -1,4 +1,6 @@
-= simple_form_for([:admin, @market], html: { class: 'ui form' }) do |f|
+= simple_form_for([:admin, @market.customer, @market],
+    html: { class: 'ui form' }) do |f|
+
   .three.fields
     .required.field
       = f.label :segment_id, 'Segmento'

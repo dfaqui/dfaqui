@@ -1,8 +1,5 @@
-%h2.ui.header
-  = @customer.fantasy_name
-  .sub.header Detalhes do cliente
-
-.ui.divider
+= render partial: 'admin/markets/market_menu',
+  locals: { customer_id: @customer.id, market_id: Market.where(customer: @customer.id).pluck(:id).first }
 
 %table.ui.definition.table
   %tbody

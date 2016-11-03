@@ -1,31 +1,20 @@
+- details_path = (market_id.present?) ? edit_admin_customer_market_path(customer_id, market_id) : new_admin_customer_market_path(customer_id)
+
 .ui.seven.mini.steps
-  = link_to admin_market_path(@market.id), class: 'step' do
+  = link_to admin_customer_path(customer_id), class: 'step' do
     %i.file.text.outline.icon
     .content
       .title Informações
-  = link_to edit_admin_market_path(@market.id), class: 'step' do
+
+  = link_to details_path, class: 'step' do
     %i.sticky.note.icon
     .content
       .title Detalhes
-  = link_to admin_market_categories_path(@market.id), class: 'step' do
+
+  - categories_path = (market_id.present?) ? admin_customer_market_categories_path(customer_id, market_id) : nil
+  = link_to categories_path, class: "step #{ 'disabled' if market_id.nil? }" do
     %i.tags.icon
     .content
       .title Tipos e Especialidades
-  = link_to admin_market_working_hours_path(@market.id), class: 'step' do
-    %i.clock.icon
-    .content
-      .title Horário de funcionamento
-  = link_to admin_market_cities_path(@market.id), class: 'step' do
-    %i.truck.icon
-    .content
-      .title Locais de entrega
-  = link_to admin_market_payment_methods_path(@market.id), class: 'step' do
-    %i.payment.icon
-    .content
-      .title Forma de pagamento
-  = link_to admin_market_products_path(@market.id), class: 'step' do
-    %i.shopping.basket.icon
-    .content
-      .title Produtos
 
 .ui.hidden.divider

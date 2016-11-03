@@ -1,5 +1,5 @@
 %div{ id: "speciality-form-#{params[:category_id]}" }
-  = simple_form_for [:admin, @market, @market.specialities.build],
+  = simple_form_for [:admin, @market.customer, @market, @market.specialities.build],
       html: { class: 'ui form' } do |f|
 
     .fields

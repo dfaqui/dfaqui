@@ -1,2 +1,3 @@
-= render 'market_menu'
+= render partial: 'market_menu',
+  locals: { customer_id: @market.customer_id, market_id: @market.id }
 = render 'form'

@@ -5,7 +5,8 @@
   %td= customer.status_text
   %td
     .ui.primary.buttons
-      = link_to 'Detalhes', admin_market_path(3), class: 'ui button'
+      = link_to 'Detalhes', admin_customer_path(customer.id), class: 'ui button'
+
       .ui.floating.dropdown.icon.button
         %i.dropdown.icon
         .menu

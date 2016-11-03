@@ -1,5 +1,5 @@
 #category-form
-  = simple_form_for [:admin, @market, @market.categories.build],
+  = simple_form_for [:admin, @market.customer, @market, @market.categories.build],
       html: { class: 'ui form' } do |f|
 
     .fields

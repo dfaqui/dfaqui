@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   scope :gestao, module: :admin, as: :admin do
     get '', to: 'dashboards#index'
 
-    resources :customers, path: :clientes, shallow: true do
+    resources :customers, path: :clientes do
       collection { get 'add_contact_phone' }
 
       resources :markets, path: :comercio do

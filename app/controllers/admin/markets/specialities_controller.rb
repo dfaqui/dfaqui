@@ -8,12 +8,12 @@ class Admin::Markets::SpecialitiesController < Admin::BaseController
 
   def create
     @market.specialities.push(Speciality.find(allowed_params))
-    redirect_to admin_market_categories_path(@market.id)
+    redirect_to admin_customer_market_categories_path(@market.customer_id, @market.id)
   end
 
   def destroy
     @market.specialities.destroy(params[:id])
-    redirect_to admin_market_categories_path(@market.id)
+    redirect_to admin_customer_market_categories_path(@market.customer_id, @market.id)
   end
 
   private

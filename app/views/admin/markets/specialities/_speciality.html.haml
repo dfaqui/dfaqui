@@ -1,6 +1,7 @@
 .item
   .right.floated.content
-    = link_to 'Remover', admin_speciality_path(speciality.id, market_id: @market.id),
+    = link_to 'Remover',
+      admin_customer_market_speciality_path(@market.customer_id, @market.id, speciality.id),
       method: :delete, data: { confirm: 'Tem certeza de que deseja remover esse item?' },
       style: 'float: right'
 
