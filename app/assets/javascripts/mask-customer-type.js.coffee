@@ -20,3 +20,6 @@ jQuery ->
 
   $("##{customer_type_element}").change ->
     handle_customer_type()
+
+  # Executes customer type handler on page load
+  handle_customer_type()
