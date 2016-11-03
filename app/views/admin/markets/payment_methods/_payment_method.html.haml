@@ -3,6 +3,6 @@
     = image_tag "payment/#{payment_method.icon}", class: 'ui middle aligned mini image'
     = payment_method.name
   %b
-    = link_to 'Remover', admin_payment_method_path(payment_method.id, market_id: @market.id),
+    = link_to 'Remover', admin_customer_market_payment_method_path(@market.customer_id, @market.id, payment_method.id),
       data: { confirm: 'Tem certeza de que deseja remover essa forma de pagamento?' },
       method: :delete, style: 'float: right'

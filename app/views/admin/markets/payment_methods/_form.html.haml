@@ -1,5 +1,5 @@
 #payment-method-form
-  = simple_form_for [:admin, @market, @market.payment_methods.build],
+  = simple_form_for [:admin, @market.customer, @market, @market.payment_methods.build],
       html: { class: 'ui form' } do |f|
 
     .fields
