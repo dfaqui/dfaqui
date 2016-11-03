@@ -1,8 +1,12 @@
 class Customer < ApplicationRecord
   extend Enumerize
+
   default_scope { order(:fantasy_name) }
 
-  mount_uploader :logo, CustomerUploader
+  enumerize :plugin, in: [ :market, :property ]
+  enumerize :customer_type, in: { person: 1, company: 2 }
+  enumerize :status, in: { inactive: 0, active: 1, pending_approval: 2 },
+    scope: true, predicates: { prefix: true }
 
   scope :by_user_role, -> (user) do
     if user.has_role? :admin
@@ -29,11 +33,6 @@ class Customer < ApplicationRecord
     end
   end
 
-  enumerize :plugin, in: [ :market, :property ]
-  enumerize :customer_type, in: { person: 1, company: 2 }
-  enumerize :status, in: { inactive: 0, active: 1, pending_approval: 2 },
-    scope: true, predicates: { prefix: true }
-
   belongs_to :block
 
   validates :name, presence: true, length: { maximum: 120 }
@@ -49,7 +48,10 @@ class Customer < ApplicationRecord
   validates :plugin, presence: true, length: { maximum: 20 }
   # validates :status, inclusion: { in: [0, 1, 2] }
 
+  mount_uploader :logo, CustomerUploader
   resourcify
+
+  before_destroy :destroy_market, if: -> (obj) { obj.plugin.market? }
 
   def create_advertisement_customer(generated_password)
     self.status       = Customer.status.pending_approval
@@ -90,5 +92,11 @@ class Customer < ApplicationRecord
     end
 
     template
+  end
+
+  private
+
+  def destroy_market
+    Market.destroy_all(customer: self)
   end
 end

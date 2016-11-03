@@ -33,7 +33,7 @@
     = f.label :description, 'Descrição'
     = f.input :description, as: :text, label: false
 
-  -# - if @customer.plugin.property?
+  - if @customer.plugin.property?
     .required.field
       = f.label :additional_info, 'CRECI'
       = f.input_field :additional_info
@@ -75,24 +75,24 @@
   .ui.dividing.header Dados de localização
 
   .four.fields
-    .required.field
+    .field
       = label :region, :city_id, 'Bairro/Distrito'
       = collection_select :region, :city_id, City.all, :friendly_id, :name,
         { include_blank: 'Selecione' }, { class: 'ui dropdown', 'data-city': 'region_city_id' }
 
-    .required.field
+    .field
       = label :region, :district_group_id, 'Grupo de quadras'
       = grouped_collection_select :region, :district_group_id, City.all,
         :district_groups, :name, :friendly_id, :name, { include_blank: 'Selecione' },
         { class: 'ui dropdown', 'data-district-group': 'region_district_group_id' }
 
-    .required.field
+    .field
       = label :region, :district_id, 'Quadra'
       = grouped_collection_select :region, :district_id, DistrictGroup.all,
         :districts, :name, :friendly_id, :name, { include_blank: 'Selecione' },
         { class: 'ui dropdown', 'data-district': 'region_district_id' }
 
-    .required.field
+    .field
       = f.label :block_id, 'Bloco'
       = f.grouped_collection_select :block_id, District.all,
         :blocks, :name, :id, :name, { include_blank: 'Selecione' },

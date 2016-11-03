@@ -1,4 +1,7 @@
-.ui.seven.mini.steps
+- is_delivery = (market_id.present?) ? Market.select(:delivery).find(market_id).delivery : false
+- steps_count = (is_delivery) ? 'seven' : 'six'
+
+%div{ class: "ui #{steps_count} mini steps" }
   = link_to admin_customer_path(customer_id), class: 'step' do
     %i.file.text.outline.icon
     .content
@@ -22,11 +25,12 @@
     .content
       .title Horário de funcionamento
 
-  - cities_path = (market_id.present?) ? admin_customer_market_cities_path(customer_id, market_id) : nil
-  = link_to cities_path, class: "step #{ 'disabled' if market_id.nil? }" do
-    %i.truck.icon
-    .content
-      .title Locais de entrega
+  - if is_delivery
+    - cities_path = (market_id.present?) ? admin_customer_market_cities_path(customer_id, market_id) : nil
+    = link_to cities_path, class: "step #{ 'disabled' if market_id.nil? }" do
+      %i.truck.icon
+      .content
+        .title Locais de entrega
 
   - payment_path = (market_id.present?) ? admin_customer_market_payment_methods_path(customer_id, market_id) : nil
   = link_to payment_path, class: "step #{ 'disabled' if market_id.nil? }" do
