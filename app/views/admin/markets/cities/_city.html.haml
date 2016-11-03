@@ -1,6 +1,7 @@
 .ui.clearing.segment
   %b= city.name
   %b
-    = link_to 'Remover', admin_city_path(city.id, market_id: @market.id),
+    = link_to 'Remover',
+      admin_customer_market_city_path(@market.customer_id, @market.id, city.id),
       data: { confirm: 'Tem certeza de que deseja remover esse local de entrega?' },
       method: :delete, style: 'float: right'

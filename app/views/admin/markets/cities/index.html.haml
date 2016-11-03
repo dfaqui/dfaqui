@@ -1,4 +1,5 @@
-= render 'admin/markets/market_menu'
+= render partial: 'admin/markets/market_menu',
+  locals: { customer_id: @market.customer_id, market_id: @market.id }
 
 .ui.text.container
   - if @market.cities.any?
@@ -6,5 +7,6 @@
       = render @market.cities
 
   .ui.center.aligned.container
-    = link_to 'Adicionar local de entrega', new_admin_market_city_path(@market.id),
+    = link_to 'Adicionar local de entrega',
+      new_admin_customer_market_city_path(@market.customer_id, @market.id),
       id: 'city-btn', remote: true

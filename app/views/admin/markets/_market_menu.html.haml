@@ -22,4 +22,10 @@
     .content
       .title Horário de funcionamento
 
+  - cities_path = (market_id.present?) ? admin_customer_market_cities_path(customer_id, market_id) : nil
+  = link_to cities_path, class: "step #{ 'disabled' if market_id.nil? }" do
+    %i.truck.icon
+    .content
+      .title Locais de entrega
+
 .ui.hidden.divider
