@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require jquery-mask-plugin
 //= require mask
+//= require mask-customer-type

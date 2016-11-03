@@ -14,11 +14,12 @@
     .required.field
       = f.label :customer_type, 'Tipo'
       = f.select :customer_type, Customer.customer_type.options, {},
-        { class: 'ui dropdown' }
+        { class: 'ui dropdown', 'data-type': 'customer_customer_type' }
 
     .required.field
       = f.label :document, 'CPF'
-      = f.input_field :document, class: 'person_document'
+      = f.input_field :document, class: 'person_document',
+        'data-document': 'customer_document'
 
   .two.fields
     .required.field

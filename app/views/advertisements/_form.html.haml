@@ -33,11 +33,13 @@
           .field
             = f.label :customer_type, 'Tipo'
             = f.select :customer_type, Customer.customer_type.options, {},
-              { id: 'customer_customer_type', class: 'ui dropdown' }
+              { id: 'customer_customer_type', class: 'ui dropdown',
+                'data-type': 'customer_customer_type' }
 
           .field
             = f.label :document, 'CPF'
-            = f.input_field :document, class: 'person_document'
+            = f.input_field :document, class: 'person_document',
+              'data-document': 'customer_document'
 
         .field
           = f.label :name, 'Razão Social'
@@ -65,6 +67,8 @@
           = f.button :button, class: 'ui primary button' do
             %i.send.icon
             Enviar
+
+= javascript_include_tag 'mask-customer-type'
 
 :javascript
   $('.ui.dropdown').dropdown({ placeholder: false });
