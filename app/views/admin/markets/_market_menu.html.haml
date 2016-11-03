@@ -1,11 +1,10 @@
-- details_path = (market_id.present?) ? edit_admin_customer_market_path(customer_id, market_id) : new_admin_customer_market_path(customer_id)
-
 .ui.seven.mini.steps
   = link_to admin_customer_path(customer_id), class: 'step' do
     %i.file.text.outline.icon
     .content
       .title Informações
 
+  - details_path = (market_id.present?) ? edit_admin_customer_market_path(customer_id, market_id) : new_admin_customer_market_path(customer_id)
   = link_to details_path, class: 'step' do
     %i.sticky.note.icon
     .content
@@ -16,5 +15,11 @@
     %i.tags.icon
     .content
       .title Tipos e Especialidades
+
+  - working_hours_path = (market_id.present?) ? admin_customer_market_working_hours_path(customer_id, market_id) : nil
+  = link_to working_hours_path, class: "step #{ 'disabled' if market_id.nil? }" do
+    %i.clock.icon
+    .content
+      .title Horário de funcionamento
 
 .ui.hidden.divider

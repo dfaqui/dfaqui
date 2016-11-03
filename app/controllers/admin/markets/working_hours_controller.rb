@@ -11,27 +11,34 @@ class Admin::Markets::WorkingHoursController < Admin::BaseController
   end
 
   def edit
-    
   end
 
   def create
     @working_hour = @market.working_hours.new(allowed_params)
 
     if @working_hour.save
-      flash[:notice] = 'Expediente cadastrado com sucesso'
-      redirect_to admin_market_working_hours_path(@market.id)
+      flash[:notice] = 'Horário de funcionamento cadastrado com sucesso'
+
+      redirect_to admin_customer_market_working_hours_path(
+        @market.customer_id,
+        @market.id
+      )
     else
-      flash[:error] = 'Erro ao cadastrar expediente'
+      flash[:error] = 'Erro ao cadastrar horário de funcionamento'
       render :new
     end
   end
 
   def update
     if @working_hour.update(allowed_params)
-      flash[:notice] = 'Expediente editado com sucesso'
-      redirect_to admin_market_working_hours_path(@working_hour.market_id)
+      flash[:notice] = 'Horário de funcionamento editado com sucesso'
+
+      redirect_to admin_customer_market_working_hours_path(
+        @working_hour.market.customer_id,
+        @working_hour.market.id
+      )
     else
-      flash[:error] = 'Erro ao editar expediente'
+      flash[:error] = 'Erro ao editar horário de funcionamento'
       render :edit
     end
   end
@@ -39,8 +46,12 @@ class Admin::Markets::WorkingHoursController < Admin::BaseController
   def destroy
     @working_hour.destroy
 
-    flash[:notice] = 'Expediente removido com sucesso'
-    redirect_to admin_market_working_hours_path(@working_hour.market_id)
+    flash[:notice] = 'Horário de funcionamento removido com sucesso'
+
+    redirect_to admin_customer_market_working_hours_path(
+      @working_hour.market.customer_id,
+      @working_hour.market.id
+    )
   end
 
   private
