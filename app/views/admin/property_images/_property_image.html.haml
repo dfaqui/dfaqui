@@ -4,10 +4,10 @@
   %td= property_image.name
   %td
     = link_to edit_admin_property_property_image_path(property_image.property_id, property_image.id),
-        class: ' ui small green icon button' do
+        class: 'ui mini green icon button' do
       %i.edit.icon
 
     = link_to admin_property_property_image_path(property_image.property_id, property_image.id),
-        method: :delete, class: 'ui small red icon button',
+        method: :delete, class: 'ui mini red icon button',
         data: { confirm: 'Tem certeza de que deseja remover essa imagem?' } do
       %i.remove.icon

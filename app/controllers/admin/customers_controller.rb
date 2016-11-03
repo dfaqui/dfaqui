@@ -2,7 +2,7 @@ class Admin::CustomersController < Admin::BaseController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
   def index
-    @customers = Customer.all
+    @customers = Customer.by_user_role(current_user)
   end
 
   def show

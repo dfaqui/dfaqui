@@ -10,9 +10,9 @@ class Customer < ApplicationRecord
 
   scope :by_user_role, -> (user) do
     if user.has_role? :admin
-      pluck(:id)
+      all()
     else
-      with_roles([:market, :property], user).pluck(:id)
+      with_roles([:market, :property], user)
     end
   end
 

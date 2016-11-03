@@ -1,6 +1,4 @@
 class AdvertisementsController < ApplicationController
-  layout 'base', only: [:new]
-
   def new
     @customer = Customer.new
   end

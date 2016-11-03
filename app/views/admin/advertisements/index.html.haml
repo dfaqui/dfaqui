@@ -1,0 +1,14 @@
+%h2.ui.header Anúncios pendentes
+
+.ui.divider
+
+%table.ui.striped.table
+  %thead
+    %tr
+      %th Cliente
+      %th Responsável
+      %th Situação
+      %th Data do cadastro
+      %th Ação
+  %tbody
+    = render partial: 'advertisement', collection: @customers, as: :customer

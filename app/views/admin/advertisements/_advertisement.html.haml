@@ -1,0 +1,14 @@
+%tr{ id: "advertisement-#{customer.id}" }
+  %td= customer.fantasy_name
+  %td= customer.owner_name
+  %td= customer.status_text
+  %td= customer.created_at
+  %td
+    = link_to admin_advertisement_path(customer.id), method: :patch, remote: true,
+        class: 'ui mini green icon button', 'data-tooltip': 'Aprovar' do
+      %i.check.icon
+
+    = link_to admin_advertisement_path(customer.id), method: :delete, remote: true,
+        data: { confirm: 'Tem certeza de que deseja rejeitar esse anúncio?' },
+        class: 'ui mini red icon button', 'data-tooltip': 'Rejeitar' do
+      %i.delete.icon
