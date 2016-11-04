@@ -89,4 +89,8 @@ Rails.application.routes.draw do
         controller: 'users/roles'
     end
   end # End admin resources
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/mail"
+  end
 end

@@ -1,5 +1,36 @@
-%p= "Olá, #{@customer.owner_name.split(' ').first}! Sua senha é:"
-%h1= @generated_password
+= stylesheet_link_tag 'mail.css'
 
-%a{ href: edit_admin_customer_url(@customer.id) }
-  Clique aqui para complementar seu cadastro
+.container
+  = link_to root_url do
+    = image_tag attachments['dfaqui_brand.png'].url
+
+  .section-one
+    %table
+      %tr
+        %td
+          %h1.hello Olá!
+        %td
+          .welcome
+            %p.user= @customer.owner_name
+            %p.header Seja bem vindo ao portal DFaqui.com.
+            %p.sub-header Estamos felizes com a sua chegada.
+
+  .section-two
+    .info
+      Complete o cadastro com seu usuário e senha e
+      %br
+      tenha acesso a área exclusiva.
+
+  .section-three
+    .user= "Usuário: #{@customer.owner_email}"
+    .password
+      Senha:
+      %span= @generated_password
+
+  .section-four= link_to 'Vamos lá!', edit_admin_customer_url(@customer.id),
+    class: 'button'
+
+  .section-five
+    .password-info Para sua segurança altere a senha.
+    .sign-up-info
+      Não conseguiu cadastrar? Entre em contato: contato@dfaqui.com / 61 97400-2364
