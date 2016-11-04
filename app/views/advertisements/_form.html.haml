@@ -5,13 +5,9 @@
         %h1.ui.header
           Olá!
           .sub.header
-            Utilize esse espaço para tratar conosco sobre anúncios
+            Bem vindo ao DFaqui.com.
             %br
-            em nosso site ou assuntos relacionados. Por favor,
-            %br
-            preencha o formulário abaixo que entraremos
-            %br
-            em contato em breve.
+            Veja como é fácil fazer o seu anúncio. Experimente.
 
         .ui.divider
 
@@ -21,7 +17,7 @@
         #error-messages
 
         .ui.center.aligned.container
-          .sub.header Em qual canal deseja anunciar?
+          .sub.header Qual o seu segmento?
 
         .field
           = f.select :plugin, Customer.plugin.options, {},
@@ -62,6 +58,10 @@
               placeholder: 'Digite o e-mail do responsável'
 
         .ui.divider
+
+        %p.service-term
+          Ao realizar cadastro você concorda com nossos Termos de Uso e Política
+          de Privacidade.
 
         .field
           = f.button :button, class: 'ui primary button' do
