@@ -6,13 +6,13 @@
     .ui.icon.top.right.pointing.dropdown.primary.tiny.button
       %i.setting.icon
       .menu
-        = link_to edit_admin_market_working_hour_path(working_hour.market_id, working_hour.id),
+        = link_to edit_admin_customer_market_working_hour_path(@market.customer_id, @market.id, working_hour.id),
             class: 'item' do
           %i.edit.icon
           Editar
 
-        = link_to admin_market_working_hour_path(working_hour.market_id, working_hour.id),
-            data: { confirm: 'Tem certeza de que deseja remover esse expediente?' },
+        = link_to admin_customer_market_working_hour_path(@market.customer_id, @market.id, working_hour.id),
+            data: { confirm: 'Tem certeza de que deseja remover esse horário de funcionamento?' },
             method: :delete, class: 'item' do
           %i.remove.icon
           Remover

@@ -1,17 +1,14 @@
 class AdvertisementsController < ApplicationController
-  layout 'base'
-
   def new
-    @customer_common = CustomerCommon.new
-    @customer_common.customers.build
+    @customer = Customer.new
   end
 
   def create
-    @customer_common      = CustomerCommon.new(allowed_params)
-    generated_password    = Devise.friendly_token.first(10)
+    @customer           = Customer.new(allowed_params)
+    generated_password  = Devise.friendly_token.first(10)
 
-    if @customer_common.create_advertisement_customer(generated_password)
-      AdvertisementMailer.new_customer(@customer_common.customers.first, generated_password).deliver
+    if @customer.create_advertisement_customer(generated_password)
+      AdvertisementMailer.new_customer(@customer, generated_password).deliver
       partial = 'create'
     else
       @customer_common.errors.delete(:fantasy_name)
@@ -24,18 +21,14 @@ class AdvertisementsController < ApplicationController
   private
 
   def allowed_params
-    params.require(:customer_common).permit(
+    params.require(:customer).permit(
       :plugin,
-      customers_attributes: [
-        :id,
-        :name,
-        :customer_type,
-        :document,
-        :owner_name,
-        :owner_phone,
-        :owner_email,
-        :status
-      ]
+      :customer_type,
+      :document,
+      :name,
+      :owner_name,
+      :owner_phone,
+      :owner_email
     )
   end
 end

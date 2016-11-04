@@ -1,7 +1,7 @@
-%tr
-  %td= city.name
-  %td
-    = link_to admin_market_city_path(@market.id, city.id),
-        data: { confirm: 'Tem certeza de que deseja remover esse local de entrega?' },
-        method: :delete, class: 'ui red icon button' do
-      %i.remove.icon
+.ui.clearing.segment
+  %b= city.name
+  %b
+    = link_to 'Remover',
+      admin_customer_market_city_path(@market.customer_id, @market.id, city.id),
+      data: { confirm: 'Tem certeza de que deseja remover esse local de entrega?' },
+      method: :delete, style: 'float: right'

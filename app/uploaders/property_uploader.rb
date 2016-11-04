@@ -7,7 +7,8 @@ class PropertyUploader < CarrierWave::Uploader::Base
   process :resize_to_fill => [730, 486]
 
   def store_dir
-    "imovel/#{model.property_id}/galeria"
+    path = "imovel/#{model.property_id}/galeria"
+    path = "development/#{path}" if Rails.env.development?
   end
 
   def default_url

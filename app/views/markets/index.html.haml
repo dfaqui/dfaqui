@@ -5,10 +5,10 @@
     .ui.six.column.doubling.center.aligned.grid
       - @buttons.each do |button|
         .column
-          - cliente = button.customer.customer_common_id
-
-          - path = list_markets_path(cliente: cliente) if current_channel == 'comercio'
-          - path = list_deliveries_path(cliente: cliente) if current_channel == 'delivery'
-
-          = link_to path do
-            = image_tag button.image
+          -# - cliente = button.customer.customer_common_id
+          -#
+          -# - path = list_markets_path(cliente: cliente) if current_channel == 'comercio'
+          -# - path = list_deliveries_path(cliente: cliente) if current_channel == 'delivery'
+          -#
+          -# = link_to path do
+          = image_tag button.image

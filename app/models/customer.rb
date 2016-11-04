@@ -1,45 +1,42 @@
 class Customer < ApplicationRecord
   extend Enumerize
-  default_scope { order(:name) }
+
+  default_scope { order(:fantasy_name) }
+
+  enumerize :plugin, in: [ :market, :property ]
+  enumerize :customer_type, in: { person: 1, company: 2 }
+  enumerize :status, in: { inactive: 0, active: 1, pending_approval: 2 },
+    scope: true, predicates: { prefix: true }
 
   scope :by_user_role, -> (user) do
     if user.has_role? :admin
-      pluck(:id)
+      all()
     else
-      with_roles([:market, :property], user).pluck(:id)
+      with_roles([:market, :property], user)
     end
   end
 
   scope :properties, -> (user) do
     if user.has_role? :admin
-      includes(:customer_common).where('customer_commons.plugin': 'property')
+      select(:id, :name).where(plugin: 'property')
     else
-      includes(:customer_common).where('customer_commons.plugin': 'property').
-      with_role(:property, user)
+      select(:id, :name).where(plugin: 'property').with_role(:property, user)
     end
   end
 
   scope :markets, -> (user) do
-    result = select(:id, :name).
-    includes(:customer_common).
-    where('customer_commons.plugin': ['delivery', 'market'])
-
-    if user.has_role? :market, :any
-      result = result.with_role(:market, user)
+    if user.has_role? :admin
+      select(:id, :name).where(plugin: ['delivery', 'market'])
+    else
+      select(:id, :name).where(plugin: ['delivery', 'market']).
+      with_role(:market, user)
     end
-
-    result
   end
 
-  enumerize :customer_type, in: { person: 1, company: 2 }
-  enumerize :status, in: { inactive: 0, active: 1, pending_approval: 2 },
-    scope: true, predicates: { prefix: true }
-
   belongs_to :block
-  belongs_to :customer_common
 
   validates :name, presence: true, length: { maximum: 120 }
-  # validates :customer_common, presence: true - Impedindo a criação do customer no AdvertisementsController
+  validates :fantasy_name, presence: true, length: { maximum: 120 }
   validates :customer_type, presence: true, numericality: { only_integer: true }
   validates :document, presence: true, length: { maximum: 20 }
   validates :address_complement, length: { maximum: 255 }
@@ -48,9 +45,33 @@ class Customer < ApplicationRecord
   validates :owner_phone, length: { maximum: 20 }
   validates :contact_email, length: { maximum: 100 }
   validates :additional_info, length: { maximum: 255 }
+  validates :plugin, presence: true, length: { maximum: 20 }
   # validates :status, inclusion: { in: [0, 1, 2] }
 
+  mount_uploader :logo, CustomerUploader
   resourcify
+
+  before_destroy :destroy_market, if: -> (obj) { obj.plugin.market? }
+  before_destroy :destroy_properties, if: -> (obj) { obj.plugin.property? }
+
+  def create_advertisement_customer(generated_password)
+    self.status       = Customer.status.pending_approval
+    self.fantasy_name = self.name
+
+    user              = User.new
+    user.name         = self.owner_name
+    user.email        = self.owner_email
+    user.password     = generated_password
+
+    ActiveRecord::Base.transaction do
+      self.save!
+      user.save!
+
+      user.add_role self.plugin, self
+    end
+
+    rescue ActiveRecord::RecordInvalid => exception
+  end
 
   def full_address
     template = ''
@@ -72,5 +93,19 @@ class Customer < ApplicationRecord
     end
 
     template
+  end
+
+  def contact_phone_as_string
+    self.contact_phone.join(', ')
+  end
+
+  private
+
+  def destroy_market
+    Market.destroy_all(customer: self)
+  end
+
+  def destroy_properties
+    Property.destroy_all(customer: self)
   end
 end

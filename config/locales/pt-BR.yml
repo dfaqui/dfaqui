@@ -5,7 +5,6 @@ pt-BR:
       category: 'Categoria'
       city: 'Cidade'
       customer: 'Filial'
-      customer_common: 'Cliente'
       district: 'Quadra'
       district_group: 'Grupo de quadras'
       market: 'Comércio'
@@ -32,14 +31,13 @@ pt-BR:
         contact_email: 'E-mail para contato'
         contact_phone: 'Telefone para contato'
   enumerize:
-    customer_common:
-      plugin:
-        market: 'Comércio'
-        property: 'Imóveis'
     customer:
       customer_type:
         person: 'Pessoa física'
         company: 'Pessoa jurídica'
+      plugin:
+        market: 'Comércio'
+        property: 'Imóveis'
       status:
         inactive: 'Desabilitado'
         active: 'Ativo'

@@ -7,7 +7,8 @@ class SponsorButtonUploader < CarrierWave::Uploader::Base
   process :resize_to_fill => [164, 164]
 
   def store_dir
-    "publicidade/botao"
+    path = "publicidade/botao"
+    path = "development/#{path}" if Rails.env.development?
   end
 
   def default_url

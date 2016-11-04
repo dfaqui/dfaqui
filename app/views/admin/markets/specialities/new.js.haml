@@ -1,0 +1,3 @@
+$("#speciality-btn-#{params[:category_id]}").hide()
+$("#speciality-form-#{params[:category_id]}").remove()
+$("#speciality-btn-#{params[:category_id]}").before("#{j render 'form'}")

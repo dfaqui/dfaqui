@@ -1,10 +1,7 @@
-%h2.ui.header
-  = @market.customer.name
-  .sub.header Gerenciar expediente
+= render partial: 'admin/markets/market_menu',
+  locals: { customer_id: @market.customer_id, market_id: @market.id }
 
-.ui.divider
-
-= link_to new_admin_market_working_hour_path(@market.id),
+= link_to new_admin_customer_market_working_hour_path(@market.customer_id, @market.id),
     class: 'ui primary button' do
   %i.plus.icon
   Novo

@@ -1,12 +1,24 @@
-= simple_form_for([:admin, @market, @category, @market.specialities.build],
-    html: { class: 'ui form' }) do |f|
+%div{ id: "speciality-form-#{params[:category_id]}" }
+  = simple_form_for [:admin, @market.customer, @market, @market.specialities.build],
+      html: { class: 'ui form' } do |f|
 
-  .required.field
-    = f.label :id, 'Especialidade'
-    = f.input_field :id, collection: @specialities_dropdown,
-      include_blank: false, class: 'ui search dropdown'
+    .fields
+      .twelve.wide.field
+        = f.input_field :id, collection: @specialities, include_blank: false,
+          class: 'ui search dropdown'
 
-  .field
-    = f.button :button, class: 'ui primary button' do
-      %i.save.icon
-      Salvar
+      .four.wide.field
+        = f.button :button, class: 'ui primary button' do
+          %i.save.icon
+          Salvar
+
+        .ui.red.icon.button{ onclick: "cancel(#{params[:category_id]})", 'data-tooltip': 'Cancelar' }
+          %i.remove.icon
+
+:javascript
+  $('.ui.dropdown').dropdown();
+
+  function cancel(category) {
+    $("#speciality-form-" + category).remove();
+    $("#speciality-btn-" + category).show();
+  }

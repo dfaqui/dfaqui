@@ -1,10 +1,10 @@
 .market-item-section
   .ui.clearing.segment
     = link_to market_show_path(market.id), class: 'ui rounded bordered image' do
-      = image_tag market.customer.customer_common.logo
+      = image_tag market.customer.logo
 
     .item-content
-      = link_to market.customer.customer_common.fantasy_name,
+      = link_to market.customer.fantasy_name,
         market_show_path(market.id), class: 'ui medium header'
 
       = link_to favorites_path(id: market.id, type: :Market), method: :post,
@@ -25,7 +25,7 @@
             .ui.yellow.label Delivery
 
       .ui.justified.container
-        = truncate(market.customer.customer_common.description, length: 250)
+        = truncate(market.customer.description, length: 250)
 
       .ui.horizontal.divided.list.payment-section
         - unless market.estimated_time.nil?

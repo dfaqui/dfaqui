@@ -1,13 +1,14 @@
 # encoding: utf-8
 
-class CustomerCommonUploader < CarrierWave::Uploader::Base
+class CustomerUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :fog
   process :resize_to_fill => [180, 120]
 
   def store_dir
-    "cliente/#{model.id}/logomarca"
+    path = "cliente/#{model.id}/logomarca"
+    path = "development/#{path}" if Rails.env.development?
   end
 
   def default_url

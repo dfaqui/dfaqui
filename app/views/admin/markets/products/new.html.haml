@@ -1,7 +1,3 @@
-%h2.ui.header
-  = @product.market.customer.name
-  .sub.header Criar produto
-
-.ui.divider
-
+= render partial: 'admin/markets/market_menu',
+  locals: { customer_id: @market.customer_id, market_id: @market.id }
 = render 'form'

@@ -1,17 +1,19 @@
-%tr
-  %td
-    = link_to category.name, admin_market_category_specialities_path(@market.id, category.id)
-  %td
-    .ui.icon.top.right.pointing.dropdown.primary.tiny.button
-      %i.setting.icon
-      .menu
-        = link_to admin_market_category_specialities_path(@market.id, category.id),
-            class: 'item' do
-          %i.external.icon
-          Especialidades
+.ui.clearing.segment
+  %b= category.name
+  %b
+    = link_to 'Remover',
+      admin_customer_market_category_path(@market.customer_id, @market.id, category.id),
+      data: { confirm: 'Tem certeza de que deseja remover esse tipo?' },
+      method: :delete, style: 'float: right'
 
-        = link_to admin_market_category_path(@market.id, category.id),
-            data: { confirm: 'Tem certeza de que deseja remover esse tipo?' },
-            method: :delete, class: 'item' do
-          %i.remove.icon
-          Remover
+  - specialities = @market.specialities.where(category: category)
+
+  - if specialities.any?
+    .ui.middle.aligned.list
+      = render specialities
+
+  .ui.divider
+
+  = link_to 'Adicionar especialidade',
+    new_admin_customer_market_speciality_path(@market.customer_id, @market.id, category_id: category.id),
+    remote: true, id: "speciality-btn-#{category.id}"

@@ -1,18 +1,12 @@
-%h2.ui.header
-  = @market.customer.name
-  .sub.header Gerenciar locais de entrega
+= render partial: 'admin/markets/market_menu',
+  locals: { customer_id: @market.customer_id, market_id: @market.id }
 
-.ui.divider
+.ui.text.container
+  - if @market.cities.any?
+    .ui.segments
+      = render @market.cities
 
-= link_to new_admin_market_city_path(@market.id),
-    class: 'ui primary button' do
-  %i.plus.icon
-  Novo
-
-%table.ui.striped.table
-  %thead
-    %tr
-      %th Nome
-      %th Ação
-  %tbody
-    = render @cities
+  .ui.center.aligned.container
+    = link_to 'Adicionar local de entrega',
+      new_admin_customer_market_city_path(@market.customer_id, @market.id),
+      id: 'city-btn', remote: true

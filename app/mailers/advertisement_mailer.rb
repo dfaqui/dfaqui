@@ -3,6 +3,6 @@ class AdvertisementMailer < ApplicationMailer
     @customer           = customer
     @generated_password = generated_password
 
-    mail(to: customer.owner_email, subject: 'DFaqui - Bem-vindo')
+    mail(to: @customer.owner_email, subject: 'DFaqui - Bem-vindo')
   end
 end

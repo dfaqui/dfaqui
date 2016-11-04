@@ -1,26 +1,28 @@
-%h2.ui.header
-  = @customer.name
-  .sub.header Detalhes da filial
-
-.ui.divider
+- if @customer.plugin.market?
+  = render partial: 'admin/markets/market_menu',
+    locals: { customer_id: @customer.id, market_id: Market.where(customer: @customer.id).pluck(:id).first }
+- else
+  %h1.ui.header Detalhes
+  .ui.divider
 
 %table.ui.definition.table
   %tbody
     %tr
-      %td.four.wide.column Cliente
-      %td
-        = link_to @customer.customer_common.fantasy_name,
-          admin_customer_common_path(@customer.customer_common_id)
+      %td.four.wide.column Nome fantasia
+      %td= @customer.fantasy_name
     %tr
-      %td Nome
+      %td Razão social
       %td= @customer.name
+    %tr
+      %td Descrição
+      %td= @customer.description
     %tr
       %td Tipo
       %td= @customer.customer_type_text
     %tr
       %td Documento
       %td= @customer.document
-    - if @customer.customer_common.plugin.property?
+    - if @customer.plugin.property?
       %tr
         %td CRECI
         %td= @customer.additional_info
@@ -37,7 +39,7 @@
       %td.four.wide.column Complemento
       %td= @customer.address_complement
     %tr
-      %td.four.wide.column Nome do responsáve;
+      %td.four.wide.column Nome do responsável
       %td= @customer.owner_name
     %tr
       %td.four.wide.column E-mail do responsável
@@ -50,7 +52,7 @@
       %td= @customer.contact_email
     %tr
       %td.four.wide.column Telefone para contato
-      %td= @customer.contact_phone
+      %td= @customer.contact_phone_as_string
     %tr
       %td Ativo?
       %td= @customer.status_text

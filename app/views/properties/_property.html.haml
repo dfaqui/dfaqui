@@ -23,7 +23,7 @@
         - favorited = Favorite.is_favorited?(current_user, property.id, :Property) ? 1 : 0
         .ui.huge.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1 }
 
-      = image_tag property.customer.customer_common.logo, class: 'customer-brand'
+      = image_tag property.customer.logo, class: 'customer-brand'
 
       .ui.justified.container
         = truncate(property.description, length: 400)

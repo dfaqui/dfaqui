@@ -1,12 +1,24 @@
-= simple_form_for([:admin, @market, @market.cities.build],
-    html: { class: 'ui form' }) do |f|
+#city-form
+  = simple_form_for [:admin, @market.customer, @market, @market.cities.build],
+      html: { class: 'ui form' } do |f|
 
-  .required.field
-    = f.label :id, 'Bairro/Distrito'
-    = f.input_field :id, collection: City.all,
-      include_blank: false, class: 'ui search dropdown'
+    .fields
+      .twelve.wide.field
+        = f.input_field :id, collection: @cities, include_blank: false,
+          class: 'ui search dropdown'
 
-  .field
-    = f.button :button, class: 'ui primary button' do
-      %i.save.icon
-      Salvar
+      .four.wide.field
+        = f.button :button, class: 'ui primary button' do
+          %i.save.icon
+          Salvar
+
+        .ui.red.icon.button{ onclick: 'cancel()', 'data-tooltip': 'Cancelar' }
+          %i.remove.icon
+
+:javascript
+  $('.ui.dropdown').dropdown();
+
+  function cancel() {
+    $('#city-form').remove();
+    $('#city-btn').show();
+  }

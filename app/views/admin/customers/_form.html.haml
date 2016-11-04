@@ -1,28 +1,42 @@
-= simple_form_for([:admin, :customer_common, @customer],
-    html: { class: 'ui form' }) do |f|
-
+= simple_form_for([:admin, @customer], html: { class: 'ui form' }) do |f|
   .ui.dividing.header Dados gerais
 
-  - column_count = (@customer.customer_common.plugin.property?) ? 'four' : 'three'
-
-  %div{ class: "#{column_count} fields" }
+  .two.fields
     .required.field
-      = f.label :name, 'Nome'
+      = f.label :fantasy_name, 'Nome fantasia'
+      = f.input_field :fantasy_name
+
+    .required.field
+      = f.label :name, 'Razão social'
       = f.input_field :name
 
+  .two.fields
     .required.field
       = f.label :customer_type, 'Tipo'
       = f.select :customer_type, Customer.customer_type.options, {},
-        { class: 'ui dropdown' }
+        { class: 'ui dropdown', 'data-type': 'customer_customer_type' }
 
     .required.field
       = f.label :document, 'CPF'
-      = f.input_field :document, class: 'person_document'
+      = f.input_field :document, 'data-document': 'customer_document'
 
-    - if @customer.customer_common.plugin.property?
-      .required.field
-        = f.label :additional_info, 'CRECI'
-        = f.input_field :additional_info
+  .two.fields
+    .required.field
+      = f.label :plugin, 'Canal'
+      = f.select :plugin, Customer.plugin.options, {}, { class: 'ui dropdown' }
+
+    .field
+      = f.label :logo, 'Logomarca'
+      = f.file_field :logo
+
+  .field
+    = f.label :description, 'Descrição'
+    = f.input :description, as: :text, label: false
+
+  - if @customer.plugin.present? && @customer.plugin.property?
+    .required.field
+      = f.label :additional_info, 'CRECI'
+      = f.input_field :additional_info
 
   .ui.dividing.header Dados para contato
 
@@ -56,30 +70,29 @@
 
   .field
     = link_to 'Adicionar telefone',
-      add_contact_phone_admin_customer_common_customers_path(@customer.customer_common_id),
-      remote: true
+      add_contact_phone_admin_customers_path, remote: true
 
   .ui.dividing.header Dados de localização
 
   .four.fields
-    .required.field
+    .field
       = label :region, :city_id, 'Bairro/Distrito'
       = collection_select :region, :city_id, City.all, :friendly_id, :name,
         { include_blank: 'Selecione' }, { class: 'ui dropdown', 'data-city': 'region_city_id' }
 
-    .required.field
+    .field
       = label :region, :district_group_id, 'Grupo de quadras'
       = grouped_collection_select :region, :district_group_id, City.all,
         :district_groups, :name, :friendly_id, :name, { include_blank: 'Selecione' },
         { class: 'ui dropdown', 'data-district-group': 'region_district_group_id' }
 
-    .required.field
+    .field
       = label :region, :district_id, 'Quadra'
       = grouped_collection_select :region, :district_id, DistrictGroup.all,
         :districts, :name, :friendly_id, :name, { include_blank: 'Selecione' },
         { class: 'ui dropdown', 'data-district': 'region_district_id' }
 
-    .required.field
+    .field
       = f.label :block_id, 'Bloco'
       = f.grouped_collection_select :block_id, District.all,
         :blocks, :name, :id, :name, { include_blank: 'Selecione' },

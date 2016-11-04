@@ -1,18 +1,12 @@
-%h2.ui.header
-  = @market.customer.name
-  .sub.header Gestão de formas de pagamento
+= render partial: 'admin/markets/market_menu',
+  locals: { customer_id: @market.customer_id, market_id: @market.id }
 
-.ui.divider
+.ui.text.container
+  - if @market.payment_methods.any?
+    .ui.segments
+      = render @market.payment_methods
 
-= link_to new_admin_market_payment_method_path(@market.id),
-    class: 'ui primary button' do
-  %i.plus.icon
-  Novo
-
-%table.ui.striped.table
-  %thead
-    %tr
-      %th Nome
-      %th Ação
-  %tbody
-    = render @payment_methods
+  .ui.center.aligned.container
+    = link_to 'Adicionar forma de pagamento',
+      new_admin_customer_market_payment_method_path(@market.customer_id, @market.id),
+      id: 'payment-method-btn', remote: true

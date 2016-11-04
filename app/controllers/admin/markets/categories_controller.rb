@@ -2,36 +2,29 @@ class Admin::Markets::CategoriesController < Admin::BaseController
   before_action :set_market, only: [:index, :new, :create, :destroy]
 
   def index
-    @categories = @market.categories
   end
 
   def new
-    @categories_dropdown = Category.where(segment: @market.segment)
+    @categories = @market.segment.categories.where.not(id: @market.categories)
   end
 
   def create
-    category = Category.find(allowed_params[:id])
-
-    if @market.categories.append(category)
-      flash[:notice] = 'Tipo adicionado com sucesso'
-      redirect_to admin_market_categories_path(@market.id)
-    else
-      flash[:error] = 'Erro ao adicionar tipo'
-      render :new
-    end
+    @market.categories.push(Category.find(allowed_params))
+    redirect_to admin_customer_market_categories_path(@market.customer_id, @market.id)
   end
 
   def destroy
-    @market.categories.destroy(params[:id])
+    specialities_to_delete = @market.specialities.where(category_id: params[:id])
+    @market.specialities.destroy(specialities_to_delete)
 
-    flash[:notice] = 'Tipo removido com sucesso'
-    redirect_to admin_market_categories_path(@market.id)
+    @market.categories.destroy(params[:id])
+    redirect_to admin_customer_market_categories_path(@market.customer_id, @market.id)
   end
 
   private
 
   def allowed_params
-    params.require(:category).permit(:id)
+    params.require(:category).permit(:id)[:id]
   end
 
   def set_market

@@ -1,19 +1,21 @@
-%h2.ui.header
-  = @customer_common.fantasy_name
-  .sub.header Gestão de filiais
+- is_admin = current_user.has_role? :admin
+
+%h2.ui.header= (is_admin) ? 'Gestão de clientes' : 'Meu Perfil'
 
 .ui.divider
 
-= link_to new_admin_customer_common_customer_path, class: 'ui primary button' do
-  %i.plus.icon
-  Novo
+- if is_admin
+  = link_to new_admin_customer_path, class: 'ui primary button' do
+    %i.plus.icon
+    Novo
 
 %table.ui.striped.table
   %thead
     %tr
-      %th Nome
+      %th Nome fantasia
+      %th Razão social
       %th Endereço
-      %th Ativo?
+      %th Situação
       %th Ação
   %tbody
     = render @customers

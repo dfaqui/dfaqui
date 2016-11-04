@@ -1,5 +1,5 @@
 %p= "Olá, #{@customer.owner_name.split(' ').first}! Sua senha é:"
 %h1= @generated_password
 
-%a{ href: new_user_session_url }
+%a{ href: edit_admin_customer_url(@customer.id) }
   Clique aqui para complementar seu cadastro
