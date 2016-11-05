@@ -2,6 +2,12 @@ $futura-font: 'futura_condensedmedium';
 $futura-light-font: 'futura_condensed_lightregular';
 
 #advertisement-form {
+  .close.icon {
+    float: right;
+    color: #13a6bd;
+    cursor: pointer;
+  }
+
   .ui.header {
     color: #13a6bd;
     font-family: $futura-font;

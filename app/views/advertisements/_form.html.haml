@@ -1,6 +1,8 @@
 #advertisement-form
   .ui.small.long.advertisement.modal
     .content
+      %i.large.close.icon{ onclick: 'modal_close()' }
+
       .ui.center.aligned.container
         %h1.ui.header
           Olá!
@@ -72,3 +74,7 @@
 
 :javascript
   $('.ui.dropdown').dropdown({ placeholder: false });
+
+  function modal_close() {
+    $('.ui.modal').modal('hide');
+  }
