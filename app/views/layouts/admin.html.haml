@@ -70,7 +70,7 @@
               - if (current_user.has_role? :admin) || (current_user.has_role? :property, :any)
                 = link_to admin_properties_path, class: 'item' do
                   %i.angle.right.icon
-                  Imóveis
+                  Meus Imóveis
 
               - if current_user.has_role? :admin
                 = link_to admin_users_path, class: 'item' do

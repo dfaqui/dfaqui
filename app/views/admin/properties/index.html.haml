@@ -1,4 +1,4 @@
-%h2 Gestão de imóveis
+%h2.ui.header= (current_user.has_role? :admin) ? 'Gestão de imóveis' : 'Meus Imóveis'
 
 .ui.divider
 
