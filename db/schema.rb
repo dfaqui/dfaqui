@@ -208,7 +208,7 @@ ActiveRecord::Schema.define(version: 20161025122045) do
     t.integer  "market_id",                                    null: false
     t.string   "photo"
     t.string   "image_secure_token"
-    t.float    "price"
+    t.integer  "price",                         default: 0
     t.boolean  "status",                        default: true, null: false
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false

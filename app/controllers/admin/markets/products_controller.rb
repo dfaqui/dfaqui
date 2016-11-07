@@ -17,7 +17,15 @@ class Admin::Markets::ProductsController < Admin::BaseController
   end
 
   def create
-    @product = @market.products.new(allowed_params)
+    product_params = allowed_params
+
+    if product_params[:price_cents].present?
+      product_params[:price_cents]  = product_params[:price_cents].
+                                      gsub('.', '').
+                                      gsub(',', '.')
+    end
+
+    @product = @market.products.new(product_params)
 
     if @product.save
       flash[:notice] = 'Produto cadastrado com sucesso'
@@ -64,7 +72,7 @@ class Admin::Markets::ProductsController < Admin::BaseController
       :name,
       :description,
       :photo,
-      :price,
+      :price_cents,
       :status
     )
   end

@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.references :market, foreign_key: true, null: false, index: true
       t.string :photo
       t.string :image_secure_token
-      t.float :price
+      t.integer :price, default: 0
       t.boolean :status, null: false, default: true
 
       t.timestamps

@@ -14,8 +14,8 @@
       = f.input_field :name
 
     .field
-      = f.label :price, 'Valor'
-      = f.input_field :price
+      = f.label :price_cents, 'Valor'
+      = f.input_field :price_cents, as: :string, class: 'money'
 
     .field
       = f.label :photo, 'Imagem'
