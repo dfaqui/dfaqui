@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  has_scope :cliente
+  # has_scope :cliente
   has_scope :tipo
   has_scope :situacao
   has_scope :quartos
