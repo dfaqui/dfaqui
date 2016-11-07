@@ -11,7 +11,7 @@ class AdvertisementsController < ApplicationController
       AdvertisementMailer.new_customer(@customer, generated_password).deliver
       partial = 'create'
     else
-      @customer_common.errors.delete(:fantasy_name)
+      @customer.errors.delete(:fantasy_name)
       partial = 'error'
     end
 

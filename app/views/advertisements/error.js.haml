@@ -1,2 +1,2 @@
 $('#error-messages').empty();
-$('#error-messages').append("#{j render partial: 'partials/form_error', locals: { messages: @customer_common.errors.full_messages}}");
+$('#error-messages').append("#{j render partial: 'partials/form_error', locals: { messages: @customer.errors.full_messages}}");

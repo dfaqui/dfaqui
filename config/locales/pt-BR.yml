@@ -4,7 +4,7 @@ pt-BR:
       block: 'Bloco'
       category: 'Categoria'
       city: 'Cidade'
-      customer: 'Filial'
+      customer: 'Cliente'
       district: 'Quadra'
       district_group: 'Grupo de quadras'
       market: 'Comércio'
@@ -20,7 +20,7 @@ pt-BR:
       user: 'Usuário'
       working_hour: 'Expediente'
     attributes:
-      customers:
+      customer:
         name: 'Razão social'
         customer_type: 'Tipo'
         document: 'CPF/CNPJ'
