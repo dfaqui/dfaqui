@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 admin = User.create(
   name: 'Administrador',
   email: 'admin@dfaqui.com',
@@ -18,7 +10,6 @@ State.create(name: 'Distrito Federal', abbreviation: 'DF')
 
 City.create(id: 1, name: 'Asa Sul', state: State.first)
 City.create(id: 2, name: 'Noroeste', state: State.first)
-
 
 DistrictGroup.create(name: 'SQS 100', city: City.find(1))
 District.create(name: 'SQS 102', district_group: DistrictGroup.first)
@@ -43,9 +34,14 @@ Speciality.create(id: 7, name: 'Java', category: Category.find(5))
 Speciality.create(id: 8, name: 'Ruby on Rails', category: Category.find(5))
 Speciality.create(id: 9, name: 'PHP', category: Category.find(5))
 
-
 PaymentMethod.create(icon: 'cartao.png', name: 'Cartão')
 PaymentMethod.create(icon: 'boleto.png', name: 'Boleto')
 PaymentMethod.create(icon: 'visa.png', name: 'Visa')
 PaymentMethod.create(icon: 'mastercard.png', name: 'MasterCard')
 PaymentMethod.create(icon: 'dinheiro.png', name: 'Dinheiro')
+
+Tag.create(id: 1, name: 'Piscina', plugin: 'property')
+Tag.create(id: 2, name: 'Academia', plugin: 'property')
+Tag.create(id: 3, name: 'Churrasqueira', plugin: 'property')
+Tag.create(id: 4, name: 'Sala de Jogos', plugin: 'property')
+Tag.create(id: 5, name: 'Brinquedoteca', plugin: 'property')

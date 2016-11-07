@@ -1,6 +1,13 @@
 = simple_form_for([:admin, @market.customer, @market, @product],
     html: { class: 'ui form' }) do |f|
 
+  - if @product.errors.any?
+    .ui.red.message
+      .header Favor corrigir os seguintes erros
+      %ul.list
+        - @product.errors.full_messages.each do |message|
+          %li= message
+
   .three.fields
     .required.field
       = f.label :name, 'Nome'

@@ -1,4 +1,11 @@
 = simple_form_for([:admin, @user], html: { class: 'ui form' }) do |f|
+  - if @user.errors.any?
+    .ui.red.message
+      .header Favor corrigir os seguintes erros
+      %ul.list
+        - @user.errors.full_messages.each do |message|
+          %li= message
+
   .two.fields
     .required.field
       = f.label :name, 'Nome'

@@ -18,10 +18,11 @@ pt-BR:
       state: 'Estado'
       tag: 'Atributo'
       user: 'Usuário'
-      working_hour: 'Expediente'
+      working_hour: 'Horário de funcionamento'
     attributes:
       customer:
         name: 'Razão social'
+        fantasy_name: 'Nome fantasia'
         customer_type: 'Tipo'
         document: 'CPF/CNPJ'
         address_complement: 'Complemento'
@@ -30,6 +31,38 @@ pt-BR:
         owner_phone: 'Telefone do responsável'
         contact_email: 'E-mail para contato'
         contact_phone: 'Telefone para contato'
+      product:
+        name: 'Nome'
+        description: 'Descrição'
+        photo: 'Imagem'
+        price: 'Valor'
+      property:
+        customer: 'Cliente'
+        block: 'Bloco'
+        property_type: 'Tipo'
+        commercial_situation: 'Situação'
+        release_status: 'Estado'
+        description: 'Descrição'
+        price: 'Valor'
+        tax: 'IPTU'
+        area: 'Área'
+        square_meter_price: 'Valor (m²)'
+        rooms: 'Quartos'
+        bathrooms: 'Banheiros'
+        parking_spaces: 'Vagas'
+        floor: 'Andar'
+        unit: 'Unidade'
+        maintenance_fee: 'Condomínio'
+        sun_position: 'Posição do sol'
+      user:
+        name: 'Nome'
+        email: 'E-mail'
+        password: 'Senha'
+        password_confirmation: 'Confirme a senha'
+      working_hour:
+        days: 'Período'
+        opening_time: 'Início do atendimento'
+        opening_time: 'Fim do atendimento'
   enumerize:
     customer:
       customer_type:

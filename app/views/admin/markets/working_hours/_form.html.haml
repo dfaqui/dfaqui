@@ -1,6 +1,13 @@
 = simple_form_for([:admin, @market.customer, @market, @working_hour],
     html: { class: 'ui form' }) do |f|
 
+  - if @working_hour.errors.any?
+    .ui.red.message
+      .header Favor corrigir os seguintes erros
+      %ul.list
+        - @working_hour.errors.full_messages.each do |message|
+          %li= message
+
   .field
     - days = I18n.t('date.day_names').each_with_index.to_a
     = f.label :days, 'Período'

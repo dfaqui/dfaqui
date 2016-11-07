@@ -1,4 +1,11 @@
 = simple_form_for([:admin, @property], html: { class: 'ui form' }) do |f|
+  - if @property.errors.any?
+    .ui.red.message
+      .header Favor corrigir os seguintes erros
+      %ul.list
+        - @property.errors.full_messages.each do |message|
+          %li= message
+
   .required.field
     = f.label :customer, 'Cliente'
     = f.input_field :customer_id, collection: Customer.properties(current_user),

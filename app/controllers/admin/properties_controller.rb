@@ -21,9 +21,15 @@ class Admin::PropertiesController < Admin::BaseController
   end
 
   def create
-    @property = Property.new(allowed_params)
+    property_params = allowed_params
+
+    tags      = (property_params.delete :tag_ids)
+    @property = Property.new(property_params)
 
     if @property.save
+      tags = tags.collect{|v| Tag.find(v.to_i)}
+      @property.tags << tags
+
       flash[:notice] = 'Imóvel cadastrado com sucesso'
       redirect_to admin_properties_path
     else

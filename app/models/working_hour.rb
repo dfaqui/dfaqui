@@ -1,6 +1,7 @@
 class WorkingHour < ApplicationRecord
   belongs_to :market
 
+  validates :days, presence: true
   validates :opening_time, presence: true
   validates :closing_time, presence: true
 
