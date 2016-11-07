@@ -118,3 +118,13 @@ body {
     padding-right: 10px;
   }
 }
+
+// help text
+.help-label { display: inline !important }
+.help {
+  color: #b3b3b3;
+  font-size: 12px;
+  font-weight: 100;
+  display: inline;
+  margin-left: 5px;
+}

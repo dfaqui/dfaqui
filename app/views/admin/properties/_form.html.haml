@@ -29,11 +29,9 @@
       = f.select :release_status, Property.release_status.options, {},
         { class: 'ui dropdown' }
 
-  .field
-    = f.label :description, 'Descrição'
-    = f.input_field :description, as: :text
-
-  .ui.dividing.header Localização
+  .ui.dividing.header
+    Localização
+    .help (Endereço do imóvel)
 
   .four.fields
     .required.field
@@ -107,6 +105,11 @@
       = f.label :sun_position, 'Posição do sol'
       = f.input_field :sun_position, as: :select, include_blank: 'Selecione',
         collection: Property.sun_position.options, class: 'ui dropdown'
+
+  .field
+    = f.label :description, 'Descrição', class: 'help-label'
+    .help (Informações complementares sobre o imóvel)
+    = f.input_field :description, as: :text
 
   .ui.dividing.header Características
 

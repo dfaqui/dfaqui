@@ -1,5 +1,23 @@
 RailsAdmin.config do |config|
 
+  config.model 'Block' do
+    create do
+      field :name
+      field :district
+      field :zipcode
+      field :tour_link
+      field :status
+    end
+
+    edit do
+      field :name
+      field :district
+      field :zipcode
+      field :tour_link
+      field :status
+    end
+  end
+
   config.model 'City' do
     create do
       field :name
@@ -10,6 +28,20 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :state
+      field :status
+    end
+  end
+
+  config.model 'District' do
+    create do
+      field :name
+      field :district_group
+      field :status
+    end
+
+    edit do
+      field :name
+      field :district_group
       field :status
     end
   end
