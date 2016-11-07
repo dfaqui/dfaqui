@@ -38,12 +38,12 @@ class Customer < ApplicationRecord
   validates :name, presence: true, length: { maximum: 120 }
   validates :fantasy_name, presence: true, length: { maximum: 120 }
   validates :customer_type, presence: true, numericality: { only_integer: true }
-  validates :document, presence: true, length: { maximum: 20 }
+  validates :document, length: { maximum: 20 }, cpf_or_cnpj: true
   validates :address_complement, length: { maximum: 255 }
   validates :owner_name, presence: true, length: { maximum: 120 }
-  validates :owner_email, presence: true, length: { maximum: 100 }
+  validates :owner_email, length: { maximum: 100 }, email: true
   validates :owner_phone, length: { maximum: 20 }
-  validates :contact_email, length: { maximum: 100 }
+  validates :contact_email, length: { maximum: 100 }, allow_blank: true, email: true
   validates :additional_info, length: { maximum: 255 }
   validates :plugin, presence: true, length: { maximum: 20 }
   # validates :status, inclusion: { in: [0, 1, 2] }

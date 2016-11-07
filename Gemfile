@@ -46,6 +46,9 @@ gem 'dotiw'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
+gem 'validates_cpf_cnpj'
+gem 'email_validator'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-lightslider'
   gem 'rails-assets-jquery-mask-plugin'

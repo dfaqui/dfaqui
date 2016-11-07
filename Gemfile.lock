@@ -81,6 +81,8 @@ GEM
     dotiw (3.1.1)
       actionpack (>= 3)
       i18n
+    email_validator (1.6.0)
+      activemodel
     enumerize (2.0.0)
       activesupport (>= 3.2)
     erubis (2.7.0)
@@ -446,6 +448,8 @@ GEM
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.1.1)
+    validates_cpf_cnpj (0.2.0)
+      activemodel (>= 3.0.0)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (3.3.1)
@@ -468,6 +472,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotiw
+  email_validator
   enumerize
   factory_girl_rails
   figaro
@@ -507,6 +512,7 @@ DEPENDENCIES
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
+  validates_cpf_cnpj
   web-console
 
 RUBY VERSION
