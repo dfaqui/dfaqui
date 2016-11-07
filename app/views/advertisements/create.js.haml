@@ -1,1 +1,5 @@
 $('.advertisement.modal').modal('hide');
+
+$('#success-modal').remove();
+$('body').append("#{ j render 'advertisements/success' }");
+$('.ui.success.modal').modal({ detachable: false }).modal('show');

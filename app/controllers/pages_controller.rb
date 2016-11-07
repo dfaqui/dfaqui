@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
   layout 'base'
 
+  def test
+  end
+
   def home
   end
 

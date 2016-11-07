@@ -33,6 +33,7 @@ gem 'has_scope'
 
 gem 'simple_form'
 gem 'rails_admin'
+gem 'gritter', '1.2.0'
 
 gem 'geocoder'
 gem 'geokit-rails'
