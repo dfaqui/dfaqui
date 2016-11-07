@@ -2,7 +2,7 @@ pt-BR:
   activerecord:
     models:
       block: 'Bloco'
-      category: 'Categoria'
+      category: 'Tipo'
       city: 'Cidade'
       customer: 'Cliente'
       district: 'Quadra'

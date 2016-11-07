@@ -18,6 +18,20 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'Category' do
+    create do
+      field :name
+      field :segment
+      field :status
+    end
+
+    edit do
+      field :name
+      field :segment
+      field :status
+    end
+  end
+
   config.model 'City' do
     create do
       field :name
@@ -56,6 +70,32 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :city
+      field :status
+    end
+  end
+
+  config.model 'Segment' do
+    create do
+      field :name
+      field :status
+    end
+
+    edit do
+      field :name
+      field :status
+    end
+  end
+
+  config.model 'Speciality' do
+    create do
+      field :name
+      field :category
+      field :status
+    end
+
+    edit do
+      field :name
+      field :category
       field :status
     end
   end
