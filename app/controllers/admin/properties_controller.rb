@@ -1,5 +1,6 @@
 class Admin::PropertiesController < Admin::BaseController
   before_action :set_property, only: [:edit, :update, :destroy]
+  before_action :select_tags, only: [:new, :edit]
 
   def index
     if current_user.has_role? :admin
@@ -85,5 +86,9 @@ class Admin::PropertiesController < Admin::BaseController
 
   def set_property
     @property = Property.find(params[:id])
+  end
+
+  def select_tags
+    @tags = Tag.where(plugin: 'property')
   end
 end

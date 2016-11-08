@@ -118,7 +118,14 @@
   .ui.dividing.header Características
 
   .field
-    = f.association :tags, as: :check_boxes, label: false, include_hidden: false
+    .ui.four.column.grid
+      - @tags.each do |tag|
+        .column
+          .ui.checkbox
+            %input{ value: tag.id, name: 'property[tag_ids][]', type: 'checkbox', checked: @property.tags.include?(tag) }
+            %label= tag.name
+
+  .ui.hidden.section.divider
 
   .field
     = f.button :button, class: 'ui primary button' do
