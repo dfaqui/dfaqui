@@ -122,12 +122,14 @@
   .ui.divider
 
   %h2.ui.header Características
+  .ui.hidden.divider
 
-  .ui.list
-    - @property.tags.each do |tag|
-      .item
-        %i.check.green.icon
-        = tag.name
+  .tag-section
+    .ui.six.column.grid
+      - @property.tags.each do |tag|
+        .tag.column
+          %i.fitted.check.green.icon
+          = tag.name
 
 = render partial: 'partials/contact_modal',
   locals: { item_id: @property.id, phones: @property.customer.contact_phone }
