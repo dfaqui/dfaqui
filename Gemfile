@@ -33,6 +33,7 @@ gem 'has_scope'
 gem 'money-rails'
 
 gem 'simple_form'
+gem 'kaminari'
 gem 'rails_admin'
 gem 'gritter', '1.2.0'
 

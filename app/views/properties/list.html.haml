@@ -1,13 +1,16 @@
 = link_to 'Voltar', properties_path, class: 'ui primary button back-button'
 
 .result-section
-  %span.value= @properties.count
+  %span.value= @count
   %span.label imóveis encontrados
 
 .ui.divider
 
 - @properties.each do |property|
   = render property
+
+.ui.center.aligned.container
+  = paginate @properties
 
 :javascript
   $('.ui.heart.rating').rating();

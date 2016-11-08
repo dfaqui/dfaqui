@@ -498,6 +498,7 @@ DEPENDENCIES
   has_scope
   jbuilder (~> 2.5)
   jquery-rails
+  kaminari
   launchy
   letter_opener
   letter_opener_web (~> 1.2.0)

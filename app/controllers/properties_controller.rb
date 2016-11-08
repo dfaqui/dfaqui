@@ -21,5 +21,7 @@ class PropertiesController < ApplicationController
 
   def list
     @properties = apply_scopes(Property).active
+    @count      = @properties.count
+    @properties = @properties.page(params[:pagina])
   end
 end

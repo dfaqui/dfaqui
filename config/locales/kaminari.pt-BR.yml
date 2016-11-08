@@ -1,0 +1,20 @@
+pt-BR:
+  helpers:
+    page_entries_info:
+      more_pages:
+        display_entries: Exibindo %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de um total de <b>%{total}</b>
+      one_page:
+        display_entries:
+          one: Exibindo <b>1</b> %{entry_name}
+          other: Exibindo <b>%{count}</b> %{entry_name}
+          zero: Nenhum %{entry_name} encontrado
+  view:
+    pagination:
+      first: Primeiro
+      last: Último
+      next: Próximo
+      previous: Anterior
+      truncate: ...
+      page:
+        current: Atual
+        goto: Ir para a página
