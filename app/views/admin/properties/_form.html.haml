@@ -63,12 +63,16 @@
 
   .ui.dividing.header Detalhes
 
-  .five.fields
+  .six.fields
     .required.field
       = f.label :rooms, 'Quartos'
       = f.input_field :rooms, as: :string, class: 'only_number'
 
     .required.field
+      = f.label :suites, 'Suítes'
+      = f.input_field :suites, as: :string, class: 'only_number'
+
+    .field
       = f.label :bathrooms, 'Banheiros'
       = f.input_field :bathrooms, as: :string, class: 'only_number'
 

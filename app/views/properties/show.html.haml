@@ -45,8 +45,8 @@
           .value= @property.rooms
 
         .ui.mini.statistic
-          .label Banheiros
-          .value= @property.bathrooms
+          .label Suítes
+          .value= @property.suites
 
       .ui.favorite.divider
 
@@ -74,6 +74,10 @@
         - if @property.property_type.present?
           .right.aligned.column Tipo
           .column= @property.property_type_text
+
+        - if @property.bathrooms.present?
+          .right.aligned.column Banheiros
+          .column= @property.bathrooms
 
         - if @property.parking_spaces.present?
           .right.aligned.column Vagas

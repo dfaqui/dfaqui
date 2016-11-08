@@ -88,16 +88,17 @@ class Property < ApplicationRecord
   # validates :property_type, presence: true, numericality: { only_integer: true }
   # validates :commercial_situation, presence: true, numericality: { only_integer: true }
   # validates :release_status, presence: true, numericality: { only_integer: true }
-  validates :price, numericality: { only_float: true }, allow_nil: true
-  validates :tax, numericality: { only_float: true }, allow_nil: true
+  validates :price, numericality: { only_integer: true }, allow_nil: true
+  validates :tax, numericality: { only_integer: true }, allow_nil: true
   validates :area, presence: true, numericality: { only_integer: true }
-  validates :square_meter_price, numericality: { only_float: true }, allow_nil: true
+  validates :square_meter_price, numericality: { only_integer: true }, allow_nil: true
   validates :rooms, presence: true, numericality: { only_integer: true }
-  validates :bathrooms, presence: true, numericality: { only_integer: true }
+  validates :suites, presence: true, numericality: { only_integer: true }
+  validates :bathrooms, numericality: { only_integer: true }, allow_nil: true
   validates :parking_spaces, numericality: { only_integer: true }, allow_nil: true
   validates :floor, length: { maximum: 45 }
   validates :unit, length: { maximum: 45 }
-  validates :maintenance_fee, numericality: { only_float: true }, allow_nil: true
+  validates :maintenance_fee, numericality: { only_integer: true }, allow_nil: true
   validates :sun_position, numericality: { only_integer: true }, allow_blank: true
 
   monetize :price, as: :price_cents, allow_nil: true

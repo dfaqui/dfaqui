@@ -227,7 +227,8 @@ ActiveRecord::Schema.define(version: 20161025122045) do
     t.integer  "area",                                            null: false
     t.integer  "square_meter_price"
     t.integer  "rooms",                                           null: false
-    t.integer  "bathrooms",                                       null: false
+    t.integer  "suites",                                          null: false
+    t.integer  "bathrooms"
     t.integer  "parking_spaces"
     t.string   "floor",                limit: 45
     t.string   "unit",                 limit: 45

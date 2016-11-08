@@ -48,6 +48,7 @@ pt-BR:
         area: 'Área'
         square_meter_price: 'Valor (m²)'
         rooms: 'Quartos'
+        suites: 'Suítes'
         bathrooms: 'Banheiros'
         parking_spaces: 'Vagas'
         floor: 'Andar'

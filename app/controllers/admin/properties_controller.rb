@@ -71,6 +71,7 @@ class Admin::PropertiesController < Admin::BaseController
       :tax_cents,
       :area,
       :rooms,
+      :suites,
       :bathrooms,
       :parking_spaces,
       :floor,
