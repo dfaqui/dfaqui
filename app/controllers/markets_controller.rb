@@ -16,7 +16,9 @@ class MarketsController < ApplicationController
   end
 
   def list
-    @markets = apply_scopes(Market).by_channel(current_channel).active
+    @markets  = apply_scopes(Market).by_channel(current_channel).active
+    @count    = @markets.count
+    @markets  = @markets.page(params[:pagina])
   end
 
   def show

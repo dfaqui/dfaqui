@@ -1,13 +1,16 @@
 = link_to 'Voltar', markets_path, class: 'ui primary button back-button'
 
 .result-section
-  %span.value= @markets.count
+  %span.value= @count
   %span.label resultados encontrados
 
 .ui.divider
 
 - @markets.each do |market|
   = render market
+
+.ui.center.aligned.container
+  = paginate @markets
 
 :javascript
   $('.ui.heart.rating').rating();
