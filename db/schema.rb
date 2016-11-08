@@ -203,15 +203,14 @@ ActiveRecord::Schema.define(version: 20161025122045) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",               limit: 60,                null: false
+    t.string   "name",        limit: 60,                null: false
     t.text     "description"
-    t.integer  "market_id",                                    null: false
+    t.integer  "market_id",                             null: false
     t.string   "photo"
-    t.string   "image_secure_token"
-    t.integer  "price",                         default: 0
-    t.boolean  "status",                        default: true, null: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.integer  "price",                  default: 0
+    t.boolean  "status",                 default: true, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["market_id"], name: "index_products_on_market_id", using: :btree
   end
 
@@ -223,16 +222,16 @@ ActiveRecord::Schema.define(version: 20161025122045) do
     t.integer  "commercial_situation",                            null: false
     t.integer  "release_status",                                  null: false
     t.text     "description"
-    t.float    "price"
-    t.float    "tax"
+    t.integer  "price"
+    t.integer  "tax"
     t.integer  "area",                                            null: false
-    t.float    "square_meter_price"
+    t.integer  "square_meter_price"
     t.integer  "rooms",                                           null: false
     t.integer  "bathrooms",                                       null: false
     t.integer  "parking_spaces"
     t.string   "floor",                limit: 45
-    t.integer  "unit"
-    t.float    "maintenance_fee"
+    t.string   "unit",                 limit: 45
+    t.integer  "maintenance_fee"
     t.integer  "sun_position"
     t.boolean  "status",                           default: true, null: false
     t.datetime "created_at",                                      null: false

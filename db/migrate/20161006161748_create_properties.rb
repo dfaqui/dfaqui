@@ -16,7 +16,7 @@ class CreateProperties < ActiveRecord::Migration[5.0]
       t.integer :bathrooms, null: false
       t.integer :parking_spaces
       t.string :floor, limit: 45
-      t.integer :unit
+      t.string :unit, limit: 45
       t.integer :maintenance_fee
       t.integer :sun_position
       t.boolean :status, null: false, default: true
