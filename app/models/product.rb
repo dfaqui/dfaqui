@@ -5,7 +5,7 @@ class Product < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 60 }
   validates :market, presence: true
-  validates :price, numericality: { only_integer: true }, allow_blank: true
+  # validates :price, numericality: { only_integer: true }, allow_blank: true
 
   monetize :price, as: :price_cents, allow_nil: true
 
