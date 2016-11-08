@@ -30,7 +30,7 @@
             = item.sponsorable.commercial_situation_text
           = link_to property_show_path(item.sponsorable.id) do
             = image_tag item.sponsorable.cover_image, class: 'card-image'
-            %p= (item.sponsorable.price.blank?) ? 'Sob consulta' : number_to_currency(item.sponsorable.price)
+            %p= (item.sponsorable.price.blank?) ? 'Sob consulta' : humanized_money_with_symbol(item.sponsorable.price_cents)
         .content
           .ui.three.column.center.aligned.grid
             .column

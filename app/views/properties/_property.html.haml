@@ -9,7 +9,7 @@
       = image_tag property.cover_image
       %p
         - if property.price
-          = number_to_currency(property.price)
+          = humanized_money_with_symbol(property.price_cents)
         - else
           Sob consulta
 

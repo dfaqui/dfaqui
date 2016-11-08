@@ -90,16 +90,16 @@
       = f.input_field :area, as: :string, class: 'only_number'
 
     .field
-      = f.label :price, 'Valor'
-      = f.input_field :price
+      = f.label :price_cents, 'Valor'
+      = f.input_field :price_cents, as: :string, class: 'money'
 
     .field
-      = f.label :tax, 'IPTU'
-      = f.input_field :tax
+      = f.label :tax_cents, 'IPTU'
+      = f.input_field :tax_cents, as: :string, class: 'money'
 
     .field
-      = f.label :maintenance_fee, 'Condomínio'
-      = f.input_field :maintenance_fee
+      = f.label :maintenance_fee_cents, 'Condomínio'
+      = f.input_field :maintenance_fee_cents, as: :string, class: 'money'
 
     .field
       = f.label :sun_position, 'Posição do sol'

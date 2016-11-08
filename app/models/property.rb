@@ -1,8 +1,6 @@
 class Property < ApplicationRecord
   extend Enumerize
 
-  before_save :square_meter_price_calculate
-
   enumerize :property_type, in: { residential: 0, commercial: 1 }, scope: true
   enumerize :commercial_situation, in: { release: 0, sale: 1, rent: 2 }, scope: true
   enumerize :release_status, in: { off_plan: 0, under_construction: 1, soon_launching: 2, ready: 3 }
@@ -102,6 +100,17 @@ class Property < ApplicationRecord
   validates :maintenance_fee, numericality: { only_float: true }, allow_nil: true
   validates :sun_position, numericality: { only_integer: true }, allow_blank: true
 
+  monetize :price, as: :price_cents, allow_nil: true
+  monetize :tax, as: :tax_cents, allow_nil: true
+  monetize :maintenance_fee, as: :maintenance_fee_cents, allow_nil: true
+  monetize :square_meter_price, as: :square_meter_price_cents, allow_nil: true
+
+  before_save :square_meter_price_calculate
+
+  before_validation :price_to_cents
+  before_validation :tax_to_cents
+  before_validation :maintenance_fee_to_cents
+
   def full_address
     "#{self.block.district.name} #{self.block.name}"
   end
@@ -127,5 +136,23 @@ class Property < ApplicationRecord
     end
 
     self.square_meter_price
+  end
+
+  def price_to_cents
+    if self.price_cents
+      self.price_cents = Money.new(price_cents)
+    end
+  end
+
+  def tax_to_cents
+    if self.tax_cents
+      self.tax_cents = Money.new(tax_cents)
+    end
+  end
+
+  def maintenance_fee_to_cents
+    if self.maintenance_fee_cents
+      self.maintenance_fee_cents = Money.new(maintenance_fee_cents)
+    end
   end
 end

@@ -25,7 +25,7 @@
       %span.price-label Valor
       %span.price-value
         - if @property.price
-          = number_to_currency(@property.price)
+          = humanized_money_with_symbol(@property.price_cents)
         - else
           Sob consulta
 
@@ -89,15 +89,15 @@
 
         - if @property.square_meter_price.present?
           .right.aligned.column Valor (m²)
-          .column= number_to_currency(@property.square_meter_price)
+          .column= humanized_money_with_symbol(@property.square_meter_price_cents)
 
         - if @property.maintenance_fee.present?
           .right.aligned.column Condomínio
-          .column= number_to_currency(@property.maintenance_fee)
+          .column= humanized_money_with_symbol(@property.maintenance_fee_cents)
 
         - if @property.tax.present?
           .right.aligned.column IPTU
-          .column= number_to_currency(@property.tax)
+          .column= humanized_money_with_symbol(@property.tax_cents)
 
         - if @property.sun_position.present?
           .right.aligned.column Posição do sol

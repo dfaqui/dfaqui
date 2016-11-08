@@ -8,16 +8,16 @@ class CreateProperties < ActiveRecord::Migration[5.0]
       t.integer :commercial_situation, null: false
       t.integer :release_status, null: false
       t.text :description
-      t.float :price
-      t.float :tax
+      t.integer :price
+      t.integer :tax
       t.integer :area, null: false
-      t.float :square_meter_price
+      t.integer :square_meter_price
       t.integer :rooms, null: false
       t.integer :bathrooms, null: false
       t.integer :parking_spaces
       t.string :floor, limit: 45
       t.integer :unit
-      t.float :maintenance_fee
+      t.integer :maintenance_fee
       t.integer :sun_position
       t.boolean :status, null: false, default: true
 
