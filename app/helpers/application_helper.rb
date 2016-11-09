@@ -29,6 +29,17 @@ module ApplicationHelper
     navbar
   end
 
+  def render_banner
+    if current_channel == 'imoveis'
+      city              = (params[:cidade].present?) ? params[:cidade] : City.select(:slug).first.slug
+      background_image  = Page.get_value('property-banner', city)
+    else
+      background_image  = image_url "#{current_channel}_banner.png"
+    end
+
+    content_tag(:div, nil, class: 'banner', style: "background-image: url(#{background_image})")
+  end
+
   private
 
   def brand_icon(channel)
