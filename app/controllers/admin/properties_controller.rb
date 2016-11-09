@@ -36,6 +36,11 @@ class Admin::PropertiesController < Admin::BaseController
       flash[:notice] = 'Imóvel cadastrado com sucesso'
       redirect_to admin_properties_path
     else
+      # O callback que seleciona as tags não está sendo disparado quando a
+      # validação do formulário não passa. Por isso, a necessidade de chamar o
+      # método aqui
+      select_tags
+
       flash[:error] = 'Erro ao cadastrar imóvel'
       render :new
     end
@@ -46,6 +51,11 @@ class Admin::PropertiesController < Admin::BaseController
       flash[:notice] = 'Imóvel editado com sucesso'
       redirect_to admin_properties_path
     else
+      # O callback que seleciona as tags não está sendo disparado quando a
+      # validação do formulário não passa. Por isso, a necessidade de chamar o
+      # método aqui
+      select_tags
+
       flash[:error] = 'Erro ao editar imóvel'
       render :edit
     end
