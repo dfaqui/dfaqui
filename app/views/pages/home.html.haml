@@ -7,10 +7,12 @@
 
   .ui.vertical.center.aligned.segment#form-section
     .action.options
-      = link_to 'ENTRAR', new_user_session_path, class: 'ui inverted login button'
-
       = link_to 'ANUNCIE', new_advertisement_path, remote: true,
         class: 'ui primary advertise button'
+
+      .login-section
+        = link_to 'ENTRAR', new_user_session_path, class: 'ui inverted login button'
+        %p Área Exclusiva
 
     = image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
 

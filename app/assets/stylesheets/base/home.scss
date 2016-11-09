@@ -35,6 +35,16 @@ $font-color: #284762;
         margin: 0em 0em 0em 0em;
         padding: 0.2em 0.6em 0.2em;
       }
+
+      .advertise.button { margin-right: 8px }
+
+      .login-section {
+        display: inline-table;
+        color: white;
+        font-size: 12px;
+
+        p { margin-top: 5px }
+      }
     }
 
     .dropdown.icon {
