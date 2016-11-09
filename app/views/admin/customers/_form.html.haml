@@ -29,8 +29,10 @@
 
   .two.fields
     .required.field
+      - disabled_class = (current_user.has_role? :admin) ? '' : 'disabled'
       = f.label :plugin, 'Canal'
-      = f.select :plugin, Customer.plugin.options, {}, { class: 'ui dropdown' }
+      = f.select :plugin, Customer.plugin.options, {},
+        { class: "ui #{disabled_class} dropdown" }
 
     .field
       = f.label :logo, 'Logomarca'
