@@ -5,7 +5,7 @@ class AdvertisementsController < ApplicationController
 
   def create
     @customer           = Customer.new(allowed_params)
-    generated_password  = Devise.friendly_token.first(10)
+    generated_password  = Devise.friendly_token.first(6).downcase
 
     if @customer.create_advertisement_customer(generated_password)
       AdvertisementMailer.new_customer(@customer, generated_password).deliver

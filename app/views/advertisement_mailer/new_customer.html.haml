@@ -1,36 +1,40 @@
 = stylesheet_link_tag 'mail.css'
 
-.container
-  = link_to root_url do
-    = image_tag attachments['dfaqui_brand.png'].url
-
-  .section-one
-    %table
-      %tr
-        %td
-          %h1.hello Olá!
-        %td
-          .welcome
-            %p.user= @customer.owner_name
-            %p.header Seja bem vindo ao portal DFaqui.com.
-            %p.sub-header Estamos felizes com a sua chegada.
-
-  .section-two
-    .info
-      Complete o cadastro com seu usuário e senha e
-      %br
-      tenha acesso a área exclusiva.
-
-  .section-three
-    .user= "Usuário: #{@customer.owner_email}"
-    .password
-      Senha:
-      %span= @generated_password
-
-  .section-four= link_to 'Vamos lá!', edit_admin_customer_url(@customer.id),
-    class: 'button'
-
-  .section-five
-    .password-info Para sua segurança altere a senha.
-    .sign-up-info
-      Não conseguiu cadastrar? Entre em contato: contato@dfaqui.com / 61 97400-2364
+.new-customer-mailer
+  %table
+    %tr
+      %td
+        = link_to root_url do
+          = image_tag attachments['dfaqui_brand.png'].url
+    %tr
+      %td
+        .hello Olá!
+    %tr
+      %td
+        .username= @customer.owner_name
+    %tr
+      %td
+        .header Seja bem vindo ao portal DFaqui.com.
+        .sub-header Estamos felizes com a sua chegada.
+    %tr
+      %td
+        .info
+          Complete o cadastro com seu usuário e senha
+          %br
+          e tenha acesso a área exclusiva.
+    %tr
+      %td
+        .user= "Usuário: #{@customer.owner_email}"
+        .password
+          Senha:
+          %span= @generated_password
+    %tr
+      %td
+        = link_to 'Vamos lá!', edit_admin_customer_url(@customer.id),
+          class: 'button'
+    %tr
+      %td
+        .footer
+          .password-info Para sua segurança altere a senha.
+          .sign-up-info
+            Não conseguiu cadastrar? Entre em contato: contato@dfaqui.com / 61 97400-2364
