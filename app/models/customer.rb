@@ -41,7 +41,7 @@ class Customer < ApplicationRecord
   validates :document, length: { maximum: 20 }, cpf_or_cnpj: true
   validates :address_complement, length: { maximum: 255 }
   validates :owner_name, presence: true, length: { maximum: 120 }
-  validates :owner_email, uniqueness: true, length: { maximum: 100 }, email: true
+  validates :owner_email, length: { maximum: 100 }, email: true
   validates :owner_phone, length: { maximum: 20 }
   validates :contact_email, length: { maximum: 100 }, allow_blank: true, email: true
   validates :additional_info, length: { maximum: 255 }

@@ -29,8 +29,9 @@
         include_blank: false, class: 'ui dropdown'
 
     .field
-      = f.label :estimated_time, 'Tempo de entrega'
-      = f.input :estimated_time, label: false
+      = f.label :estimated_time, 'Tempo de entrega', class: 'help-label'
+      .help (Valor em minuto)
+      = f.input_field :estimated_time, label: false, as: :string, class: 'only_number'
 
   .field
     = f.button :button, class: 'ui primary button' do
