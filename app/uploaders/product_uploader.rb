@@ -8,7 +8,10 @@ class ProductUploader < CarrierWave::Uploader::Base
 
   def store_dir
     path = "comercio/#{model.market_id}/produto"
-    # path = "development/#{path}"
+
+    if Rails.env.development?
+      path = "development/#{path}"
+    end
   end
 
   def default_url

@@ -37,16 +37,36 @@
                     - 5.times do |i|
                       - color = (@market.price_category > i) ? 'yellow' : 'white'
                       %i{ class: "#{color} dollar fitted icon" }
+                .item
+                  .ui.horizontal.list
+                    - @market.payment_methods.each do |payment|
+                      .item
+                        = image_tag "payment/#{payment.icon}", class: 'ui mini image'
 
-            .section-four
-              = tags(@market)
+            .section-four= tags(@market)
 
+          .ui.right.floated.inverted.small.button{ onclick: "show_contact_info(#{@market.id})" }
+            CONTATO
 
-    .ui.section.hidden.divider
+    .ui.hidden.section.divider
+
+    - if @market.customer.description
+      .ui.justified.description.container
+        = @market.customer.description
+
+        .ui.hidden.section.divider
 
     .ui.container
       .ui.relaxed.divided.items
         = render partial: 'markets/product', collection: @market.products, as: :product
 
+
+= render partial: 'partials/contact_modal',
+  locals: { item_id: @market.id, phones: @market.customer.contact_phone }
+
 :javascript
   $('.ui.heart.rating').rating();
+
+  function show_contact_info(id) {
+    $('.ui.modal.item-' + id).modal('show');
+  }
