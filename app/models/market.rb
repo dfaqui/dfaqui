@@ -64,7 +64,7 @@ class Market < ApplicationRecord
 
   has_many :favorites, as: :favoritable
 
-  has_many :products, dependent: :destroy
+  has_many :products, -> { order(:name) }, dependent: :destroy
 
   has_many :categories, through: :category_markets, dependent: :destroy
   has_many :category_markets

@@ -1,11 +1,3 @@
-= link_to 'Voltar', markets_path, class: 'ui primary button back-button'
-
-.result-section
-  %span.value= @count
-  %span.label resultados encontrados
-
-.ui.divider
-
 - @markets.each do |market|
   = render market
 

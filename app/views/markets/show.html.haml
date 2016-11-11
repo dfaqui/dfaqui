@@ -14,7 +14,8 @@
                   method: :post, remote: true do
 
                 - favorited = Favorite.is_favorited?(current_user, @market.id, :Market) ? 1 : 0
-                .ui.massive.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1 }
+                .ui.massive.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1, |
+                  'data-tooltip': 'Adicionar aos favoritos', 'data-variation': 'small' }
 
             .section-two
               .ui.horizontal.divided.list
@@ -39,6 +40,13 @@
 
             .section-four
               = tags(@market)
+
+
+    .ui.section.hidden.divider
+
+    .ui.container
+      .ui.relaxed.divided.items
+        = render partial: 'markets/product', collection: @market.products, as: :product
 
 :javascript
   $('.ui.heart.rating').rating();
