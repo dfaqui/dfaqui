@@ -1,0 +1,35 @@
+= stylesheet_link_tag 'mail.css'
+
+.new-advertisement-mailer
+  %table
+    %tr
+      %td
+        = link_to root_url do
+          = image_tag attachments['dfaqui_brand.png'].url
+    %tr
+      %td
+        .hello Olá!
+    %tr
+      %td
+        .username= @customer.owner_name
+    %tr
+      %td
+        .message-one
+          Estamos felizes em saber que deseja realizar um
+          %br
+          novo anúncio em nosso portal.
+    %tr
+      %td
+        .message-two
+          Complemente as informações do seu negócio
+          %br
+          e aguarde a aprovação de seu anúncio.
+    %tr
+      %td
+        = link_to 'Vamos lá!', edit_admin_customer_url(@customer.id),
+          class: 'button'
+    %tr
+      %td
+        .footer
+          .sign-up-info
+            Não conseguiu cadastrar? Entre em contato: contato@dfaqui.com / 61 97400-2364

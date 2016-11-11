@@ -58,16 +58,26 @@ class Customer < ApplicationRecord
     self.status       = Customer.status.pending_approval
     self.fantasy_name = self.name
 
-    user              = User.new
-    user.name         = self.owner_name
-    user.email        = self.owner_email
-    user.password     = generated_password
-
     ActiveRecord::Base.transaction do
       self.save!
-      user.save!
+
+      is_new_user   = 0
+      user          = User.where(email: self.owner_email).first
+
+      if user.nil?
+        user = User.new(
+          name: self.owner_name,
+          email: self.owner_email,
+          password: generated_password
+        )
+
+        is_new_user   = 1
+        user.save!
+      end
 
       user.add_role self.plugin, self
+
+      is_new_user
     end
 
     rescue ActiveRecord::RecordInvalid => exception

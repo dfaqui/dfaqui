@@ -5,7 +5,7 @@ $font: "Trebuchet MS", Helvetica, sans-serif;
 $primary-color: #284762;
 $second-color: #13a6bd;
 
-.new-customer-mailer {
+.new-advertisement-user-mailer {
   table {
     margin: 0 auto;
     text-align: center;
@@ -64,6 +64,67 @@ $second-color: #13a6bd;
     margin-top: 8px;
 
     span { font-weight: 600 }
+  }
+
+  .button {
+    background-color: $second-color;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: $font;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-top: 40px;
+  }
+
+  .footer  {
+    margin-top: 20px;
+    color: $primary-color;
+    font-family: $font;
+    font-size: 12px;
+  }
+}
+
+.new-advertisement-mailer {
+  table {
+    margin: 0 auto;
+    text-align: center;
+    width: 680px;
+  }
+
+  td { line-height: 1 }
+
+  .hello {
+    color: $second-color;
+    font-family: $font;
+    font-size: 115px;
+    font-weight: 400;
+    margin: 40px 0 40px 0;
+  }
+
+  .username {
+    color: $primary-color;
+    font-family: $font;
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .message-one {
+    color: $primary-color;
+    font-family: $font;
+    font-size: 20px;
+  }
+
+  .message-two {
+    color: $primary-color;
+    font-family: $font;
+    font-size: 20px;
+    margin-top: 40px;
   }
 
   .button {
