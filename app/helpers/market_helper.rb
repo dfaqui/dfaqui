@@ -10,7 +10,7 @@ module MarketHelper
       color = 'market-color'
     end
 
-    link_to(label, path, class: "ui small #{color} button")
+    link_to(label, path, class: "ui tiny #{color} button")
   end
 
   def open_label(market)
@@ -19,5 +19,21 @@ module MarketHelper
 
     content = content_tag(:div, nil, class: ['ui', "#{color}", 'empty', 'circular', 'label'])
     content << " #{label}"
+  end
+
+  def tags(market)
+    html = ''
+
+    if market.specialities.any?
+      tags = market.specialities.pluck(:name)
+
+      tags.each do |tag|
+        html += content_tag(:a, class: 'ui label') do
+          content_tag(:i, nil, class: 'tag icon') + tag
+        end
+      end
+    end
+
+    html.html_safe
   end
 end

@@ -1,41 +1,52 @@
 - content_for :banner do
-  .market-banner.ui.bottom.aligned.column.grid
-    .column
-      .ui.container
-        .ui.items
-          .item
-            = image_tag @market.customer.logo, class: 'ui rounded image'
-            .content
-              .header
-                = @market.customer.fantasy_name
+  #market-show-section
+    .ui.bottom.aligned.column.banner.grid
+      .column
+        .ui.container
+          = image_tag @market.customer.logo,
+              class: 'ui rounded bordered customer image'
 
-                = link_to favorites_path(id: @market.id, type: :Market), method: :post,
-                    remote: true do
+          .main-section
+            .section-one
+              .ui.medium.header= @market.customer.fantasy_name
 
-                  - favorited = Favorite.is_favorited?(current_user, @market.id, :Market) ? 1 : 0
-                  .ui.massive.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1 }
+              = link_to favorites_path(id: @market.id, type: :Market),
+                  method: :post, remote: true do
 
-              .meta
-                = open_label(@market)
-                |
-                = @market.customer.full_address
-              .description
-                .ui.middle.aligned.grid
-                  .ui.eight.wide.left.floated.column
-                    - if @market.delivery? && !@market.estimated_time.nil?
-                      %i.fitted.clock.icon
-                      = distance_of_time(@market.estimated_time * 60)
-                      |
-                    - if !@market.price_category.nil?
-                      - 5.times do |i|
-                        - color = (@market.price_category > i) ? 'yellow' : 'white'
-                        %i{ class: "#{color} dollar fitted icon" }
+                - favorited = Favorite.is_favorited?(current_user, @market.id, :Market) ? 1 : 0
+                .ui.massive.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1, |
+                  'data-tooltip': 'Adicionar aos favoritos', 'data-variation': 'small' }
 
-.ui.section.hidden.divider
+            .section-two
+              .ui.horizontal.divided.list
+                .item= open_label(@market)
+                .item= @market.customer.full_address
 
-.ui.container
-  .ui.relaxed.divided.items
-    = render partial: 'markets/product', collection: @market.products, as: :product
+                - if @market.delivery? && current_channel == 'comercio'
+                  .item
+                    .ui.yellow.label Delivery
+
+            .section-three
+              .ui.horizontal.divided.list
+                - if @market.estimated_time.present?
+                  .estimated-time.item
+                    %i.fitted.clock.icon
+                    = distance_of_time(@market.estimated_time * 60)
+                - if @market.price_category.present?
+                  .item
+                    - 5.times do |i|
+                      - color = (@market.price_category > i) ? 'yellow' : 'white'
+                      %i{ class: "#{color} dollar fitted icon" }
+
+            .section-four
+              = tags(@market)
+
+
+    .ui.section.hidden.divider
+
+    .ui.container
+      .ui.relaxed.divided.items
+        = render partial: 'markets/product', collection: @market.products, as: :product
 
 :javascript
   $('.ui.heart.rating').rating();

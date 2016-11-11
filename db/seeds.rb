@@ -33,6 +33,7 @@ Speciality.create(id: 6, name: 'Arduino', category: Category.find(4))
 Speciality.create(id: 7, name: 'Java', category: Category.find(5))
 Speciality.create(id: 8, name: 'Ruby on Rails', category: Category.find(5))
 Speciality.create(id: 9, name: 'PHP', category: Category.find(5))
+Speciality.create(id: 10, name: 'Pizza Vegetariana', category: Category.find(2))
 
 PaymentMethod.create(icon: 'cartao.png', name: 'Cartão')
 PaymentMethod.create(icon: 'boleto.png', name: 'Boleto')
@@ -45,3 +46,15 @@ Tag.create(id: 2, name: 'Academia', plugin: 'property')
 Tag.create(id: 3, name: 'Churrasqueira', plugin: 'property')
 Tag.create(id: 4, name: 'Sala de Jogos', plugin: 'property')
 Tag.create(id: 5, name: 'Brinquedoteca', plugin: 'property')
+
+Page.create(
+  code: 'property-banner',
+  value: 'https://s3-sa-east-1.amazonaws.com/dfaqui/banner/imoveis/imoveis-asa-sul-banner.jpg',
+  condition: 'asa-sul'
+)
+
+Page.create(
+  code: 'property-banner',
+  value: 'https://s3-sa-east-1.amazonaws.com/dfaqui/banner/imoveis/imoveis-noroeste-banner.jpg',
+  condition: 'noroeste'
+)
