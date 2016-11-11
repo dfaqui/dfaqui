@@ -9,6 +9,7 @@ class Admin::AdvertisementsController < Admin::BaseController
 
   def update
     @advertisement.update_attribute(:status, Customer.status.active)
+    AdvertisementMailer.approved_advertisement(@advertisement).deliver
     flash[:notice] = 'Anúncio aprovado com sucesso'
   end
 

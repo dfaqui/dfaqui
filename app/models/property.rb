@@ -10,10 +10,9 @@ class Property < ApplicationRecord
     where(customer: Customer.with_status(:active).pluck(:id))
   end
 
-  # scope :cliente, -> cliente do
-  #   customers = Customer.where(customer_common_id: cliente).pluck(:id)
-  #   where(customer_id: customers)
-  # end
+  scope :cliente, -> cliente do
+    where(customer_id: cliente)
+  end
 
   scope :tipo, -> tipo { with_property_type(tipo) }
   scope :situacao, -> situacao { with_commercial_situation(situacao) }

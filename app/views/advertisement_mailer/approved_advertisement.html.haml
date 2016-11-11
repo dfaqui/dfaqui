@@ -1,0 +1,31 @@
+= stylesheet_link_tag 'mail.css'
+
+.approved-advertisement-mailer
+  %table
+    %tr
+      %td
+        = link_to root_url do
+          = image_tag attachments['dfaqui_brand.png'].url
+    %tr
+      %td
+        .hello Parabéns!
+    %tr
+      %td
+        .username= @customer.owner_name
+    %tr
+      %td
+        .message-one
+          O anúncio do seu negócio
+          (
+          %span.customer= @customer.fantasy_name
+          )
+          %br
+          acaba de ser aprovado em nossa plataforma.
+
+        .message-two
+          A partir de agora seus produtos/serviços já podem
+          %br
+          ser visualizados por todos os usuários do portal.
+    %tr
+      %td
+        = link_to 'Visualizar anúncio', @path, class: 'button', target: '_blank'
