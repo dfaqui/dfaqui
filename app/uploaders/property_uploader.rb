@@ -8,7 +8,10 @@ class PropertyUploader < CarrierWave::Uploader::Base
 
   def store_dir
     path = "imovel/#{model.property_id}/galeria"
-    # path = "development/#{path}"
+
+    if Rails.env.development?
+      path = "development/#{path}"
+    end
   end
 
   def default_url

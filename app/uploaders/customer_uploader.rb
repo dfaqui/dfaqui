@@ -8,7 +8,10 @@ class CustomerUploader < CarrierWave::Uploader::Base
 
   def store_dir
     path = "cliente/#{model.id}/logomarca"
-    # path = "development/#{path}"
+
+    if Rails.env.development?
+      path = "development/#{path}"
+    end
   end
 
   def default_url
