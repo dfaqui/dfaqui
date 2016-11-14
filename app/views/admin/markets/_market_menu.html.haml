@@ -2,44 +2,53 @@
 - steps_count = (is_delivery) ? 'seven' : 'six'
 
 %div{ class: "ui #{steps_count} mini steps" }
-  = link_to admin_customer_path(customer_id), class: 'step' do
+  -# info tab
+  = link_to admin_customer_path(customer_id), class: "step #{'active' if tab == 'info'}" do
     %i.file.text.outline.icon
     .content
       .title Informações
 
+  -# detail tab
   - details_path = (market_id.present?) ? edit_admin_customer_market_path(customer_id, market_id) : new_admin_customer_market_path(customer_id)
-  = link_to details_path, class: 'step' do
+  = link_to details_path, class: "step #{'active' if tab == 'detail'}" do
     %i.sticky.note.icon
     .content
       .title Detalhes
 
+  -# category tab
   - categories_path = (market_id.present?) ? admin_customer_market_categories_path(customer_id, market_id) : nil
-  = link_to categories_path, class: "step #{ 'disabled' if market_id.nil? }" do
+  = link_to categories_path,
+    class: "step #{ 'disabled' if market_id.nil? } #{ 'active' if tab == 'category' }" do
+
     %i.tags.icon
     .content
       .title Tipos e Especialidades
 
+  -# hour tab
   - working_hours_path = (market_id.present?) ? admin_customer_market_working_hours_path(customer_id, market_id) : nil
-  = link_to working_hours_path, class: "step #{ 'disabled' if market_id.nil? }" do
+  = link_to working_hours_path, class: "step #{ 'disabled' if market_id.nil? } #{ 'active' if tab == 'hour' }" do
     %i.clock.icon
     .content
       .title Horário de funcionamento
 
+  -# city tab
   - if is_delivery
     - cities_path = (market_id.present?) ? admin_customer_market_cities_path(customer_id, market_id) : nil
-    = link_to cities_path, class: "step #{ 'disabled' if market_id.nil? }" do
+    = link_to cities_path, class: "step #{ 'disabled' if market_id.nil? } #{ 'active' if tab == 'city' }" do
       %i.truck.icon
       .content
         .title Locais de entrega
 
+  -# payment tab
   - payment_path = (market_id.present?) ? admin_customer_market_payment_methods_path(customer_id, market_id) : nil
-  = link_to payment_path, class: "step #{ 'disabled' if market_id.nil? }" do
+  = link_to payment_path, class: "step #{ 'disabled' if market_id.nil? } #{ 'active' if tab == 'payment' }" do
     %i.payment.icon
     .content
       .title Forma de pagamento
 
+  -# product tab
   - products_path = (market_id.present?) ? admin_customer_market_products_path(customer_id, market_id) : nil
-  = link_to products_path, class: "step #{ 'disabled' if market_id.nil? }" do
+  = link_to products_path, class: "step #{ 'disabled' if market_id.nil? } #{ 'active' if tab == 'product' }" do
     %i.shopping.basket.icon
     .content
       .title Produtos

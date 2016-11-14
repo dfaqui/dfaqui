@@ -1,5 +1,5 @@
 = render partial: 'admin/markets/market_menu',
-  locals: { customer_id: @market.customer_id, market_id: @market.id }
+  locals: { customer_id: @market.customer_id, market_id: @market.id, tab: 'hour' }
 
 = link_to new_admin_customer_market_working_hour_path(@market.customer_id, @market.id),
     class: 'ui primary button' do

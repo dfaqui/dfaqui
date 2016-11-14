@@ -1,5 +1,5 @@
 = render partial: 'admin/markets/market_menu',
-  locals: { customer_id: @market.customer_id, market_id: @market.id }
+  locals: { customer_id: @market.customer_id, market_id: @market.id, tab: 'city' }
 
 .ui.text.container
   - if @market.cities.any?
