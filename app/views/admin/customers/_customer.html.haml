@@ -2,7 +2,12 @@
   %td= customer.fantasy_name
   %td= customer.name
   %td= customer.full_address
-  %td= customer.status_text
+
+  - if customer.status.pending_approval?
+    %td{ style: "color: #E9B82B" }= "#{customer.status_text} *"
+  - else
+    %td= customer.status_text
+
   %td
     .ui.primary.buttons
       = link_to 'Detalhes', admin_customer_path(customer.id), class: 'ui button'

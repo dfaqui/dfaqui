@@ -1,0 +1,11 @@
+$color: #13a6bd;
+
+.market-tabs {
+  .step.active {
+    background-color: $color !important;
+
+    .title, .icon { color: white !important }
+  }
+
+  .step.active::after { background-color: $color !important }
+}

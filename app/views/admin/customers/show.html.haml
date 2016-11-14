@@ -55,10 +55,17 @@
       %td= @customer.contact_phone_as_string
     %tr
       %td Ativo?
-      %td= @customer.status_text
+      - if @customer.status.pending_approval?
+        %td{ style: "color: #E9B82B" }= "#{@customer.status_text} *"
+      - else
+        %td= @customer.status_text
     %tr
       %td Data de criação
       %td= @customer.created_at
     %tr
       %td Última atualização
       %td= @customer.updated_at
+
+.ui.bottom.attached.warning.message
+  %i.asterisk.icon
+  Análise de cadastro. Dentro de instantes você receberá um email de confirmação.
