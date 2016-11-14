@@ -20,7 +20,7 @@
       %td Tipo
       %td= @customer.customer_type_text
     %tr
-      %td Documento
+      %td= (@customer.customer_type.person?) ? 'CPF' : 'CNPJ'
       %td= @customer.document
     - if @customer.plugin.property?
       %tr
