@@ -31,9 +31,9 @@
         #user.ui.popup
           .ui.secondary.vertical.menu
             .header.item MENU
-            %a.item
-              Configurações
-              %i.user.icon
+            = link_to edit_password_admin_users_path, class: 'item' do
+              Alterar senha
+              %i.lock.icon
 
             .ui.divider
 

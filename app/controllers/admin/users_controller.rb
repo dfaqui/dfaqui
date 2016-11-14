@@ -39,6 +39,23 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+  def edit_password
+    @user = current_user
+  end
+
+  def update_password
+    @user = User.find(current_user.id)
+
+    if @user.update(allowed_params)
+      flash[:notice] = 'Senha alterada com sucesso'
+
+      bypass_sign_in(@user)
+      redirect_to admin_path
+    else
+      render :edit_password
+    end
+  end
+
   def destroy
     @user.destroy
     flash[:notice] = 'Usuário removido com sucesso'

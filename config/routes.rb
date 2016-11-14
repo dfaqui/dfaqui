@@ -84,6 +84,11 @@ Rails.application.routes.draw do
     end
 
     resources :users, path: :usuarios do
+      collection do
+        get 'edit_password'
+        patch 'update_password'
+      end
+
       resources :roles, path: :permissoes,
         only: [:index, :new, :create, :destroy],
         controller: 'users/roles'
