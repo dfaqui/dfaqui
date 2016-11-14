@@ -17,8 +17,7 @@ class Market < ApplicationRecord
   end
 
   scope :cliente, -> cliente do
-    customers = Customer.where(customer_common_id: cliente).pluck(:id)
-    where(customer_id: customers)
+    where(customer_id: cliente)
   end
 
   scope :cidade, -> slug do

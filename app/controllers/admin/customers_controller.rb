@@ -32,7 +32,7 @@ class Admin::CustomersController < Admin::BaseController
     @customer.contact_phone = params[:contact_phone].select{ |v| !v.empty? }
 
     if @customer.update(allowed_params)
-      flash[:notice] = 'Cliente editada com sucesso'
+      flash[:notice] = 'Cliente editado com sucesso'
       redirect_to admin_customers_path
     else
       flash[:error] = 'Erro ao editar cliente'

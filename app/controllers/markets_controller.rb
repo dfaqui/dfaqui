@@ -11,17 +11,22 @@ class MarketsController < ApplicationController
   has_scope :cep
 
   def index
-    channel = (current_channel == 'comercio') ? 'market' : current_channel
-    @buttons = SponsorButton.by_city(params[:cidade]).with_channel(channel.to_sym)
+    channel   = (current_channel == 'comercio') ? 'market' : current_channel
+    @buttons  = SponsorButton.by_city(params[:cidade]).with_channel(channel.to_sym)
   end
 
   def list
-    @markets  = apply_scopes(Market).by_channel(current_channel).active
+    if params[:preview].present?
+      @markets  = apply_scopes(Market).by_channel(current_channel)
+    else
+      @markets  = apply_scopes(Market).by_channel(current_channel).active
+    end
+
     @count    = @markets.count
     @markets  = @markets.page(params[:pagina])
   end
 
   def show
-    @market = Market.find(params[:market_id])
+    @market   = Market.find(params[:market_id])
   end
 end

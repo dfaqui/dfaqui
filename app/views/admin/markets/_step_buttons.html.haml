@@ -1,0 +1,11 @@
+.ui.divider
+
+- if previous_path.present?
+  = link_to previous_path, class: 'ui left floated blue left labeled icon button' do
+    %i.left.arrow.icon
+    Anterior
+
+- if next_path.present?
+  = link_to next_path, class: 'ui right floated blue right labeled icon button' do
+    %i.right.arrow.icon
+    Próximo

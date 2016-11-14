@@ -10,3 +10,13 @@
     = link_to 'Adicionar forma de pagamento',
       new_admin_customer_market_payment_method_path(@market.customer_id, @market.id),
       id: 'payment-method-btn', remote: true
+
+  - if @market.delivery?
+    - previous_path = admin_customer_market_cities_path(@market.customer_id, @market.id)
+  - else
+    - previous_path = admin_customer_market_working_hours_path(@market.customer_id, @market.id)
+
+  - next_path       = admin_customer_market_products_path(@market.customer_id, @market.id)
+
+  = render partial: 'admin/markets/step_buttons',
+    locals: { previous_path: previous_path, next_path: next_path }

@@ -52,6 +52,7 @@ class Admin::UsersController < Admin::BaseController
       bypass_sign_in(@user)
       redirect_to admin_path
     else
+      flash[:error] = 'Erro ao alterar senha'
       render :edit_password
     end
   end

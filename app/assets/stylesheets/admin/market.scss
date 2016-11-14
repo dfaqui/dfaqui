@@ -1,11 +1,11 @@
-$color: #13a6bd;
+@import "variables";
 
 .market-tabs {
   .step.active {
-    background-color: $color !important;
+    background-color: $property-color !important;
 
     .title, .icon { color: white !important }
   }
 
-  .step.active::after { background-color: $color !important }
+  .step.active::after { background-color: $property-color !important }
 }

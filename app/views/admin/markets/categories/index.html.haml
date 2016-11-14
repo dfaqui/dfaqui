@@ -10,3 +10,9 @@
     = link_to 'Adicionar tipo',
       new_admin_customer_market_category_path(@market.customer_id, @market.id),
       id: 'category-btn', remote: true
+
+  - previous_path = edit_admin_customer_market_path(@market.customer_id, @market.id)
+  - next_path     = admin_customer_market_working_hours_path(@market.customer_id, @market.id)
+
+  = render partial: 'admin/markets/step_buttons',
+    locals: { previous_path: previous_path, next_path: next_path }

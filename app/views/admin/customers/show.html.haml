@@ -1,6 +1,8 @@
 - if @customer.plugin.market?
+  - market_id = Market.where(customer: @customer.id).pluck(:id).first
+
   = render partial: 'admin/markets/market_menu',
-    locals: { customer_id: @customer.id, market_id: Market.where(customer: @customer.id).pluck(:id).first, tab: 'info' }
+    locals: { customer_id: @customer.id, market_id: market_id, tab: 'info' }
 - else
   %h1.ui.header Detalhes
   .ui.divider
@@ -69,3 +71,9 @@
 .ui.bottom.attached.warning.message
   %i.asterisk.icon
   Análise de cadastro. Dentro de instantes você receberá um email de confirmação.
+
+- if @customer.plugin.market?
+  - next_path = (market_id.present?) ? edit_admin_customer_market_path(@customer.id, market_id) : new_admin_customer_market_path(@customer.id)
+
+  = render partial: 'admin/markets/step_buttons',
+    locals: { previous_path: nil, next_path: next_path }

@@ -81,5 +81,6 @@
 
           #content.sixteen.wide.column
             = yield
+            = render 'partials/shared/alerts'
 
   = javascript_include_tag 'admin', 'data-turbolinks-track': 'reload'

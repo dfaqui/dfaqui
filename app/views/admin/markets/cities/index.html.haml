@@ -10,3 +10,9 @@
     = link_to 'Adicionar local de entrega',
       new_admin_customer_market_city_path(@market.customer_id, @market.id),
       id: 'city-btn', remote: true
+
+  - previous_path = admin_customer_market_working_hours_path(@market.customer_id, @market.id)
+  - next_path     = admin_customer_market_payment_methods_path(@market.customer_id, @market.id)
+
+  = render partial: 'admin/markets/step_buttons',
+    locals: { previous_path: previous_path, next_path: next_path }

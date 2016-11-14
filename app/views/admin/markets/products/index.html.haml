@@ -18,3 +18,17 @@
       %th Ação
   %tbody
     = render @products
+
+- previous_path = admin_customer_market_payment_methods_path(@market.customer_id, @market.id)
+
+= render partial: 'admin/markets/step_buttons',
+  locals: { previous_path: previous_path, next_path: nil }
+
+- if @market.only_delivery?
+  - path = list_deliveries_path(cliente: @market.customer_id, preview: true)
+- else
+  - path = list_markets_path(cliente: @market.customer_id, preview: true)
+
+= link_to path, target: '_blank', class: 'ui right floated blue right labeled icon button' do
+  %i.search.icon
+  Visualizar anúncio

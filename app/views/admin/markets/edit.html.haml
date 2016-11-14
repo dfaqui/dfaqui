@@ -1,3 +1,10 @@
 = render partial: 'market_menu',
   locals: { customer_id: @market.customer_id, market_id: @market.id, tab: 'detail' }
+
 = render 'form'
+
+- previous_path = admin_customer_path(@market.customer_id)
+- next_path     = admin_customer_market_categories_path(@market.customer_id, @market.id)
+
+= render partial: 'admin/markets/step_buttons',
+  locals: { previous_path: previous_path, next_path: next_path }
