@@ -57,4 +57,19 @@ module ApplicationHelper
       end
     end
   end
+
+  def status_icon(status)
+    if [true, 1].include? status
+      status = :true
+    elsif [false, 0].include? status
+      status = :false
+    end
+
+    icons = {
+      true: {icon: 'checkmark', color: 'green'},
+      false: {icon: 'remove', color: 'red'}
+    }
+
+    content_tag(:i, nil, class: "#{icons[status][:color]} #{icons[status][:icon]} icon")
+  end
 end

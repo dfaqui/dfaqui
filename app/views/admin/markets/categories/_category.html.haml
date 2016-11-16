@@ -2,7 +2,7 @@
   %b= category.name
   %b
     = link_to 'Remover',
-      admin_customer_market_category_path(@market.customer_id, @market.id, category.id),
+      admin_market_category_path(@market.id, category.id),
       data: { confirm: 'Tem certeza de que deseja remover esse tipo?' },
       method: :delete, style: 'float: right'
 
@@ -15,5 +15,5 @@
   .ui.divider
 
   = link_to 'Adicionar especialidade',
-    new_admin_customer_market_speciality_path(@market.customer_id, @market.id, category_id: category.id),
+    new_admin_market_speciality_path(@market.id, category_id: category.id),
     remote: true, id: "speciality-btn-#{category.id}"

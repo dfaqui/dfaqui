@@ -1,8 +1,7 @@
 = render partial: 'admin/markets/market_menu',
-  locals: { customer_id: @market.customer_id, market_id: @market.id, tab: 'hour' }
+  locals: { market_id: @market.id, tab: 'hour' }
 
-= link_to new_admin_customer_market_working_hour_path(@market.customer_id, @market.id),
-    class: 'ui primary button' do
+= link_to new_admin_market_working_hour_path(@market.id), class: 'ui primary button' do
   %i.plus.icon
   Novo
 
@@ -16,12 +15,12 @@
   %tbody
     = render @working_hours
 
-- previous_path = admin_customer_market_categories_path(@market.customer_id, @market.id)
+- previous_path = admin_market_categories_path(@market.id)
 
 - if @market.delivery?
-  - next_path   = admin_customer_market_cities_path(@market.customer_id, @market.id)
+  - next_path   = admin_market_cities_path(@market.id)
 - else
-  - next_path   = admin_customer_market_payment_methods_path(@market.customer_id, @market.id)
+  - next_path   = admin_market_payment_methods_path(@market.id)
 
 = render partial: 'admin/markets/step_buttons',
   locals: { previous_path: previous_path, next_path: next_path }

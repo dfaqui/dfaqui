@@ -1,59 +1,137 @@
-= render 'market_menu'
+%h2.ui.header
+  = link_to @market.customer.fantasy_name, admin_customer_path(@market.customer_id)
+  .sub.header Detalhes do comércio
 
-%h2.ui.header= @market.customer.fantasy_name
-.ui.divider
+.ui.horizontal.clearing.divider
+  %i.sticky.note.icon
+  DADOS GERAIS
+
+.ui.right.aligned.fluid.container
+  = link_to 'Editar', edit_admin_market_path(@market.id)
 
 %table.ui.definition.table
   %tbody
     %tr
-      %td.four.wide.column Nome fantasia
-      %td= @market.customer.fantasy_name
+      %td.three.wide.column Segmento
+      %td= @market.segment.name
     %tr
-      %td.four.wide.column Razão social
-      %td= @market.customer.name
+      %td Preço médio
+      %td
+        - 5.times do |i|
+          - color = (@market.price_category > i) ? 'yellow' : 'grey'
+          %i{ class: "#{color} dollar fitted icon" }
     %tr
-      %td Tipo
-      %td= @market.customer.customer_type_text
+      %td Aberto 24 horas?
+      %td= @market.always_open
     %tr
-      %td Documento
-      %td= @market.customer.document
-    - if @market.customer.plugin.property?
+      %td Delivery?
+      %td= @market.delivery
+    - if @market.delivery?
       %tr
-        %td CRECI
-        %td= @market.customer.additional_info
+        %td Apenas delivery?
+        %td= @market.only_delivery
+      %tr
+        %td Tempo de entrega
+        %td= distance_of_time(@market.estimated_time * 60) rescue ''
+
+.ui.hidden.divider
+
+.ui.horizontal.clearing.divider
+  %i.tags.icon
+  TIPOS E ESPECIALIDADES
+
+.ui.right.aligned.fluid.container
+  = link_to 'Editar', admin_market_categories_path(@market.id)
+
+%table.ui.definition.table
+  %tbody
+    - @market.categories.each do |category|
+      %tr
+        %td.three.wide.column= category.name
+        %td
+          .ui.list
+            - @market.specialities.where(category: category).each do |speciality|
+              .item
+                %i.right.triangle.icon
+                = speciality.name
+
+.ui.hidden.divider
+
+.ui.horizontal.clearing.divider
+  %i.clock.icon
+  HORÁRIO DE FUNCIONAMENTO
+
+.ui.right.aligned.fluid.container
+  = link_to 'Editar', admin_market_working_hours_path(@market.id)
+
+%table.ui.definition.table
+  %tbody
+    - I18n.t('date.day_names').each_with_index do |day, index|
+      %tr
+        %td.three.wide.column= day
+        %td
+          - times = @market.working_hours.where("'#{index}' = ANY(days)").pluck(:opening_time, :closing_time)
+          - times.each do |time|
+            - opening_time = time[0].to_s(:time)
+            - closing_time = time[1].to_s(:time)
+
+            .ui.list
+              .item= "#{opening_time} - #{closing_time}"
+
+.ui.hidden.divider
+
+.ui.horizontal.clearing.divider
+  %i.truck.icon
+  LOCAIS DE ENTREGA
+
+.ui.right.aligned.fluid.container
+  = link_to 'Editar', admin_market_cities_path(@market.id)
+
+%table.ui.table
+  %tbody
+    - @market.cities.each do |city|
+      %tr
+        %td= city.name
+
+.ui.hidden.divider
+
+.ui.horizontal.clearing.divider
+  %i.payment.icon
+  FORMAS DE PAGAMENTO
+
+.ui.right.aligned.fluid.container
+  = link_to 'Editar', admin_market_payment_methods_path(@market.id)
+
+%table.ui.table
+  %tbody
+    - @market.payment_methods.each do |payment|
+      %tr
+        %td
+          = image_tag "payment/#{payment.icon}", class: 'ui middle aligned mini image'
+          = payment.name
+
+.ui.hidden.divider
+
+.ui.horizontal.clearing.divider
+  %i.shopping.basket.icon
+  PRODUTOS
+
+.ui.right.aligned.fluid.container
+  = link_to 'Editar', admin_market_products_path(@market.id)
+
+%table.ui.table
+  %thead
     %tr
-      %td.four.wide.column Cidade
-      %td= @market.customer.block.district.district_group.city.name rescue '-'
-    %tr
-      %td.four.wide.column Quadra
-      %td= @market.customer.block.district.name rescue '-'
-    %tr
-      %td.four.wide.column Bloco
-      %td= @market.customer.block.name rescue '-'
-    %tr
-      %td.four.wide.column Complemento
-      %td= @market.customer.address_complement
-    %tr
-      %td.four.wide.column Nome do responsável
-      %td= @market.customer.owner_name
-    %tr
-      %td.four.wide.column E-mail do responsável
-      %td= @market.customer.owner_email
-    %tr
-      %td.four.wide.column Telefone do responsável
-      %td= @market.customer.owner_phone
-    %tr
-      %td.four.wide.column E-mail para contato
-      %td= @market.customer.contact_email
-    %tr
-      %td.four.wide.column Telefone para contato
-      %td= @market.customer.contact_phone
-    %tr
-      %td Ativo?
-      %td= @market.customer.status_text
-    %tr
-      %td Data de criação
-      %td= @market.customer.created_at
-    %tr
-      %td Última atualização
-      %td= @market.customer.updated_at
+      %th Imagem
+      %th Nome
+      %th Descrição
+      %th Valor
+      %th Status
+  %tbody
+    - @market.products.each do |product|
+      %tr
+        %td= image_tag product.photo_url, class: 'ui tiny image'
+        %td= product.name
+        %td= truncate(product.description, length: 80)
+        %td= humanized_money_with_symbol product.price_cents
+        %td= status_icon(product.status)

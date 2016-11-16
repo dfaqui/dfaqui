@@ -87,18 +87,16 @@ class Customer < ApplicationRecord
     template = ''
 
     if self.block
-      template = "%{district} %{block} %{complement} %{city}"
+      template = "%{district} %{block} %{complement}"
 
       district    = self.block.district.name
       block       = self.block.name
       complement  = self.address_complement
-      city        = self.block.district.district_group.city.name
 
       template = template % {
         district: district,
         block: "Bloco #{block}",
-        complement: complement,
-        city: "(#{city})"
+        complement: complement
       }
     end
 

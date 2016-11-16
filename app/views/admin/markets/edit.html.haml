@@ -3,8 +3,7 @@
 
 = render 'form'
 
-- previous_path = admin_customer_path(@market.customer_id)
-- next_path     = admin_customer_market_categories_path(@market.customer_id, @market.id)
+- next_path = admin_market_categories_path(@market.id)
 
 = render partial: 'admin/markets/step_buttons',
-  locals: { previous_path: previous_path, next_path: next_path }
+  locals: { previous_path: nil, next_path: next_path }

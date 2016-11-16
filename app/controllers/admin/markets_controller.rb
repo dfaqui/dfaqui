@@ -9,20 +9,18 @@ class Admin::MarketsController < Admin::BaseController
   end
 
   def new
-    @market           = Market.new
-    @market.customer  = Customer.find(params[:customer_id])
+    @market = Market.new
   end
 
   def edit
   end
 
   def create
-    @market             = Market.new(allowed_params)
-    @market.customer_id = params[:customer_id]
+    @market = Market.new(allowed_params)
 
     if @market.save
       flash[:notice] = 'Comércio cadastrado com sucesso'
-      redirect_to admin_customer_path(@market.customer_id)
+      redirect_to edit_admin_market_path(@market.id)
     else
       flash[:error] = 'Erro ao cadastrar comércio'
       render :new
@@ -32,7 +30,7 @@ class Admin::MarketsController < Admin::BaseController
   def update
     if @market.update(allowed_params)
       flash[:notice] = 'Comércio editado com sucesso'
-      redirect_to admin_customer_path(@market.customer_id)
+      redirect_to edit_admin_market_path(@market.id)
     else
       flash[:error] = 'Erro ao editar comércio'
       render :edit

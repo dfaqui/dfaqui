@@ -1,5 +1,4 @@
-= simple_form_for([:admin, @market.customer, @market, @working_hour],
-    html: { class: 'ui form' }) do |f|
+= simple_form_for([:admin, @market, @working_hour], html: { class: 'ui form' }) do |f|
 
   - if @working_hour.errors.any?
     .ui.red.message

@@ -1,3 +1,2 @@
-= render partial: 'admin/markets/market_menu',
-  locals: { customer_id: @market.customer_id, market_id: @market.id, tab: 'hour' }
+= render partial: 'admin/markets/market_menu', locals: { market_id: @market.id, tab: 'hour' }
 = render 'form'

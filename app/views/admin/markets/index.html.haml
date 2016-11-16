@@ -1,0 +1,19 @@
+%h2.ui.header= (current_user.has_role? :admin) ? 'Gestão de comércios' : 'Meus Comércios'
+
+.ui.divider
+
+= link_to new_admin_market_path, class: 'ui primary button' do
+  %i.plus.icon
+  Novo Comércio
+
+%table.ui.striped.table
+  %thead
+    %tr
+      %th Código
+      %th Cliente
+      %th Endereço
+      %th Cidade
+      %th Ativo?
+      %th Ação
+  %tbody
+    = render @markets

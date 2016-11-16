@@ -1,7 +1,17 @@
-= simple_form_for([:admin, @market.customer, @market],
-    html: { class: 'ui form' }) do |f|
+= simple_form_for([:admin, @market], html: { class: 'ui form' }) do |f|
+  - if @market.errors.any?
+    .ui.red.message
+      .header Favor corrigir os seguintes erros
+      %ul.list
+        - @market.errors.full_messages.each do |message|
+          %li= message
 
   .three.fields
+    .required.field
+      = f.label :customer_id, 'Cliente'
+      = f.input_field :customer_id, collection: Customer.by_user_role(current_user),
+        include_blank: false, class: 'ui search dropdown'
+
     .required.field
       = f.label :segment_id, 'Segmento'
       = f.input_field :segment_id, collection: Segment.all, include_blank: false,
@@ -12,12 +22,12 @@
       = f.input_field :price_category, collection: (1..5).map{|v| ['$' * v, v]},
         include_blank: 'Selecione', class: 'ui dropdown'
 
+  .four.fields
     .required.field
       = f.label :always_open, 'Aberto 24 horas?'
       = f.input_field :always_open, collection: [['Sim', true], ['Não', false]],
         include_blank: false, class: 'ui dropdown'
 
-  .three.fields
     .required.field
       = f.label :delivery, 'Delivery?'
       = f.input_field :delivery, collection: [['Sim', true], ['Não', false]],

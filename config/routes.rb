@@ -54,30 +54,30 @@ Rails.application.routes.draw do
 
     resources :customers, path: :clientes do
       collection { get 'add_contact_phone' }
-
-      resources :markets, path: :comercio do
-        resources :categories, path: :tipos, controller: 'markets/categories',
-          only: [:index, :new, :create, :destroy]
-
-        resources :cities, path: :locais_entrega, controller: 'markets/cities',
-          only: [:index, :new, :create, :destroy]
-
-        resources :payment_methods, path: :formas_pagamento,
-          controller: 'markets/payment_methods',
-          only: [:index, :new, :create, :destroy]
-
-        resources :products, path: :produtos, controller: 'markets/products',
-          except: [:show]
-
-        resources :specialities, path: :especialidades,
-          controller: 'markets/specialities', only: [:new, :create, :destroy]
-
-        resources :working_hours, path: :horario_funcionamento,
-          controller: 'markets/working_hours', except: [:show]
-      end
     end
 
     resources :dashboards, only: [:index]
+
+    resources :markets, path: :comercios do
+      resources :categories, path: :tipos, controller: 'markets/categories',
+        only: [:index, :new, :create, :destroy]
+
+      resources :cities, path: :locais_entrega, controller: 'markets/cities',
+        only: [:index, :new, :create, :destroy]
+
+      resources :payment_methods, path: :formas_pagamento,
+        controller: 'markets/payment_methods',
+        only: [:index, :new, :create, :destroy]
+
+      resources :products, path: :produtos, controller: 'markets/products',
+        except: [:show]
+
+      resources :specialities, path: :especialidades,
+        controller: 'markets/specialities', only: [:new, :create, :destroy]
+
+      resources :working_hours, path: :horario_funcionamento,
+        controller: 'markets/working_hours', except: [:show]
+    end
 
     resources :properties, path: :imoveis do
       resources :property_images, path: :imagens

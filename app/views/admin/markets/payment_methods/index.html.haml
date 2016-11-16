@@ -1,5 +1,5 @@
 = render partial: 'admin/markets/market_menu',
-  locals: { customer_id: @market.customer_id, market_id: @market.id, tab: 'payment' }
+  locals: { market_id: @market.id, tab: 'payment' }
 
 .ui.text.container
   - if @market.payment_methods.any?
@@ -8,15 +8,15 @@
 
   .ui.center.aligned.container
     = link_to 'Adicionar forma de pagamento',
-      new_admin_customer_market_payment_method_path(@market.customer_id, @market.id),
+      new_admin_market_payment_method_path(@market.id),
       id: 'payment-method-btn', remote: true
 
   - if @market.delivery?
-    - previous_path = admin_customer_market_cities_path(@market.customer_id, @market.id)
+    - previous_path = admin_market_cities_path(@market.id)
   - else
-    - previous_path = admin_customer_market_working_hours_path(@market.customer_id, @market.id)
+    - previous_path = admin_market_working_hours_path(@market.id)
 
-  - next_path       = admin_customer_market_products_path(@market.customer_id, @market.id)
+  - next_path       = admin_market_products_path(@market.id)
 
-  = render partial: 'admin/markets/step_buttons',
-    locals: { previous_path: previous_path, next_path: next_path }
+= render partial: 'admin/markets/step_buttons',
+  locals: { previous_path: previous_path, next_path: next_path }

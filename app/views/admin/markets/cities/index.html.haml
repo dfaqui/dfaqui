@@ -1,5 +1,4 @@
-= render partial: 'admin/markets/market_menu',
-  locals: { customer_id: @market.customer_id, market_id: @market.id, tab: 'city' }
+= render partial: 'admin/markets/market_menu', locals: { market_id: @market.id, tab: 'city' }
 
 .ui.text.container
   - if @market.cities.any?
@@ -7,12 +6,11 @@
       = render @market.cities
 
   .ui.center.aligned.container
-    = link_to 'Adicionar local de entrega',
-      new_admin_customer_market_city_path(@market.customer_id, @market.id),
+    = link_to 'Adicionar local de entrega', new_admin_market_city_path(@market.id),
       id: 'city-btn', remote: true
 
-  - previous_path = admin_customer_market_working_hours_path(@market.customer_id, @market.id)
-  - next_path     = admin_customer_market_payment_methods_path(@market.customer_id, @market.id)
+  - previous_path = admin_market_working_hours_path(@market.id)
+  - next_path     = admin_market_payment_methods_path(@market.id)
 
-  = render partial: 'admin/markets/step_buttons',
-    locals: { previous_path: previous_path, next_path: next_path }
+= render partial: 'admin/markets/step_buttons',
+  locals: { previous_path: previous_path, next_path: next_path }

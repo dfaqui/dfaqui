@@ -10,7 +10,7 @@ class Admin::Markets::CategoriesController < Admin::BaseController
 
   def create
     @market.categories.push(Category.find(allowed_params))
-    redirect_to admin_customer_market_categories_path(@market.customer_id, @market.id)
+    redirect_to admin_market_categories_path(@market.id)
   end
 
   def destroy
@@ -18,7 +18,7 @@ class Admin::Markets::CategoriesController < Admin::BaseController
     @market.specialities.destroy(specialities_to_delete)
 
     @market.categories.destroy(params[:id])
-    redirect_to admin_customer_market_categories_path(@market.customer_id, @market.id)
+    redirect_to admin_market_categories_path(@market.id)
   end
 
   private

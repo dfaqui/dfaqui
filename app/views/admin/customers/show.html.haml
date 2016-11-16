@@ -1,79 +1,64 @@
-- if @customer.plugin.market?
-  - market_id = Market.where(customer: @customer.id).pluck(:id).first
+%h2.ui.header Meu Perfil
 
-  = render partial: 'admin/markets/market_menu',
-    locals: { customer_id: @customer.id, market_id: market_id, tab: 'info' }
-- else
-  %h1.ui.header Detalhes
-  .ui.divider
+.ui.divider
+
+.ui.right.aligned.fluid.container
+  = link_to 'Editar', edit_admin_customer_path(@customer.id)
 
 %table.ui.definition.table
   %tbody
     %tr
-      %td.four.wide.column Nome fantasia
+      %td.three.wide.column Nome fantasia
       %td= @customer.fantasy_name
     %tr
       %td Razão social
       %td= @customer.name
     %tr
-      %td Descrição
-      %td= @customer.description
-    %tr
       %td Tipo
       %td= @customer.customer_type_text
     %tr
-      %td= (@customer.customer_type.person?) ? 'CPF' : 'CNPJ'
+      %td Documento
       %td= @customer.document
     - if @customer.plugin.property?
       %tr
         %td CRECI
         %td= @customer.additional_info
     %tr
-      %td.four.wide.column Cidade
-      %td= @customer.block.district.district_group.city.name rescue '-'
+      %td Cidade
+      %td= @customer.block.district.district_group.city.name rescue ''
     %tr
-      %td.four.wide.column Quadra
-      %td= @customer.block.district.name rescue '-'
+      %td Quadra
+      %td= @customer.block.district.name rescue ''
     %tr
-      %td.four.wide.column Bloco
-      %td= @customer.block.name rescue '-'
+      %td Bloco
+      %td= @customer.block.name rescue ''
     %tr
-      %td.four.wide.column Complemento
+      %td Complemento
       %td= @customer.address_complement
     %tr
-      %td.four.wide.column Nome do responsável
+      %td Nome do responsável
       %td= @customer.owner_name
     %tr
-      %td.four.wide.column E-mail do responsável
+      %td E-mail do responsável
       %td= @customer.owner_email
     %tr
-      %td.four.wide.column Telefone do responsável
+      %td Telefone do responsável
       %td= @customer.owner_phone
     %tr
-      %td.four.wide.column E-mail para contato
+      %td E-mail para contato
       %td= @customer.contact_email
     %tr
-      %td.four.wide.column Telefone para contato
-      %td= @customer.contact_phone_as_string
+      %td Telefone para contato
+      %td
+        .ui.list
+          - @customer.contact_phone.each do |phone|
+            .item= phone
     %tr
       %td Ativo?
-      - if @customer.status.pending_approval?
-        %td{ style: "color: #E9B82B" }= "#{@customer.status_text} *"
-      - else
-        %td= @customer.status_text
+      %td= @customer.status_text
     %tr
       %td Data de criação
       %td= @customer.created_at
     %tr
       %td Última atualização
       %td= @customer.updated_at
-
-.ui.bottom.attached.warning.message
-  %i.asterisk.icon
-  Análise de cadastro. Dentro de instantes você receberá um email de confirmação.
-
-- if @customer.plugin.market?
-  - next_path = (market_id.present?) ? edit_admin_customer_market_path(@customer.id, market_id) : new_admin_customer_market_path(@customer.id)
-
-  = render partial: 'admin/markets/step_buttons',
-    locals: { previous_path: nil, next_path: next_path }

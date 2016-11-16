@@ -29,11 +29,7 @@ class Admin::Markets::ProductsController < Admin::BaseController
 
     if @product.save
       flash[:notice] = 'Produto cadastrado com sucesso'
-
-      redirect_to admin_customer_market_products_path(
-        @market.customer_id,
-        @market.id
-      )
+      redirect_to admin_market_products_path(@market.id)
     else
       flash[:error] = 'Erro ao cadastrar produto'
       render :new
@@ -43,11 +39,7 @@ class Admin::Markets::ProductsController < Admin::BaseController
   def update
     if @product.update(allowed_params)
       flash[:notice] = 'Produto editado com sucesso'
-
-      redirect_to admin_customer_market_products_path(
-        @product.market.customer_id,
-        @product.market_id
-      )
+      redirect_to admin_market_products_path(@product.market_id)
     else
       flash[:error] = 'Erro ao editar produto'
       render :edit
@@ -58,11 +50,7 @@ class Admin::Markets::ProductsController < Admin::BaseController
     @product.destroy
 
     flash[:notice] = 'Produto removido com sucesso'
-
-    redirect_to admin_customer_market_products_path(
-      @product.market.customer_id,
-      @product.market_id
-    )
+    redirect_to admin_market_products_path(@product.market_id)
   end
 
   private
