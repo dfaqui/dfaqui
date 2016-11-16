@@ -1,5 +1,5 @@
 - if flash[:alert]
-  = js add_gritter(flash[:alert], title: 'Alerta', sticky: false, image: :alert)
+  = js add_gritter(flash[:alert], title: 'Alerta', sticky: false, image: :notice)
 - elsif flash[:error]
   = js add_gritter(flash[:error], title: 'Erro', sticky: false, image: :error)
 - else
