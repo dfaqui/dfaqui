@@ -33,7 +33,7 @@ class Admin::PropertiesController < Admin::BaseController
         @property.tags << tags
       end
 
-      flash[:notice] = 'Imóvel cadastrado com sucesso'
+      flash[:notice] = 'Imóvel cadastrado com sucesso. Clique no botão "Ação" e insira as imagens.'
       redirect_to admin_properties_path
     else
       # O callback que seleciona as tags não está sendo disparado quando a
