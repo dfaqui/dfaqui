@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
   layout 'base'
 
+  def home_responsive
+  end
+
   def home
   end
 

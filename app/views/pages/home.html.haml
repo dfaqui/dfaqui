@@ -42,13 +42,13 @@
       .ui.three.column.stackable.grid
         .column
           %a.channel-link{ onclick: "go_to_channel('#{properties_path}')" }
-            = image_tag 'home/imovel.png'
+            = image_tag 'home/imovel.png', class: 'ui centered image'
         .column
           %a.channel-link{ onclick: "go_to_channel('#{markets_path}')" }
-            = image_tag 'home/comercio.png'
+            = image_tag 'home/comercio.png', class: 'ui centered image'
         .column
           %a.channel-link{ onclick: "go_to_channel('#{deliveries_path}')" }
-            = image_tag 'home/delivery.png'
+            = image_tag 'home/delivery.png', class: 'ui centered image'
 
 .section.three#section-three
   .ui.centered.grid

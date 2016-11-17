@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'pages#home'
+  # root 'pages#home'
+  root 'pages#home_responsive'
 
   post 'pages/dynamic_content'
 

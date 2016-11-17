@@ -1,0 +1,18 @@
+- image = image_path 'home/background.jpg'
+
+.home{ style: "background-image: url(#{image})" }
+  .section-one
+    .ui.center.aligned.container
+      = image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
+
+      %h1.ui.inverted.header Aonde você procura?
+      = select_tag :cidade,
+          options_from_collection_for_select(City.all, :friendly_id, :name),
+          include_blank: 'Selecione a região', class: 'ui dropdown'
+
+      .action.options
+        .ui.primary.advertise.small.button ANUNCIE
+        .ui.inverted.small.button ENTRAR
+
+:javascript
+  $('.ui.dropdown').dropdown({ placeholder: false });
