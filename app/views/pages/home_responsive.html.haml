@@ -11,8 +11,12 @@
           include_blank: 'Selecione a região', class: 'ui dropdown'
 
       .action.options
-        .ui.primary.advertise.small.button ANUNCIE
-        .ui.inverted.small.button ENTRAR
+        = link_to 'ANUNCIE', new_advertisement_path, remote: true,
+          class: 'ui primary advertise small button'
+
+        .login-section
+          = link_to 'ENTRAR', new_user_session_path, class: 'ui inverted small button'
+          %p Área Exclusiva
 
 :javascript
   $('.ui.dropdown').dropdown({ placeholder: false });

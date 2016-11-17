@@ -69,6 +69,17 @@ $mobile: "(max-width: 768px)";
 
       .advertise.button { margin-right: 10px !important }
 
+      .login-section {
+        display: inline-table;
+        color: white;
+        font-size: 12px;
+
+        p {
+          margin-top: 5px;
+          @media #{$mobile} { display: none }
+        }
+      }
+
       .ui.button {
         font-family: $futura-light-font;
         font-weight: 100;
@@ -76,9 +87,7 @@ $mobile: "(max-width: 768px)";
         margin: 0em 0em 0em 0em;
         padding: 0.2em 0.6em 0.2em;
 
-        @media #{$mobile} {
-          font-size: 20px;
-        }
+        @media #{$mobile} { font-size: 20px }
       }
 
       @media #{$mobile} {
