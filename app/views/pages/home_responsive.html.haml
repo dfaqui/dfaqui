@@ -1,22 +1,21 @@
 - image = image_path 'home/background.jpg'
 
-.home{ style: "background-image: url(#{image})" }
-  .section-one
-    .ui.center.aligned.container
-      = image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
+.section-one{ style: "background-image: url(#{image})" }
+  .ui.center.aligned.container
+    = image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
 
-      %h1.ui.inverted.header Aonde você procura?
-      = select_tag :cidade,
-          options_from_collection_for_select(City.all, :friendly_id, :name),
-          include_blank: 'Selecione a região', class: 'ui dropdown'
+    %h1.ui.inverted.header Aonde você procura?
+    = select_tag :cidade,
+      options_from_collection_for_select(City.all, :friendly_id, :name),
+      include_blank: 'Selecione a região', class: 'ui dropdown'
 
-      .action.options
-        = link_to 'ANUNCIE', new_advertisement_path, remote: true,
-          class: 'ui primary advertise small button'
+    .action.options
+      = link_to 'ANUNCIE', new_advertisement_path, remote: true,
+        class: 'ui primary advertise small button'
 
-        .login-section
-          = link_to 'ENTRAR', new_user_session_path, class: 'ui inverted small button'
-          %p Área Exclusiva
+      .login-section
+        = link_to 'ENTRAR', new_user_session_path, class: 'ui inverted small button'
+        %p Área Exclusiva
 
 :javascript
   $('.ui.dropdown').dropdown({ placeholder: false });
