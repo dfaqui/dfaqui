@@ -2,7 +2,7 @@
   %td= "##{market.id}"
   %td= market.customer.fantasy_name
   %td= market.customer.full_address
-  %td= market.customer.block.district.district_group.city.name
+  %td= market.customer.block.district.district_group.city.name rescue ''
   %td= market.customer.status_text
   %td
     .ui.primary.buttons
@@ -21,4 +21,3 @@
 
             %i.delete.icon
             Remover
-  
