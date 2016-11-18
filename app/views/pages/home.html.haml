@@ -1,29 +1,34 @@
 .section-one#section-one
-  = video_tag 'https://s3-sa-east-1.amazonaws.com/dfaqui/videos/background.mp4',
-    class: 'background-video', autoplay: true, loop: true
+  - if !touch_device?
+    = video_tag 'https://s3-sa-east-1.amazonaws.com/dfaqui/videos/background.mp4',
+      class: 'background-video', autoplay: true, loop: true
 
   .ui.center.aligned.container
     = image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
 
-    %h1.ui.inverted.header Aonde você procura?
-    = select_tag :cidade,
-      options_from_collection_for_select(City.all, :friendly_id, :name),
-      include_blank: 'Selecione a região', class: 'ui dropdown'
+    = simple_form_for :pages, url: pages_dynamic_content_path, remote: true,
+        format: :js do
 
-    .action.options
-      = link_to 'ANUNCIE', new_advertisement_path, remote: true,
-        class: 'ui primary advertise small button'
+      %h1.ui.inverted.header Aonde você procura?
+      = select_tag :cidade,
+        options_from_collection_for_select(City.all, :friendly_id, :name),
+        include_blank: 'Selecione a região', class: 'ui dropdown',
+        onchange: '$(this.form).submit();'
 
-      .login-section
-        = link_to 'ENTRAR', new_user_session_path, class: 'ui inverted small button'
-        %p Área Exclusiva
+      .action.options
+        = link_to 'ANUNCIE', new_advertisement_path, remote: true,
+          class: 'ui primary advertise small button'
+
+        .login-section
+          = link_to 'ENTRAR', new_user_session_path, class: 'ui inverted small button'
+          %p Área Exclusiva
 
 .ui.hidden.divider
 
 .section-two#section-two
   .ui.center.aligned.container.grid
     .ui.horizontal.divider
-      .ui.header.title O DF todo aqui
+      .ui.header.title#home-title O DF todo aqui
 
     .header.sub
       .ui.text.container
