@@ -1,85 +1,107 @@
-.section.one#section-one
-  - if touch_device?
-    = image_tag 'home/background.jpg', class: 'background-video'
-  - else
-    = video_tag 'https://s3-sa-east-1.amazonaws.com/dfaqui/videos/background.mp4',
+.section-one#section-one
+  = video_tag 'https://s3-sa-east-1.amazonaws.com/dfaqui/videos/background.mp4',
     class: 'background-video', autoplay: true, loop: true
 
-  .ui.vertical.center.aligned.segment#form-section
-    .action.options
-      = link_to 'ANUNCIE', new_advertisement_path, remote: true,
-        class: 'ui primary advertise button'
-
-      .login-section
-        = link_to 'ENTRAR', new_user_session_path, class: 'ui inverted login button'
-        %p Área Exclusiva
-
+  .ui.center.aligned.container
     = image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
 
-    .ui.text.container
-      = simple_form_for :pages, url: pages_dynamic_content_path, remote: true,
-          format: :js do
+    %h1.ui.inverted.header Aonde você procura?
+    = select_tag :cidade,
+      options_from_collection_for_select(City.all, :friendly_id, :name),
+      include_blank: 'Selecione a região', class: 'ui dropdown'
 
-        %h1.ui.inverted.header Onde você está?
-        = select_tag :cidade, options_from_collection_for_select(City.all, :friendly_id, :name),
-          include_blank: 'Selecione', class: 'ui dropdown',
-          onchange: '$(this.form).submit();'
+    .action.options
+      = link_to 'ANUNCIE', new_advertisement_path, remote: true,
+        class: 'ui primary advertise small button'
 
-    -# %a{ href: '#section-two', 'data-toggle': 'slide' }
-      = image_tag 'home/arrow.svg', class: 'arrow-slide'
+      .login-section
+        = link_to 'ENTRAR', new_user_session_path, class: 'ui inverted small button'
+        %p Área Exclusiva
 
-.section.two#section-two
-  .ui.centered.grid
-    .ui.container
-      .ui.horizontal.divider
-        .ui.header.title#home-title O DF todo aqui
+.ui.hidden.divider
+
+.section-two#section-two
+  .ui.center.aligned.container.grid
+    .ui.horizontal.divider
+      .ui.header.title O DF todo aqui
+
+    .header.sub
       .ui.text.container
-        .header.sub
-          Se você procura por imóveis, estabelecimentos nas proximidades ou tudo
-          %br
-          que entrega em sua casa é só escolher um dos canais abaixo.
+        Se você procura por imóveis, estabelecimentos nas proximidades ou tudo
+        %br
+        que entrega em sua casa é só escolher um dos canais abaixo.
 
+    .channel-section
       .ui.three.column.stackable.grid
-        .column
-          %a.channel-link{ onclick: "go_to_channel('#{properties_path}')" }
-            = image_tag 'home/imovel.png'
-        .column
-          %a.channel-link{ onclick: "go_to_channel('#{markets_path}')" }
-            = image_tag 'home/comercio.png'
-        .column
-          %a.channel-link{ onclick: "go_to_channel('#{deliveries_path}')" }
-            = image_tag 'home/delivery.png'
+        .computer.tablet.only.row
+          .column
+            %a{ onclick: "go_to_channel('#{properties_path}')" }
+              = image_tag 'home/imovel.png', class: 'ui fluid image'
+          .column
+            %a{ onclick: "go_to_channel('#{markets_path}')" }
+              = image_tag 'home/comercio.png', class: 'ui fluid image'
+          .column
+            %a{ onclick: "go_to_channel('#{deliveries_path}')" }
+              = image_tag 'home/delivery.png', class: 'ui fluid image'
 
-.section.three#section-three
-  .ui.centered.grid
-    .ui.container
-      .ui.horizontal.divider
-        .ui.header.title Tudo bem pertinho de você
-      .ui.text.container
-        .header.sub
-          Agora ficou mais fácil encontrar tudo o que você precisa para o seu dia-a-dia.
-          %br
-          Desde uma casa para alugar, um saboroso sushi ou uma lavanderia.
+      .ui.stackable.grid
+        .mobile.only.row
+          .column
+            %a{ onclick: "go_to_channel('#{properties_path}')" }
+              = image_tag 'home/imoveis_mobile_button.png', class: 'ui fluid image'
 
-      = link_to 'http://tour.dfaqui.com/as/aereas/8/index.html?s=pano11&h=-108.6257&v=0.0000&f=56.2283&skipintro&norotation',
-          id: 'home-pin-link', target: '_blank' do
-        = image_tag 'home/pin_servicos.png', class: 'pin-servico'
+          .column
+            %a{ onclick: "go_to_channel('#{markets_path}')" }
+              = image_tag 'home/comercio_mobile_button.png', class: 'ui fluid image'
 
-%div{ align: 'center' }
-  = image_tag 'home/dfaqui_blue.svg', class: 'footer-brand'
-  %p.copyright DFaqui © 2016 - Todos os direitos reservados.
+          .column
+            %a{ onclick: "go_to_channel('#{deliveries_path}')" }
+              = image_tag 'home/delivery_mobile_button.png', class: 'ui fluid image'
 
-.ui.inverted.vertical.footer.segment
+.ui.hidden.section.divider
+
+.section-three#section-three
+  .ui.center.aligned.container.grid
+    .ui.horizontal.divider
+      .ui.header.title Tudo bem pertinho de você
+
+    .ui.text.container
+      .header.sub
+        Agora ficou mais fácil encontrar tudo o que você precisa para o seu dia-a-dia.
+        %br
+        Desde uma casa para alugar, um saboroso sushi ou uma lavanderia.
+
+  .ui.hidden.section.divider
+
+  .ui.centered.container.grid
+    .middle.aligned.row
+      .nine.wide.column
+        = link_to 'http://tour.dfaqui.com/as/aereas/8/index.html?s=pano11&h=-108.6257&v=0.0000&f=56.2283&skipintro&norotation',
+            id: 'home-pin-link', target: '_blank' do
+          = image_tag 'home/pin_servicos.png', class: 'ui fluid image'
+      .seven.wide.column.teste
+        %p.title Imagens aéreas
+        %p.subtitle 360
+        %p.item Asa Sul
+        %p.item Noroeste
+
+.ui.hidden.section.divider
+
+.footer-section
   .ui.center.aligned.container
-    .ui.horizontal.inverted.small.divided.link.list
-      %a.item Política de uso
-      %a.item Quem somos
-      %a.item Contato
-      %a.item Anuncie
+    = image_tag 'home/dfaqui_blue.svg', class: 'footer-brand'
+    %p.copyright DFaqui © 2016 - Todos os direitos reservados.
 
+  .ui.inverted.vertical.footer.segment
+    .ui.center.aligned.container
+      .ui.horizontal.inverted.small.divided.link.list
+        %a.item Política de uso
+        %a.item Quem somos
+        %a.item Contato
+        %a.item Anuncie
 
 :javascript
-  $('.ui.dropdown').dropdown({ placeholder: false });
+  $('.ui.dropdown').dropdown({ placeholder: false })
 
   function go_to_channel(path) {
     city = $('#cidade').val();

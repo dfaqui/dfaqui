@@ -2,31 +2,107 @@ $futura-font: 'futura_condensedmedium';
 $futura-light-font: 'futura_condensed_lightregular';
 $font-color: #284762;
 
-.dfaqui-light {
-  margin-top: 10em;
-  width: 300px;
-}
+$mobile: "(max-width: 768px)";
+$desktop: "(min-width: 768px)";
 
-.section.one {
-  height: 100%;
+.section-one {
+  display: table;
   width: 100%;
-  overflow: hidden;
+  height: 100%;
 
-  .background-video {
-    min-width: 100%;
-    min-height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+
+  @media #{$mobile} {
+    video { display: none }
+
+    background-image: asset-url('home/background.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
   }
 
-  #form-section {
+  .background-video {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+    z-index: -100;
+  }
+
+  .ui.container {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+
+    .dfaqui-light {
+      width: 350px;
+
+      @media #{$mobile} {
+        margin-top: -10em;
+        width: 250px;
+      }
+
+      @media #{$mobile} and (orientation:landscape) {
+        margin-top: 0;
+        width: 300px;
+      }
+    } // .dfaqui-light
+
+    .ui.header {
+      margin-top: 2.5em;
+      font-family: $futura-light-font;
+      font-size: 42px;
+
+      @media #{$mobile} {
+        margin-top: 2em;
+        font-family: $futura-light-font;
+        font-size: 30px;
+      }
+    } // .ui.header
+
+    .ui.dropdown {
+      font-size: 16px;
+      width: 328px;
+
+      .text { color: #a8a8a8 }
+      .item { font-size: 16px }
+
+      .icon {
+        color: #69a1be;
+        opacity: 0.6;
+      }
+
+      @media #{$mobile} {
+        font-size: 14px;
+        width: 250px;
+      }
+    } // .ui.dropdown
 
     .action.options {
       position: absolute;
       top: 0.6em;
       right: 2em;
+
+      .advertise.button { margin-right: 10px !important }
+
+      .login-section {
+        display: inline-table;
+        color: white;
+        font-size: 12px;
+
+        p {
+          margin-top: 5px;
+          @media #{$mobile} { display: none }
+        }
+      }
 
       .ui.button {
         font-family: $futura-light-font;
@@ -34,94 +110,132 @@ $font-color: #284762;
         font-size: 30px;
         margin: 0em 0em 0em 0em;
         padding: 0.2em 0.6em 0.2em;
+
+        @media #{$mobile} { font-size: 20px }
       }
 
-      .advertise.button { margin-right: 8px }
-
-      .login-section {
-        display: inline-table;
-        color: white;
-        font-size: 12px;
-
-        p { margin-top: 5px }
+      @media #{$mobile} {
+        top: initial;
+        right: initial;
+        bottom: 2em;
+        width: 100%;
       }
-    }
 
-    .dropdown.icon {
-      color: #69a1be;
-      opacity: 1;
-    }
-  }
+      @media #{$mobile} and (orientation:landscape) { display: none }
+    } // .action.options
+  } // .ui.container
+} // .section-one
 
-  .ui.text.container {
-    padding-top: 5em;
-
-    .ui.header {
-      font-family: $futura-font;
-      font-weight: 100;
-      font-size: 45px;
-    }
-  }
-
-  .row { padding: 0 }
-  .ui.dropdown { min-width: 20em }
-
-  .arrow-slide {
-    width: 120px;
-    bottom: 0;
-  }
-}
-
-.section.two {
-  margin-top: 50px;
-
+.section-two {
   .header.title {
+    margin-bottom: 15px;
     font-family: $futura-font;
     font-size: 60px;
+    font-weight: 500;
     color: $font-color;
+
+    @media #{$mobile} {
+      margin-bottom: 10px;
+      font-size: 35px;
+    }
   }
 
   .header.sub {
-    font-family: $futura-light-font;
-    color: $font-color;
-    font-size: 20px;
-  }
+    .text {
+      font-family: $futura-light-font;
+      font-size: 20px;
+      color: $font-color;
+      line-height: 1.4;
 
-  .stackable.grid { padding-top: 50px }
-  .channel-link { cursor: pointer }
-}
+      br {
+        @media #{$mobile} { display: none }
+      }
+    }
+  } // .header.sub
 
-.section.three {
-  margin-top: 50px;
+  .channel-section {
+    margin-top: 40px;
+    a { cursor: pointer }
 
+    .mobile {
+      img { padding-left: 15px; padding-right: 15px; }
+    }
+  } // .channel-section
+} // .section-two
+
+.section-three {
   .header.title {
+    margin-bottom: 15px;
     font-family: $futura-font;
     font-size: 60px;
+    font-weight: 500;
     color: $font-color;
-  }
+
+    @media #{$mobile} {
+      margin-bottom: 10px;
+      font-size: 35px;
+    }
+  } // .header.title
 
   .header.sub {
     font-family: $futura-light-font;
+    font-size: 22px;
     color: $font-color;
-    font-size: 20px;
-  }
+    line-height: 1.4;
+  } // .header.sub
 
-  .pin-servico { padding-top: 3em }
-}
+  .teste {
+    text-align: center !important;
+
+    .title {
+      margin: 0;
+      color: $font-color;
+      font-family: $futura-light-font !important;
+      font-size: 30px !important;
+
+      @media #{$mobile} { font-size: 4.5vw !important }
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #ccdae0;
+      font-size: 100px;
+      font-family: $futura-light-font !important;
+      text-align: center !important;
+
+      @media #{$mobile} { font-size: 14vw }
+    }
+
+    .item {
+      margin: 0;
+      color: $font-color;
+      font-family: $futura-light-font !important;
+      font-size: 25px !important;
+
+      @media #{$mobile} { font-size: 4vw !important }
+    }
+  } // .text
+} // .section-three
 
 // Footer Area
-.footer-brand {
-  margin-top: 50px;
-  width: 150px;
-}
+.footer-section {
+  .footer-brand {
+    width: 150px;
+    @media #{$mobile} { width: 60px }
+  }
 
-.copyright {
-  font-family: $futura-light-font;
-  color: $font-color;
-  font-size: 12px;
-}
+  .copyright {
+    font-family: $futura-light-font;
+    color: $font-color;
+    font-size: 12px;
+  }
 
-.footer.segment {
-  background-color: #004969 !important;
-  margin-top: 2em !important;
+  .segment {
+    background-color: #004969 !important;
+    margin-top: 2em !important;
+
+    @media #{$mobile} {
+      .item { font-size: 12px !important }
+    }
+  }
 }
