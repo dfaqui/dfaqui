@@ -1,7 +1,9 @@
 $futura-font: 'futura_condensedmedium';
 $futura-light-font: 'futura_condensed_lightregular';
+$font-color: #284762;
 
 $mobile: "(max-width: 768px)";
+$desktop: "(min-width: 768px)";
 
 .section-one {
   display: table;
@@ -116,10 +118,124 @@ $mobile: "(max-width: 768px)";
         top: initial;
         right: initial;
         bottom: 2em;
-        width: 90%;
+        width: 100%;
       }
 
       @media #{$mobile} and (orientation:landscape) { display: none }
     } // .action.options
   } // .ui.container
+} // .section-one
+
+.section-two {
+  .header.title {
+    margin-bottom: 15px;
+    font-family: $futura-font;
+    font-size: 60px;
+    font-weight: 500;
+    color: $font-color;
+
+    @media #{$mobile} {
+      margin-bottom: 10px;
+      font-size: 35px;
+    }
+  }
+
+  .header.sub {
+    .text {
+      font-family: $futura-light-font;
+      font-size: 20px;
+      color: $font-color;
+      line-height: 1.4;
+
+      br {
+        @media #{$mobile} { display: none }
+      }
+    }
+  } // .header.sub
+
+  .channel-section {
+    margin-top: 40px;
+    a { cursor: pointer }
+
+    .mobile {
+      img { padding-left: 15px; padding-right: 15px; }
+    }
+  } // .channel-section
+} // .section-two
+
+.section-three {
+  .header.title {
+    margin-bottom: 15px;
+    font-family: $futura-font;
+    font-size: 60px;
+    font-weight: 500;
+    color: $font-color;
+
+    @media #{$mobile} {
+      margin-bottom: 10px;
+      font-size: 35px;
+    }
+  } // .header.title
+
+  .header.sub {
+    font-family: $futura-light-font;
+    font-size: 22px;
+    color: $font-color;
+    line-height: 1.4;
+  } // .header.sub
+
+  .teste {
+    text-align: center !important;
+
+    .title {
+      margin: 0;
+      color: $font-color;
+      font-family: $futura-light-font !important;
+      font-size: 30px !important;
+
+      @media #{$mobile} { font-size: 4.5vw !important }
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #ccdae0;
+      font-size: 100px;
+      font-family: $futura-light-font !important;
+      text-align: center !important;
+
+      @media #{$mobile} { font-size: 14vw }
+    }
+
+    .item {
+      margin: 0;
+      color: $font-color;
+      font-family: $futura-light-font !important;
+      font-size: 25px !important;
+
+      @media #{$mobile} { font-size: 4vw !important }
+    }
+  } // .text
+} // .section-three
+
+// Footer Area
+.footer-section {
+  .footer-brand {
+    width: 150px;
+    @media #{$mobile} { width: 60px }
+  }
+
+  .copyright {
+    font-family: $futura-light-font;
+    color: $font-color;
+    font-size: 12px;
+  }
+
+  .segment {
+    background-color: #004969 !important;
+    margin-top: 2em !important;
+
+    @media #{$mobile} {
+      .item { font-size: 12px !important }
+    }
+  }
 }
