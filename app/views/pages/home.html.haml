@@ -1,5 +1,5 @@
 .section-one#section-one
-  - if !touch_device?
+  - if !browser.device.mobile?
     = video_tag 'https://s3-sa-east-1.amazonaws.com/dfaqui/videos/background.mp4',
       class: 'background-video', autoplay: true, loop: true
 
