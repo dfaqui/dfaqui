@@ -1,0 +1,66 @@
+// INDEX PAGE
+.property-index-section {
+  .title {
+    font-family: $font-futura-light;
+    color: $color-grey;
+    font-size: 36px;
+
+    @media #{$mobile} {
+      font-size: 22px;
+    }
+  }
+
+  .sponsor-section {
+    .three.column.grid .column { padding: 0 !important }
+  }
+
+  .ui.card.desktop {
+    max-width: 261px;
+
+    .ribbon.label { z-index: 1 }
+
+    .image {
+      position: relative;
+      height: 174px;
+
+      p {
+        position: absolute;
+        bottom: 0;
+        left: 5px;
+        color: white;
+        font-size: 20px;
+        text-shadow: 2px 2px 4px #000000;
+      }
+    }
+
+    .card-value {
+      font-size: 16px;
+      font-weight: bold;
+      color: $color-property;
+    }
+  }
+
+  .ui.card.mobile {
+    .content {
+      padding: 0.6em 1em;
+
+      .header {
+        color: $color-grey;
+        font-size: 16px;
+        font-weight: 100;
+      }
+    }
+
+    .image { height: 174px }
+
+    .card-label {
+      color: $color-grey;
+      font-size: 14px;
+    }
+
+    .card-value {
+      font-size: 16px;
+      color: $color-property;
+    }
+  }
+}

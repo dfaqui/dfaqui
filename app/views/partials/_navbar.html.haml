@@ -1,10 +1,12 @@
-.ui.borderless.fixed.top.large.menu
-  .ui.container
-    .item= navbar_channel_buttons
+.navbar
+  .ui.borderless.fixed.top.menu
+    .ui.container
+      .item= navbar_channel_buttons
 
-    .right.item
-      = link_to favorites_path, class: 'image' do
-        = image_tag 'favorite_button.svg', class: 'favorite-icon'
+      - if !browser.device.mobile?
+        .right.item
+          = link_to favorites_path, class: 'image' do
+            = image_tag 'favorite_button.svg', class: 'favorite-icon'
 
-      - if user_signed_in?
-        .item= link_to 'Sair', destroy_user_session_path, method: :delete
+          - if user_signed_in?
+            .item= link_to 'Sair', destroy_user_session_path, method: :delete

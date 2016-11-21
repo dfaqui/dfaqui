@@ -31,6 +31,7 @@ gem 'figaro'
 gem 'friendly_id'
 gem 'has_scope'
 gem 'money-rails'
+gem 'browser'
 
 gem 'simple_form'
 gem 'kaminari'

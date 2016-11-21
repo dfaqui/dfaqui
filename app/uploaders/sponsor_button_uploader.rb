@@ -9,9 +9,9 @@ class SponsorButtonUploader < CarrierWave::Uploader::Base
   def store_dir
     path = "publicidade/botao"
 
-    if Rails.env.development?
-      path = "development/#{path}"
-    end
+    # if Rails.env.development?
+    #   path = "development/#{path}"
+    # end
 
     path
   end

@@ -2,19 +2,16 @@
 %html
   %head
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
-    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'}
 
     %title DFaqui
     = csrf_meta_tags
 
-    - channel = 'comercio' if current_channel.in?(['delivery', 'comercio'])
-    - channel = 'imoveis' if current_channel == 'imoveis'
-
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = stylesheet_link_tag "application/#{channel}", media: 'all', 'data-turbolinks-track': 'reload'
-
     = javascript_include_tag 'core', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+    - channel = 'comercio' if current_channel.in?(['delivery', 'comercio'])
+    - channel = 'imoveis' if current_channel == 'imoveis'
   %body
     = render 'partials/navbar'
 
@@ -24,9 +21,5 @@
 
       = render "partials/#{channel}_search_bar" if channel
 
-    = yield :banner
-
-    .ui.container.app-content
+    .ui.container.content-section
       = yield
-
-    = render 'partials/footer'

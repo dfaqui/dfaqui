@@ -1,0 +1,20 @@
+- @properties.each do |item|
+  .ui.fluid.card.mobile
+    .content
+      .center.aligned.header CLNW 10/11 K
+    .image
+      = image_tag item.sponsorable.cover_image, class: 'ui fluid image'
+    .content
+      .ui.three.column.center.aligned.grid
+        .column
+          %p.card-label Área (m²)
+          %p.card-value= item.sponsorable.area
+        .column
+          - if item.sponsorable.property_type.residential?
+            %p.card-label Quartos
+          - elsif item.sponsorable.property_type.commercial?
+            %p.card-label Salas
+          %p.card-value= item.sponsorable.rooms
+        .column
+          %p.card-label Suítes
+          %p.card-value= item.sponsorable.suites
