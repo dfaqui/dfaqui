@@ -4,7 +4,9 @@ class CustomerUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :fog
-  process :resize_to_fill => [180, 120]
+  process :resize_to_fill => [266, 165]
+  # process :resize_to_fill => [194, 120]
+  # process :resize_to_fill => [130, 80]
 
   def store_dir
     path = "cliente/#{model.id}/logomarca"

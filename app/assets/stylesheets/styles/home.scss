@@ -209,26 +209,3 @@
     }
   } // .text
 } // .section-three
-
-// Footer Area
-.footer-section {
-  .footer-brand {
-    width: 150px;
-    @media #{$mobile} { width: 60px }
-  }
-
-  .copyright {
-    font-family: $font-futura-light;
-    color: $color-secondary;
-    font-size: 12px;
-  }
-
-  .segment {
-    background-color: $color-secondary !important;
-    margin-top: 2em !important;
-
-    @media #{$mobile} {
-      .item { font-size: 12px !important }
-    }
-  }
-}
