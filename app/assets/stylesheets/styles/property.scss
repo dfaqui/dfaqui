@@ -86,6 +86,66 @@
   }
 }
 
+// LIST PAGE
+.property-list-section {
+  .result-section {
+    text-align: center;
+
+    .value {
+      font-size: 30px;
+      color: $color-property;
+    }
+    .label { font-size: 16px }
+}
+
+  .property-image {
+    float: left;
+    position: relative;
+
+    img {
+      width: 260px;
+      height: 174px;
+    }
+
+    p {
+      position: absolute;
+      bottom: 0;
+      left: 5px;
+      color: white;
+      font-size: 20px;
+      text-shadow: 2px 2px 4px #000000;
+    }
+  }
+
+  .property-content {
+    overflow: auto;
+    padding-left: 1em;
+
+    .header { float: left }
+    .ui.heart.rating { float: left; margin-left: 10px }
+
+    .customer-brand {
+      float: right;
+      width: 75px;
+      height: 32px;
+    }
+
+    .justified.container { float: left }
+
+    .statistic-section {
+      float: left;
+      margin-top: 1.2em;
+    }
+
+    .statistic > .value{ color: #2185D0 }
+
+    .action-section {
+      float: right;
+      margin-top: 1.5em;
+    }
+  }
+}
+
 // SHOW PAGE
 .property-show-section {
   padding-top: 85px;

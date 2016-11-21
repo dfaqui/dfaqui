@@ -1,9 +1,10 @@
 @import "semantic-ui";
 @import "lightslider";
 
+@import "base/mixins.scss";
+@import "base/variables.scss";
 @import "base/fonts.scss";
 @import "base/globals.scss";
-@import "base/variables.scss";
 
 @import "styles/banner.scss";
 @import "styles/home.scss";
