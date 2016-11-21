@@ -108,6 +108,11 @@
 :javascript
   $('.ui.dropdown').dropdown({ placeholder: false })
 
+  $('#cidade').change(function() {
+    var target = '#section-two';
+    slide(target);
+  });
+
   function go_to_channel(path) {
     city = $('#cidade').val();
 
