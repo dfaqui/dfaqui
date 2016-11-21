@@ -1,9 +1,21 @@
 - @properties.each do |item|
   .ui.fluid.card.mobile
     .content
-      .center.aligned.header CLNW 10/11 K
+      = link_to item.sponsorable.full_address, property_show_path(item.sponsorable.id),
+          class: 'center aligned header'
+
     .image
       = image_tag item.sponsorable.cover_image, class: 'ui fluid image'
+
+      %div{ class: "ui #{commercial_situation(item.sponsorable.commercial_situation)} ribbon label" }
+        = item.sponsorable.commercial_situation_text.upcase
+
+      = link_to favorites_path(id: item.sponsorable.id, type: :Property), method: :post,
+          remote: true do
+        - favorited = Favorite.is_favorited?(current_user, item.sponsorable.id, :Property) ? 1 : 0
+        .ui.right.floated.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1 }
+
+      %p= (item.sponsorable.price.blank?) ? 'Sob consulta' : humanized_money_with_symbol(item.sponsorable.price_cents)
     .content
       .ui.three.column.center.aligned.grid
         .column
