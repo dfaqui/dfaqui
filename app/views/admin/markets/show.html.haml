@@ -17,9 +17,10 @@
     %tr
       %td Preço médio
       %td
-        - 5.times do |i|
-          - color = (@market.price_category > i) ? 'yellow' : 'grey'
-          %i{ class: "#{color} dollar fitted icon" }
+        - if @market.price_category.present?
+          - 5.times do |i|
+            - color = (@market.price_category > i) ? 'yellow' : 'grey'
+            %i{ class: "#{color} dollar fitted icon" }
     %tr
       %td Aberto 24 horas?
       %td= @market.always_open

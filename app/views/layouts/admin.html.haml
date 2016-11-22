@@ -1,0 +1,94 @@
+!!!
+%html
+  %head
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
+
+    %title DFaqui | Gestão
+    = csrf_meta_tags
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+
+    = javascript_include_tag 'core', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'admin', 'data-turbolinks-track': 'reload'
+  %body
+    .admin-section
+      - is_admin = current_user.has_role? :admin
+
+      .ui.fixed.top.menu
+        %a#hideToggle.icon.active.item{ href: 'javascript:void(0)' }
+          %h3
+            %i.chevron.left.icon
+
+        %a#showToggle.icon.active.item{ href: 'javascript:void(0)' }
+          %h3
+            %i.chevron.right.icon
+
+        -# %a.item{ href: '#', 'data-toggle': 'slide' }
+        = link_to admin_path, class: 'item' do
+          %h3 DFaqui
+
+        .menu.right
+          %a.icon.item.pointer{ 'data-toggle': 'popup', 'data-content': '#user', 'data-position': 'bottom right' }
+            = image_tag 'dfaqui_profile_logo.jpg', class: 'ui avatar image'
+
+          #user.ui.popup
+            .ui.secondary.vertical.menu
+              .header.item MENU
+              = link_to edit_password_admin_users_path, class: 'item' do
+                Alterar senha
+                %i.lock.icon
+
+              .ui.divider
+
+              = link_to destroy_user_session_path, method: :delete, class: 'item' do
+                Sair
+                %i.sign.out.icon
+
+      .pusher
+        .ui.fluid.container
+          .ui.two.column.grid
+            #sideMenu.side.menu
+              .profile{ align: 'center' }
+                %br
+                = link_to admin_path do
+                  = image_tag 'dfaqui_profile_logo.jpg', class: 'ui circular image',
+                    width: '150px'
+
+                .ui.white.header= current_user.name
+                .ui.divider
+
+              #verticalMenu.ui.fluid.vertical.menu
+                - if is_admin
+                  = link_to rails_admin_path, class: 'item' do
+                    %i.angle.right.icon
+                    Administração
+
+                - if is_admin
+                  = link_to admin_advertisements_path, class: 'item' do
+                    %i.angle.right.icon
+                    Cadastros pendentes
+
+                = link_to admin_customers_path, class: 'item' do
+                  %i.angle.right.icon
+                  = (is_admin) ? 'Clientes' : 'Meu Perfil'
+
+                - if (is_admin) || (current_user.has_role? :market, :any)
+                  = link_to admin_markets_path, class: 'item' do
+                    %i.angle.right.icon
+                    = (is_admin) ? 'Comércios' : 'Meus Comércios'
+
+                - if (is_admin) || (current_user.has_role? :property, :any)
+                  = link_to admin_properties_path, class: 'item' do
+                    %i.angle.right.icon
+                    = (is_admin) ? 'Imóveis' : 'Meus Imóveis'
+
+                - if is_admin
+                  = link_to admin_users_path, class: 'item' do
+                    %i.angle.right.icon
+                    Usuários
+
+            #content.sixteen.wide.column
+              = yield
+              = render 'partials/shared/alerts'
+
+  = javascript_include_tag 'admin', 'data-turbolinks-track': 'reload'
