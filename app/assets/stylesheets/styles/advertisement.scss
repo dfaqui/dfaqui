@@ -1,0 +1,46 @@
+#advertisement-form {
+  .close.icon {
+    float: right;
+    color: $color-property;
+    cursor: pointer;
+  }
+
+  .ui.header {
+    color: $color-property;
+    font-family: $font-futura-regular;
+    font-size: 100px;
+    font-weight: 100;
+  }
+
+  .sub.header {
+    font-family: $font-futura-light;
+    font-size: 20px;
+    color: $color-secondary;
+  }
+
+  .service-term {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .send-button {
+    text-align: center;
+  }
+}
+
+#success-modal {
+  .container { padding: 30px 0 20px 0 }
+
+  .success-icon { width: 100px }
+
+  .header {
+    color: $color-property;
+    font-family: $font-futura-light;
+    font-size: 60px;
+  }
+
+  .sub-header {
+    font-family: $font-futura-light;
+    font-size: 20px;
+  }
+}
