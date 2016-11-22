@@ -1,8 +1,11 @@
-.ui.header.title BUSCA EXCLUSIVA
+.market-index-section
+  .title BUSCA EXCLUSIVA
 
-.ui.vertical.stripe
-  .ui.middle.aligned.container
-    .ui.six.column.doubling.center.aligned.grid
+  .ui.hidden.divider
+
+  .sponsor-section
+    - columns = (browser.device.mobile?) ? 'three' : 'six'
+    %div{ class: "ui #{columns} column center aligned grid" }
       - @buttons.each do |button|
         .column
-          = image_tag button.image
+          = image_tag button.image, class: 'ui fluid image'

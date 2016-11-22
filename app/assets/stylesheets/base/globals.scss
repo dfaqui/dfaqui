@@ -1,0 +1,7 @@
+.content-section { margin: 2em 0 2em 0 }
+
+// BUTTONS
+.delivery-button { @include button($color-delivery) }
+.market-button { @include button($color-market) }
+.property-button { @include button($color-property) }
+.secondary-button { @include button($color-secondary) }

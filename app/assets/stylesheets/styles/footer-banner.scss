@@ -17,20 +17,3 @@
 .imoveis-footer-banner {
   @include footer-banner('imoveis_footer_banner.png', #18A3BE);
 }
-
-.footer-brand {
-  width: 150px;
-}
-
-.copyright-text {
-  color: #284762;
-  font-size: 11px;
-
-  p:nth-child(2) {
-    margin-top: -12px;
-  }
-}
-
-.footer.segment { background-color: #004969 !important }
-
-.copyright-section { margin: 2em 0 2em 0 }

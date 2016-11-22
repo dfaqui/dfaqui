@@ -1,0 +1,24 @@
+$icon-height: 65px;
+$icon-height-mobile: 45px;
+
+.navbar {
+  .brand-icon {
+    height: $icon-height;
+
+    @media #{$mobile} and (orientation:portrait) {
+      height: $icon-height-mobile;
+    }
+  }
+
+  .channel-icon {
+    height: $icon-height;
+    margin-left: 8px;
+
+    @media #{$mobile} and (orientation:portrait) {
+      height: $icon-height-mobile;
+      margin-left: 5px;
+    }
+  }
+
+  .favorite-icon { height: $icon-height }
+}

@@ -1,0 +1,11 @@
+.channel-banner {
+  margin-top: 95px;
+  background-position: center center;
+  background-size: cover;
+  min-height: 445px;
+
+  @media #{$mobile} {
+    margin-top: 75px;
+    min-height: 130px;
+  }
+}

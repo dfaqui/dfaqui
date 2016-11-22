@@ -1,62 +1,61 @@
-.property-item-section
-  .ui.clearing.segment
-    = link_to property_show_path(property.id),
-        class: 'ui rounded image property-image' do
+.ui.clearing.segment
+  = link_to property_show_path(property.id),
+      class: 'ui rounded image property-image' do
 
-      %div{ class: "ui #{commercial_situation(property.commercial_situation)} ribbon label" }
-        = property.commercial_situation_text
+    %div{ class: "ui #{commercial_situation(property.commercial_situation)} ribbon label" }
+      = property.commercial_situation_text
 
-      = image_tag property.cover_image
-      %p
-        - if property.price
-          = humanized_money_with_symbol(property.price_cents)
-        - else
-          Sob consulta
+    = image_tag property.cover_image
+    %p
+      - if property.price
+        = humanized_money_with_symbol(property.price_cents)
+      - else
+        Sob consulta
 
-    .property-content
-      = link_to property.full_address, property_show_path(property.id),
-        class: 'ui medium header'
+  .property-content
+    = link_to property.full_address, property_show_path(property.id),
+      class: 'ui medium header'
 
-      = link_to favorites_path(id: property.id, type: :Property), method: :post,
-          remote: true do
+    = link_to favorites_path(id: property.id, type: :Property), method: :post,
+        remote: true do
 
-        - favorited = Favorite.is_favorited?(current_user, property.id, :Property) ? 1 : 0
-        .ui.huge.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1 }
+      - favorited = Favorite.is_favorited?(current_user, property.id, :Property) ? 1 : 0
+      .ui.huge.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1 }
 
-      = image_tag property.customer.logo, class: 'customer-brand'
+    = image_tag property.customer.logo, class: 'customer-brand'
 
-      .ui.justified.container
-        = truncate(property.description, length: 400)
+    .ui.justified.container
+      = truncate(property.description, length: 400)
 
-      .statistic-section
-        .ui.mini.statistic
-          .label Área (m²)
-          .value= property.area
+    .statistic-section
+      .ui.mini.statistic
+        .label Área (m²)
+        .value= property.area
 
-        .ui.mini.statistic
-          - if property.property_type.residential?
-            .label Quartos
-          - elsif property.property_type.commercial?
-            .label Salas
+      .ui.mini.statistic
+        - if property.property_type.residential?
+          .label Quartos
+        - elsif property.property_type.commercial?
+          .label Salas
 
-          .value= property.rooms
+        .value= property.rooms
 
-        .ui.mini.statistic
-          .label Suítes
-          .value= property.suites
+      .ui.mini.statistic
+        .label Suítes
+        .value= property.suites
 
-      .action-section
-        = link_to 'VER DETALHES', property_show_path(property.id),
-          class: 'ui small blue-color button'
+    .action-section
+      = link_to 'VER DETALHES', property_show_path(property.id),
+        class: 'ui small secondary-button button'
 
-        = link_to 'COMÉRCIO', list_markets_path(cep: property.block.zipcode),
-          class: 'ui small market-color button'
+      = link_to 'COMÉRCIO', list_markets_path(cep: property.block.zipcode),
+        class: 'ui small market-button button'
 
-        = link_to 'DELIVERY', list_deliveries_path(cep: property.block.zipcode),
-          class: 'ui small delivery-color button'
+      = link_to 'DELIVERY', list_deliveries_path(cep: property.block.zipcode),
+        class: 'ui small delivery-button button'
 
-        - if property.block.tour_link
-          = link_to 'TOUR 360', property.block.tour_link, target: :blank,
-            class: 'ui small primary property-color button'
+      - if property.block.tour_link
+        = link_to 'TOUR 360', property.block.tour_link, target: :blank,
+          class: 'ui small primary property-color button'
 
 .ui.hidden.divider

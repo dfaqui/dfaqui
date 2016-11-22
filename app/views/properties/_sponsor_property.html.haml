@@ -1,0 +1,33 @@
+.ui.four.column.doubling.grid
+  - @properties.each do |item|
+    .column
+      .ui.card.desktop
+        .content
+          = link_to favorites_path(id: item.sponsorable.id, type: :Property), method: :post,
+              remote: true do
+
+            - favorited = Favorite.is_favorited?(current_user, item.sponsorable.id, :Property) ? 1 : 0
+            .ui.right.floated.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1 }
+
+          = link_to item.sponsorable.full_address, property_show_path(item.sponsorable.id),
+            class: 'center aligned header'
+        .image
+          %div{ class: "ui #{commercial_situation(item.sponsorable.commercial_situation)} ribbon label" }
+            = item.sponsorable.commercial_situation_text.upcase
+          = link_to property_show_path(item.sponsorable.id) do
+            = image_tag item.sponsorable.cover_image, class: 'ui fluid image'
+            %p= (item.sponsorable.price.blank?) ? 'Sob consulta' : humanized_money_with_symbol(item.sponsorable.price_cents)
+        .content
+          .ui.three.column.center.aligned.grid
+            .column
+              %p Área (m²)
+              %p.card-value= item.sponsorable.area
+            .column
+              - if item.sponsorable.property_type.residential?
+                %p Quartos
+              - elsif item.sponsorable.property_type.commercial?
+                %p Salas
+              %p.card-value= item.sponsorable.rooms
+            .column
+              %p Suítes
+              %p.card-value= item.sponsorable.suites

@@ -112,7 +112,23 @@ class Property < ApplicationRecord
   before_validation :maintenance_fee_to_cents
 
   def full_address
-    "#{self.block.district.name} #{self.block.name}"
+    template = ''
+
+    if self.block
+      template = "%{district} %{block} %{complement}"
+
+      district    = self.block.district.name
+      block       = self.block.name
+      complement  = self.address_complement
+
+      template = template % {
+        district: district,
+        block: "Bloco #{block}",
+        complement: complement
+      }
+    end
+
+    template
   end
 
   def cover_image

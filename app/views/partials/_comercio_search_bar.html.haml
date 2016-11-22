@@ -1,39 +1,37 @@
 - path = list_deliveries_path if current_channel == 'delivery'
 - path = list_markets_path    if current_channel == 'comercio'
 
-= form_tag(path, method: :get) do
-  .search-bar
-    .ui.centered.grid.borderless.menu
-      .horizontally.fitted.item
-        = select_tag :cidade, options_from_collection_for_select(City.all, :friendly_id, :name),
-        { 'data-city': 'cidade', class: 'ui dropdown' }
+- city_dropdown       = select_tag :cidade, options_from_collection_for_select(City.all, :friendly_id, :name), { 'data-city': 'cidade', class: 'ui fluid dropdown' }
+- group_dropdown      = grouped_collection_select :quadras, :quadras, City.all, :district_groups, :name, :friendly_id, :name, { include_blank: 'Quadras' }, { name: 'quadras', 'data-district-group': 'quadras_quadras', class: 'ui fluid dropdown' }
+- district_dropdown   = grouped_collection_select :quadra, :quadra, DistrictGroup.all, :districts, :name, :friendly_id, :name, { include_blank: 'Quadra' }, { name: 'quadra', 'data-district': 'quadra_quadra', class: 'ui fluid dropdown' }
+- segment_dropdown    = select_tag :segmento, options_from_collection_for_select(Segment.all, :friendly_id, :name), { include_blank: 'Segmento', 'data-segment': 'segmento', class: 'ui fluid dropdown' }
+- category_dropdown   = grouped_collection_select :categoria, :categoria, Segment.all, :categories, :name, :friendly_id, :name, { include_blank: 'Tipo' }, { name: 'categoria', 'data-category': 'categoria_categoria', class: 'ui fluid dropdown' }
+- speciality_dropdown = grouped_collection_select :especialidade, :especialidade, Category.all, :specialities, :name, :friendly_id, :name, { include_blank: 'Especialidade' }, { name: 'especialidade', 'data-speciality': 'especialidade_especialidade', class: 'ui fluid dropdown' }
 
-      .horizontally.fitted.item
-        = grouped_collection_select :quadras, :quadras, City.all, :district_groups, :name,
-          :friendly_id, :name, { include_blank: 'Quadras' },
-          { name: 'quadras', 'data-district-group': 'quadras_quadras', class: 'ui dropdown' }
-
-      .horizontally.fitted.item
-        = grouped_collection_select :quadra, :quadra, DistrictGroup.all, :districts, :name,
-          :friendly_id, :name, { include_blank: 'Quadra' },
-          { name: 'quadra', 'data-district': 'quadra_quadra', class: 'ui dropdown' }
-
-      .horizontally.fitted.item
-        = select_tag :segmento, options_from_collection_for_select(Segment.all, :friendly_id, :name),
-          { include_blank: 'Segmento', 'data-segment': 'segmento', class: 'ui dropdown' }
-
-      .horizontally.fitted.item
-        = grouped_collection_select :categoria, :categoria, Segment.all, :categories, :name,
-          :friendly_id, :name, { include_blank: 'Tipo' },
-          { name: 'categoria', 'data-category': 'categoria_categoria', class: 'ui dropdown' }
-
-      .horizontally.fitted.item
-        = grouped_collection_select :especialidade, :especialidade, Category.all, :specialities,
-          :name, :friendly_id, :name, { include_blank: 'Especialidade' },
-          { name: 'especialidade', 'data-speciality': 'especialidade_especialidade', class: 'ui dropdown' }
-
-      .horizontally.fitted.item
-        = submit_tag 'Buscar', name: nil, class: 'ui primary fluid button'
+.ui.segment.search-bar
+  = form_tag(path, method: :get) do
+    - if !browser.device.mobile? # computer version
+      .ui.seven.column.computer.only.grid
+        .column= city_dropdown
+        .column= group_dropdown
+        .column= district_dropdown
+        .column= segment_dropdown
+        .column= category_dropdown
+        .column= speciality_dropdown
+        .column= submit_tag 'Buscar', name: nil, class: 'ui primary fluid button'
+    - else # mobile version
+      .ui.grid
+        .two.column.row
+          .column= city_dropdown
+          .column= group_dropdown
+        .two.column.row
+          .column= district_dropdown
+          .column= segment_dropdown
+        .two.column.row
+          .column= category_dropdown
+          .column= speciality_dropdown
+        .row
+          .column= submit_tag 'Buscar', name: nil, class: 'ui primary fluid button'
 
 = javascript_include_tag 'region-filter'
 = javascript_include_tag 'market-filter'

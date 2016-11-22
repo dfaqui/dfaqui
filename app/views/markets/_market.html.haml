@@ -1,77 +1,76 @@
-#market-list-section
-  .ui.clearing.segment
-    = link_to market_show_path(market.id) do
-      = image_tag market.customer.logo, class: 'ui rounded bordered customer image'
+.ui.clearing.segment
+  = link_to market_show_path(market.id) do
+    = image_tag market.customer.logo, class: 'ui rounded bordered customer image'
 
-    .main-section
-      .section-one
-        .ui.grid
-          .eight.wide.column
-            = link_to market.customer.fantasy_name, market_show_path(market.id),
-              class: 'ui medium header'
+  .main-section
+    .section-one
+      .ui.grid
+        .eight.wide.column
+          = link_to market.customer.fantasy_name, market_show_path(market.id),
+            class: 'ui medium header'
 
-          .eight.wide.right.aligned.column
-            = link_to favorites_path(id: market.id, type: :Market), method: :post,
-              remote: true do
+        .eight.wide.right.aligned.column
+          = link_to favorites_path(id: market.id, type: :Market), method: :post,
+            remote: true do
 
-              - favorited = Favorite.is_favorited?(current_user, market.id, :Market) ? 1 : 0
-              .ui.huge.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1, |
-                'data-tooltip': 'Adicionar aos favoritos', 'data-variation': 'small' }
+            - favorited = Favorite.is_favorited?(current_user, market.id, :Market) ? 1 : 0
+            .ui.huge.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1, |
+              'data-tooltip': 'Adicionar aos favoritos', 'data-variation': 'small' }
 
-      .section-two
-        .ui.two.column.grid
-          .column
+    .section-two
+      .ui.two.column.grid
+        .column
+          .ui.horizontal.divided.list
+            .item= open_label(market)
+            .item= market.customer.full_address
+
+            - if market.delivery? && current_channel == 'comercio'
+              .item
+                .ui.yellow.label Delivery
+
+        .tags.column
+          = tags(market)
+
+    .section-three
+      .ui.justified.container
+        = truncate(market.customer.description, length: 250)
+
+    .section-four
+      .ui.middle.aligned.grid
+        .six.wide.column
+          .row
             .ui.horizontal.divided.list
-              .item= open_label(market)
-              .item= market.customer.full_address
-
-              - if market.delivery? && current_channel == 'comercio'
+              - if market.estimated_time.present?
                 .item
-                  .ui.yellow.label Delivery
+                  %i.fitted.clock.icon
+                  = distance_of_time(market.estimated_time * 60)
+              - if market.price_category.present?
+                .item
+                  - 5.times do |i|
+                    - color = (market.price_category > i) ? 'yellow' : 'grey'
+                    %i{ class: "#{color} dollar fitted icon" }
+          .row
+            .ui.horizontal.divided.list
+              - market.payment_methods.each do |payment|
+                .item
+                  = image_tag "payment/#{payment.icon}", class: 'ui mini image'
 
-          .tags.column
-            = tags(market)
+        .ten.wide.column
+          .action-section
+            = link_to 'VER DETALHES', market_show_path(market.id),
+              class: 'ui tiny secondary-button button'
 
-      .section-three
-        .ui.justified.container
-          = truncate(market.customer.description, length: 250)
+            .ui.tiny.primary.button{ onclick: "show_contact_info(#{market.id})" }
+              CONTATO
 
-      .section-four
-        .ui.middle.aligned.grid
-          .six.wide.column
-            .row
-              .ui.horizontal.divided.list
-                - if market.estimated_time.present?
-                  .item
-                    %i.fitted.clock.icon
-                    = distance_of_time(market.estimated_time * 60)
-                - if market.price_category.present?
-                  .item
-                    - 5.times do |i|
-                      - color = (market.price_category > i) ? 'yellow' : 'grey'
-                      %i{ class: "#{color} dollar fitted icon" }
-            .row
-              .ui.horizontal.divided.list
-                - market.payment_methods.each do |payment|
-                  .item
-                    = image_tag "payment/#{payment.icon}", class: 'ui mini image'
+            = link_to 'IMÓVEIS', list_properties_path(cep: market.customer.block.zipcode),
+              class: 'ui tiny property-button button'
 
-          .ten.wide.column
-            .action-section
-              = link_to 'VER DETALHES', market_show_path(market.id),
-                class: 'ui tiny blue-color button'
-
-              .ui.tiny.primary.button{ onclick: "show_contact_info(#{market.id})" }
-                CONTATO
-
-              = link_to 'IMÓVEIS', list_properties_path(cep: market.customer.block.zipcode),
-                class: 'ui tiny property-color button'
-
-              - if current_channel.in?(['comercio', 'delivery', ['imoveis']])
-                = link_button(market.customer.block.zipcode)
-              - else
-                = link_to('COMÉRCIO', list_markets_path(cep: market.customer.block.zipcode),
-                  class: "ui tiny market-color button")
+            - if current_channel.in?(['comercio', 'delivery', ['imoveis']])
+              = link_button(market.customer.block.zipcode)
+            - else
+              = link_to('COMÉRCIO', list_markets_path(cep: market.customer.block.zipcode),
+                class: "ui tiny market-button button")
 
 .ui.hidden.divider
 

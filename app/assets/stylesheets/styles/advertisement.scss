@@ -1,24 +1,21 @@
-$futura-font: 'futura_condensedmedium';
-$futura-light-font: 'futura_condensed_lightregular';
-
 #advertisement-form {
   .close.icon {
     float: right;
-    color: #13a6bd;
+    color: $color-property;
     cursor: pointer;
   }
 
   .ui.header {
-    color: #13a6bd;
-    font-family: $futura-font;
+    color: $color-property;
+    font-family: $font-futura-regular;
     font-size: 100px;
     font-weight: 100;
   }
 
   .sub.header {
-    font-family: $futura-light-font;
+    font-family: $font-futura-light;
     font-size: 20px;
-    color: #004563;
+    color: $color-secondary;
   }
 
   .service-term {
@@ -37,13 +34,13 @@ $futura-light-font: 'futura_condensed_lightregular';
   .success-icon { width: 100px }
 
   .header {
-    color: #13a6bd;
-    font-family: $futura-light-font;
+    color: $color-property;
+    font-family: $font-futura-light;
     font-size: 60px;
   }
 
   .sub-header {
-    font-family: $futura-light-font;
+    font-family: $font-futura-light;
     font-size: 20px;
   }
 }

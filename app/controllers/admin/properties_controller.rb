@@ -4,7 +4,7 @@ class Admin::PropertiesController < Admin::BaseController
 
   def index
     if current_user.has_role? :admin
-      @properties = Property.includes(:customer, block: [district: [district_group: [:city]]]).all
+      @properties = Property.includes(:customer, block: [district: [district_group: [:city]]]).order('customers.fantasy_name')
     else
       allowed_customers = Customer.with_role(:property, current_user).pluck(:id)
       @properties = Property.where(customer: allowed_customers)

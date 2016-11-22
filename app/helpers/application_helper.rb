@@ -37,7 +37,12 @@ module ApplicationHelper
       background_image  = image_url "#{current_channel}_banner.png"
     end
 
-    content_tag(:div, nil, class: 'banner', style: "background-image: url(#{background_image})")
+    content_tag(
+      :div,
+      nil,
+      class: 'channel-banner',
+      style: "background-image: url(#{background_image})"
+    )
   end
 
   private

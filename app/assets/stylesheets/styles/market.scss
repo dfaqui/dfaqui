@@ -1,8 +1,19 @@
-// list page
-#market-list-section {
+// INDEX PAGE
+.market-index-section {
+  .title {
+    font-family: $font-futura-light;
+    color: $color-grey;
+    font-size: 36px;
+
+    @media #{$mobile} { font-size: 22px }
+  }
+}
+
+// LIST PAGE
+.market-list-section {
   .customer.image {
-    width: 260px;
-    height: 174px;
+    width: 266px;
+    height: 165px;
     float: left;
   }
 
@@ -10,45 +21,56 @@
     margin-top: 15px;
     margin-left: 270px;
     margin-right: 5px;
+  }
 
-    .section-one {
-      .column { padding: 0 !important }
-      .header { margin-left: 15px }
+  .section-one {
+    .column {
+      padding: 0px 0px 10px 0px !important
     }
 
-    .section-two {
-      margin-top: 15px;
+    .header { margin-left: 15px }
+  }
 
-      .column {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-      }
+  .section-two {
+    margin-top: 15px;
 
-      .tags { text-align: right }
+    .column {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
     }
 
-    .section-three {
-      display: flex;
-      margin-top: 15px;
-    }
+    .item { line-height: 1.2 !important }
 
-    .section-four {
-      margin-top: 12px;
+    .tags { text-align: right }
+  }
 
-      .action-section { text-align: right }
-    }
+  .section-three {
+    display: flex;
+    margin-top: 15px;
+  }
+
+  .section-four {
+    margin-top: 12px;
+    .action-section { text-align: right }
   }
 }
 
-// show page
-#market-show-section {
+// SHOW PAGE
+.market-show-section {
+  padding-top: 85px;
+
   .banner {
+    margin-top: 10px;
     background-image: image-url('alimentacao_market_banner.jpg');
     background-position: center center;
     min-height: 300px;
   }
 
-  .customer.image { float: left }
+  .customer.image {
+    float: left;
+    width: 266px;
+    height: 165px;
+  }
 
   .description { font-size: 16px }
 
