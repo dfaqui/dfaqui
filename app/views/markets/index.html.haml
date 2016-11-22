@@ -8,4 +8,6 @@
     %div{ class: "ui #{columns} column center aligned grid" }
       - @buttons.each do |button|
         .column
-          = image_tag button.image, class: 'ui fluid image'
+          - path = (current_channel == 'comercio') ? list_markets_path(cliente: button.customer_id) : list_deliveries_path(cliente: button.customer_id)
+          = link_to path do
+            = image_tag button.image, class: 'ui fluid image'
