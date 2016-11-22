@@ -8,3 +8,106 @@
     @media #{$mobile} { font-size: 22px }
   }
 }
+
+// LIST PAGE
+.market-list-section {
+  .customer.image {
+    width: 266px;
+    height: 165px;
+    float: left;
+  }
+
+  .main-section {
+    margin-top: 15px;
+    margin-left: 270px;
+    margin-right: 5px;
+  }
+
+  .section-one {
+    .column {
+      padding: 0px 0px 10px 0px !important
+    }
+
+    .header { margin-left: 15px }
+  }
+
+  .section-two {
+    margin-top: 15px;
+
+    .column {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    .item { line-height: 1.2 !important }
+
+    .tags { text-align: right }
+  }
+
+  .section-three {
+    display: flex;
+    margin-top: 15px;
+  }
+
+  .section-four {
+    margin-top: 12px;
+    .action-section { text-align: right }
+  }
+}
+
+// SHOW PAGE
+.market-show-section {
+  padding-top: 85px;
+
+  .banner {
+    margin-top: 10px;
+    background-image: image-url('alimentacao_market_banner.jpg');
+    background-position: center center;
+    min-height: 300px;
+  }
+
+  .customer.image {
+    float: left;
+    width: 266px;
+    height: 165px;
+  }
+
+  .description { font-size: 16px }
+
+  .main-section {
+    float: left;
+    margin-left: 15px;
+
+    .section-one {
+      .header {
+        float: left;
+        margin-bottom: 0;
+        color: white;
+        font-size: 25px;
+        font-weight: 100;
+      }
+
+      .rating .icon {
+        margin-left: 10px;
+        color: white;
+        opacity: 0.6;
+      }
+    }
+
+    .section-two {
+      .item {
+        color: white;
+        font-size: 14px;
+      }
+    }
+
+    .section-three {
+      .white{ color: white }
+
+      .estimated-time {
+        color: white;
+        font-size: 14px;
+      }
+    }
+  }
+}

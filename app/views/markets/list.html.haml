@@ -1,8 +1,9 @@
-- @markets.each do |market|
-  = render market
+.market-list-section
+  - @markets.each do |market|
+    = render market
 
-.ui.center.aligned.container
-  = paginate @markets
+  .ui.center.aligned.container
+    = paginate @markets
 
 :javascript
   $('.ui.heart.rating').rating();

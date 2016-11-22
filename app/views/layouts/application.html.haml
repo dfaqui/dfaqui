@@ -22,6 +22,9 @@
 
       = render "partials/#{channel}_search_bar" if channel
 
+    -# market banner space
+    = yield :banner
+
     .ui.container.content-section
       = yield
 

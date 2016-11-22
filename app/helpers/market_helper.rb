@@ -3,11 +3,11 @@ module MarketHelper
     if current_channel == 'comercio'
       label = 'DELIVERY'
       path  = list_deliveries_path(cep: zipcode)
-      color = 'delivery-color'
+      color = 'delivery-button'
     elsif current_channel == 'delivery'
       label = 'COMÉRCIO'
       path  = list_markets_path(cep: zipcode)
-      color = 'market-color'
+      color = 'market-button'
     end
 
     link_to(label, path, class: "ui tiny #{color} button")
