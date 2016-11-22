@@ -7,8 +7,7 @@
 
 .ui.segment.search-bar
   = form_tag(list_properties_path, method: :get) do
-    -# computer version
-    - if !browser.device.mobile?
+    - if !browser.device.mobile? # computer version
       .ui.seven.column.computer.only.grid
         .column= city_dropdown
         .column= situation_dropdown
@@ -17,7 +16,7 @@
         .column= group_dropdown
         .column= district_dropdown
         .column= submit_tag 'Buscar', name: nil, class: 'ui primary fluid button'
-    - else
+    - else # mobile version
       .ui.grid
         .two.column.row
           .column= city_dropdown
