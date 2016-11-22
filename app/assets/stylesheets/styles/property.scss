@@ -5,13 +5,7 @@
     color: $color-grey;
     font-size: 36px;
 
-    @media #{$mobile} {
-      font-size: 22px;
-    }
-  }
-
-  .sponsor-section {
-    .three.column.grid .column { padding: 0 !important }
+    @media #{$mobile} { font-size: 22px }
   }
 
   .ui.card.desktop {

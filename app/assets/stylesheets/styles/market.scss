@@ -1,0 +1,10 @@
+// INDEX PAGE
+.market-index-section {
+  .title {
+    font-family: $font-futura-light;
+    color: $color-grey;
+    font-size: 36px;
+
+    @media #{$mobile} { font-size: 22px }
+  }
+}

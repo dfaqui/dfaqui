@@ -10,14 +10,28 @@
 
 .ui.segment.search-bar
   = form_tag(path, method: :get) do
-    .ui.seven.column.computer.only.grid
-      .column= city_dropdown
-      .column= group_dropdown
-      .column= district_dropdown
-      .column= segment_dropdown
-      .column= category_dropdown
-      .column= speciality_dropdown
-      .column= submit_tag 'Buscar', name: nil, class: 'ui primary fluid button'
+    - if !browser.device.mobile? # computer version
+      .ui.seven.column.computer.only.grid
+        .column= city_dropdown
+        .column= group_dropdown
+        .column= district_dropdown
+        .column= segment_dropdown
+        .column= category_dropdown
+        .column= speciality_dropdown
+        .column= submit_tag 'Buscar', name: nil, class: 'ui primary fluid button'
+    - else # mobile version
+      .ui.grid
+        .two.column.row
+          .column= city_dropdown
+          .column= group_dropdown
+        .two.column.row
+          .column= district_dropdown
+          .column= segment_dropdown
+        .two.column.row
+          .column= category_dropdown
+          .column= speciality_dropdown
+        .row
+          .column= submit_tag 'Buscar', name: nil, class: 'ui primary fluid button'
 
 = javascript_include_tag 'region-filter'
 = javascript_include_tag 'market-filter'
