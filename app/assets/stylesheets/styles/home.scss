@@ -209,3 +209,16 @@
     }
   } // .text
 } // .section-three
+
+#to-top {
+  display: none;
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  z-index: 101;
+  background-color: $color-secondary;
+  color: white;
+
+  .icon { width: 1.2em }
+  .icon:before { font-size: 20px }
+}

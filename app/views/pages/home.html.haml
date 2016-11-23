@@ -90,12 +90,24 @@
         %p.item Asa Sul
         %p.item Noroeste
 
+.ui.circular.icon.button#to-top{ onclick: "slide_to_top()" }
+  %i.caret.up.icon
+
 :javascript
   $('.ui.dropdown').dropdown({ placeholder: false })
 
   $('#cidade').change(function() {
     var target = '#section-two';
     slide(target);
+  });
+
+  $(window).scroll(function (event) {
+    var scroll = $(window).scrollTop();
+    if(scroll > 200) {
+      $('#to-top').show();
+    } else {
+      $('#to-top').hide();
+    }
   });
 
   function go_to_channel(path) {
@@ -106,4 +118,8 @@
     }
 
     window.location = path;
+  }
+
+  function slide_to_top() {
+    slide('#section-one');
   }
