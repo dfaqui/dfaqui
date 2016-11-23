@@ -1,7 +1,7 @@
 .section-one#section-one
-  - if !browser.device.mobile?
+  - if !browser.device.mobile?  # desktop background
     = video_tag 'https://s3-sa-east-1.amazonaws.com/dfaqui/videos/background.mp4',
-      class: 'background-video', autoplay: true, loop: true
+      poster: 'home/background.jpg', class: 'background-video', autoplay: true, loop: true
 
   .ui.center.aligned.container
     = image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
