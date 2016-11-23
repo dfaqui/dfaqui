@@ -1,4 +1,6 @@
-@mixin button($color) {
-  background-color: $color !important;
+@mixin button($color, $hover, $active) {
   color: white !important;
+  background-color: $color !important;
+  &:hover { background-color: $hover !important }
+  &:active { background-color: $active !important }
 }

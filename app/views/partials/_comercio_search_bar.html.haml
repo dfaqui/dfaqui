@@ -18,7 +18,7 @@
         .column= segment_dropdown
         .column= category_dropdown
         .column= speciality_dropdown
-        .column= submit_tag 'Buscar', name: nil, class: 'ui primary fluid button'
+        .column= submit_tag 'Buscar', name: nil, class: 'ui secondary-button fluid button'
     - else # mobile version
       .ui.grid
         .two.column.row
@@ -31,7 +31,7 @@
           .column= category_dropdown
           .column= speciality_dropdown
         .row
-          .column= submit_tag 'Buscar', name: nil, class: 'ui primary fluid button'
+          .column= submit_tag 'Buscar', name: nil, class: 'ui secondary-button fluid button'
 
 = javascript_include_tag 'region-filter'
 = javascript_include_tag 'market-filter'

@@ -1,7 +1,7 @@
 .content-section { margin: 2em 0 2em 0 }
 
 // BUTTONS
-.delivery-button { @include button($color-delivery) }
-.market-button { @include button($color-market) }
-.property-button { @include button($color-property) }
-.secondary-button { @include button($color-secondary) }
+.delivery-button { @include button($color-delivery, #e19c29, #c88b24) }
+.market-button { @include button($color-market, #3c913a, #358134) }
+.property-button { @include button($color-property, #0d92ab, #0c8298) }
+.secondary-button { @include button($color-secondary, #003f57, #00384d) }
