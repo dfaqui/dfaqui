@@ -1,11 +1,3 @@
-@mixin footer-banner($image, $color) {
-  background-image: image-url($image);
-  background-color: $color;
-  background-position: center center;
-  background-repeat: no-repeat;
-  min-height: 215px;
-}
-
 .comercio-footer-banner {
   @include footer-banner('comercio_footer_banner.png', #869b90);
 }

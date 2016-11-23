@@ -4,3 +4,13 @@
   &:hover { background-color: $hover !important }
   &:active { background-color: $active !important }
 }
+
+@mixin footer-banner($image, $color) {
+  @media #{$desktop} {
+    background-image: image-url($image);
+    background-color: $color;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 215px;
+  }
+}
