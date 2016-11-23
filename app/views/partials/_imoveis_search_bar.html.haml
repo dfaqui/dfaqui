@@ -3,7 +3,7 @@
 - type_dropdown       = select_tag :tipo, options_from_collection_for_select(Property.property_type.options, :last, :first), include_blank: 'Tipo de imóvel', 'data-type': 'tipo', class: 'ui fluid dropdown'
 - size_dropdown       = select_tag '', options_for_select({ 'Selecione': '' }), id: 'size-filter', class: 'ui fluid dropdown'
 - group_dropdown      = grouped_collection_select :quadras, :quadras, City.all, :district_groups, :name, :friendly_id, :name, { include_blank: 'Quadras' }, { name: 'quadras', 'data-district-group': 'quadras_quadras', class: 'ui fluid dropdown' }
-- district_dropdown   = grouped_collection_select :quadra, :quadra, DistrictGroup.all, :districts, :name, :friendly_id, :name, { include_blank: 'Quadra' }, { name: 'quadra', 'data-district': 'quadra_quadra', class: 'ui fluid dropdown' }
+- district_dropdown   = grouped_collection_select :quadra, :quadra, DistrictGroup.all, :districts, :name, :friendly_id, :name, { include_blank: 'Quadras / Nº' }, { name: 'quadra', 'data-district': 'quadra_quadra', class: 'ui fluid dropdown' }
 
 .ui.segment.search-bar
   = form_tag(list_properties_path, method: :get) do
@@ -68,4 +68,14 @@
     size = "#{params[:quartos] || params[:area]}"
     $(size_element).val(size).change();
     $(size_element).dropdown({ placeholder: false });
+
+    $('select').change(function() {
+      var element = $(this);
+
+      if(element.val()) {
+        element.parent().css('color', '#0fa3be');
+      } else {
+        element.parent().css('color', '#505050');
+      }
+    });
   });

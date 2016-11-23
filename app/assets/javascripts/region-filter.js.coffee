@@ -14,13 +14,13 @@ blocks              = $(block_element).html()
 # event handlers
 city_change_handler = (selected_value) ->
   set_options(selected_value, groups, group_element, 'Quadras')
-  clear_options(district_element, 'Quadra')
+  clear_options(district_element, 'Quadras / Nº')
 
   - if is_block_defined()
     clear_options(block_element, 'Bloco')
 
 group_change_handler = (selected_value) ->
-  set_options(selected_value, districts, district_element, 'Quadra')
+  set_options(selected_value, districts, district_element, 'Quadras / Nº')
 
   - if is_block_defined()
     clear_options(block_element, 'Bloco')

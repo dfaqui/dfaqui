@@ -9,6 +9,9 @@
     padding-right: 0.2em !important;
   }
 
+  .icon, .ui.header { color: $color-grey }
+  .item.selected { background: rgba(15, 163, 190, 0.3) !important }
+
   @media #{$mobile} {
     .row {
       padding-top: 0.5em !important;

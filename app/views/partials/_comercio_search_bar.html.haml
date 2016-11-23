@@ -65,4 +65,14 @@
     $(segment_element).dropdown({ placeholder: false });
     $(category_element).dropdown({ placeholder: false });
     $(speciality_element).dropdown({ placeholder: false });
+
+    $('select').change(function() {
+      var element = $(this);
+
+      if(element.val()) {
+        element.parent().css('color', '#0fa3be');
+      } else {
+        element.parent().css('color', '#505050');
+      }
+    });
   });
