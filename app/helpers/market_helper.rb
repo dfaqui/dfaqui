@@ -36,4 +36,17 @@ module MarketHelper
 
     html.html_safe
   end
+
+  def price_category(value, fill_color='yellow', unfill_color='grey')
+    html = ''
+
+    if value
+      5.times do |i|
+        color = (value > i) ? fill_color : unfill_color
+        html += content_tag(:i, nil, class: "#{color} dollar fitted icon")
+      end
+    end
+
+    html.html_safe
+  end
 end

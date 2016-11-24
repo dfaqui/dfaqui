@@ -1,13 +1,13 @@
 .ui.clearing.segment
-  = link_to market_show_path(market.id) do
+  - show_path = (current_channel == 'comercio') ? market_show_path(market.id) : delivery_show_path(market.id)
+  = link_to show_path do
     = image_tag market.customer.logo, class: 'ui rounded bordered customer image'
 
   .main-section
     .section-one
       .ui.grid
         .eight.wide.column
-          = link_to market.customer.fantasy_name, market_show_path(market.id),
-            class: 'ui medium header'
+          = link_to market.customer.fantasy_name, show_path,class: 'ui medium header'
 
         .eight.wide.right.aligned.column
           = link_to favorites_path(id: market.id, type: :Market), method: :post,

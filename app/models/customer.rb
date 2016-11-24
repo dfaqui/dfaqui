@@ -83,21 +83,32 @@ class Customer < ApplicationRecord
     rescue ActiveRecord::RecordInvalid => exception
   end
 
-  def full_address
+  def full_address(option = :full)
     template = ''
 
     if self.block
-      template = "%{district} %{block} %{complement}"
-
       district    = self.block.district.name
       block       = self.block.name
       complement  = self.address_complement
 
-      template = template % {
-        district: district,
-        block: "Bloco #{block}",
-        complement: complement
-      }
+      case option
+      when :full
+        template = "%{district} %{block} %{complement}"
+
+        template = template % {
+          district: district,
+          block: "Bloco #{block}",
+          complement: complement
+        }
+      when :without_complement
+        template = "%{district} %{block}"
+
+        template = template % {
+          district: district,
+          block: "Bloco #{block}"
+        }
+      end
+
     end
 
     template

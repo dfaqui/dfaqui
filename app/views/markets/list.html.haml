@@ -1,9 +1,14 @@
-.market-list-section
-  - @markets.each do |market|
-    = render market
+- if browser.device.mobile?
+  .market-list-mobile-section
+    .ui.vertically.divided.grid
+      = render partial: 'market_mobile', collection: @markets, as: :market
+- else
+  .market-list-section
+    - @markets.each do |market|
+      = render market
 
-  .ui.center.aligned.container
-    = paginate @markets
+    .ui.center.aligned.container
+      = paginate @markets
 
 :javascript
   $('.ui.heart.rating').rating();

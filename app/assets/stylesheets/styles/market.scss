@@ -7,7 +7,7 @@
 
     @media #{$mobile} { font-size: 22px }
   }
-}
+} // .market-index-section
 
 // LIST PAGE
 .market-list-section {
@@ -53,7 +53,7 @@
     margin-top: 12px;
     .action-section { text-align: right }
   }
-}
+} // .market-list-section
 
 // SHOW PAGE
 .market-show-section {
@@ -110,4 +110,34 @@
       }
     }
   }
-}
+} // .market-show-section
+
+.market-list-mobile-section {
+  .ui.image { width: 100px !important }
+
+  .row { padding-bottom: 0px !important }
+
+  .column{ margin: 0px !important }
+
+  .header {
+    color: $color-grey;
+    font-family: $font-futura-light;
+    font-size: 18px !important;
+    margin: 0px;
+  }
+
+  .ui.list {
+    display: block;
+    line-height: 1;
+
+    .item {
+      color: $color-grey-light;
+      font-size: 15px !important;
+      font-family: $font-futura-light;
+
+      i.icon { padding-right: 0.1em }
+    }
+  }
+
+  .price-category { margin-top: 5px }
+} // .market-list-mobile-section

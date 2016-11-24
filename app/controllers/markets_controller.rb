@@ -27,6 +27,7 @@ class MarketsController < ApplicationController
   end
 
   def show
-    @market   = Market.find(params[:market_id])
+    id      = params[:market_id] || params[:delivery_id]
+    @market = Market.find(id)
   end
 end
