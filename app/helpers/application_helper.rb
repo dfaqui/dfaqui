@@ -77,4 +77,16 @@ module ApplicationHelper
 
     content_tag(:i, nil, class: "#{icons[status][:color]} #{icons[status][:icon]} icon")
   end
+
+  def channel_color_class
+    color_class = ''
+
+    case current_channel
+      when 'comercio' then color_class = 'market-color'
+      when 'delivery' then color_class = 'delivery-color'
+      when 'imoveis'  then color_class = 'property-color'
+    end
+
+    color_class
+  end
 end
