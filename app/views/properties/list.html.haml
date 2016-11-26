@@ -1,15 +1,19 @@
-.property-list-section
-  .result-section
-    %span.value= @count
-    %span.label imóveis encontrados
+= render 'partials/shared/search_info'
 
-  .ui.divider
+- if browser.device.mobile?
+  - content_for :container_out do
+    .property-list-mobile-section
+      .ui.vertically.divided.centered.grid
+        = render partial: 'property_mobile', collection: @properties, as: :property
 
-  - @properties.each do |property|
-    = render property
+    :javascript
+      $('.ui.heart.rating').rating();
+- else
+  .property-list-section
+    = render partial: 'property', collection: @properties, as: :property
 
-  .ui.center.aligned.container
-    = paginate @properties
+    .ui.center.aligned.container
+      = paginate @properties
 
-:javascript
-  $('.ui.heart.rating').rating();
+    :javascript
+      $('.ui.heart.rating').rating();

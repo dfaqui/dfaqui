@@ -196,15 +196,99 @@
       padding-bottom: 0.5em !important;
     }
 
-    .right.aligned.column {
-      font-weight: bold;
-    }
+    .right.aligned.column { font-weight: bold }
   }
 
   .tag-section {
-    .tag.column{
+    .tag.column {
       padding-top: 0.2em !important;
       padding-bottom: 0.2em !important;
     }
   }
 }
+
+// LIST PAGE MOBILE
+.property-list-mobile-section {
+  .middle.row {
+    .left.column {
+      margin-bottom: 0px;
+      padding-left: 1em;
+      font-family: $font-futura-light;
+      font-size: 23px;
+
+      a { color: $color-grey }
+    }
+
+    .right.column {
+      margin-bottom: 0;
+
+      padding-right: 1.5em;
+      text-align: right !important;
+      img { width: 100px }
+    }
+
+    .ui.card {
+      margin: 0;
+      box-shadow: none !important;
+
+      img {
+        border-radius: 0px;
+        height: 174px;
+      }
+
+      .price {
+        position: absolute;
+        bottom: 0;
+        left: 1em;
+        margin-bottom: 0.2em;
+        color: white;
+        font-size: 20px;
+        text-shadow: 2px 2px 4px #000000;
+      }
+
+      .ui.ribbon.label {
+        margin-left: 1.6em;
+        padding: 4px 20px;
+        top: 10px;
+        border-color: rgba(255, 255, 255, 0) !important;
+        border-top-right-radius: 0.5em;
+        border-bottom-right-radius: 0.5em;
+        font-family: $font-futura-light;
+        font-size: 17px;
+        font-weight: 100;
+        letter-spacing: 0.5px;
+        z-index: 1;
+      } // .ui.ribbon.label
+
+      .heart.rating {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+
+        .icon {
+          color: rgba(0,70,97,0.5);
+          text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3) !important;
+          -webkit-text-stroke-color: #fff;
+          -webkit-text-stroke-width: 2px;
+        }
+
+        .icon.selected, .icon.active { color: #b40e0d !important }
+      } // .heart.rating
+
+      .content {
+        .card-label {
+          color: $color-grey;
+          font-family: $font-futura-light;
+          font-size: 18px;
+          margin: 0;
+        }
+
+        .card-value {
+          color: $color-property;
+          font-family: $font-futura-light;
+          font-size: 20px;
+        }
+      }
+    } // .ui.card
+  } // .middle.row
+} // .property-list-mobile-section
