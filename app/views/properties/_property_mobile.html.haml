@@ -2,9 +2,8 @@
   .ten.wide.left.floated.column
     = link_to property.full_address, property_show_path(property.id)
 
-  -# .six.wide.right.floated.column= image_tag property.customer.logo
   .six.wide.right.floated.column
-    = image_tag 'http://192.168.0.5:3001/assets/visao-3ad0c41f85ef41118f30e18156a0327a2713efd43227f2e4e24125ee4c1b9e26.jpg'
+    = image_tag property.customer.logo
 
   .ui.fluid.card
     .image
