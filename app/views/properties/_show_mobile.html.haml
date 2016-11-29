@@ -1,0 +1,145 @@
+.property-show-mobile-section
+  .title-section
+    .ui.two.column.middle.aligned.container.grid
+      .left.floated.column Detalhes do Imóvel
+      .right.floated.column= image_tag @property.customer.logo
+
+    .ui.divider
+
+  .property-section
+    .ui.middle.aligned.container.grid
+      .left.floated.ten.wide.column
+        %h2.ui.header= @property.full_address
+        .sub.header= @property.block.district.district_group.city.name rescue ''
+      .right.floated.six.wide.column
+        = link_to favorites_path do
+          = image_tag 'favorite_button.svg', class: 'favorite-icon'
+
+    .ui.ribbon.label{ class: "#{commercial_situation(@property.commercial_situation)}" }
+      = @property.commercial_situation_text.upcase
+
+    = render 'gallery'
+
+    .detail-section-one
+      .ui.center.aligned.container.grid
+        .five.wide.column
+          %p.card-label Área (m²)
+          %p.card-value= @property.area
+        .three.wide.column
+          - if @property.property_type.residential?
+            %p.card-label Quartos
+          - elsif @property.property_type.commercial?
+            %p.card-label Salas
+          %p.card-value= @property.rooms
+        .three.wide.column
+          %p.card-label Suítes
+          %p.card-value= @property.suites
+        .five.wide.column
+          %p.card-label Valor
+          %p= (@property.price.blank?) ? 'Sob consulta' : humanized_money_with_symbol(@property.price_cents)
+
+    .ui.divider
+
+    .detail-section-two
+      .ui.internally.celled.four.column.center.aligned.grid
+        .row
+          .column.container
+            %p.card-label Situação
+            %p.card-value= @property.release_status_text
+          .column.container
+            %p.card-label Tipo
+            %p.card-value= @property.property_type_text
+          .column.container
+            %p.card-label Condomínio
+            %p.card-value= (@property.maintenance_fee.present?) ? humanized_money_with_symbol(@property.maintenance_fee_cents) : 'X'
+          .column.container
+            %p.card-label IPTU
+            %p.card-value= (@property.tax.present?) ? humanized_money_with_symbol(@property.tax_cents) : 'X'
+
+        .ui.divider
+
+        .row
+          .column.container
+            %p.card-label Banheiros
+            %p.card-values= (@property.bathrooms.present?) ? @property.bathrooms : 'X'
+          .column.container
+            %p.card-label Garagem
+            %p.card-value= (@property.parking_spaces.present?) ? @property.parking_spaces : 'X'
+          .column.container
+            %p.card-label Andar
+            %p.card-value= (@property.floor.present?) ? @property.floor : 'X'
+          .column.container
+            %p.card-label Pos. do Sol
+            %p.card-value= (@property.sun_position.present?) ? @property.sun_position_text : 'X'
+
+    .action-section
+      .ui.two.column.center.aligned.grid
+        .column
+          .ui.labeled.icon.small.fluid.button.secondary-button{ onclick: "show_contact_info(#{@property.id})" }
+            %i.phone.icon
+            VER TELEFONE
+
+        .column
+          = link_to new_message_path(item_id: @property.id, item_type: 'Property'),
+              remote: true, class: 'ui labeled icon small fluid primary button' do
+            %i.send.outline.icon
+            ENVIAR MSG
+
+        - if @property.block.tour_link.present?
+          .column
+            = link_to @property.block.tour_link, target: :blank,
+                class: 'ui labeled icon small fluid button property-button' do
+              %i.marker.icon
+              TOUR 360º
+
+    .channel-section
+      .ui.center.aligned.grid
+        .sixteen.wide.column.text Veja o que há nas proximidades deste imóvel
+
+        .six.wide.market.column
+          = link_to 'COMÉRCIO', list_markets_path(cep: @property.block.zipcode),
+            class: 'ui market-button button'
+
+        .six.wide.delivery.column
+          = link_to 'DELIVERY', list_deliveries_path(cep: @property.block.zipcode),
+            class: 'ui delivery-button button'
+
+    .ui.divider
+
+    .description-section
+      .ui.justified.container
+        %h2.ui.header Descrição do Imóvel
+
+        .description= @property.description
+
+    - if @property.tags.any?
+      .tags-section
+        .ui.divider
+
+        .ui.container
+          %h2.ui.header Características
+
+          .ui.two.column.grid
+            - @property.tags.each do |tag|
+              .column
+                %i.fitted.check.green.icon
+                = tag.name
+
+    .ui.divider
+
+    .customer-section
+      .ui.two.column.middle.aligned.container.grid
+        .left.floated.column= image_tag @property.customer.logo
+        .right.floated.column
+          %span CRECI
+          %span= @property.customer.additional_info
+
+= render partial: 'partials/contact_modal',
+  locals: { item_id: @property.id, phones: @property.customer.contact_phone }
+
+:javascript
+  init_gallery();
+
+  function show_contact_info(id) {
+    $('.ui.modal.item-' + id).modal('show');
+  }

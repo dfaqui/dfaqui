@@ -7,6 +7,7 @@ class CustomerUploader < CarrierWave::Uploader::Base
   process :resize_to_fill => [266, 165]
   # process :resize_to_fill => [194, 120]
   # process :resize_to_fill => [130, 80]
+  # process :resize_to_fill => [80, 50] - mobile
 
   def store_dir
     path = "cliente/#{model.id}/logomarca"

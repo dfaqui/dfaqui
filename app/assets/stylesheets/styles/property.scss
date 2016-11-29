@@ -292,3 +292,214 @@
     } // .ui.card
   } // .middle.row
 } // .property-list-mobile-section
+
+// SHOW PAGE MOBILE
+.property-show-mobile-section {
+  margin-top: 7em;
+  overflow: hidden;
+
+  .title-section {
+    .ui.container {
+      margin-left: 0.1em !important;
+      margin-right: 0.1em !important;
+    }
+
+    .ui.grid {
+      .left.column {
+        color: $color-grey;
+        font-family: $font-futura-light;
+        font-size: 22px;
+      }
+
+      .right.column {
+        text-align: right;
+
+        img {
+          width: 80px;
+          height: 50px;
+        }
+      }
+    }
+
+    .ui.divider {
+      margin-top: 0.2em;
+      border-color: $color-property;
+    }
+  } // .title-section
+
+  .property-section {
+    .left.column {
+      padding-left: 0px;
+
+      .ui.header {
+        color: $color-grey;
+        font-family: $font-futura-light;
+        font-size: 26px;
+        font-weight: 100;
+        margin-bottom: 0px;
+      }
+
+      .sub.header {
+        color: $color-grey-light;
+        font-family: $font-futura-light;
+        font-size: 16px;
+      }
+    }
+
+    .right.column {
+      padding-right: 0px;
+
+      text-align: right;
+      .favorite-icon { height: 45px }
+    }
+
+    .ui.ribbon {
+      position: absolute;
+      margin-top: 1em;
+      margin-left: 0.8em;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      z-index: 1;
+      font-family: $font-futura-light;
+      font-size: 17px;
+      font-weight: 100;
+      border-top-right-radius: 0.5em;
+      border-bottom-right-radius: 0.5em;
+    }
+  } // .property-section
+
+  .gallery-section {
+    background-color: rgba(0, 0, 0, 0.74);
+
+    .lSSlideOuter  {
+      .lSPager.lSGallery { display: none }
+      .lSAction { display: none !important }
+    }
+  } // .gallery-section
+
+  .detail-section-one {
+    color: $color-grey;
+    font-family: $font-futura-light;
+    font-size: 20px;
+    margin-top: 0.5em;
+
+    .ui.container {
+      margin-left: 0.1em !important;
+      margin-right: 0.1em !important;
+    }
+
+    .column {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+
+      p:last-child {
+        color: $color-property;
+        margin-top: -1em;
+      }
+    }
+  } // .detail-section-one
+
+  .detail-section-two {
+    font-size: 17px;
+    font-family: $font-futura-light;
+
+    .row:last-child { box-shadow: none !important }
+
+    .column {
+      padding: 0.5em 0em !important;
+
+      p:first-child { color: $color-grey }
+
+      p:last-child {
+        color: $color-grey-light;
+        margin-top: -0.8em;
+      }
+    }
+
+    .ui.divider { margin: 1em 0em !important }
+  } // .detail-section-two
+
+  .action-section {
+    margin-top: 2em;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+
+    .column {
+      padding-top: 0px !important;
+      padding-left: 0.3em !important;
+      padding-right: 0.3em !important;;
+    }
+
+    .ui.button {
+      padding-left: 3em !important;
+      padding-right: 0.5em !important;
+      font-size: 13px;
+
+      i { background-color: #d3d3d3 !important }
+    }
+
+    .secondary-button .icon { color: $color-secondary !important }
+    .primary.button   .icon { color: #2185D0 !important }
+    .property-button  .icon { color: $color-property !important }
+  } // .action-section
+
+  .channel-section {
+    margin-top: 1em;
+
+    .text {
+      font-family: $font-futura-light;
+      font-size: 18px;
+      padding-bottom: 0px !important;
+    }
+
+    .market.column   { text-align: right }
+    .delivery.column { text-align: left }
+  } // .channel-section
+
+  .description-section {
+    .ui.header {
+      color: $color-grey;
+      font-family: $font-futura-light !important;
+      font-weight: 100;
+      font-size: 22px;
+    }
+
+    .description {
+      color: $color-grey-light;
+      font-family: $font-futura-light !important;
+      font-size: 16px;
+    }
+  } // .description-section
+
+  .tags-section {
+    .ui.header {
+      color: $color-grey;
+      font-family: $font-futura-light !important;
+      font-weight: 100;
+      font-size: 22px;
+    }
+
+    .column {
+      color: $color-grey;
+      font-family: $font-futura-light;
+      font-size: 18px;
+      padding-top: 0.5em !important;
+      padding-bottom: 0.5em !important;
+    }
+  } // .tags-section
+
+  .customer-section {
+    .left.column img {
+      width: 130px;
+      height: 80px;
+    }
+
+    .right.column {
+      font-family: $font-futura-light;
+      font-size: 18px;
+
+      span:first-child { color: $color-grey }
+      span:last-child { color: $color-grey-light }
+    }
+  } // .customer-section
+}

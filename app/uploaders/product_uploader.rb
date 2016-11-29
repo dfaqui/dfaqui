@@ -4,7 +4,7 @@ class ProductUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :fog
-  process :resize_to_fill => [180, 120]
+  process :resize_to_fill => [194, 120]
 
   def store_dir
     path = "comercio/#{model.market_id}/produto"
