@@ -366,6 +366,22 @@
       border-top-right-radius: 0.5em;
       border-bottom-right-radius: 0.5em;
     }
+
+    .ui.rating {
+      position: absolute;
+      margin-top: 10px;
+      right: 5px;
+      z-index: 1;
+
+      .icon {
+        color: rgba(0,70,97,0.5);
+        text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3) !important;
+        -webkit-text-stroke-color: #fff;
+        -webkit-text-stroke-width: 2px;
+      }
+
+      .icon.selected, .icon.active { color: #b40e0d !important }
+    }
   } // .property-section
 
   .gallery-section {
@@ -502,4 +518,4 @@
       span:last-child { color: $color-grey-light }
     }
   } // .customer-section
-}
+} // .property-show-mobile-section

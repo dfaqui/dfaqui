@@ -18,6 +18,11 @@
     .ui.ribbon.label{ class: "#{commercial_situation(@property.commercial_situation)}" }
       = @property.commercial_situation_text.upcase
 
+    = link_to favorites_path(id: @property.id, type: :Property), method: :post,
+        remote: true do
+      - favorited = Favorite.is_favorited?(current_user, @property.id, :Property) ? 1 : 0
+      .ui.massive.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1 }
+
     = render 'gallery'
 
     .detail-section-one
@@ -143,3 +148,5 @@
   function show_contact_info(id) {
     $('.ui.modal.item-' + id).modal('show');
   }
+
+  $('.ui.heart.rating').rating();
