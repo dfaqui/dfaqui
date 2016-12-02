@@ -243,6 +243,10 @@
       font-weight: 100;
     }
 
+    .image.column {
+      width: 132px !important;
+    }
+
     .content {
       padding-left: 0px !important;
       font-family: $font-futura-regular;
@@ -250,6 +254,7 @@
       .name {
         color: $color-grey;
         font-size: 18px;
+        text-align: left;
       }
 
       .description {
