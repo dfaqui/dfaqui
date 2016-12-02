@@ -1,0 +1,67 @@
+.market-show-mobile-section
+  .title-section
+    .ui.middle.aligned.container.grid
+      .left.floated.ten.wide.column Detalhes do Comércio
+      .right.floated.six.wide.column= image_tag @market.customer.logo
+
+    .ui.divider
+
+  .market-section
+    .ui.middle.aligned.container.grid
+      .header.row
+        .left.floated.thirteen.wide.column
+          %h2.ui.header= @market.customer.fantasy_name
+          .sub.header
+            .ui.horizontal.divided.list
+              .item= open_label(@market)
+              .item= @market.customer.full_address
+              - if @market.delivery? && @market.estimated_time
+                .item
+                  %i.fitted.wait.icon
+                  = "#{@market.estimated_time}m"
+
+        .right.floated.three.wide.column
+          = link_to favorites_path do
+            = image_tag 'favorite_button.svg', class: 'favorite-icon'
+
+      .payment.row
+        .ui.horizontal.divided.payment.list
+          - if @market.price_category.present?
+            .item= price_category(@market.price_category)
+
+          .item
+            .ui.horizontal.list
+              - @market.payment_methods.each do |payment|
+                .item= image_tag "payment/#{payment.icon}", class: 'ui mini image'
+
+      .tags.row
+        .ui.horizontal.list
+          - @market.specialities.limit(3).each do |speciality|
+            .item
+              %a.ui.tiny.label
+                %i.tag.icon
+                = speciality.name
+
+      .description.row= @market.customer.description
+
+      .contact.centered.row
+        .ui.labeled.icon.secondary-button.tiny.button{ onclick: "show_contact_info(#{@market.id})" }
+          %i.call.icon
+          CONTATO
+
+  .ui.divider
+
+  .product-section
+    .ui.container
+      %h2.ui.header Destaques
+
+      .ui.relaxed.divided.items
+        = render partial: 'markets/product', collection: @market.products, as: :product
+
+= render partial: 'partials/contact_modal',
+    locals: { item_id: @market.id, phones: @market.customer.contact_phone }
+
+:javascript
+  function show_contact_info(id) {
+    $('.ui.modal.item-' + id).modal('show');
+  }

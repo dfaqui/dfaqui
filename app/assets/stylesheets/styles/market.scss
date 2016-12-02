@@ -141,3 +141,131 @@
 
   .price-category { margin-top: 5px }
 } // .market-list-mobile-section
+
+.market-show-mobile-section {
+  margin-top: 7em;
+  // overflow: hidden;
+
+  .title-section {
+    .ui.container {
+      margin-left: 0.1em !important;
+      margin-right: 0.1em !important;
+    }
+
+    .left.column {
+      color: $color-grey;
+      font-family: $font-futura-light;
+      font-size: 22px;
+    }
+
+    .right.column {
+      text-align: right;
+
+      img {
+        width: 80px;
+        height: 50px;
+      }
+    }
+
+    .ui.divider { margin-top: 0.2em }
+  } // .title-section
+
+  .market-section {
+    .header.row {
+      padding-bottom: 0px;
+
+      .left.column {
+        padding-left: 0px;
+
+        .ui.header {
+          color: $color-grey;
+          font-family: $font-futura-light;
+          font-size: 26px;
+          font-weight: 100;
+          margin-bottom: 0px;
+        }
+
+        .sub.header {
+          font-family: $font-futura-light;
+          color: $color-grey-light;
+
+          .item { font-size: 14px }
+          .wait.icon { color: $color-property }
+        }
+      }
+
+      .right.column {
+        padding-right: 0px;
+
+        text-align: right;
+        .favorite-icon { height: 45px }
+      }
+    } // .header.row
+
+    .payment.row {
+      padding-top: 0px;
+      padding-bottom: 0px;
+
+      .payment.list {
+        .ui.list .item { margin-left: 0px }
+      }
+    } // .payment.row
+
+    .tags.row {
+      padding-top: 0px;
+      padding-bottom: 0px;
+
+      .item { margin-left: 0.2em }
+    } // .tags.row
+
+    .description.row {
+      color: $color-grey-light;
+      font-family: $font-futura-light;
+      font-size: 16px;
+      text-align: justify;
+    }
+
+    .contact.row {
+      padding-top: 0px;
+
+      i.icon {
+        background-color: #d3d3d3;
+        color: $color-secondary;
+      }
+    }
+  } // .market-section
+
+  .product-section {
+    .ui.header {
+      color: $color-grey;
+      font-family: $font-futura-light;
+      font-size: 22px;
+      font-weight: 100;
+    }
+
+    .content {
+      padding-left: 0px !important;
+      font-family: $font-futura-regular;
+
+      .name {
+        color: $color-grey;
+        font-size: 18px;
+      }
+
+      .description {
+        color: $color-grey-light;
+        font-family: $font-futura-light;
+        font-size: 16px;
+        text-align: justify;
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+
+      .price {
+        color: $color-grey;
+        font-size: 18px;
+        text-align: right;
+      }
+    }
+  } // .product-section
+} // .market-show-mobile-section

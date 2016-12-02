@@ -1,7 +1,8 @@
 .item
-  = image_tag product.photo, class: 'ui rounded image'
-  .content
-    .header= product.name
-    .meta= product.description
-    .extra
-      .ui.right.floated.header= humanized_money_with_symbol product.price_cents
+  .ui.two.column.grid
+    .row
+      .image.column= image_tag product.photo, class: 'ui rounded image'
+      .content.column
+        .name= product.name
+        .description= product.description
+        .price= humanized_money_with_symbol(product.price_cents)
