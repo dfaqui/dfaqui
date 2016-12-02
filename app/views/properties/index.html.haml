@@ -4,8 +4,13 @@
   .ui.hidden.divider
 
   .sponsor-section
-    - columns = (browser.device.mobile?) ? 'three' : 'six'
-    %div{ class: "ui #{columns} column center aligned grid" }
+    %div{ class: "ui three column center aligned grid mobile only" }
+      - @buttons.each do |button|
+        .column
+          = link_to list_properties_path(cliente: button.customer_id) do
+            = image_tag button.image, class: 'ui fluid image'
+
+    %div{ class: "ui six column center aligned grid" }
       - @buttons.each do |button|
         .column
           = link_to list_properties_path(cliente: button.customer_id) do
