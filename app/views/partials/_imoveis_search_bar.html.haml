@@ -16,19 +16,19 @@
         .column= group_dropdown
         .column= district_dropdown
         .column= submit_tag 'Buscar', name: nil, class: 'ui secondary-button fluid button'
-    - else # mobile version
-      .ui.grid
-        .two.column.row
-          .column= city_dropdown
-          .column= situation_dropdown
-        .two.column.row
-          .column= type_dropdown
-          .column= size_dropdown
-        .two.column.row
-          .column= group_dropdown
-          .column= district_dropdown
-        .row
-          .column= submit_tag 'Buscar', name: nil, class: 'ui secondary-button fluid button'
+
+    .ui.grid.search-bar-mobile
+      .two.column.row
+        .column= city_dropdown
+        .column= situation_dropdown
+      .two.column.row
+        .column= type_dropdown
+        .column= size_dropdown
+      .two.column.row
+        .column= group_dropdown
+        .column= district_dropdown
+      .row
+        .column= submit_tag 'Buscar', name: nil, class: 'ui secondary-button fluid button'
 
 = javascript_include_tag 'region-filter'
 = javascript_include_tag 'property-filter'
