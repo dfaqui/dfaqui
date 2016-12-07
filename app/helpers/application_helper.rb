@@ -37,12 +37,20 @@ module ApplicationHelper
       background_image  = image_url "#{current_channel}_banner.png"
     end
 
-    content_tag(
+    html = content_tag(
       :div,
       nil,
       class: 'channel-banner',
       style: "background-image: url(#{background_image})"
     )
+
+    if browser.device.mobile?
+      html += link_to favorites_path do
+        image_tag 'favorite_button.svg', class: 'favorite-button'
+      end
+    end
+
+    html
   end
 
   private

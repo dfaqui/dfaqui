@@ -1,11 +1,21 @@
-.channel-banner {
-  margin-top: 95px;
-  background-position: center center;
-  background-size: cover;
-  min-height: 445px;
+.channel-banner-section {
+  .channel-banner {
+    margin-top: 95px;
+    background-position: center center;
+    background-size: cover;
+    min-height: 445px;
 
-  @media #{$mobile} {
-    margin-top: 75px;
-    min-height: 130px;
+    @media #{$mobile} {
+      margin-top: 75px;
+      min-height: 130px;
+    }
+  }
+
+  .favorite-button {
+    position: absolute;
+    right: 10px;
+    margin-top: -55px;
+    z-index: 1;
+    height: 40px;
   }
 }
