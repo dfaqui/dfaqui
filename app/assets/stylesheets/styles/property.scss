@@ -212,7 +212,7 @@
   .middle.row {
     .left.column {
       margin-bottom: 0px;
-      padding-left: 1em;
+      padding-left: 0.5em;
       font-family: $font-futura-light;
       font-size: 23px;
 
@@ -222,7 +222,7 @@
     .right.column {
       margin-bottom: 0;
 
-      padding-right: 1.5em;
+      padding-right: 1em;
       text-align: right !important;
       img { width: 100px }
     }
@@ -239,7 +239,7 @@
       .price {
         position: absolute;
         bottom: 0;
-        left: 1em;
+        left: 0.5em;
         margin-bottom: 0.2em;
         color: white;
         font-size: 20px;
@@ -247,8 +247,8 @@
       }
 
       .ui.ribbon.label {
-        margin-left: 1.6em;
-        padding: 4px 20px;
+        margin-left: 18px;
+        padding: 4px 15px;
         top: 10px;
         border-color: rgba(255, 255, 255, 0) !important;
         border-top-right-radius: 0.5em;
@@ -263,7 +263,7 @@
       .heart.rating {
         position: absolute;
         top: 10px;
-        right: 20px;
+        right: 8px;
 
         .icon {
           color: rgba(0,70,97,0.5);
@@ -289,14 +289,21 @@
           font-size: 20px;
         }
       }
+
+      .action.container {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+      }
     } // .ui.card
   } // .middle.row
 } // .property-list-mobile-section
 
 // SHOW PAGE MOBILE
 .property-show-mobile-section {
-  margin-top: 7em;
   overflow: hidden;
+  margin-top: 7em;
+  margin-left: -1em;
+  margin-right: -1em;
 
   .title-section {
     .ui.container {

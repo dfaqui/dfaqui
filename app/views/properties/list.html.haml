@@ -1,13 +1,12 @@
 = render 'partials/shared/search_info'
 
 - if browser.device.mobile?
-  - content_for :container_out do
-    .property-list-mobile-section
-      .ui.vertically.divided.centered.grid
-        = render partial: 'property_mobile', collection: @properties, as: :property
+  .property-list-mobile-section
+    .ui.vertically.divided.centered.grid
+      = render partial: 'property_mobile', collection: @properties, as: :property
 
-    :javascript
-      $('.ui.heart.rating').rating();
+  :javascript
+    $('.ui.heart.rating').rating();
 - else
   .property-list-section
     = render partial: 'property', collection: @properties, as: :property

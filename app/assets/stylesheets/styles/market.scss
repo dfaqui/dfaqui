@@ -147,8 +147,10 @@
 } // .market-list-mobile-section
 
 .market-show-mobile-section {
+  overflow: hidden;
   margin-top: 7em;
-  // overflow: hidden;
+  margin-left: -1em;
+  margin-right: -1em;
 
   .title-section {
     .ui.container {

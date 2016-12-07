@@ -5,17 +5,33 @@
   %h2.ui.header Imóveis
   .ui.divider
 
-  .property-list-section
-    - current_user.favorites.properties.each do |favorite|
-      = render favorite.favoritable
+  - if browser.device.mobile?
+    .property-list-mobile-section
+      .ui.vertically.divided.centered.grid
+        - current_user.favorites.properties.each do |favorite|
+          = render partial: 'properties/property_mobile',
+            object: favorite.favoritable,
+            as: :property
+
+    :javascript
+      $('.ui.heart.rating').rating();
+  - else
+    .property-list-section
+      - current_user.favorites.properties.each do |favorite|
+        = render favorite.favoritable
 
 - if current_user.favorites.markets.exists?
   %h2.ui.header Comércios / Delivery
   .ui.divider
 
-  .market-list-section
-    - current_user.favorites.markets.each do |favorite|
-      = render favorite.favoritable
-
-:javascript
-  $('.ui.heart.rating').rating();
+  - if browser.device.mobile?
+    .market-list-mobile-section
+      .ui.vertically.divided.grid
+        - current_user.favorites.markets.each do |favorite|
+          = render partial: 'markets/market_mobile',
+            object: favorite.favoritable,
+            as: :market
+  - else
+    .market-list-section
+      - current_user.favorites.markets.each do |favorite|
+        = render favorite.favoritable
