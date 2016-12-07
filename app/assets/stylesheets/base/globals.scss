@@ -6,6 +6,7 @@
 .property-button { @include button($color-property, #0d92ab, #0c8298) }
 .secondary-button { @include button($color-secondary, #003f57, #00384d) }
 
+// COLORS
 .delivery-color { color: $color-delivery }
 .market-color { color: $color-market }
 .property-color { color: $color-property }
