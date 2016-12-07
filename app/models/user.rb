@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   enumerize :role, in: { admin: :admin, regular: :regular, property: :property }
 
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 100 }
 
