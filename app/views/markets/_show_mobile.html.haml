@@ -1,4 +1,10 @@
 .market-show-mobile-section
+  - banner_image = image_url('alimentacao_market_banner.jpg');
+  .banner{ style: "background-image: url(#{banner_image})" }
+
+  = link_to favorites_path do
+    = image_tag 'favorite_button.svg', class: 'favorite-icon'
+
   .title-section
     .ui.middle.aligned.container.grid
       .left.floated.ten.wide.column Detalhes do Comércio
@@ -21,8 +27,11 @@
                   = "#{@market.estimated_time}m"
 
         .right.floated.three.wide.column
-          = link_to favorites_path do
-            = image_tag 'favorite_button.svg', class: 'favorite-icon'
+          = link_to favorites_path(id: @market.id, type: :Market),
+              method: :post, remote: true do
+
+            - favorited = Favorite.is_favorited?(current_user, @market.id, :Market) ? 1 : 0
+            .ui.massive.heart.rating{ 'data-rating': favorited, 'data-max-rating': 1, 'data-variation': 'small' }
 
       .payment.row
         .ui.horizontal.divided.payment.list
@@ -62,6 +71,8 @@
     locals: { item_id: @market.id, phones: @market.customer.contact_phone }
 
 :javascript
+  $('.ui.heart.rating').rating();
+
   function show_contact_info(id) {
     $('.ui.modal.item-' + id).modal('show');
   }

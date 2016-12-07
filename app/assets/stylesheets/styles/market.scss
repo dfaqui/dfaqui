@@ -148,9 +148,22 @@
 
 .market-show-mobile-section {
   overflow: hidden;
-  margin-top: 7em;
+  margin-top: 75px;
   margin-left: -1em;
   margin-right: -1em;
+
+  .banner {
+    background-position: center center;
+    background-size: cover;
+    min-height: 130px;
+  }
+
+  .favorite-icon {
+    position: absolute;
+    right: 10px;
+    margin-top: -55px;
+    height: 45px;
+  }
 
   .title-section {
     .ui.container {
@@ -201,10 +214,17 @@
       }
 
       .right.column {
+        margin-top: -8px;
         padding-right: 0px;
-
         text-align: right;
-        .favorite-icon { height: 45px }
+
+        .icon {
+          color: rgba(0,70,97,0.5);
+          text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3) !important;
+          -webkit-text-stroke-width: 2px;
+        }
+
+        .icon.selected, .icon.active { color: #b40e0d !important }
       }
     } // .header.row
 
