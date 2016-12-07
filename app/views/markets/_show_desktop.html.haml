@@ -3,8 +3,7 @@
     .ui.bottom.aligned.column.banner.grid
       .column
         .ui.container
-          = image_tag @market.customer.logo,
-              class: 'ui rounded bordered customer image'
+          = image_tag @market.customer.logo, class: 'ui rounded bordered customer image'
 
           .main-section
             .section-one
@@ -33,10 +32,8 @@
                     %i.fitted.clock.icon
                     = distance_of_time(@market.estimated_time * 60)
                 - if @market.price_category.present?
-                  .item
-                    - 5.times do |i|
-                      - color = (@market.price_category > i) ? 'yellow' : 'white'
-                      %i{ class: "#{color} dollar fitted icon" }
+                  .item= price_category(@market.price_category, 'yellow', 'white')
+
                 .item
                   .ui.horizontal.list
                     - @market.payment_methods.each do |payment|
@@ -56,10 +53,10 @@
 
         .ui.hidden.section.divider
 
-    .ui.container
-      .ui.relaxed.divided.items
-        = render partial: 'markets/product', collection: @market.products, as: :product
-
+    .product-section
+      .ui.container
+        .ui.relaxed.divided.items
+          = render partial: 'markets/product_desktop', collection: @market.products, as: :product
 
 = render partial: 'partials/contact_modal',
   locals: { item_id: @market.id, phones: @market.customer.contact_phone }

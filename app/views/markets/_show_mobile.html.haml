@@ -56,7 +56,7 @@
       %h2.ui.header Destaques
 
       .ui.relaxed.divided.items
-        = render partial: 'markets/product', collection: @market.products, as: :product
+        = render partial: 'markets/product_mobile', collection: @market.products, as: :product
 
 = render partial: 'partials/contact_modal',
     locals: { item_id: @market.id, phones: @market.customer.contact_phone }
