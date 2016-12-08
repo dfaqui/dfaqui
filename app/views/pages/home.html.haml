@@ -1,7 +1,9 @@
-.section-one#section-one
+.bg-home.section-one#section-one
   - if !browser.device.mobile?  # desktop background
     = video_tag 'https://s3-sa-east-1.amazonaws.com/dfaqui/videos/background.mp4',
-      poster: 'home/background.jpg', class: 'background-video', autoplay: true, loop: true
+      poster: 'home/background.jpg', class: 'bg-home', autoplay: true, loop: true
+
+    = image_tag 'home/background.jpg', class: 'bg-home'
 
   .ui.center.aligned.container
     = image_tag 'home/dfaqui_light.svg', class: 'dfaqui-light'
@@ -25,7 +27,7 @@
 
 .ui.hidden.divider
 
-.section-two#section-two
+.section-two.transparent-background#section-two
   .ui.center.aligned.container.grid
     .ui.horizontal.divider
       .ui.header.title#home-title O DF todo aqui
@@ -63,9 +65,7 @@
             %a{ onclick: "go_to_channel('#{deliveries_path}')" }
               = image_tag 'home/delivery_mobile_button.png', class: 'ui fluid image'
 
-.ui.hidden.section.divider
-
-.section-three#section-three
+.section-three.transparent-background#section-three
   .ui.center.aligned.container.grid
     .ui.horizontal.divider
       .ui.header.title Tudo bem pertinho de você
@@ -76,21 +76,20 @@
         %br
         Desde uma casa para alugar, um saboroso sushi ou uma lavanderia.
 
-  .ui.hidden.section.divider
-
   .ui.centered.container.grid
     .middle.aligned.row
       .nine.wide.column
         = link_to 'http://tour.dfaqui.com/as/aereas/8/index.html?s=pano11&h=-108.6257&v=0.0000&f=56.2283&skipintro&norotation',
             id: 'home-pin-link', target: '_blank' do
           = image_tag 'home/pin_servicos.png', class: 'ui fluid image'
+
       .seven.wide.column.tour-description
         %p.title Imagens aéreas
         %p.subtitle 360
         %p.item Asa Sul
         %p.item Noroeste
 
-.ui.circular.icon.button#to-top{ onclick: "slide_to_top()" }
+.ui.circular.icon.button.secondary-button#to-top{ onclick: "slide_to_top()" }
   %i.caret.up.icon
 
 :javascript
