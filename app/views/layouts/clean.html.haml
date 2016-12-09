@@ -10,6 +10,10 @@
 
     = javascript_include_tag 'core', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+    = render 'partials/google_analytics'
   %body
     = yield
     = render 'partials/footer'
+
+    = render 'partials/google_analytics_pageview'

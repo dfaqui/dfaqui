@@ -11,6 +11,8 @@
     = javascript_include_tag 'core', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
+    = render 'partials/google_analytics'
+
     - channel = 'comercio' if current_channel.in?(['delivery', 'comercio'])
     - channel = 'imoveis' if current_channel == 'imoveis'
   %body
@@ -30,3 +32,5 @@
 
     = render 'partials/footer_banner'
     = render 'partials/footer'
+
+    = render 'partials/google_analytics_pageview'
