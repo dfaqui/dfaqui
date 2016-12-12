@@ -31,6 +31,10 @@
     .header { margin-left: 15px }
   }
 
+  .section-two, .section-three {
+    padding-top: 0px;
+  }
+
   .section-two {
     margin-top: 15px;
 
@@ -101,6 +105,10 @@
       }
     }
 
+    .section-two, .section-three {
+      padding-top: 0px;
+    }
+
     .section-three {
       .white{ color: white }
 
@@ -110,6 +118,10 @@
       }
     }
   } // .main-section
+
+  .ui.inverted.small.button {
+    margin-top: 4em;  
+  }
 
   .product-section {
     .image.column { width: 132px !important }
