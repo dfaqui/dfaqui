@@ -21,3 +21,6 @@
 
 # Ignore database configuration
 /config/database.yml
+
+# Ignore RubyMine folder
+.idea/

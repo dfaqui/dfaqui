@@ -144,6 +144,8 @@
 .property-show-section {
   padding-top: 85px;
 
+  .property-header .column{ padding-bottom: 0 !important }
+
   .gallery-section {
     .property-image {
       max-width: 100%;

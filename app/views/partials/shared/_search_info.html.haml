@@ -1,9 +1,15 @@
+- previous_page = deliveries_path(cidade: params['cidade']) if current_channel == 'delivery'
+- previous_page = markets_path(cidade: params['cidade']) if current_channel == 'comercio'
+- previous_page = properties_path(cidade: params['cidade']) if current_channel == 'imoveis'
+
 .search-info-section
   .ui.center.aligned.grid
     .row
-      .column
+      .center.aligned.column
+        = link_to 'Voltar', previous_page, class: 'ui small primary button left floated back-button'
+
         .text
           %span{ class: "#{channel_color_class}"}= @count
           itens encontrados
 
-.ui.divider
+.ui.clearing.divider

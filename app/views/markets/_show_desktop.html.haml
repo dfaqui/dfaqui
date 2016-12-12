@@ -1,3 +1,8 @@
+- city          = @market.customer.block.district.district_group.city.slug
+
+- previous_link = list_markets_path(cidade: city) if current_channel == 'comercio'
+- previous_link = list_deliveries_path(cidade: city) if current_channel == 'delivery'
+
 - content_for :banner do
   .market-show-section
     .ui.bottom.aligned.column.banner.grid
@@ -45,9 +50,17 @@
           .ui.right.floated.inverted.small.button{ onclick: "show_contact_info(#{@market.id})" }
             CONTATO
 
-    .ui.hidden.section.divider
+    .ui.hidden.divider
 
-    - if @market.customer.description
+    .ui.justified.description.container
+      = link_to 'Voltar', previous_link, class: 'ui small primary button left floated back-button'
+      .ui.clearing.hidden.divider
+
+      = @market.customer.description
+
+      .ui.hidden.divider
+
+    -#- if @market.customer.description
       .ui.justified.description.container
         = @market.customer.description
 

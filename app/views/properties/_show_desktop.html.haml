@@ -1,5 +1,12 @@
+- city = @property.block.district.district_group.city.slug
+- previous_link = list_properties_path(cidade: city)
+
 .property-show-section
-  .ui.header.title= @property.full_address
+  .ui.two.column.middle.aligned.grid.property-header
+    .column
+      %h2.ui.header= @property.full_address
+    .column
+      = link_to 'Voltar', previous_link, class: 'ui small primary button right floated back-button'
 
   .ui.stackable.grid
     .eleven.wide.column

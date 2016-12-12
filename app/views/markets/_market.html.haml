@@ -60,17 +60,17 @@
             = link_to 'VER DETALHES', market_show_path(market.id),
               class: 'ui tiny secondary-button button'
 
-            .ui.tiny.primary.button{ onclick: "show_contact_info(#{market.id})" }
-              CONTATO
+            .ui.tiny.primary.button{ onclick: "show_contact_info(#{market.id})" } CONTATO
 
-            = link_to 'IMÓVEIS', list_properties_path(cep: market.customer.block.zipcode),
-              class: 'ui tiny property-button button'
+            - if market.customer.block.present?
+              = link_to 'IMÓVEIS', list_properties_path(cep: market.customer.block.zipcode),
+                class: 'ui tiny property-button button'
 
-            - if current_channel.in?(['comercio', 'delivery', ['imoveis']])
-              = link_button(market.customer.block.zipcode)
-            - else
-              = link_to('COMÉRCIO', list_markets_path(cep: market.customer.block.zipcode),
-                class: "ui tiny market-button button")
+              - if current_channel.in?(['comercio', 'delivery', ['imoveis']])
+                = link_button(market.customer.block.zipcode)
+              - else
+                = link_to('COMÉRCIO', list_markets_path(cep: market.customer.block.zipcode),
+                  class: "ui tiny market-button button")
 
 .ui.hidden.divider
 
