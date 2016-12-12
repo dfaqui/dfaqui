@@ -3,13 +3,19 @@
 - previous_page = properties_path(cidade: params['cidade']) if current_channel == 'imoveis'
 
 .search-info-section
+  .header-button-back
+    = link_to previous_page, class: 'ui labeled icon button back-button' do
+      %i.reply.icon
+      Voltar
+
+  .header-button-back
+    = link_to 'Voltar', previous_page, class: 'ui small primary button left floated back-button'
+
   .ui.center.aligned.grid
     .row
       .center.aligned.column
-        = link_to 'Voltar', previous_page, class: 'ui small primary button left floated back-button'
-
         .text
-          %span{ class: "#{channel_color_class}"}= @count
+          %span{ class: "#{channel_color_class}" }= @count
           itens encontrados
 
 .ui.clearing.divider
