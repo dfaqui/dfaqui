@@ -226,6 +226,7 @@ $opacity-bg-color: rgba(255,255,255,0.94);
 } // .section-three
 
 .footer-section {
+  display: none;
   padding-top: 4em;
   margin-top: 1em !important;
   background-color: $opacity-bg-color;
