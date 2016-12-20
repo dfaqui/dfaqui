@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
+  get 'pages/terms'
   post 'pages/dynamic_content'
 
   # solucao paliativa até os links do tour serem atualizados
