@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   post 'pages/dynamic_content'
+  get 'pages/terms'
 
   # solucao paliativa até os links do tour serem atualizados
   get '/imoveis/:region/site/lista', to: redirect { |params, request|

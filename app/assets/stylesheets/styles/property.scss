@@ -8,6 +8,14 @@
     @media #{$mobile} { font-size: 22px }
   }
 
+  .sponsor-section {
+    @media #{$mobile} {
+      .ui.six.column {
+        display: none !important;
+      }
+    }
+  }
+
   .ui.card.desktop {
     max-width: 261px;
 

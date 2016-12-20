@@ -12,4 +12,7 @@ class PagesController < ApplicationController
 
     @link = @link.html_safe if @link
   end
+
+  def terms
+  end
 end
