@@ -1,0 +1,32 @@
+// ERROR 404 PAGE
+.content-error-section {
+  height: auto;
+  min-height: 100%;
+
+  .description-error, h1, h2 {
+    font-family: $font-futura-regular;
+    color: $color-secondary;
+  }
+
+  .description-error {
+    text-align: center;
+    width: 800px;
+    margin-left: -400px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    letter-spacing: 1.5px;
+
+    h1 {
+      margin: 0;
+      font-size: 150px;
+      line-height: 150px;
+      font-weight: bold;
+    }
+
+    h2 {
+      margin-top: 20px;
+      font-size: 30px;
+    }
+  }
+}

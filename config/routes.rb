@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+
   root 'pages#home'
+
+  get "/404", :to => "errors#not_found"
 
   post 'pages/dynamic_content'
   get 'pages/terms'
+
+  %w( 404 ).each do |code|
+    get code, :to => "errors#show", :code => code
+  end
 
   # solucao paliativa até os links do tour serem atualizados
   get '/imoveis/:region/site/lista', to: redirect { |params, request|
